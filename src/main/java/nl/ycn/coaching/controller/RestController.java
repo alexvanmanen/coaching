@@ -19,7 +19,7 @@ public class RestController {
         return "hallo hallo " +  counter;
     }
 
-    @PostMapping("/top10")
+    @PostMapping("top10")
     public String top10(@RequestBody String input) {
         Text text = new Text(input);
         List<Word> wordList = text.getWordList();

@@ -19,7 +19,6 @@ public class WordOccurences {
         createTop10();
         return getTop10Occurences();
     }
-
     private Map<Word, Integer> getOccurrences(List<Word> list) {
         Map<Word, Integer> words = new HashMap<>();
         for (Word word : list) {
@@ -33,13 +32,11 @@ public class WordOccurences {
         }
         return words;
     }
-
     private void filter() {
         wordOccurrencesMap.remove(new Word("een"));
         wordOccurrencesMap.remove(new Word("de"));
         wordOccurrencesMap.remove(new Word("het"));
     }
-
     private Map<Word, Integer> createTop10() {
        top10Words = new LinkedHashMap<>();
 
@@ -57,7 +54,6 @@ public class WordOccurences {
         }
         return top10Words;
     }
-
     private String getTop10Occurences() {
         String s = "";
         for (Word key : top10Words.keySet()) {
