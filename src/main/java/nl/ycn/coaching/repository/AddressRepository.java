@@ -1,18 +1,15 @@
-package nl.ycn.coaching.database;
+package nl.ycn.coaching.repository;
 
-import nl.ycn.coaching.model.Person;
+import nl.ycn.coaching.model.Address;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface PersonRepository extends JpaRepository<Person, Integer> {
+public interface AddressRepository extends JpaRepository<Address, Integer> {
 
-    Optional<Person> findById(Integer id);
-
-    List<Person> findAll();
+    Optional<Address> findByZipcode(String zipcode);
 }
 
 //@Repository

@@ -15,11 +15,32 @@ public class Address {
     private String zipcode;
     private String city;
 
-//    @ManyToOne
-//    @JoinColumn(name="person_id", nullable=false)
-//    private Person person;
-
     @ManyToOne
     @JoinColumn
     private Person person;
+
+
+    public Integer getId() {
+        return id;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public String getStreetNumber() {
+        return streetNumber;
+    }
+
+    public String getZipcode() {
+        return zipcode;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public Person getPerson() {
+        return person;
+    }
 }

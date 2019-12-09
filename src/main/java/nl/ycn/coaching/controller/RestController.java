@@ -3,11 +3,13 @@ package nl.ycn.coaching.controller;
 import com.company.model.Text;
 import com.company.model.Word;
 import com.company.model.WordOccurences;
-import nl.ycn.coaching.database.PersonRepository;
-import nl.ycn.coaching.model.Person;
+import nl.ycn.coaching.model.*;
+import nl.ycn.coaching.repository.AddressRepository;
+import nl.ycn.coaching.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,6 +19,9 @@ public class RestController {
 
     @Autowired
     private PersonRepository personRepository;
+
+    @Autowired
+    private AddressRepository addressRepository;
 
     private static int counter = 1;
 
@@ -44,7 +49,8 @@ public class RestController {
 
     @PostMapping("/createPerson")
     public Person createPerson(@RequestParam Person person){
-        return personRepository.save(person);
+        Person person2 = new Person(100, "test", new Date());
+        return personRepository.save(person2);
     }
 
     @GetMapping("/person/{id}")
@@ -52,9 +58,18 @@ public class RestController {
         return personRepository.findById(id);
     }
 
+    @GetMapping("/personByName/{name}")
+    public Optional<Person> getPerson(@PathVariable String name){
+        return personRepository.findByName(name);
+    }
+
     @GetMapping("/persons")
     public List<Person> getAllPersons(){
         return personRepository.findAll();
+    }
 
+    @GetMapping("/address/{zipCode}")
+    public Optional<Address> getAddress(@PathVariable String zipCode){
+        return addressRepository.findByZipcode(zipCode);
     }
 }
