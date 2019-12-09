@@ -3,6 +3,9 @@ package nl.ycn.coaching.controller;
 import com.company.model.Text;
 import com.company.model.Word;
 import com.company.model.WordOccurences;
+import nl.ycn.coaching.database.PersonRepository;
+import nl.ycn.coaching.model.Person;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,6 +13,9 @@ import java.util.List;
 @org.springframework.web.bind.annotation.RestController
 @RequestMapping("/api")
 public class RestController {
+
+    @Autowired
+    private PersonRepository personRepository;
 
     private static int counter = 1;
 
@@ -33,5 +39,11 @@ public class RestController {
     @GetMapping("top10aa")
     public String getFoos(@RequestParam String text) {
         return "De tekst is: " + text;
+    }
+
+    @GetMapping("/person/{id}")
+    public String welkom(@PathVariable String id){
+        Person person = personRepository.findByPersonId(id);
+        return person.toString();
     }
 }

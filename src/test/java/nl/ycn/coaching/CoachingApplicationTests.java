@@ -8,6 +8,7 @@ class CoachingApplicationTests {
 
     @Test
     void contextLoads() {
+
     }
 
 }

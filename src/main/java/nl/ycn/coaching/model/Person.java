@@ -14,6 +14,12 @@ public class Person {
     private String name;
     private Date dateOfBirth;
 
+    public Person(int id, String name, java.sql.Date dateOfBirth) {
+        this.id = id;
+        this.name = name;
+        this.dateOfBirth = dateOfBirth;
+    }
+
 //    @OneToMany
 //    private List<Address> addresses;
 }
