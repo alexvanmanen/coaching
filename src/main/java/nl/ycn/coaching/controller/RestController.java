@@ -42,8 +42,8 @@ public class RestController {
     }
 
     @GetMapping("/person/{id}")
-    public String welkom(@PathVariable String id){
+    public Person welkom(@PathVariable String id){
         Person person = personRepository.findByPersonId(id);
-        return person.toString();
+        return person;
     }
 }

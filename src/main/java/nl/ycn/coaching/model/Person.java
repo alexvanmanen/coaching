@@ -20,6 +20,14 @@ public class Person {
         this.dateOfBirth = dateOfBirth;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public Date getDateOfBirth(){
+        return dateOfBirth;
+    }
+
 //    @OneToMany
 //    private List<Address> addresses;
 }
