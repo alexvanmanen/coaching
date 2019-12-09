@@ -14,18 +14,26 @@ public class Person {
     private String name;
     private Date dateOfBirth;
 
-    public Person(int id, String name, java.sql.Date dateOfBirth) {
+    public Person(){
+
+    }
+
+    public Person(int id, String name, Date dateOfBirth) {
         this.id = id;
         this.name = name;
         this.dateOfBirth = dateOfBirth;
     }
 
-    public String getName() {
+    public String getVoornaam() {
         return name;
     }
 
-    public Date getDateOfBirth(){
+    public Date getGeboortedatum(){
         return dateOfBirth;
+    }
+
+    public String getget(){
+        return id+" "+ name;
     }
 
 //    @OneToMany

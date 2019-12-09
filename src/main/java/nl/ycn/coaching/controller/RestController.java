@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @org.springframework.web.bind.annotation.RestController
 @RequestMapping("/api")
@@ -41,9 +42,19 @@ public class RestController {
         return "De tekst is: " + text;
     }
 
+    @PostMapping("/createPerson")
+    public Person createPerson(@RequestParam Person person){
+        return personRepository.save(person);
+    }
+
     @GetMapping("/person/{id}")
-    public Person welkom(@PathVariable String id){
-        Person person = personRepository.findByPersonId(id);
-        return person;
+    public Optional<Person> getPerson(@PathVariable Integer id){
+        return personRepository.findById(id);
+    }
+
+    @GetMapping("/persons")
+    public List<Person> getAllPersons(){
+        return personRepository.findAll();
+
     }
 }
