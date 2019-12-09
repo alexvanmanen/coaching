@@ -48,9 +48,8 @@ public class RestController {
     }
 
     @PostMapping("/createPerson")
-    public Person createPerson(@RequestParam Person person){
-        Person person2 = new Person(100, "test", new Date());
-        return personRepository.save(person2);
+    public Person createPerson(@RequestBody Person person){
+        return personRepository.save(person);
     }
 
     @GetMapping("/person/{id}")
