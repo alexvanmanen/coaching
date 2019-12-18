@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register new user</title>
+</head>
+<body>
+    <form action="/register" method="post">
+        <div>
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username">
+        </div>
+        <div>
+            <label for="firstname">First name</label>
+            <input type="text" name="firstname" id="firstname">
+        </div>
+        <div>
+            <label for="lastname">Last name</label>
+            <input type="text" name="lastname" id="lastname">
+        </div>
+        <div>
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password">
+        </div>
+        <div>
+            <label for="isAdmin">Is Admin?</label>
+            <input type="checkbox" name="role" id="isAdmin" value="ADMIN">
+        </div>
+        <div>
+            <label for="isUser">Is User?</label>
+            <input type="checkbox" name="role" id="isUser" value="USER">
+        </div>
+        <div>
+            <label for="isCustomRole">Is Custom Role?</label>
+            <input type="checkbox" name="role" id="isCustomRole" value="CUSTOM_ROLE">
+        </div>
+        <div>
+            <input type="submit" value="Register">
+        </div>
+    </form>
+</body>
+</html>

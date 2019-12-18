@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome!</title>
+</head>
+<body>
+
+    <div sec:authorize="isAuthenticated()" style="bg-color:#ff9999">
+        <p>You are authenticated!</p>
+        Roles: <span sec:authentication="authorities"></span><br>
+        Name: <span sec:authentication="name"></span><br>
+    </div>
+
+    <div sec:authorize="hasRole('USER')">
+        <p>You are a USER!</p>
+    </div>
+
+    <div sec:authorize="hasRole('ADMIN')">
+        <p>You are an ADMIN!</p>
+    </div>
+
+    <div sec:authorize="hasRole('CUSTOM_ROLE')">
+        <p>You are a CUSTOM_ROLE!</p>
+    </div>
+
+    <p>Hello World</p>
+</body>
+</html>
