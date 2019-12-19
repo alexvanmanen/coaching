@@ -27,10 +27,10 @@ public class WebpageController {
     public String home(Device device) {
         if (device.isMobile()) {
             logger.info("Hello mobile user!");
-            return "/mobile/home";
+            return "/mobile/login";
         } else if (device.isTablet()) {
             logger.info("Hello tablet user!");
-            return "/tablet/home";
+            return "/tablet/login";
         } else {
             logger.info("Hello desktop user!");
             return "login";
