@@ -1,8 +1,5 @@
 package nl.ycn.coaching.model.users;
 
-import nl.ycn.coaching.model.Trainee;
-import nl.ycn.coaching.model.User;
-
 import java.util.Date;
 import java.util.List;
 
