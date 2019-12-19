@@ -88,9 +88,9 @@ public class WebpageController {
         return "/dashboardpages/personalhardskillform";
     }
 
-    @GetMapping("gegevenspage")
-    public String getGegevensPage(){
-        return "/dashboardpages/gegevenspage";
+    @GetMapping("contactdetailspage")
+    public String getcontactdetailPage(){
+        return "/dashboardpages/contactdetailspage";
     }
 
     @PostMapping("login")
@@ -103,9 +103,9 @@ public class WebpageController {
         return "/dashboardpages/coursespage";
     }
 
-    @PostMapping("gegevenspage")
-    public String goToGegevens(){
-        return "/dashboardpages/gegevenspage";
+    @PostMapping("contactdetailspage")
+    public String goTocontactdetails(){
+        return "/dashboardpages/contactdetailspage";
     }
 
     @PostMapping("personaleducationplanpage")
