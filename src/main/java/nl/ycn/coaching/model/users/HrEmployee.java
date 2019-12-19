@@ -1,6 +1,4 @@
-package nl.ycn.coaching.model.users;
-
-import nl.ycn.coaching.model.User;
+package nl.ycn.coaching.model.Users;
 
 public class HrEmployee extends User {
 }
