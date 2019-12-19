@@ -1,8 +1,8 @@
 package nl.ycn.coaching.database;
 
 
+import nl.ycn.coaching.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -16,13 +16,13 @@ public class AppUserService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		AppUser appUser = appUserRepository.findByUsername(username);
+		User user = appUserRepository.findByUsername(username);
 		UserDetails userDetails =
-				User
+				org.springframework.security.core.userdetails.User
 				.builder()
 				.username(username)
-				.password(appUser.getPassword())
-				.roles(appUser.getRoles())
+				.password(user.getPassword())
+				.roles(user.getRoles())
 				.build();
 
 		return userDetails;
@@ -38,7 +38,7 @@ public class AppUserService implements UserDetailsService {
 			String password,
 			String roles) {
 
-		AppUser appUser = new AppUser(username, firstname, lastname, email, password, roles);
-		appUserRepository.save(appUser);
+		User user = new User(username, firstname, lastname, email, password, roles);
+		appUserRepository.save(user);
 	}
 }

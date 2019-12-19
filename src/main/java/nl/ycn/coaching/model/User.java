@@ -1,10 +1,10 @@
-package nl.ycn.coaching.database;
+package nl.ycn.coaching.model;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name="users")
-public class AppUser {
+public class User {
 
 	@Id
 	@GeneratedValue
@@ -31,10 +31,10 @@ public class AppUser {
 	@Column(name="email")
 	private String email;
 
-	public AppUser() {
+	public User() {
 	}
 
-	public AppUser(String username, String firstName, String lastName, String email, String password, String roles) {
+	public User(String username, String firstName, String lastName, String email, String password, String roles) {
 		this.username = username;
 		this.password = password;
 		this.roles = roles;
