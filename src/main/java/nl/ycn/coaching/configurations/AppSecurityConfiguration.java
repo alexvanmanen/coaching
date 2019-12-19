@@ -1,6 +1,6 @@
-package demo.spring.loginapp.configurations;
+package nl.ycn.coaching.configurations;
 
-import demo.spring.loginapp.database.AppUserService;
+import nl.ycn.coaching.database.AppUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;

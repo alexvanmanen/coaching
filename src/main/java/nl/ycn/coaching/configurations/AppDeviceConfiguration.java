@@ -1,4 +1,4 @@
-package demo.spring.loginapp.configurations;
+package nl.ycn.coaching.configurations;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

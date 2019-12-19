@@ -1,4 +1,4 @@
-package demo.spring.loginapp.database;
+package nl.ycn.coaching.database;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
