@@ -6,7 +6,7 @@ import nl.ycn.coaching.model.User;
 import java.util.Date;
 import java.util.List;
 
-public class Manager extends User {
+public class Manager extends AppUser {
 	
 	List<Trainee> trainees;
 	

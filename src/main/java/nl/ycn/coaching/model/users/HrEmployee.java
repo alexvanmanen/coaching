@@ -1,5 +1,5 @@
 package nl.ycn.coaching.model.users;
 
 
-public class HrEmployee extends User {
+public class HrEmployee extends AppUser {
 }
