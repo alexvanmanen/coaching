@@ -15,4 +15,7 @@ public class PersonalEducationPlan {
     }
 
 
+    public void addHardskill(PersonalHardskill skill) {
+        this.personalHardskillList.add(skill);
+    }
 }
