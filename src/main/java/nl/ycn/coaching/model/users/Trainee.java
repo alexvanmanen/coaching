@@ -12,6 +12,7 @@ public class Trainee extends AppUser {
 	private Team team;
 	private List<Test360> tests360;
 
+
 	public Trainee(){
 		PersonalEducationPlan plan = new PersonalEducationPlan();
 		this.pepPlan = plan;
