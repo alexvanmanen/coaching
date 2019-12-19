@@ -1,4 +1,4 @@
-package nl.ycn.coaching.model.Users;
+package nl.ycn.coaching.model.users;
 
 import nl.ycn.coaching.model.Calendar;
 import nl.ycn.coaching.model.ContactDetails;

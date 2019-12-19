@@ -1,4 +1,4 @@
-package nl.ycn.coaching.model.Users;
+package nl.ycn.coaching.model.users;
 
 public class Trainee extends User {
 
