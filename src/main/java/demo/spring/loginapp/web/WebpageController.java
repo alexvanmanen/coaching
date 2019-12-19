@@ -34,7 +34,7 @@ public class WebpageController {
             return "/tablet/home";
         } else {
             logger.info("Hello desktop user!");
-            return "home";
+            return "login";
         }
     }
     @GetMapping("/login")
