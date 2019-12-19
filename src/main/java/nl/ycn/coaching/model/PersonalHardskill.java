@@ -1,8 +1,14 @@
 package nl.ycn.coaching.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.Date;
 
+@Entity
 public class PersonalHardskill {
+
+    @Id
+    private int id;
 
     private String name;
     private String description;
