@@ -83,10 +83,7 @@ public class WebpageController {
         return "/dashboardpages/agendapage";
     }
 
-    @GetMapping("personalhardskillform")
-    public String getpersonalhardskillform(){
-        return "/dashboardpages/personalhardskillform";
-    }
+
 
     @GetMapping("contactdetails")
     public String getcontactdetailPage(){
@@ -123,10 +120,7 @@ public class WebpageController {
         return "/dashboardpages/dashboardpage";
     }
 
-    @PostMapping("personalhardskillform")
-    public String goTohardskillform(){
-        return "/dashboardpages/personalhardskillform";
-    }
+
 
     @PostMapping("/register")
     public String register(String username, String firstname, String lastname, String email, String password, String roles){
