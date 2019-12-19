@@ -1,4 +1,4 @@
 package nl.ycn.coaching.model;
 
-public class PersonalSoftSkill {
+public class Trainee {
 }
