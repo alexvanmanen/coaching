@@ -16,6 +16,15 @@ public class Trainee extends AppUser {
 
 	}
 
+	public void addCertificate(){}
+
+	public void createPersonalEducationPlan(){
+		PersonalEducationPlan plan = new PersonalEducationPlan();
+	}
+
+	public void send360Request(){
+
+	}
 
 
 }
