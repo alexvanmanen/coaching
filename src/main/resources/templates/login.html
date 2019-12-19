@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang = "en"
+      xmlns = "http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Coaching | Login</title>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+
+    <script src="https://visjs.github.io/vis-network/standalone/umd/vis-network.min.js"></script>
+
+</head>
+
+<body style="background-color: darkslategray">
+
+
+
+<div class="ui one column doubling grid center aligned  stackable  container">
+
+    <form class="ui form" style="position:absolute; top:200px" method="post" action="/login">
+        <div class="ui stacked segment center aligned" >
+
+            <div class="field">
+                <h2 class="ui teal image header">
+                    <img src="../ycnlogo.png" class="image">
+                    <div class="content">
+                        Log-in to get coached
+                    </div>
+                </h2>
+            </div>
+
+            <div class="field">
+                <div class="ui left icon input">
+                    <i class="user icon"></i>
+                    <input type="text" placeholder="Enter your username" name="username"/>
+                </div>
+            </div>
+
+            <div class="field">
+                <div class="ui left icon input">
+                    <i class="lock icon"></i>
+                    <input type="password" placeholder="Enter your password" name="password"/>
+                </div>
+            </div>
+
+            <div>
+                <button class="ui fluid large teal submit button" type="submit">Lets Go!</button>
+            </div>
+
+        </div>
+    </form>
+
+</div>
+</body>
+</html>
