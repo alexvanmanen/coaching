@@ -1,6 +1,6 @@
 package nl.ycn.coaching.model;
 
-public class Softskills {
+public class Softskill {
 
     private String name;
     private String description;
