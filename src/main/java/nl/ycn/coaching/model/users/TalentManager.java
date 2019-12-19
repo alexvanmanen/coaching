@@ -5,6 +5,6 @@ import nl.ycn.coaching.model.User;
 
 import java.util.List;
 
-public class TalentManager extends User {
+public class TalentManager extends AppUser {
 	List<Trainee> traineeList;
 }

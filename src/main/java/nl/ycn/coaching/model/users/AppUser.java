@@ -9,7 +9,7 @@ import java.util.List;
 
 @Entity
 @Table(name="users")
-public class User {
+public class AppUser {
 
 	@Id
 	@GeneratedValue
@@ -43,10 +43,10 @@ public class User {
 
 	private Calendar calendar;
 
-	public User() {
+	public AppUser() {
 	}
 
-	public User(String username, String firstName, String lastName, String email, String password, String roles) {
+	public AppUser(String username, String firstName, String lastName, String email, String password, String roles) {
 		this.username = username;
 		this.password = password;
 		this.roles = roles;
