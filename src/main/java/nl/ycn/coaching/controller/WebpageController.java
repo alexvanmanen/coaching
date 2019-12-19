@@ -67,10 +67,10 @@ public class WebpageController {
     }
 
 
-    @GetMapping("hardskillspage")
+    @GetMapping("coursespage")
     public String getHardSkillsPage(Model model){
         //model.addAttribute(DashController.getHardskillsList());
-        return "/dashboardpages/hardskillspage";
+        return "/dashboardpages/coursespage";
     }
 
     @GetMapping("personaleducationplanpage")
@@ -93,9 +93,9 @@ public class WebpageController {
         return "/dashboardpages/dashboardpage";
     }
 
-    @PostMapping("hardskillspage")
+    @PostMapping("coursespage")
     public String goToHardSkills(){
-        return "/dashboardpages/hardskillspage";
+        return "/dashboardpages/coursespage";
     }
 
     @PostMapping("gegevenspage")
