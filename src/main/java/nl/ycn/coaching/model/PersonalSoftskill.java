@@ -4,7 +4,7 @@ import java.util.List;
 
 public class PersonalSoftskill {
 
-    private Softskills softskill;
+    private Softskill softskill;
     private List<DateMessage> dateMessageList;
 
     private String report;
