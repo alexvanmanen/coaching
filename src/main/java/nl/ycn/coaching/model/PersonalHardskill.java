@@ -10,4 +10,14 @@ public class PersonalHardskill {
     private String state;
     private Date start;
     private Date end;
+
+    public PersonalHardskill(String name, String description, Date start, Date end) {
+        this.name = name;
+        this.description = description;
+        this.start = start;
+        this.end = end;
+    }
+
+
+
 }
