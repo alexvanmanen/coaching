@@ -1,6 +1,6 @@
 package nl.ycn.coaching.model;
 
-public class NAWdetails {
+public class ContactDetails {
 
     private String name;
 
