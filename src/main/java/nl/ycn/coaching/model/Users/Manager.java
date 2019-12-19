@@ -1,6 +1,5 @@
 package nl.ycn.coaching.model.Users;
 
-
 import nl.ycn.coaching.model.Trainee;
 import nl.ycn.coaching.model.User;
 
