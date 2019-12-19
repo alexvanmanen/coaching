@@ -40,4 +40,4 @@ INSERT INTO SOFTSKILL VALUES(39, 'Handhaven van algemeen aanvaarde sociale en et
 INSERT INTO SOFTSKILL VALUES(40, 'Zich voegen naar het beleid en/of de procedures van de organisatie. Bij onduidelijkheden of veranderingen bevestiging zoeken bij de juiste autoriteit.', 'Discipline');
 INSERT INTO SOFTSKILL VALUES(41, 'Eigen gedrag in lijn brengen met de cultuur, behoeften, prioriteiten en doelen van de organisatie.', 'Organisatieloyaliteit');
 INSERT INTO SOFTSKILL VALUES(42, 'Actief gericht zijn op het behalen van resultaten en doelstellingen en de bereidheid tonen om in te grijpen bij tegenvallende resultaten.', 'Resultaatgerichtheid');
-INSERT INTO SOFTSKILL VALUES(42, 'Hoge eisen stellen aan kwaliteit van producten en diensten en daarnaar handelen.', 'Kwaliteitsgerichtheid');
+INSERT INTO SOFTSKILL VALUES(43, 'Hoge eisen stellen aan kwaliteit van producten en diensten en daarnaar handelen.', 'Kwaliteitsgerichtheid');
