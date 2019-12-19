@@ -1,5 +1,6 @@
 package nl.ycn.coaching.model;
 
+import java.util.Date;
 import java.util.List;
 
 public class Manager extends User{
