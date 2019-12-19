@@ -83,6 +83,11 @@ public class WebpageController {
         return "/dashboardpages/agendapage";
     }
 
+    @GetMapping("personalhardskillpage")
+    public String getpersonalhardskillpage(){
+        return "/dashboardpages/personalhardskillpage";
+    }
+
     @GetMapping("gegevenspage")
     public String getGegevensPage(){
         return "/dashboardpages/gegevenspage";
