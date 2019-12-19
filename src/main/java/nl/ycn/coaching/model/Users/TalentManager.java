@@ -1,4 +1,6 @@
-package nl.ycn.coaching.model;
+package nl.ycn.coaching.model.Users;
 
-public class TalentManager {
+import nl.ycn.coaching.model.User;
+
+public class TalentManager extends User {
 }
