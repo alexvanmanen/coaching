@@ -74,7 +74,7 @@ public class WebpageController {
     }
 
     @GetMapping("personaleducationplanpage")
-    public String getSoftSkillsPage(){
+    public String getPersonaleducationplan(){
         return "/dashboardpages/personaleducationplanpage";
     }
 
@@ -83,9 +83,9 @@ public class WebpageController {
         return "/dashboardpages/agendapage";
     }
 
-    @GetMapping("personalhardskillpage")
-    public String getpersonalhardskillpage(){
-        return "/dashboardpages/personalhardskillpage";
+    @GetMapping("personalhardskillform")
+    public String getpersonalhardskillform(){
+        return "/dashboardpages/personalhardskillform";
     }
 
     @GetMapping("gegevenspage")
