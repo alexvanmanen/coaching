@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Trainee extends AppUser {
 
-	private PersonalEducationPlan plan;
+	private PersonalEducationPlan pepPlan;
 	private List<Certificate> certificates;
 	private Bootcamp bootcamp;
 	private Team team;
@@ -14,6 +14,7 @@ public class Trainee extends AppUser {
 
 	public Trainee(){
 		PersonalEducationPlan plan = new PersonalEducationPlan();
+		this.pepPlan = plan;
 
 	}
 
@@ -23,9 +24,13 @@ public class Trainee extends AppUser {
 		PersonalEducationPlan plan = new PersonalEducationPlan();
 	}
 
-	public void send360Request(){
+	public void send360Request(){}
 
+	public PersonalEducationPlan getPepPlan(){
+		return this.pepPlan;
 	}
+
+
 
 
 }
