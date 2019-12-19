@@ -73,9 +73,9 @@ public class WebpageController {
         return "/dashboardpages/hardskillspage";
     }
 
-    @GetMapping("softskillspage")
+    @GetMapping("personaleducationplanpage")
     public String getSoftSkillsPage(){
-        return "/dashboardpages/softskillspage";
+        return "/dashboardpages/personaleducationplanpage";
     }
 
     @GetMapping("agendapage")
@@ -103,9 +103,9 @@ public class WebpageController {
         return "/dashboardpages/gegevenspage";
     }
 
-    @PostMapping("softskillspage")
+    @PostMapping("personaleducationplanpage")
     public String goToSoftSkills(){
-        return "/dashboardpages/softskillspage";
+        return "/dashboardpages/personaleducationplanpage";
     }
 
     @PostMapping("agendapage")
