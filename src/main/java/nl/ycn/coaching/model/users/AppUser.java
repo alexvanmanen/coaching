@@ -36,12 +36,13 @@ public class AppUser {
 	@Column(name="email")
 	private String email;
 
-	@Column(name="contactdetails")
-	private ContactDetails details;
+//	@Column(name="contactdetails")
+//	private ContactDetails details;
+//
+//	@OneToMany
+//	private List<Notifications> notifications;
 
-	private List<Notifications> notifications;
-
-	private Calendar calendar;
+	//private Calendar calendar;
 
 	public AppUser() {
 	}
