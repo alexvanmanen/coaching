@@ -4,11 +4,17 @@ import java.util.List;
 
 public class PersonalEducationPlan {
 
+    public PersonalEducationPlan(){}
+
     private List<PersonalSoftskill> personalSoftskillList;
 
     private List<PersonalHardskill> personalHardskillList;
 
-    private String reccomendations;
+    private String recommendations;
+
+    public List<PersonalHardskill> getPersonalHardskillList(){
+        return personalHardskillList;
+    }
 
 
 }
