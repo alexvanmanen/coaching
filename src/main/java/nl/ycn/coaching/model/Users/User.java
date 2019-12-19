@@ -1,6 +1,11 @@
-package nl.ycn.coaching.model;
+package nl.ycn.coaching.model.Users;
+
+import nl.ycn.coaching.model.Calendar;
+import nl.ycn.coaching.model.ContactDetails;
+import nl.ycn.coaching.model.Notifications;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="users")
@@ -30,6 +35,13 @@ public class User {
 
 	@Column(name="email")
 	private String email;
+
+	@Column(name="contactdetails")
+	private ContactDetails details;
+
+	private List<Notifications> notifications;
+
+	private Calendar calendar;
 
 	public User() {
 	}
