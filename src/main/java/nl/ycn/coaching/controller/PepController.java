@@ -13,7 +13,9 @@ public class PepController {
 	}
 
 	@PostMapping("personalhardskillform")
-	public String goTohardskillform(){
+	public String createPersonalHardskill(){
+		//get active user
+
 		return "/dashboardpages/personalhardskillform";
 	}
 
