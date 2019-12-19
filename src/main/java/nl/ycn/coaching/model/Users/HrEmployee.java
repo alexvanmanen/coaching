@@ -1,6 +1,6 @@
 package nl.ycn.coaching.model.Users;
 
-public class HrEmployee {
+import nl.ycn.coaching.model.User;
 
-    private String name;
+public class HrEmployee extends User {
 }
