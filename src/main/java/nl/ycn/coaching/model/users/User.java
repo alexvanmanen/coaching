@@ -1,4 +1,4 @@
-package nl.ycn.coaching.model;
+package nl.ycn.coaching.model.users;
 
 import javax.persistence.*;
 
