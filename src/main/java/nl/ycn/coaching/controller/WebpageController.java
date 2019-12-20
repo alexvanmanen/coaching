@@ -68,13 +68,7 @@ public class WebpageController {
 
     @GetMapping("dashboardpage")
     public String getDashBoard(){
-    AppUser activeUser = appUserService.getUser("alex");
-    switch(activeUser.getRole()){
-        case "TRAINEE":
-            return "trainee/dashboardpage.html";
-        default:
-            return "dashboardpages/dashboardpage";
-        }
+        return "dashboardpages/dashboardpage";
     }
 
 

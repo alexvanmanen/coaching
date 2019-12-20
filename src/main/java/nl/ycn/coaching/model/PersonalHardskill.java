@@ -1,6 +1,7 @@
 package nl.ycn.coaching.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.util.Date;
 
@@ -8,6 +9,7 @@ import java.util.Date;
 public class PersonalHardskill {
 
     @Id
+    @GeneratedValue
     private int id;
 
     private String name;
