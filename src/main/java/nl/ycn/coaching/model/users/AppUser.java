@@ -17,7 +17,7 @@ public class AppUser {
 	private long Id;
 
 	@Column(name="username")
-	private static String username;
+	private String username;
 
 	@Column(name="password")
 	private String password;
@@ -66,7 +66,7 @@ public class AppUser {
 		Id = id;
 	}
 
-	public static String getUsername() {
+	public String getUsername() {
 		return username;
 	}
 

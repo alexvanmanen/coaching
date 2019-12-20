@@ -1,5 +1,6 @@
 package nl.ycn.coaching.controller;
 
+import nl.ycn.coaching.database.AppUserRepository;
 import nl.ycn.coaching.database.AppUserService;
 import nl.ycn.coaching.model.users.AppUser;
 import org.slf4j.Logger;
@@ -20,7 +21,7 @@ public class WebpageController {
     private AppUserService appUserService;
 
     public WebpageController(){
-        AppUser activeUser = new AppUser();
+
     }
 
     private static final Logger logger =
@@ -51,7 +52,7 @@ public class WebpageController {
 
     @GetMapping("/user/**")
     public String user(Model model) {
-        model.addAttribute("username",AppUser.getUsername());
+        //model.addAttribute);
         return "user";
     }
 
