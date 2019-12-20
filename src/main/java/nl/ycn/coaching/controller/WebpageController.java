@@ -105,10 +105,6 @@ public class WebpageController {
         return "/dashboardpages/contactdetails";
     }
 
-    @PostMapping("personaleducationplanpage")
-    public String goToSoftSkills(){
-        return "/dashboardpages/personaleducationplanpage";
-    }
 
     @PostMapping("agendapage")
     public String goToAgenda(){

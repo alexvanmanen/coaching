@@ -13,9 +13,19 @@ import java.util.List;
 @Controller
 public class PepController {
 
+	@PostMapping("personaleducationplanpage")
+	public String goToPePpage(){
+		return "/dashboardpages/personaleducationplanpage";
+	}
+
 	@GetMapping("personalhardskillform")
 	public String getpersonalhardskillform(){
 		return "/dashboardpages/personalhardskillform";
+	}
+
+	@PostMapping("openhardskillform")
+	public String openHardskillForm(){
+		return "personalhardskillform";
 	}
 
 	@PostMapping("createpersonalhardskill")
@@ -28,6 +38,4 @@ public class PepController {
 
 		return "/dashboardpages/personaleducationplanpage";
 	}
-
-
 }
