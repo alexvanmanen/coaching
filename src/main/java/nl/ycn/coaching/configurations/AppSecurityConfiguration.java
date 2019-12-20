@@ -77,7 +77,7 @@ public class AppSecurityConfiguration extends WebSecurityConfigurerAdapter {
            .passwordEncoder(encoder);
 
         appUserService.registerUser("wempie","Luuk", "Wempe", "luukwempe@hotmail.com", encoder.encode("hallo"), "ADMIN,USER,GUEST,TRAINEE");
-        appUserService.registerUser("alex","Alex", "van Manen", "alex@vanmanenit.nl", encoder.encode("hallo"), "USER");
+        appUserService.registerUser("alex","Alex", "van Manen", "alex@vanmanenit.nl", encoder.encode("hallo"), "TRAINEE");
     }
 
 }

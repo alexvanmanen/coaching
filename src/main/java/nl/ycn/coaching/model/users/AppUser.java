@@ -27,8 +27,8 @@ public class AppUser {
 	@Column(name="enabled")
 	private boolean enabled;
 
-	@Column(name="roles")
-	private String roles;
+	@Column(name="role")
+	private String role;
 
 	@Column(name="firstname")
 	private String firstName;
@@ -50,11 +50,11 @@ public class AppUser {
 	public AppUser() {
 	}
 
-	public AppUser(String username, String firstName, String lastName, String email, String password, String roles) {
+	public AppUser(String username, String firstName, String lastName, String email, String password, String role) {
 
 			this.username = username;
 			this.password = password;
-			this.roles = roles;
+			this.role = role;
 			this.firstName = firstName;
 			this.lastName = lastName;
 			this.email = email;
@@ -94,13 +94,13 @@ public class AppUser {
 		this.enabled = enabled;
 	}
 
-	public String[] getRoles() {
-		String[] roles = this.roles.split(",");
-		return roles;
+	public String getRole() {
+		//String roles = this.roles.split(",");
+		return role;
 	}
 
-	public void setRoles(String roles) {
-		this.roles = roles;
+	public void setRoles(String role) {
+		this.role = role;
 	}
 
 	public String getFirstName() {

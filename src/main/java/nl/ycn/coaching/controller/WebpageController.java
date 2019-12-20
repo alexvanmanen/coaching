@@ -20,9 +20,8 @@ public class WebpageController {
     private AppUserService appUserService;
 
     @Autowired
-    public WebpageController(AppUserService appUserService){
-        this.appUserService = appUserService;
-        AppUser activeUser = appUserService.getUser("wempie");
+    public WebpageController(){
+
     }
 
     private static final Logger logger =
@@ -69,7 +68,13 @@ public class WebpageController {
 
     @GetMapping("dashboardpage")
     public String getDashBoard(){
-        return "/dashboardpages/dashboardpage";
+    AppUser activeUser = appUserService.getUser("alex");
+    switch(activeUser.getRole()){
+        case "TRAINEE":
+            return "trainee/dashboardpage.html";
+        default:
+            return "dashboardpages/dashboardpage";
+        }
     }
 
 
