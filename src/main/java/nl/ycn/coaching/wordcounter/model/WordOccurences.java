@@ -14,6 +14,11 @@ public class WordOccurences {
         wordOccurrencesMap = getOccurrences(wordList);
     }
 
+    public Map<Word, Integer> getTop10Map() {
+        filter();
+        return createTop10();
+    }
+
     public String getTop10(){
         filter();
         createTop10();
