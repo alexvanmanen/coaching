@@ -16,8 +16,8 @@ public class HardskillService {
 			String name,
 			String description,
 			String state,
-			Date start,
-			Date end) {
+			String start,
+			String end) {
 			PersonalHardskill hardskill = new PersonalHardskill (name, description, state, start, end);
 			hardskillRepository.save(hardskill);
 		}

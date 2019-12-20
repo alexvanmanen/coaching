@@ -14,10 +14,10 @@ public class PersonalHardskill {
     private String description;
     private String report;
     private String state;
-    private Date start;
-    private Date end;
+    private String start;
+    private String end;
 
-    public PersonalHardskill(String name, String description, String state, Date start, Date end) {
+    public PersonalHardskill(String name, String description, String state, String start, String end) {
         this.name = name;
         this.description = description;
         this.report = null;
@@ -66,19 +66,19 @@ public class PersonalHardskill {
         this.state = state;
     }
 
-    public Date getStart() {
+    public String getStart() {
         return start;
     }
 
-    public void setStart(Date start) {
+    public void setStart(String start) {
         this.start = start;
     }
 
-    public Date getEnd() {
+    public String getEnd() {
         return end;
     }
 
-    public void setEnd(Date end) {
+    public void setEnd(String end) {
         this.end = end;
     }
 }
