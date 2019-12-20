@@ -1,6 +1,5 @@
 package nl.ycn.coaching.controller;
 
-import nl.ycn.coaching.database.AppUserRepository;
 import nl.ycn.coaching.database.AppUserService;
 import nl.ycn.coaching.model.users.AppUser;
 import org.slf4j.Logger;
@@ -69,16 +68,18 @@ public class WebpageController {
     @GetMapping("redirectLogin")
     public String getDashBoard(){
     AppUser activeUser = new AppUser();
-    activeUser = appUserService.getUser("wempie");
+    activeUser = appUserService.getUser("alex");
     switch(activeUser.getRole()){
         case "ADMIN":
-            return "admin/dashboardpage";
+            return "admin/dashboard";
         case "TRAINEE":
-            return "trainee/dashboardpage";
+            return "trainee/dashboard";
         case "MANAGER":
             return "manager/dashboard";
         case "HREMPLOYEE":
             return "hremployee/dashboard";
+        case "TALENTMANAGER":
+            return "talentmanager/dashboard";
         default:
             return "dashboardpages/dashboardpage";
         }

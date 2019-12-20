@@ -16,9 +16,7 @@ public class WordOccurencesTest {
         Text text = new Text("hallo ik ik ik ik ben alex");
         WordOccurences wordOccurences = new WordOccurences(text.getWordList());
         System.out.println(wordOccurences.getTop10().contains("ik: 4"));
-
-
-
+        wordOccurences.getTop10Map().get("ik");
     }
 }
 
