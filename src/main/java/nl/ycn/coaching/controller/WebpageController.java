@@ -1,6 +1,7 @@
 package nl.ycn.coaching.controller;
 
 import nl.ycn.coaching.database.AppUserService;
+import nl.ycn.coaching.model.users.AppUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,9 @@ public class WebpageController {
     @Autowired
     private AppUserService appUserService;
 
-    public WebpageController(){}
+    public WebpageController(){
+        AppUser activeUser = new AppUser();
+    }
 
     private static final Logger logger =
             LoggerFactory.getLogger(WebpageController.class);
@@ -47,7 +50,8 @@ public class WebpageController {
     }
 
     @GetMapping("/user/**")
-    public String user() {
+    public String user(Model model) {
+        model.addAttribute("username",AppUser.getUsername());
         return "user";
     }
 

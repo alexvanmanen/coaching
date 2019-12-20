@@ -11,12 +11,13 @@ import java.util.List;
 @Table(name="users")
 public class AppUser {
 
+
 	@Id
 	@GeneratedValue
 	private long Id;
 
 	@Column(name="username")
-	private String username;
+	private static String username;
 
 	@Column(name="password")
 	private String password;
@@ -65,7 +66,7 @@ public class AppUser {
 		Id = id;
 	}
 
-	public String getUsername() {
+	public static String getUsername() {
 		return username;
 	}
 
