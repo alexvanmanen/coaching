@@ -14,5 +14,15 @@ public class CoachingApplicationTests {
     public void contextLoads() {
     }
 
+    @Test
+    public void testDoeIets(){
+        assert (true);
+//
+//        Text text = new FileImporter().readFromFile(args[0]);
+//        List<Word> wordList = text.getWordList();
+//        String s = new WordOccurences(wordList).getTop10();
+//        System.out.println(s);
+    }
+
 }
 
