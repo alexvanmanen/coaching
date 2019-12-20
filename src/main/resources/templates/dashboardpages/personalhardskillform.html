@@ -69,16 +69,16 @@
     <form class="ui form" method="post" action="/createpersonalhardskill">
         <div class="field">
             <label>Hardskill:</label>
-            <input type="text" name="hardskill_name" placeholder="Hardskill">
+            <input type="text" name="name" placeholder="Hardskill">
         </div>
         <div class="field">
             <label>Descriptie:</label>
-            <input type="text" name="hardskill_name" placeholder="Descriptie">
+            <input type="text" name="description" placeholder="Descriptie">
         </div>
 
         <div class="field">
             <label>Hardskill status: </label>
-            <select class="ui dropdown" name="hardskill_state">
+            <select class="ui dropdown" name="state">
                 <option value="" disabled selected>Kies status</option>
                 <option value="finished">Afgerond</option>
                 <option value="ongoing">Gaande</option>
@@ -87,12 +87,12 @@
 
         <div class="field">
             <label>Begin datum:</label>
-            <input type="text" name="hardskill_startdate" placeholder="DD-MM-YYYY">
+            <input type="text" name="startdate" placeholder="DD-MM-YYYY">
         </div>
 
         <div class="field">
             <label>Eind datum:</label>
-            <input type="text" name="hardskill_enddate" placeholder="DD-MM-YYYY">
+            <input type="text" name="enddate" placeholder="DD-MM-YYYY">
         </div>
 
         <button class="ui button" type="submit">Voeg toe</button>
