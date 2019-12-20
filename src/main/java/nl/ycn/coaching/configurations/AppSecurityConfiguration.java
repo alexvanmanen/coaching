@@ -41,8 +41,14 @@ public class AppSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 "/trainee/**").hasRole("TRAINEE")
             .antMatchers(
                 "/talentmanager/**").hasRole("TALENTMANAGER")
+            .antMatchers(
+                "/hremployee/**").hasRole("HREMPLOYEE")
+            .antMatchers(
+                "/manager/**").hasRole("MANAGER")
 
-            .and()
+
+
+                .and()
             .csrf().ignoringAntMatchers("/**")
 
             .and()
@@ -51,9 +57,9 @@ public class AppSecurityConfiguration extends WebSecurityConfigurerAdapter {
             .and()
             .formLogin()
             .loginPage("/login")
-                .defaultSuccessUrl("/dashboards/dashboard")
-                .failureUrl("/login")
-            .defaultSuccessUrl("/dashboardpage");
+                .defaultSuccessUrl("/redirectLogin")
+                .failureUrl("/login");
+
     }
 
     @Autowired

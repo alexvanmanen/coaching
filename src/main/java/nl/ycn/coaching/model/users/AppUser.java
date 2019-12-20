@@ -96,7 +96,7 @@ public class AppUser {
 
 	public String getRole() {
 		//String roles = this.roles.split(",");
-		return role;
+		return this.role;
 	}
 
 	public void setRoles(String role) {
