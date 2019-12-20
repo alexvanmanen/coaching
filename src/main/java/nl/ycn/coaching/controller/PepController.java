@@ -23,10 +23,10 @@ public class PepController {
 		return "/dashboardpages/personalhardskillform";
 	}
 
-	@PostMapping("openhardskillform")
-	public String openHardskillForm(){
-		return "/dashboardpages/personalhardskillform";
-	}
+//	@PostMapping("openhardskillform")
+//	public String openHardskillForm(){
+//		return "/dashboardpages/personalhardskillform";
+//	}
 
 	@PostMapping("/createpersonalhardskill")
 	public String createPersonalHardskill(String name, String description, String state, Date start, Date end){
