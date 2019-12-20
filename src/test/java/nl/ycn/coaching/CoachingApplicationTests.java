@@ -1,6 +1,8 @@
 
 package nl.ycn.coaching;
 
+import nl.ycn.coaching.wordcounter.model.Text;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,12 +18,16 @@ public class CoachingApplicationTests {
 
     @Test
     public void testDoeIets(){
+
+
         assert (true);
 //
 //        Text text = new FileImporter().readFromFile(args[0]);
 //        List<Word> wordList = text.getWordList();
 //        String s = new WordOccurences(wordList).getTop10();
 //        System.out.println(s);
+        Text text = new Text("hallo ik ben alex");
+        Assert.assertEquals(4, text.getWordList().size());
     }
 
 }
