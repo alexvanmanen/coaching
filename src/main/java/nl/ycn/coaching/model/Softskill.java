@@ -18,6 +18,11 @@ public class Softskill {
     @Column(name = "Beschrijving")
     private String description;
 
+    public Softskill(String name, String description){
+        this.name = name;
+        this.description = description;
+    }
+
 
     public int getId() {
         return id;
