@@ -17,11 +17,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class WebpageController {
 
 
-    @Autowired
     private AppUserService appUserService;
 
-    public WebpageController(){
-
+    @Autowired
+    public WebpageController(AppUserService appUserService){
+        this.appUserService = appUserService;
+        AppUser activeUser = appUserService.getUser("wempie");
     }
 
     private static final Logger logger =
@@ -52,7 +53,7 @@ public class WebpageController {
 
     @GetMapping("/user/**")
     public String user(Model model) {
-        //model.addAttribute);
+        model.addAttribute("username", appUserService.getUser("wempie").getUsername());
         return "user";
     }
 
