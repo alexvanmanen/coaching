@@ -18,7 +18,8 @@ public class UserController {
 
     @GetMapping("/getLastName/{username}")
     public String getLastName(@PathVariable String username) {
-        return appUserService.getUser(username).getLastName();
+        return "jansen" ;
+        //return appUserService.getUser(username).getLastName();
     }
 
 }
