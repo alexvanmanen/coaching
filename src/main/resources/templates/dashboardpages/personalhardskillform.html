@@ -77,16 +77,12 @@
         </div>
 
         <div class="field">
-            <label>Hardskill progres: </label>
-            <div class="ui selection dropdown">
-                <input type="hidden" name="hardskill_state">
-                <i class="dropdown icon"></i>
-                <div class="default text">Hardskill progres</div>
-                <div class="menu">
-                    <div class="item" data-value="1">Afgerond</div>
-                    <div class="item" data-value="0">Gaande</div>
-                </div>
-            </div>
+            <label>Hardskill status: </label>
+            <select class="ui dropdown" name="hardskill_state">
+                <option value="" disabled selected>Kies status</option>
+                <option value="finished">Afgerond</option>
+                <option value="ongoing">In progres</option>
+            </select>
         </div>
 
         <div class="field">
