@@ -31,7 +31,7 @@ public class PepController {
 	@PostMapping("/createpersonalhardskill")
 	public String createPersonalHardskill(String name, String description, String state, Date start, Date end){
 
-		System.out.println("gegevens: " + name + ", " + state);
+		System.out.println("gegevens: " + name + ", " + description + ", " + state + ", " + start + "," + end);
 
 		PersonalHardskill skill = new PersonalHardskill(name, description, state, start, end);
 		Trainee trainee = new Trainee();
