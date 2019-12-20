@@ -1,9 +1,5 @@
 package nl.ycn.coaching.model;
 
-import jdk.jfr.Enabled;
-
-import javax.persistence.Entity;
-import javax.persistence.Id;
 import java.util.List;
 
 public class PersonalSoftskill {
