@@ -68,7 +68,7 @@ public class WebpageController {
     @GetMapping("redirectLogin")
     public String getDashBoard(){
     AppUser activeUser = new AppUser();
-    activeUser = appUserService.getUser("wempie");
+    activeUser = appUserService.getUser("alex");
     switch(activeUser.getRole()){
         case "ADMIN":
             return "admin/dashboard";
