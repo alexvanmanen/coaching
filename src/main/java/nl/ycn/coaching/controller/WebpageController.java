@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class WebpageController {
 
-
+    @Autowired
     private AppUserService appUserService;
 
     @Autowired
@@ -66,9 +66,23 @@ public class WebpageController {
         return "register";
     }
 
-    @GetMapping("dashboardpage")
+    @GetMapping("redirectLogin")
     public String getDashBoard(){
-        return "dashboardpages/dashboardpage";
+    AppUser activeUser = new AppUser();
+    activeUser = appUserService.getUser("wempie");
+    switch(activeUser.getRole()){
+        case "ADMIN":
+            return "admin/dashboardpage";
+        case "TRAINEE":
+            return "trainee/dashboardpage";
+        case "MANAGER":
+            return "manager/dashboard";
+        case "HREMPLOYEE":
+            return "hremployee/dashboard";
+        default:
+            return "dashboardpages/dashboardpage";
+        }
+
     }
 
 
