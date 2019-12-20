@@ -18,7 +18,7 @@ public class PepController {
 		return "/dashboardpages/personalhardskillform";
 	}
 
-	@PostMapping("personalhardskillform")
+	@PostMapping("createpersonalhardskill")
 	public String createPersonalHardskill(String name, String description, Date start, Date end){
 
 		PersonalHardskill skill = new PersonalHardskill(name, description, start, end);
@@ -26,7 +26,7 @@ public class PepController {
 		PersonalEducationPlan pep = trainee.getPepPlan();
 		pep.addHardskill(skill);
 
-		return "/dashboardpages/personalhardskillform";
+		return "/dashboardpages/personaleducationplanpage";
 	}
 
 
