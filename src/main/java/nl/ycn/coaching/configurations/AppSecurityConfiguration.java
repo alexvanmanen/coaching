@@ -37,6 +37,10 @@ public class AppSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 "/user/**").hasRole("USER")
             .antMatchers(
                 "/admin/**").hasRole("ADMIN")
+            .antMatchers(
+                "/trainee/**").hasRole("TRAINEE")
+            .antMatchers(
+                "/talentmanager/**").hasRole("TALENTMANAGER")
 
             .and()
             .csrf().ignoringAntMatchers("/**")
@@ -72,7 +76,7 @@ public class AppSecurityConfiguration extends WebSecurityConfigurerAdapter {
            .dataSource(dataSource)
            .passwordEncoder(encoder);
 
-        appUserService.registerUser("wempie","Luuk", "Wempe", "luukwempe@hotmail.com", encoder.encode("hallo"), "ADMIN,USER,GUEST");
+        appUserService.registerUser("wempie","Luuk", "Wempe", "luukwempe@hotmail.com", encoder.encode("hallo"), "ADMIN,USER,GUEST,TRAINEE");
         appUserService.registerUser("alex","Alex", "van Manen", "alex@vanmanenit.nl", encoder.encode("hallo"), "USER");
     }
 
