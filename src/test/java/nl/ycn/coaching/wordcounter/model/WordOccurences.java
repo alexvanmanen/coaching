@@ -11,5 +11,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 public class WordOccurences {
 
+    @Test
+    public void contextLoads() {
+    }
 }
 
