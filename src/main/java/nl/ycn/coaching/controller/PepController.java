@@ -38,7 +38,10 @@ public class PepController {
 	}
 	
 	@PostMapping("/createpersonalhardskill")
+
 	public String createPersonalHardskill(String name, String description, String state, String start, String end){
+
+		System.out.println("gegevens: " + name + ", " + description + ", " + state + ", " + start + "," + end);
 		
 		hardskillService.addHardskill (name, description, state, start, end);
 //		System.out.println("gegevens: " + name + ", " + state);
@@ -47,6 +50,7 @@ public class PepController {
 //		Trainee trainee = new Trainee();
 //		PersonalEducationPlan pep = trainee.getPepPlan();
 //		pep.addHardskill(skill);
+
 
 		return "/dashboardpages/personaleducationplanpage";
 	}
