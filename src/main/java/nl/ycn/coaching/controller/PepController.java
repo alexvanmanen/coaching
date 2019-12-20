@@ -25,6 +25,9 @@ public class PepController {
 		return "/dashboardpages/personalhardskillform";
 	}
 
+	@GetMapping("addsoftskillspage")
+	public String getaddsoftskillpage() { return "/dashboardpages/addsoftskillpage"; }
+
 //	@PostMapping("openhardskillform")
 //	public String openHardskillForm(){
 //		return "/dashboardpages/personalhardskillform";
