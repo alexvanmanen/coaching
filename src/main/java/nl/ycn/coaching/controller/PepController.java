@@ -38,7 +38,7 @@ public class PepController {
 	}
 	
 	@PostMapping("/createpersonalhardskill")
-	public String createPersonalHardskill(String name, String description, String state, Date start, Date end){
+	public String createPersonalHardskill(String name, String description, String state, String start, String end){
 		
 		hardskillService.addHardskill (name, description, state, start, end);
 //		System.out.println("gegevens: " + name + ", " + state);
