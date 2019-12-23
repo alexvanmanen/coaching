@@ -3,16 +3,13 @@ package nl.ycn.coaching.controller;
 import nl.ycn.coaching.database.HardskillRepository;
 import nl.ycn.coaching.database.HardskillService;
 import nl.ycn.coaching.database.SoftskillService;
-import nl.ycn.coaching.model.PersonalEducationPlan;
 import nl.ycn.coaching.model.PersonalHardskill;
-import nl.ycn.coaching.model.users.Trainee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -24,10 +21,15 @@ public class PepController {
 	private List<PersonalHardskill> retrieveHardskillList() {
 		return hardskillRepository.findAll();
 	}
+	
+	private PersonalHardskill retrieveHardskillByName (String name) {
+		return hardskillRepository.findByName (name);
+	}
 
 	@GetMapping("personaleducationplanpage")
-	public String goToPepPage(Model model){
+	public String goToPepPage(Model model, String name){
 		model.addAttribute("hardskillList", retrieveHardskillList());
+		model.addAttribute ("personalHardskill", retrieveHardskillByName (name));
 		return "/dashboardpages/personaleducationplanpage";
 	}
 

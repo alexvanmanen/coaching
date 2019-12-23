@@ -41,3 +41,5 @@ INSERT INTO SOFTSKILL VALUES(40, 'Zich voegen naar het beleid en/of de procedure
 INSERT INTO SOFTSKILL VALUES(41, 'Eigen gedrag in lijn brengen met de cultuur, behoeften, prioriteiten en doelen van de organisatie.', 'Organisatieloyaliteit');
 INSERT INTO SOFTSKILL VALUES(42, 'Actief gericht zijn op het behalen van resultaten en doelstellingen en de bereidheid tonen om in te grijpen bij tegenvallende resultaten.', 'Resultaatgerichtheid');
 INSERT INTO SOFTSKILL VALUES(43, 'Hoge eisen stellen aan kwaliteit van producten en diensten en daarnaar handelen.', 'Kwaliteitsgerichtheid');
+INSERT INTO PERSONAL_HARDSKILL VALUES(1, 'EEN PROGRAMEERTAAL', '21-12-2020', 'JAVA', 'JAVAJAVA', '21-12-2019', 'FINISHED');
+INSERT INTO PERSONAL_HARDSKILL VALUES(2, 'EEN WERKMETHODE', '22-12-2020', 'SCRUM', 'SCRUMSCRUM', '22-12-2019', 'FINISHED');
