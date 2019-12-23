@@ -41,6 +41,7 @@ public class WebpageController {
     }
     @GetMapping("/login")
     public String login(){
+
         return "login";
     }
 
@@ -65,7 +66,7 @@ public class WebpageController {
         return "register";
     }
 
-    @GetMapping("redirectLogin")
+    @GetMapping({"redirectLogin","/dashboardpage"})
     public String getDashBoard(){
     AppUser activeUser = new AppUser();
     activeUser = appUserService.getUser("alex");
