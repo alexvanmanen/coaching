@@ -1,6 +1,7 @@
 package nl.ycn.coaching.controller;
 
 import nl.ycn.coaching.database.HardskillService;
+import nl.ycn.coaching.database.SoftskillService;
 import nl.ycn.coaching.model.PersonalEducationPlan;
 import nl.ycn.coaching.model.PersonalHardskill;
 import nl.ycn.coaching.model.users.Trainee;
@@ -34,12 +35,15 @@ public class PepController {
 //	}
 
 	private HardskillService hardskillService;
+	private SoftskillService softskillService;
 	
 	@Autowired
 	public PepController(HardskillService hardskillService){
 		this.hardskillService = hardskillService;
 	}
-	
+
+	public PepController(SoftskillService softskillService) { this.softskillService = softskillService; }
+
 	@PostMapping("/createpersonalhardskill")
 
 	public String createPersonalHardskill(String name, String description, String state, String start, String end){
