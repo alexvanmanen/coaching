@@ -22,11 +22,9 @@ public class PepController {
 	}
 
 	@GetMapping("personalhardskillform")
-	public String getpersonalhardskillform(){
-		return "/dashboardpages/personalhardskillform";
-	}
+	public String getpersonalhardskillform(){ return "/dashboardpages/personalhardskillform"; }
 
-	@GetMapping("addsoftskillspage")
+	@GetMapping("createsoftskillform")
 	public String getaddsoftskillpage() { return "/dashboardpages/addsoftskillpage"; }
 
 //	@PostMapping("openhardskillform")
@@ -35,14 +33,13 @@ public class PepController {
 //	}
 
 	private HardskillService hardskillService;
-	private SoftskillService softskillService;
+
 	
 	@Autowired
-	public PepController(HardskillService hardskillService){
+	public PepController(HardskillService hardskillService, SoftskillService softskillService){
 		this.hardskillService = hardskillService;
+		this.softskillService = softskillService;
 	}
-
-	public PepController(SoftskillService softskillService) { this.softskillService = softskillService; }
 
 	@PostMapping("/createpersonalhardskill")
 
@@ -51,14 +48,23 @@ public class PepController {
 		System.out.println("gegevens: " + name + ", " + description + ", " + state + ", " + start + "," + end);
 		
 		hardskillService.addHardskill (name, description, state, start, end);
-//		System.out.println("gegevens: " + name + ", " + state);
-//
-//		PersonalHardskill skill = new PersonalHardskill(name, description, state, start, end);
-//		Trainee trainee = new Trainee();
-//		PersonalEducationPlan pep = trainee.getPepPlan();
-//		pep.addHardskill(skill);
+		System.out.println("gegevens: " + name + ", " + state);
+
+		PersonalHardskill skill = new PersonalHardskill(name, description, state, start, end);
+		Trainee trainee = new Trainee();
+		PersonalEducationPlan pep = trainee.getPepPlan();
+		pep.addHardskill(skill);
 
 
 		return "/dashboardpages/personaleducationplanpage";
+	}
+	private SoftskillService softskillService;
+
+	@PostMapping("/createsoftskill")
+
+	public String createSoftskill(String name, String description){
+		softskillService.addSoftskill(name, description);
+
+		return "/dashboardpages/dashboardpage";
 	}
 }
