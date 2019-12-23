@@ -27,14 +27,8 @@ public class PepController {
 	@GetMapping("createsoftskillform")
 	public String getaddsoftskillpage() { return "/dashboardpages/addsoftskillpage"; }
 
-//	@PostMapping("openhardskillform")
-//	public String openHardskillForm(){
-//		return "/dashboardpages/personalhardskillform";
-//	}
-
 	private HardskillService hardskillService;
 
-	
 	@Autowired
 	public PepController(HardskillService hardskillService, SoftskillService softskillService){
 		this.hardskillService = hardskillService;
@@ -58,6 +52,7 @@ public class PepController {
 
 		return "/dashboardpages/personaleducationplanpage";
 	}
+
 	private SoftskillService softskillService;
 
 	@PostMapping("/createsoftskill")
@@ -65,6 +60,6 @@ public class PepController {
 	public String createSoftskill(String name, String description){
 		softskillService.addSoftskill(name, description);
 
-		return "/dashboardpages/dashboardpage";
+		return "redirect:/dashboardpage";
 	}
 }
