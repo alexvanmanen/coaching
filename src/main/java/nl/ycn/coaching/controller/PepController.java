@@ -22,17 +22,11 @@ public class PepController {
 	private HardskillRepository hardskillRepository;
 
 	private List<PersonalHardskill> retrieveHardskillList() {
-		//System.out.println(hardskillRepository.findAll() + "<---------------------");
 		return hardskillRepository.findAll();
 	}
 
-//	@PostMapping("personaleducationplanpage")
-//	public String postToPePpage(){
-//		return "/dashboardpages/personaleducationplanpage";
-//	}
-
 	@GetMapping("personaleducationplanpage")
-	public String goToPePpage(Model model){
+	public String goToPepPage(Model model){
 		model.addAttribute("hardskillList", retrieveHardskillList());
 		return "/dashboardpages/personaleducationplanpage";
 	}
@@ -44,11 +38,6 @@ public class PepController {
 
 	@GetMapping("addsoftskillspage")
 	public String getaddsoftskillpage() { return "/dashboardpages/addsoftskillpage"; }
-
-//	@PostMapping("openhardskillform")
-//	public String openHardskillForm(){
-//		return "/dashboardpages/personalhardskillform";
-//	}
 
 	private HardskillService hardskillService;
 	private SoftskillService softskillService;
@@ -66,13 +55,6 @@ public class PepController {
 		System.out.println("gegevens: " + name + ", " + description + ", " + state + ", " + start + "," + end);
 		
 		hardskillService.addHardskill (name, description, state, start, end);
-//		System.out.println("gegevens: " + name + ", " + state);
-//
-//		PersonalHardskill skill = new PersonalHardskill(name, description, state, start, end);
-//		Trainee trainee = new Trainee();
-//		PersonalEducationPlan pep = trainee.getPepPlan();
-//		pep.addHardskill(skill);
-
 
 		return "redirect:/personaleducationplanpage";
 	}

@@ -93,17 +93,10 @@ public class WebpageController {
         return "/dashboardpages/coursespage";
     }
 
-//    @GetMapping("personaleducationplanpage")
-//    public String getPersonaleducationplan(){
-//        return "/dashboardpages/personaleducationplanpage";
-//    }
-
     @GetMapping("agendapage")
     public String getAgendaPage(){
         return "/dashboardpages/agendapage";
     }
-
-
 
     @GetMapping("contactdetails")
     public String getcontactdetailPage(){
@@ -124,7 +117,6 @@ public class WebpageController {
     public String goTocontactdetails(){
         return "/dashboardpages/contactdetails";
     }
-
 
     @PostMapping("agendapage")
     public String goToAgenda(){
