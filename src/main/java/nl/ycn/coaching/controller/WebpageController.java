@@ -6,11 +6,18 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mobile.device.Device;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.Collection;
 
 @Controller
 public class WebpageController {
@@ -68,9 +75,10 @@ public class WebpageController {
 
     @GetMapping({"redirectLogin","/dashboardpage"})
     public String getDashBoard(){
-    AppUser activeUser = new AppUser();
-    activeUser = appUserService.getUser("alex");
-    switch(activeUser.getRole()){
+
+    AppUser user = appUserService.getActiveUser();
+
+    switch(user.getRole()){
         case "ADMIN":
             return "admin/dashboard";
         case "TRAINEE":
@@ -84,7 +92,6 @@ public class WebpageController {
         default:
             return "dashboardpages/dashboardpage";
         }
-
     }
 
     @GetMapping("coursespage")
