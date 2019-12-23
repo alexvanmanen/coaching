@@ -2,6 +2,7 @@ package nl.ycn.coaching.controller;
 
 import nl.ycn.coaching.database.HardskillRepository;
 import nl.ycn.coaching.database.HardskillService;
+import nl.ycn.coaching.database.SoftskillRepository;
 import nl.ycn.coaching.database.SoftskillService;
 import nl.ycn.coaching.model.PersonalEducationPlan;
 import nl.ycn.coaching.model.PersonalHardskill;
@@ -20,6 +21,9 @@ public class PepController {
 
 	@Autowired
 	private HardskillRepository hardskillRepository;
+
+	@Autowired
+	private SoftskillRepository softskillRepository;
 
 	private List<PersonalHardskill> retrieveHardskillList() {
 		return hardskillRepository.findAll();

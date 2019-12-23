@@ -14,15 +14,17 @@ public class PersonalEducationPlan {
         this.personalSoftskillList = new ArrayList<PersonalSoftskill>();
         this.personalHardskillList = new ArrayList<PersonalHardskill>();
         this.recommendations = "";
-
     }
 
     public List<PersonalHardskill> getPersonalHardskillList(){
         return personalHardskillList;
     }
 
-
     public void addHardskill(PersonalHardskill skill) {
         this.personalHardskillList.add(skill);
+    }
+
+    public void addSoftskill(PersonalSoftskill skill) {
+        this.personalSoftskillList.add(skill);
     }
 }
