@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th = "http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Coaching | Softskills</title>
@@ -8,7 +10,6 @@
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
 
     <script src="https://visjs.github.io/vis-network/standalone/umd/vis-network.min.js"></script>
-
 
     <link href="https://d36bmc1enj16yj.cloudfront.net/production/assets/pages/next-theme-420a2b84df4422f527df4b319c89641a8a309d6e0bdaa4deed04baed5633ea70.css"
           media="screen"
@@ -89,23 +90,18 @@
 <div class="ui grid" style="margin-left: 20px; margin-right: 20px;">
     <div class="five wide column">
         <div class="ui vertical fluid tabular menu">
-            <a class="active item">
-                Feedback aanvragen aan peers.
-            </a>
-            <a class="item">
-                Feedbackverslagen inzien.
-            </a>
-            <a class="item">
-                Vaardigheid 1
-            </a>
-            <a class="item">
-                Vaardigheid 2
+            <a th:href="'./personaleducationplanpage?name=' + ${hardskill.name}" class="item" th:each="hardskill : ${hardskillList}" >
+                <p>
+                    <span th:text="${hardskill.name}"></span>
+                </p>
             </a>
         </div>
     </div>
     <div class="eleven wide stretched column">
-        <div class="ui segment">
-            Text
+        <div class="ui segment" >
+            <p th:each="pep : ${personalHardskill}">
+                <span th:text="${pep.report}"></span>
+            </p>
         </div>
     </div>
 </div>

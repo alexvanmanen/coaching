@@ -2,6 +2,9 @@ package nl.ycn.coaching.database;
 
 import nl.ycn.coaching.model.users.AppUser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -52,4 +55,13 @@ public class AppUserService implements UserDetailsService {
 	public AppUser getUser(String userName) {
 		return appUserRepository.findByUsername(userName);
 	}
+
+	public AppUser getActiveUser() {
+		SecurityContext context = SecurityContextHolder.getContext();
+		Authentication authentication = context.getAuthentication();
+		UserDetails details = (UserDetails) authentication.getPrincipal();
+		AppUser user = getUser(details.getUsername());
+		return user;
+	}
+
 }

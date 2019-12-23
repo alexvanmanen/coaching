@@ -1,30 +1,46 @@
 package nl.ycn.coaching.controller;
 
 import nl.ycn.coaching.database.PepService;
-import nl.ycn.coaching.model.PersonalEducationPlan;
+import nl.ycn.coaching.database.HardskillRepository;
 import nl.ycn.coaching.model.PersonalHardskill;
-import nl.ycn.coaching.model.users.Trainee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.List;
 
 @Controller
 public class PepController {
 
 	private PepService pepService;
 
-	@PostMapping("personaleducationplanpage")
-	public String goToPePpage(){
+	@Autowired
+	private HardskillRepository hardskillRepository;
+
+	private List<PersonalHardskill> retrieveHardskillList() {
+		return hardskillRepository.findAll();
+	}
+
+	private PersonalHardskill retrieveHardskillByName (String name) {
+		return hardskillRepository.findByName (name);
+	}
+
+	@GetMapping("personaleducationplanpage")
+	public String goToPepPage(Model model, String name){
+		model.addAttribute("hardskillList", retrieveHardskillList());
+		model.addAttribute ("personalHardskill", retrieveHardskillByName (name));
 		return "/dashboardpages/personaleducationplanpage";
 	}
 
 	@GetMapping("personalhardskillform")
-	public String getpersonalhardskillform(){ return "/dashboardpages/personalhardskillform"; }
+	public String getpersonalhardskillform(){
+		return "/dashboardpages/personalhardskillform";
+	}
 
-	@GetMapping("createsoftskillform")
-	public String getaddsoftskillpage() { return "/dashboardpages/createsoftskillpage"; }
-
+	@GetMapping("addsoftskillspage")
+	public String getaddsoftskillpage() { return "/dashboardpages/addsoftskillpage"; }
 
 	@Autowired
 	public PepController(PepService pepService){
@@ -32,21 +48,13 @@ public class PepController {
 	}
 
 	@PostMapping("/createpersonalhardskill")
-
 	public String createPersonalHardskill(String name, String description, String state, String start, String end){
 
 		System.out.println("gegevens: " + name + ", " + description + ", " + state + ", " + start + "," + end);
 		
 		pepService.addHardskill (name, description, state, start, end);
-		System.out.println("gegevens: " + name + ", " + state);
 
-		PersonalHardskill skill = new PersonalHardskill(name, description, state, start, end);
-		Trainee trainee = new Trainee();
-		PersonalEducationPlan pep = trainee.getPepPlan();
-		pep.addHardskill(skill);
-
-
-		return "/dashboardpages/personaleducationplanpage";
+		return "redirect:/personaleducationplanpage";
 	}
 
 	@PostMapping("/createsoftskill")
