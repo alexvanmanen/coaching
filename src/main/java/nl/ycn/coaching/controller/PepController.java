@@ -1,7 +1,6 @@
 package nl.ycn.coaching.controller;
 
-import nl.ycn.coaching.database.HardskillService;
-import nl.ycn.coaching.database.SoftskillService;
+import nl.ycn.coaching.database.PepService;
 import nl.ycn.coaching.model.PersonalEducationPlan;
 import nl.ycn.coaching.model.PersonalHardskill;
 import nl.ycn.coaching.model.users.Trainee;
@@ -10,11 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.Date;
-import java.util.List;
-
 @Controller
 public class PepController {
+
+	private PepService pepService;
 
 	@PostMapping("personaleducationplanpage")
 	public String goToPePpage(){
@@ -25,14 +23,12 @@ public class PepController {
 	public String getpersonalhardskillform(){ return "/dashboardpages/personalhardskillform"; }
 
 	@GetMapping("createsoftskillform")
-	public String getaddsoftskillpage() { return "/dashboardpages/addsoftskillpage"; }
+	public String getaddsoftskillpage() { return "/dashboardpages/createsoftskillpage"; }
 
-	private HardskillService hardskillService;
 
 	@Autowired
-	public PepController(HardskillService hardskillService, SoftskillService softskillService){
-		this.hardskillService = hardskillService;
-		this.softskillService = softskillService;
+	public PepController(PepService pepService){
+		this.pepService = pepService;
 	}
 
 	@PostMapping("/createpersonalhardskill")
@@ -41,7 +37,7 @@ public class PepController {
 
 		System.out.println("gegevens: " + name + ", " + description + ", " + state + ", " + start + "," + end);
 		
-		hardskillService.addHardskill (name, description, state, start, end);
+		pepService.addHardskill (name, description, state, start, end);
 		System.out.println("gegevens: " + name + ", " + state);
 
 		PersonalHardskill skill = new PersonalHardskill(name, description, state, start, end);
@@ -53,12 +49,10 @@ public class PepController {
 		return "/dashboardpages/personaleducationplanpage";
 	}
 
-	private SoftskillService softskillService;
-
 	@PostMapping("/createsoftskill")
 
 	public String createSoftskill(String name, String description){
-		softskillService.addSoftskill(name, description);
+		pepService.addSoftskill(name, description);
 
 		return "redirect:/dashboardpage";
 	}
