@@ -87,17 +87,16 @@ public class WebpageController {
 
     }
 
-
     @GetMapping("coursespage")
     public String getHardSkillsPage(Model model){
         //model.addAttribute(DashController.getHardskillsList());
         return "/dashboardpages/coursespage";
     }
 
-    @GetMapping("personaleducationplanpage")
-    public String getPersonaleducationplan(){
-        return "/dashboardpages/personaleducationplanpage";
-    }
+//    @GetMapping("personaleducationplanpage")
+//    public String getPersonaleducationplan(){
+//        return "/dashboardpages/personaleducationplanpage";
+//    }
 
     @GetMapping("agendapage")
     public String getAgendaPage(){

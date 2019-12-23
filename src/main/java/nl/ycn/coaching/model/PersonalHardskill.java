@@ -19,6 +19,8 @@ public class PersonalHardskill {
     private String start;
     private String end;
 
+    public PersonalHardskill() {}
+
     public PersonalHardskill(String name, String description, String state, String start, String end) {
         this.name = name;
         this.description = description;

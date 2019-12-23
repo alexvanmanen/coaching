@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th = "http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Coaching | Softskills</title>
@@ -90,22 +92,18 @@
     <div class="five wide column">
         <div class="ui vertical fluid tabular menu">
             <a class="active item">
-                Feedback aanvragen aan peers.
+                Kies een hardskill.
             </a>
-            <a class="item">
-                Feedbackverslagen inzien.
-            </a>
-            <a class="item">
-                Vaardigheid 1
-            </a>
-            <a class="item">
-                Vaardigheid 2
+            <a class="item" th:each="hardskill : ${hardskillList}" >
+                <p>
+                    <span th:text="${hardskill.name}"></span>
+                </p>
             </a>
         </div>
     </div>
     <div class="eleven wide stretched column">
         <div class="ui segment">
-            Text
+
         </div>
     </div>
 </div>
