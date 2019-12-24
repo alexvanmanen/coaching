@@ -84,21 +84,13 @@ public class PepController {
 
 	@PostMapping("/createpersonalhardskill")
 	public String createPersonalHardskill(String name, String description, String state, String start, String end){
-
-		System.out.println("gegevens: " + name + ", " + description + ", " + state + ", " + start + "," + end);
-		
 		pepService.addHardskill (name, description, state, start, end);
-
 		return "redirect:/personaleducationplanpage";
 	}
 	
 	@PostMapping("/createpersonalsoftskill")
 	public String createPersonalSoftskill(String name, String description, String report){
-		
-		System.out.println("gegevens: " + name + ", " + report);
-		
 		pepService.addPersonalSoftskill (name, report);
-		
 		return "redirect:/personaleducationplanpage";
 	}
 	
