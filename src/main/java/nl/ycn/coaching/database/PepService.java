@@ -63,6 +63,9 @@ public class PepService {
 		return list;
 	}
 	
+	@Autowired
+	private PersonalSoftskillRepository personalSoftskillRepository;
+	
 	public void addHardskill(
 			String name,
 			String description,
@@ -79,6 +82,17 @@ public class PepService {
 			String description){
 		Softskill softskill = new Softskill(name, description);
 		softskillRepository.save(softskill);
+	}
+	
+	public void addPersonalSoftskill(
+			String name,
+			String report,
+			String username) {
+		Softskill softskill = softskillRepository.findByName (name);
+		String description = softskill.getDescription ();
+		PersonalSoftskill personalSoftskill = new PersonalSoftskill (name, description, report, username);
+		personalSoftskillRepository.save(personalSoftskill);
+		
 	}
 }
 

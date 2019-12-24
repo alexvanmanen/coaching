@@ -22,7 +22,6 @@ public class Softskill {
         this.description = description;
     }
 
-
     public int getId() {
         return id;
     }
