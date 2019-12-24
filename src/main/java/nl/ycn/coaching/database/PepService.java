@@ -1,6 +1,7 @@
 package nl.ycn.coaching.database;
 
 import nl.ycn.coaching.model.PersonalHardskill;
+import nl.ycn.coaching.model.PersonalSoftskill;
 import nl.ycn.coaching.model.Softskill;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,9 @@ public class PepService {
 
 	@Autowired
 	private SoftskillRepository softskillRepository;
+	
+	@Autowired
+	private PersonalSoftskillRepository personalSoftskillRepository;
 	
 	public void addHardskill(
 			String name,
@@ -31,6 +35,16 @@ public class PepService {
 			String description){
 		Softskill softskill = new Softskill(name, description);
 		softskillRepository.save(softskill);
+	}
+	
+	public void addPersonalSoftskill(
+			String name,
+			String report) {
+		Softskill softskill = softskillRepository.findByName (name);
+		String description = softskill.getDescription ();
+		PersonalSoftskill personalSoftskill = new PersonalSoftskill (name, description, report);
+		personalSoftskillRepository.save(personalSoftskill);
+		
 	}
 }
 
