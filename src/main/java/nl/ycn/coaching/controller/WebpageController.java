@@ -68,10 +68,6 @@ public class WebpageController {
         return "admin";
     }
 
-    @GetMapping("/register")
-    public String register(){
-        return "register";
-    }
 
     @GetMapping({"redirectLogin","/dashboardpage"})
     public String getDashBoard(){
@@ -129,6 +125,11 @@ public class WebpageController {
 
     @GetMapping("createsoftskillform")
     public String getSoftskillForm(){return "hremployee/createsoftskillform";}
+
+    @GetMapping("/register")
+    public String register(){
+        return "/hremployee/register";
+    }
 
 
     @PostMapping("login")
