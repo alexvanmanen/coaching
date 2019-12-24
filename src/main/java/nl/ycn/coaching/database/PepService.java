@@ -20,8 +20,10 @@ public class PepService {
 	private SoftskillRepository softskillRepository;
 
 	@Autowired
-	private AppUserService appUserService;
+	private PersonalSoftskillRepository personalSoftskillRepository;
 
+	@Autowired
+	private AppUserService appUserService;
 
 	/* Fill then Hardskill list of the active user then return it*/
 	public List<PersonalHardskill> fillPersonalHardskillList() {
@@ -41,31 +43,24 @@ public class PepService {
 	}
 
 	/* Fill then Softskill list of the active user then return it*/
-	/*TODO change softskill to personalsoftskill*/
-	public List<Softskill> fillPersonalSoftskillList() {
-		List<Softskill> list = new ArrayList<Softskill>();
+	public List<PersonalSoftskill> fillPersonalSoftskillList() {
+		List<PersonalSoftskill> list = new ArrayList<PersonalSoftskill>();
+
 		String username = appUserService.getActiveUser().getUsername();
 
-		List<Softskill> databaseSoftskills = softskillRepository.findAll();
+		List<PersonalSoftskill> databasePersonalSoftskills = personalSoftskillRepository.findAll();
 
-		for (Softskill entry : databaseSoftskills) {
+		for (PersonalSoftskill entry : databasePersonalSoftskills) {
 
-			list.add(entry);
-
-			//Dit moet eigenlijk gebeuren, maar personalSoftskill bestaat nog niet, dus vandaar gecomment.
-			/*
 			if (entry.getUsername().equals(username)) {
 				list.add(entry);
 			}
-			 */
+
 		}
 
 		return list;
 	}
-	
-	@Autowired
-	private PersonalSoftskillRepository personalSoftskillRepository;
-	
+
 	public void addHardskill(
 			String name,
 			String description,

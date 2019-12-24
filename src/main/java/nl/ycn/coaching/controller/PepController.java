@@ -70,8 +70,8 @@ public class PepController {
 		//Fill the hardskill list and set it
 		personalEducationPlan.setPersonalHardskillList(pepService.fillPersonalHardskillList());
 
-		model.addAttribute("softskillList", personalEducationPlan.getPersonalSoftskillList());
-		model.addAttribute ("personalSoftskill", retrieveSoftskillByName(name));
+		model.addAttribute("personalSoftskillList", personalEducationPlan.getPersonalSoftskillList());
+		model.addAttribute ("personalSoftskill", retrievePersonalSoftskillByName(name));
 		model.addAttribute("hardskillList", personalEducationPlan.getPersonalHardskillList());
 		model.addAttribute ("personalHardskill", retrieveHardskillByName(name));
 
@@ -110,11 +110,17 @@ public class PepController {
 		return "redirect:/personaleducationplanpage";
 	}
 
-	@PostMapping("/createsoftskill")
-	public String createSoftskill(String name, String description){
+	@PostMapping("/createpersonalsoftskill")
+	public String createPersonalSoftskill(String name, String description, String report){
 
 		String username = appUserService.getActiveUser().getUsername();
 
+		pepService.addPersonalSoftskill (name, report, username);
+		return "redirect:/personaleducationplanpage";
+	}
+
+	@PostMapping("/createsoftskill")
+	public String createSoftskill(String name, String description){
 		pepService.addSoftskill(name, description);
 
 		return "redirect:/dashboardpage";

@@ -10,26 +10,23 @@ import java.util.List;
 
 public class PersonalEducationPlan {
 
-    /*Moet List<PersonalSoftskill> zijn, maar aangezien die nog niet bestaat en om crashes te voorkomen
-      deze work-around.
-     */
-    private List<Softskill> personalSoftskillList;
+    private List<PersonalSoftskill> personalSoftskillList;
     private List<PersonalHardskill> personalHardskillList;
     private String recommendations;
 
     public PersonalEducationPlan(){
 
-        this.personalSoftskillList = new ArrayList<Softskill>();
+        this.personalSoftskillList = new ArrayList<PersonalSoftskill>();
         this.personalHardskillList = new ArrayList<PersonalHardskill>();
         this.recommendations = "";
 
     }
 
-    public List<Softskill> getPersonalSoftskillList() {
+    public List<PersonalSoftskill> getPersonalSoftskillList() {
         return personalSoftskillList;
     }
 
-    public void setPersonalSoftskillList(List<Softskill> personalSoftskillList) {
+    public void setPersonalSoftskillList(List<PersonalSoftskill> personalSoftskillList) {
         this.personalSoftskillList = personalSoftskillList;
     }
 
