@@ -18,16 +18,18 @@ public class PersonalHardskill {
     private String state;
     private String start;
     private String end;
+    private String username;
 
     public PersonalHardskill() {}
 
-    public PersonalHardskill(String name, String description, String state, String start, String end) {
+    public PersonalHardskill(String name, String description, String state, String start, String end, String username) {
         this.name = name;
         this.description = description;
         this.report = null;
         this.state = state;
         this.start = start;
         this.end = end;
+        this.username = username;
     }
 
     public int getId() {
@@ -84,5 +86,13 @@ public class PersonalHardskill {
 
     public void setEnd(String end) {
         this.end = end;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

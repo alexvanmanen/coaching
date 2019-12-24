@@ -58,7 +58,7 @@ public class PepController {
 
 		System.out.println("gegevens: " + name + ", " + description + ", " + state + ", " + start + "," + end);
 		
-		hardskillService.addHardskill (name, description, state, start, end);
+		hardskillService.addHardskill (name, description, state, start, end, "user");
 
 		return "redirect:/personaleducationplanpage";
 	}
