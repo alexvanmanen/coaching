@@ -68,10 +68,6 @@ public class WebpageController {
         return "admin";
     }
 
-    @GetMapping("/register")
-    public String register(){
-        return "register";
-    }
 
     @GetMapping({"redirectLogin","/dashboardpage"})
     public String getDashBoard(){
@@ -105,10 +101,36 @@ public class WebpageController {
         return "/dashboardpages/agendapage";
     }
 
+
     @GetMapping("contactdetails")
     public String getcontactdetailPage(){
         return "/dashboardpages/contactdetails";
     }
+
+    //Mappings for HR-Employee
+    @GetMapping("bootcamps")
+    public String getBootcamps(){return "hremployee/bootcamps";}
+
+    @GetMapping("users")
+    public String getUsers(){return "hremployee/users";}
+
+    @GetMapping("teams")
+    public String getTeams(){return "hremployee/teams";}
+
+    @GetMapping("skills")
+    public String getSkills(){return "hremployee/skills";}
+
+    @GetMapping("calendar")
+    public String getCalendar(){return "hremployee/calendar";}
+
+    @GetMapping("createsoftskillform")
+    public String getSoftskillForm(){return "hremployee/createsoftskillform";}
+
+    @GetMapping("/register")
+    public String register(){
+        return "/hremployee/register";
+    }
+
 
     @PostMapping("login")
     public String validateLogin(){
