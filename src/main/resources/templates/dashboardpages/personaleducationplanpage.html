@@ -101,6 +101,12 @@
     <div class="eleven wide stretched column">
         <div class="ui segment" >
             <p th:each="pep : ${personalHardskill}">
+                Beschrijving:
+                <br>
+                <span th:text="${pep.description}"></span>
+                <br>
+                Verslag:
+                <br>
                 <span th:text="${pep.report}"></span>
             </p>
         </div>

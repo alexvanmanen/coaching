@@ -16,12 +16,12 @@ public class Softskill {
     private String description;
 
     public Softskill(){}
-    
+
     public Softskill(String name, String description){
         this.name = name;
         this.description = description;
     }
-    
+
     public int getId() {
         return id;
     }

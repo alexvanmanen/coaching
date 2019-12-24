@@ -1,5 +1,10 @@
 package nl.ycn.coaching.model;
 
+import nl.ycn.coaching.database.AppUserService;
+import nl.ycn.coaching.database.HardskillRepository;
+import nl.ycn.coaching.model.users.AppUser;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,12 +22,27 @@ public class PersonalEducationPlan {
 
     }
 
-    public List<PersonalHardskill> getPersonalHardskillList(){
+    public List<PersonalSoftskill> getPersonalSoftskillList() {
+        return personalSoftskillList;
+    }
+
+    public void setPersonalSoftskillList(List<PersonalSoftskill> personalSoftskillList) {
+        this.personalSoftskillList = personalSoftskillList;
+    }
+
+    public List<PersonalHardskill> getPersonalHardskillList() {
         return personalHardskillList;
     }
 
+    public void setPersonalHardskillList(List<PersonalHardskill> personalHardskillList) {
+        this.personalHardskillList = personalHardskillList;
+    }
 
-    public void addHardskill(PersonalHardskill skill) {
-        this.personalHardskillList.add(skill);
+    public String getRecommendations() {
+        return recommendations;
+    }
+
+    public void setRecommendations(String recommendations) {
+        this.recommendations = recommendations;
     }
 }

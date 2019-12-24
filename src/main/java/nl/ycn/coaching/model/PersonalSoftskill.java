@@ -21,12 +21,16 @@ public class PersonalSoftskill {
     @Column
     private String report;
 
+    @Column
+    private String username;
+
     public PersonalSoftskill() {}
     
-    public PersonalSoftskill(String name, String description, String report) {
+    public PersonalSoftskill(String name, String description, String report, String username) {
         this.name = name;
         this.description = description;
         this.report = report;
+        this.username = username;
     }
     public void editReport() {
 
@@ -63,4 +67,8 @@ public class PersonalSoftskill {
     public void setDescription (String description) {
         this.description = description;
     }
+
+    public String getUsername() { return username; }
+
+    public void setUsername(String username) { this.username = username; }
 }
