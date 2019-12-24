@@ -39,7 +39,7 @@
     <a class="item" href="skills">
         Skills
     </a>
-    <a class="item" href="calendar">
+    <a class="item" href="hrcalendar">
         Calendar
     </a>
 
@@ -91,13 +91,15 @@
         <div class="three column row">
             <div class="column">
                 <label>Password</label>
-                <input type="password" placeholder="Password" name="password">
+                <input type="password" placeholder="Password" name="password" value="randomPassword" th:value="${randomPassword}">
             </div>
         </div>
 
         <div class="three column row">
             <div>
+                <a class="item" href="/getpassword">
                 <button class="ui button" style="margin-left: 25px; margin-right: 25px;" >Generate Random Password</button>
+                </a>
             </div>
         </div>
     </div>

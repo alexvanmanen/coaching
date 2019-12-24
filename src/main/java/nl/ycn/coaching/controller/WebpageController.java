@@ -107,29 +107,8 @@ public class WebpageController {
         return "/dashboardpages/contactdetails";
     }
 
-    //Mappings for HR-Employee
-    @GetMapping("bootcamps")
-    public String getBootcamps(){return "hremployee/bootcamps";}
 
-    @GetMapping("users")
-    public String getUsers(){return "hremployee/users";}
 
-    @GetMapping("teams")
-    public String getTeams(){return "hremployee/teams";}
-
-    @GetMapping("skills")
-    public String getSkills(){return "hremployee/skills";}
-
-    @GetMapping("calendar")
-    public String getCalendar(){return "hremployee/calendar";}
-
-    @GetMapping("createsoftskillform")
-    public String getSoftskillForm(){return "hremployee/createsoftskillform";}
-
-    @GetMapping("/register")
-    public String register(){
-        return "/hremployee/register";
-    }
 
 
     @PostMapping("login")
@@ -157,14 +136,4 @@ public class WebpageController {
         return "/dashboardpages/dashboardpage";
     }
 
-
-
-    @PostMapping("/register")
-    public String register(String username, String firstname, String lastname, String email, String password, String roles){
-
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        appUserService.registerUser(username,  firstname, lastname, email, encoder.encode(password), roles);
-
-        return "/dashboardpages/dashboardpage";
-    }
 }
