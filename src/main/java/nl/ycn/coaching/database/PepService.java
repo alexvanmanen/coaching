@@ -51,6 +51,8 @@ public class PepService {
 		for (Softskill entry : databaseSoftskills) {
 
 			list.add(entry);
+
+			//Dit moet eigenlijk gebeuren, maar personalSoftskill bestaat nog niet, dus vandaar gecomment.
 			/*
 			if (entry.getUsername().equals(username)) {
 				list.add(entry);

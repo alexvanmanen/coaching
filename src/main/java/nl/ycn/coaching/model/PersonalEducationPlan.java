@@ -10,6 +10,9 @@ import java.util.List;
 
 public class PersonalEducationPlan {
 
+    /*Moet List<PersonalSoftskill> zijn, maar aangezien die nog niet bestaat en om crashes te voorkomen
+      deze work-around.
+     */
     private List<Softskill> personalSoftskillList;
     private List<PersonalHardskill> personalHardskillList;
     private String recommendations;
