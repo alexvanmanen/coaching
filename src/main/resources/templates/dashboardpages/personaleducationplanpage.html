@@ -11,7 +11,6 @@
 
     <script src="https://visjs.github.io/vis-network/standalone/umd/vis-network.min.js"></script>
 
-
     <link href="https://d36bmc1enj16yj.cloudfront.net/production/assets/pages/next-theme-420a2b84df4422f527df4b319c89641a8a309d6e0bdaa4deed04baed5633ea70.css"
           media="screen"
           rel="stylesheet"/>
@@ -48,7 +47,7 @@
 
 <div>
     <h1 class="ui block header" style="padding: 10px; margin-left: 25px; margin-right: 25px; margin-top: 10px; margin-bottom: 10px"> Softskills
-    <a class="item" href="personalsoftkillform">
+    <a class="item" href="/createsoftskillform">
         <button type="submit" class="ui right floated button">+ add softskill</button>
     </a>
     </h1>
@@ -91,10 +90,7 @@
 <div class="ui grid" style="margin-left: 20px; margin-right: 20px;">
     <div class="five wide column">
         <div class="ui vertical fluid tabular menu">
-            <a class="active item">
-                Kies een hardskill.
-            </a>
-            <a class="item" th:each="hardskill : ${hardskillList}" >
+            <a th:href="'./personaleducationplanpage?name=' + ${hardskill.name}" class="item" th:each="hardskill : ${hardskillList}" >
                 <p>
                     <span th:text="${hardskill.name}"></span>
                 </p>
@@ -102,8 +98,10 @@
         </div>
     </div>
     <div class="eleven wide stretched column">
-        <div class="ui segment">
-
+        <div class="ui segment" >
+            <p th:each="pep : ${personalHardskill}">
+                <span th:text="${pep.report}"></span>
+            </p>
         </div>
     </div>
 </div>
