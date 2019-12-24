@@ -3,7 +3,7 @@ package nl.ycn.coaching.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.util.Date;
+import java.sql.Date;
 
 @Entity
 public class PersonalHardskill {
@@ -16,16 +16,16 @@ public class PersonalHardskill {
     private String description;
     private String report;
     private String state;
-    private String start;
-    private String end;
+    private Date start;
+    private Date end;
     private String username;
 
     public PersonalHardskill() {}
 
-    public PersonalHardskill(String name, String description, String state, String start, String end, String username) {
+    public PersonalHardskill(String name, String description, String report, String state, Date start, Date end, String username) {
         this.name = name;
         this.description = description;
-        this.report = null;
+        this.report = report;
         this.state = state;
         this.start = start;
         this.end = end;
@@ -72,19 +72,19 @@ public class PersonalHardskill {
         this.state = state;
     }
 
-    public String getStart() {
+    public Date getStart() {
         return start;
     }
 
-    public void setStart(String start) {
+    public void setStart(Date start) {
         this.start = start;
     }
 
-    public String getEnd() {
+    public Date getEnd() {
         return end;
     }
 
-    public void setEnd(String end) {
+    public void setEnd(Date end) {
         this.end = end;
     }
 
@@ -95,4 +95,6 @@ public class PersonalHardskill {
     public void setUsername(String username) {
         this.username = username;
     }
+    
+    
 }

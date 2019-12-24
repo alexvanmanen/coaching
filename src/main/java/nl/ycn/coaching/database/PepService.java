@@ -6,8 +6,8 @@ import nl.ycn.coaching.model.Softskill;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -64,11 +64,12 @@ public class PepService {
 	public void addHardskill(
 			String name,
 			String description,
+			String report,
 			String state,
-			String start,
-			String end,
+			Date start,
+			Date end,
 			String username) {
-			PersonalHardskill hardskill = new PersonalHardskill (name, description, state, start, end, username);
+			PersonalHardskill hardskill = new PersonalHardskill (name, description, report, state, start, end, username);
 			hardskillRepository.save(hardskill);
 		}
 
