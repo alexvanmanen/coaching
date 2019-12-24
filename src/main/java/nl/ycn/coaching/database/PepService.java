@@ -1,11 +1,14 @@
 package nl.ycn.coaching.database;
 
 import nl.ycn.coaching.model.PersonalHardskill;
+import nl.ycn.coaching.model.PersonalSoftskill;
 import nl.ycn.coaching.model.Softskill;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class PepService {
@@ -15,13 +18,56 @@ public class PepService {
 
 	@Autowired
 	private SoftskillRepository softskillRepository;
+
+	@Autowired
+	private AppUserService appUserService;
+
+
+	/* Fill then Hardskill list of the active user then return it*/
+	public List<PersonalHardskill> fillPersonalHardskillList() {
+		List<PersonalHardskill> list = new ArrayList<PersonalHardskill>();
+		String username = appUserService.getActiveUser().getUsername();
+
+		List<PersonalHardskill> databasePersonalHardskills = hardskillRepository.findAll();
+
+		for (PersonalHardskill entry : databasePersonalHardskills) {
+
+			if (entry.getUsername().equals(username)) {
+				list.add(entry);
+			}
+		}
+
+		return list;
+	}
+
+	/* Fill then Softskill list of the active user then return it*/
+	/*TODO change softskill to personalsoftskill*/
+	public List<Softskill> fillPersonalSoftskillList() {
+		List<Softskill> list = new ArrayList<Softskill>();
+		String username = appUserService.getActiveUser().getUsername();
+
+		List<Softskill> databaseSoftskills = softskillRepository.findAll();
+
+		for (Softskill entry : databaseSoftskills) {
+
+			list.add(entry);
+			/*
+			if (entry.getUsername().equals(username)) {
+				list.add(entry);
+			}
+			 */
+		}
+
+		return list;
+	}
 	
 	public void addHardskill(
 			String name,
 			String description,
 			String state,
 			String start,
-			String end, String username) {
+			String end,
+			String username) {
 			PersonalHardskill hardskill = new PersonalHardskill (name, description, state, start, end, username);
 			hardskillRepository.save(hardskill);
 		}

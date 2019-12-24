@@ -1,6 +1,8 @@
 package nl.ycn.coaching.model;
 
+import nl.ycn.coaching.database.AppUserService;
 import nl.ycn.coaching.database.HardskillRepository;
+import nl.ycn.coaching.model.users.AppUser;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
@@ -8,44 +10,39 @@ import java.util.List;
 
 public class PersonalEducationPlan {
 
-    @Autowired
-    private HardskillRepository hardskillRepository;
-
-    private List<PersonalSoftskill> personalSoftskillList;
+    private List<Softskill> personalSoftskillList;
     private List<PersonalHardskill> personalHardskillList;
     private String recommendations;
 
     public PersonalEducationPlan(){
 
-        this.personalSoftskillList = new ArrayList<PersonalSoftskill>();
+        this.personalSoftskillList = new ArrayList<Softskill>();
         this.personalHardskillList = new ArrayList<PersonalHardskill>();
         this.recommendations = "";
+
     }
 
-    public List<PersonalHardskill> getPersonalHardskillList(){
+    public List<Softskill> getPersonalSoftskillList() {
+        return personalSoftskillList;
+    }
+
+    public void setPersonalSoftskillList(List<Softskill> personalSoftskillList) {
+        this.personalSoftskillList = personalSoftskillList;
+    }
+
+    public List<PersonalHardskill> getPersonalHardskillList() {
         return personalHardskillList;
     }
 
-    /* Fill the personal Soft- and Hardskill lists given the username */
-    public void fillPersonalLists(String username) {
-        /*TODO add Softskills too*/
-
-        List<PersonalHardskill> databasePersonalHardskills = hardskillRepository.findAll();
-
-        for (PersonalHardskill entry : databasePersonalHardskills) {
-            /*TODO change getName to getUsername*/
-            if (entry.getName().equals(username)) {
-                addHardskill(entry);
-            }
-        }
+    public void setPersonalHardskillList(List<PersonalHardskill> personalHardskillList) {
+        this.personalHardskillList = personalHardskillList;
     }
 
-    public void addHardskill(PersonalHardskill skill) {
-        this.personalHardskillList.add(skill);
+    public String getRecommendations() {
+        return recommendations;
     }
 
-    public void addSoftskill(PersonalSoftskill skill) {
-        this.personalSoftskillList.add(skill);
+    public void setRecommendations(String recommendations) {
+        this.recommendations = recommendations;
     }
-
 }

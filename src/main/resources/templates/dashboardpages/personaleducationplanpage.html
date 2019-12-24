@@ -56,23 +56,18 @@
 <div class="ui grid" style="margin-left: 20px; margin-right: 20px;">
     <div class="five wide column">
         <div class="ui vertical fluid tabular menu">
-            <a class="active item">
-                Feedback aanvragen aan peers.
-            </a>
-            <a class="item">
-                Feedbackverslagen inzien.
-            </a>
-            <a class="item">
-                Vaardigheid 1
-            </a>
-            <a class="item">
-                Vaardigheid 2
+            <a th:href="'./personaleducationplanpage?name=' + ${softskill.name}" class="item" th:each="softskill : ${softskillList}" >
+                <p>
+                    <span th:text="${softskill.name}"></span>
+                </p>
             </a>
         </div>
     </div>
     <div class="eleven wide stretched column">
         <div class="ui segment">
-            Text
+            <p th:each="pep : ${personalSoftskill}">
+                <span th:text="${pep.description}"></span>
+            </p>
         </div>
     </div>
 </div>
@@ -100,7 +95,7 @@
     <div class="eleven wide stretched column">
         <div class="ui segment" >
             <p th:each="pep : ${personalHardskill}">
-                <span th:text="${pep.report}"></span>
+                <span th:text="${pep.description}"></span>
             </p>
         </div>
     </div>

@@ -9,6 +9,7 @@ import nl.ycn.coaching.model.PersonalEducationPlan;
 
 import nl.ycn.coaching.model.PersonalHardskill;
 import nl.ycn.coaching.model.users.AppUser;
+import nl.ycn.coaching.model.users.Trainee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,13 +38,25 @@ public class PepController {
 	}
 
 	private PersonalHardskill retrieveHardskillByName (String name) {
-		return hardskillRepository.findByUsername(name);
+		return hardskillRepository.findByName(name);
 	}
 
 	@GetMapping("personaleducationplanpage")
 	public String goToPepPage(Model model, String name){
-		model.addAttribute("hardskillList", retrieveHardskillList());
-		model.addAttribute ("personalHardskill", retrieveHardskillByName (name));
+		PersonalEducationPlan personalEducationPlan = new PersonalEducationPlan();
+
+		//Fill the softskill list and set it
+		personalEducationPlan.setPersonalSoftskillList(pepService.fillPersonalSoftskillList());
+
+		//Fill the hardskill list and set it
+		personalEducationPlan.setPersonalHardskillList(pepService.fillPersonalHardskillList());
+
+		model.addAttribute("softskillList", personalEducationPlan.getPersonalSoftskillList());
+		model.addAttribute ("personalSoftskill", softskillRepository.findAll());
+
+		model.addAttribute("hardskillList", personalEducationPlan.getPersonalHardskillList());
+		model.addAttribute ("personalHardskill", retrieveHardskillByName(name));
+
 		return "/dashboardpages/personaleducationplanpage";
 	}
 
