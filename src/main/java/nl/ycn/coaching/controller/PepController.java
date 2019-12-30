@@ -107,7 +107,7 @@ public class PepController {
 	}
 
 	@PostMapping("/createpersonalsoftskill")
-	public String createPersonalSoftskill(String name, String description, String report){
+	public String createPersonalSoftskill(String name, String report){
 		String username = appUserService.getActiveUser().getUsername();
 		pepService.addPersonalSoftskill (name, report, username);
 		return "redirect:/personaleducationplanpage";
