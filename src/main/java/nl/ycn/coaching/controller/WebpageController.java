@@ -70,23 +70,27 @@ public class WebpageController {
 
 
     @GetMapping({"redirectLogin","/dashboardpage"})
-    public String getDashBoard(){
+    public String getDashBoard() {
 
-    AppUser user = appUserService.getActiveUser();
+        try {
+            AppUser user = appUserService.getActiveUser();
 
-    switch(user.getRole()){
-        case "ADMIN":
-            return "admin/dashboard";
-        case "TRAINEE":
-            return "trainee/dashboard";
-        case "MANAGER":
-            return "manager/dashboard";
-        case "HREMPLOYEE":
-            return "hremployee/dashboard";
-        case "TALENTMANAGER":
-            return "talentmanager/dashboard";
-        default:
-            return "dashboardpages/dashboardpage";
+            switch (user.getRole()) {
+                case "ADMIN":
+                    return "admin/dashboard";
+                case "TRAINEE":
+                    return "trainee/dashboard";
+                case "MANAGER":
+                    return "manager/dashboard";
+                case "HREMPLOYEE":
+                    return "hremployee/dashboard";
+                case "TALENTMANAGER":
+                    return "talentmanager/dashboard";
+                default:
+                    return "dashboardpages/dashboardpage";
+            }
+        } catch (Exception e) {
+            return "login";
         }
     }
 
@@ -95,6 +99,7 @@ public class WebpageController {
         //model.addAttribute(DashController.getHardskillsList());
         return "/dashboardpages/coursespage";
     }
+
 
     @GetMapping("agendapage")
     public String getAgendaPage(){
