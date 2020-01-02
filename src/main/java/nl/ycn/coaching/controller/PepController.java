@@ -25,18 +25,18 @@ public class PepController {
 		return hardskillRepository.findAll();
 	}
 
-	@GetMapping("personaleducationplanpage")
+	@GetMapping("/personaleducationplanpage")
 	public String goToPepPage(Model model){
 		model.addAttribute("hardskillList", retrieveHardskillList());
 		return "/dashboardpages/personaleducationplanpage";
 	}
 
-	@GetMapping("personalhardskillform")
+	@GetMapping("/personalhardskillform")
 	public String getpersonalhardskillform(){
 		return "/dashboardpages/personalhardskillform";
 	}
 
-	@GetMapping("addsoftskillspage")
+	@GetMapping("/addsoftskillspage")
 	public String getaddsoftskillpage() { return "/dashboardpages/addsoftskillpage"; }
 
 	private HardskillService hardskillService;

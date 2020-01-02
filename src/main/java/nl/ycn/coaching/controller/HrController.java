@@ -23,22 +23,22 @@ public class HrController {
 	private AppUserService appUserService;
 
 	//Mappings for HR-Employee
-	@GetMapping("bootcamps")
+	@GetMapping("/bootcamps")
 	public String getBootcamps(){return "hremployee/bootcamps";}
 
-	@GetMapping("users")
+	@GetMapping("/users")
 	public String getUsers(){return "hremployee/users";}
 
-	@GetMapping("teams")
+	@GetMapping("/teams")
 	public String getTeams(){return "hremployee/teams";}
 
-	@GetMapping("skills")
+	@GetMapping("/skills")
 	public String getSkills(){return "hremployee/skills";}
 
-	@GetMapping("createsoftskillform")
+	@GetMapping("/createsoftskillform")
 	public String getSoftskillForm(){return "hremployee/createsoftskillform";}
 
-	@GetMapping("register")
+	@GetMapping("/register")
 	public String register(Model model){
 		String upperCaseLetters = RandomStringUtils.random(3, 65, 90, true, true);
 		String lowerCaseLetters = RandomStringUtils.random(3, 97, 122, true, true);
@@ -60,12 +60,13 @@ public class HrController {
 		return "/hremployee/register";
 	}
 
-	@GetMapping("hrcalendar")
+	@GetMapping("/hrcalendar")
 	public String getCalendar(){
-		return "hremployee/calendar";}
+		return "hremployee/calendar";
+	}
 
 	//register a new AppUser (from hremployee/register)
-	@PostMapping("addappuser")
+	@PostMapping("/addappuser")
 	public String register(String username, String firstname, String lastname, String email, String password, String roles){
 
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
