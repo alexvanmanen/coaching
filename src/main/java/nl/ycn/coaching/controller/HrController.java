@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Collections;
 import java.util.List;
@@ -17,8 +18,6 @@ import java.util.stream.Collectors;
 
 @Controller
 public class HrController {
-
-	private String randomPassword="";
 
 	@Autowired
 	private AppUserService appUserService;
@@ -39,35 +38,13 @@ public class HrController {
 	@GetMapping("createsoftskillform")
 	public String getSoftskillForm(){return "hremployee/createsoftskillform";}
 
-	@GetMapping("/register")
+	@GetMapping("register")
 	public String register(Model model){
-		model.addAttribute(randomPassword, randomPassword);
-		return "/hremployee/register";
-	}
-
-	@GetMapping("hrcalendar")
-	public String getCalendar(){
-		return "hremployee/calendar";}
-
-	//register a new AppUser (from hremployee/register)
-	@PostMapping("/register")
-	public String register(String username, String firstname, String lastname, String email, String password, String roles){
-
-		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		appUserService.registerUser(username,  firstname, lastname, email, encoder.encode(password), roles);
-		randomPassword = "";
-		return "/hremployee/users";
-	}
-
-	//generate a random password for a new AppUser (from hremployee/register)
-	@GetMapping("getpassword")
-	public String getRandomPassword(){
-
-		String upperCaseLetters = RandomStringUtils.random(2, 65, 90, true, true);
-		String lowerCaseLetters = RandomStringUtils.random(2, 97, 122, true, true);
-		String numbers = RandomStringUtils.randomNumeric(2);
-		String specialChar = RandomStringUtils.random(2, 33, 47, false, false);
-		String totalChars = RandomStringUtils.randomAlphanumeric(2);
+		String upperCaseLetters = RandomStringUtils.random(3, 65, 90, true, true);
+		String lowerCaseLetters = RandomStringUtils.random(3, 97, 122, true, true);
+		String numbers = RandomStringUtils.randomNumeric(3);
+		String specialChar = RandomStringUtils.random(3, 33, 47, false, false);
+		String totalChars = RandomStringUtils.randomAlphanumeric(3);
 		String combinedChars = upperCaseLetters.concat(lowerCaseLetters)
 				.concat(numbers)
 				.concat(specialChar)
@@ -79,7 +56,21 @@ public class HrController {
 		String password = pwdChars.stream()
 				.collect(StringBuilder::new, StringBuilder::append, StringBuilder::append)
 				.toString();
-		randomPassword = password;
-		return password;
+		model.addAttribute("randomPassword", password);
+		return "/hremployee/register";
 	}
+
+	@GetMapping("hrcalendar")
+	public String getCalendar(){
+		return "hremployee/calendar";}
+
+	//register a new AppUser (from hremployee/register)
+	@PostMapping("addappuser")
+	public String register(String username, String firstname, String lastname, String email, String password, String roles){
+
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		appUserService.registerUser(username,  firstname, lastname, email, encoder.encode(password), roles);
+		return "/hremployee/users";
+	}
+
 }
