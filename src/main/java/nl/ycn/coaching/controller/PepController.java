@@ -4,7 +4,6 @@ import nl.ycn.coaching.database.PepService;
 import nl.ycn.coaching.database.HardskillRepository;
 import nl.ycn.coaching.database.PersonalSoftskillRepository;
 import nl.ycn.coaching.database.SoftskillRepository;
-import nl.ycn.coaching.database.SoftskillRepository;
 import nl.ycn.coaching.database.AppUserService;
 
 import nl.ycn.coaching.model.PersonalEducationPlan;
