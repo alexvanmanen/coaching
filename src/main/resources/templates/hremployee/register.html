@@ -30,7 +30,7 @@
     <a class="item" href="teams">
         Teams
     </a>
-    <a class="item" href="users">
+    <a class="item active" href="users">
         Users
     </a>
     <a class="item" href="bootcamps">
@@ -39,7 +39,7 @@
     <a class="item" href="skills">
         Skills
     </a>
-    <a class="item" href="calendar">
+    <a class="item" href="hrcalendar">
         Calendar
     </a>
 
@@ -56,50 +56,46 @@
         wijzigen</h1>
 </div>
 
-<form class="ui form" method="post" action="/register" style="margin-left: 25px; margin-right: 25px;">
+<form class="ui form" method="post" action="/addappuser" style="margin-left: 25px; margin-right: 25px;">
     <h4 class="ui dividing header">Persoonlijke gegevens</h4>
     <div class="ui grid">
 
         <div class="three column row">
                 <div class="column">
                     <label>Firstname</label>
-                    <input placeholder="Firstname" type="text" name="firstname">
+                    <input placeholder="Firstname" type="text" name="firstname" >
                 </div>
         </div>
 
         <div class="three column row">
             <div class="column">
                 <label>Lastname</label>
-                <input placeholder="Lastname" type="text" name="lastname">
+                <input placeholder="Lastname" type="text" name="lastname" >
             </div>
         </div>
 
         <div class="three column row">
             <div class="column">
                 <label>Username</label>
-                <input type="text" placeholder="Username (email)" name="username">
+                <input type="text" placeholder="Username (email)" name="username" >
             </div>
         </div>
 
         <div class="three column row">
             <div class="column">
                 <label>Email</label>
-                <input type="text" placeholder="Email" name="email">
+                <input type="text" placeholder="Email" name="email" >
             </div>
         </div>
 
         <div class="three column row">
             <div class="column">
                 <label>Password</label>
-                <input type="password" placeholder="Password" name="password">
+                <input type="text" placeholder="Password" name="password" value="randomPassword" th:value="${randomPassword}">
             </div>
         </div>
 
-        <div class="three column row">
-            <div>
-                <button class="ui button" style="margin-left: 25px; margin-right: 25px;" >Generate Random Password</button>
-            </div>
-        </div>
+
     </div>
     <h4 class="ui dividing header">Role</h4>
     <div class="column">

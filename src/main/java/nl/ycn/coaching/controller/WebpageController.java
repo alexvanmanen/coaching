@@ -68,81 +68,74 @@ public class WebpageController {
         return "admin";
     }
 
-    @GetMapping("/register")
-    public String register(){
-        return "register";
-    }
 
     @GetMapping({"redirectLogin","/dashboardpage"})
-    public String getDashBoard(){
+    public String getDashBoard() {
 
-    AppUser user = appUserService.getActiveUser();
+        try {
+            AppUser user = appUserService.getActiveUser();
 
-    switch(user.getRole()){
-        case "ADMIN":
-            return "admin/dashboard";
-        case "TRAINEE":
-            return "trainee/dashboard";
-        case "MANAGER":
-            return "manager/dashboard";
-        case "HREMPLOYEE":
-            return "hremployee/dashboard";
-        case "TALENTMANAGER":
-            return "talentmanager/dashboard";
-        default:
-            return "dashboardpages/dashboardpage";
+            switch (user.getRole()) {
+                case "ADMIN":
+                    return "admin/dashboard";
+                case "TRAINEE":
+                    return "trainee/dashboard";
+                case "MANAGER":
+                    return "manager/dashboard";
+                case "HREMPLOYEE":
+                    return "hremployee/dashboard";
+                case "TALENTMANAGER":
+                    return "talentmanager/dashboard";
+                default:
+                    return "dashboardpages/dashboardpage";
+            }
+        } catch (Exception e) {
+            return "login";
         }
     }
 
-    @GetMapping("coursespage")
+    @GetMapping("/coursespage")
     public String getHardSkillsPage(Model model){
         //model.addAttribute(DashController.getHardskillsList());
         return "/dashboardpages/coursespage";
     }
 
-    @GetMapping("agendapage")
+
+    @GetMapping("/agendapage")
     public String getAgendaPage(){
         return "/dashboardpages/agendapage";
     }
 
-    @GetMapping("contactdetails")
+
+    @GetMapping("/contactdetails")
     public String getcontactdetailPage(){
         return "/dashboardpages/contactdetails";
     }
 
-    @PostMapping("login")
+
+    @PostMapping("/login")
     public String validateLogin(){
         return "/dashboardpages/dashboardpage";
     }
 
-    @PostMapping("coursespage")
+    @PostMapping("/coursespage")
     public String goToHardSkills(){
         return "/dashboardpages/coursespage";
     }
 
-    @PostMapping("contactdetails")
+    @PostMapping("/contactdetails")
     public String goTocontactdetails(){
         return "/dashboardpages/contactdetails";
     }
 
-    @PostMapping("agendapage")
+    @PostMapping("/agendapage")
     public String goToAgenda(){
         return "/dashboardpages/agendapage";
     }
 
-    @PostMapping("dashboard")
+    @PostMapping("/dashboard")
     public String goToDashoard(){
         return "/dashboardpages/dashboardpage";
     }
 
-
-
-    @PostMapping("/register")
-    public String register(String username, String firstname, String lastname, String email, String password, String roles){
-
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        appUserService.registerUser(username,  firstname, lastname, email, encoder.encode(password), roles);
-
-        return "/dashboardpages/dashboardpage";
-    }
 }
