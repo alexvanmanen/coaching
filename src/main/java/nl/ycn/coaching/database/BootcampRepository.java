@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface BootcampRepository extends JpaRepository<Bootcamp, Long> {
 
-    Bootcamp findByName(String name);
+    Bootcamp findByBootcampName(String name);
 }

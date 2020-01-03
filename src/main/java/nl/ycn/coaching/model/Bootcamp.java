@@ -18,6 +18,8 @@ public class Bootcamp {
     @Column
     public String courseList;
 
+    public Bootcamp(){}
+
     public Bootcamp(String bootcampName, String courseList) {
         this.bootcampName = bootcampName;
         this.courseList = courseList;
