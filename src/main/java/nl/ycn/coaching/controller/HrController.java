@@ -3,6 +3,7 @@ package nl.ycn.coaching.controller;
 
 import net.bytebuddy.utility.RandomString;
 import nl.ycn.coaching.database.AppUserService;
+import nl.ycn.coaching.model.users.AppUser;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -22,24 +23,72 @@ public class HrController {
 	@Autowired
 	private AppUserService appUserService;
 
+
 	//Mappings for HR-Employee
 	@GetMapping("/bootcamps")
-	public String getBootcamps(){return "hremployee/bootcamps";}
+	public String getBootcamps() {
+		try {
+			AppUser user = appUserService.getActiveUser();
+			String role = user.getRole();
+			return role.toLowerCase() + "/bootcamps";
+		} catch (Exception e) {
+			return "/login";
+		}
+	}
+
+
 
 	@GetMapping("/users")
-	public String getUsers(){return "hremployee/users";}
+	public String getUsers() {
+		try {
+			AppUser user = appUserService.getActiveUser();
+			String role = user.getRole();
+			return role.toLowerCase() + "/users";
+		} catch (Exception e) {
+			return "/login";
+		}
+	}
 
 	@GetMapping("/teams")
-	public String getTeams(){return "hremployee/teams";}
+	public String getTeams(){
+		try {
+			AppUser user = appUserService.getActiveUser();
+			String role = user.getRole();
+			return role.toLowerCase() + "/teams";
+		} catch (Exception e) {
+			return "/login";
+		}
+	}
 
 	@GetMapping("/skills")
-	public String getSkills(){return "hremployee/skills";}
+	public String getSkills(){
+		try {
+		AppUser user = appUserService.getActiveUser();
+		String role = user.getRole();
+		return role.toLowerCase() + "/skills";
+	} catch (Exception e) {
+		return "/login";
+		}
+	}
 
 	@GetMapping("/createsoftskillform")
-	public String getSoftskillForm(){return "hremployee/createsoftskillform";}
+	public String getSoftskillForm(){
+		try {
+			AppUser user = appUserService.getActiveUser();
+			String role = user.getRole();
+			return role.toLowerCase() + "/createsoftskillform";
+		} catch (Exception e) {
+			return "/login";
+		}
+	}
 
 	@GetMapping("/register")
 	public String register(Model model){
+
+		try {
+			AppUser user = appUserService.getActiveUser();
+			String role = user.getRole();
+
 		String upperCaseLetters = RandomStringUtils.random(3, 65, 90, true, true);
 		String lowerCaseLetters = RandomStringUtils.random(3, 97, 122, true, true);
 		String numbers = RandomStringUtils.randomNumeric(3);
@@ -57,12 +106,15 @@ public class HrController {
 				.collect(StringBuilder::new, StringBuilder::append, StringBuilder::append)
 				.toString();
 		model.addAttribute("randomPassword", password);
-		return "/hremployee/register";
+			return role.toLowerCase() + "/register";
+		} catch (Exception e) {
+			return "/login";
+		}
 	}
 
 	@GetMapping("/hrcalendar")
 	public String getCalendar(){
-		return "hremployee/calendar";
+		return "/hremployee/hrcalendar";
 	}
 
 	//register a new AppUser (from hremployee/register)

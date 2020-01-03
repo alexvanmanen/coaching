@@ -48,7 +48,6 @@ public class AppSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 "/manager/**").hasRole("MANAGER")
 
 
-
                 .and()
             .csrf().ignoringAntMatchers("/**")
 
@@ -63,7 +62,8 @@ public class AppSecurityConfiguration extends WebSecurityConfigurerAdapter {
             .and()
                 .logout()
                 .logoutSuccessUrl("/logout")
-                .logoutUrl("/logout");
+                .logoutUrl("/logout")
+                .invalidateHttpSession(true);
 
     }
 

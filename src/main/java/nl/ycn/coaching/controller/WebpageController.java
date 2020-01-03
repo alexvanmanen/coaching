@@ -17,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.servlet.http.HttpSession;
 import java.util.Collection;
 
 @Controller
@@ -46,10 +47,22 @@ public class WebpageController {
             return "login";
         }
     }
+
     @GetMapping("/login")
     public String login(){
-
         return "login";
+    }
+
+    @PostMapping("/logout")
+    public String logout(HttpSession session){
+        session.invalidate();
+        return "/logout";
+    }
+
+    @GetMapping("/logout")
+    public String getLogout(HttpSession session){
+        session.invalidate();
+        return "/logout";
     }
 
     @GetMapping("/open/**")
@@ -57,11 +70,6 @@ public class WebpageController {
         return "open";
     }
 
-    @GetMapping("/user/**")
-    public String user(Model model) {
-        model.addAttribute("username", appUserService.getUser("wempie").getUsername());
-        return "user";
-    }
 
     @GetMapping("/admin/**")
     public String admin() {
@@ -69,26 +77,13 @@ public class WebpageController {
     }
 
 
-    @GetMapping({"redirectLogin","/dashboardpage"})
+    @GetMapping({"redirectLogin","/dashboard"})
     public String getDashBoard() {
 
         try {
             AppUser user = appUserService.getActiveUser();
-
-            switch (user.getRole()) {
-                case "ADMIN":
-                    return "admin/dashboard";
-                case "TRAINEE":
-                    return "trainee/dashboard";
-                case "MANAGER":
-                    return "manager/dashboard";
-                case "HREMPLOYEE":
-                    return "hremployee/dashboard";
-                case "TALENTMANAGER":
-                    return "talentmanager/dashboard";
-                default:
-                    return "dashboardpages/dashboardpage";
-            }
+            String role = user.getRole();
+            return "/" +role.toLowerCase()+"/dashboard";
         } catch (Exception e) {
             return "login";
         }
