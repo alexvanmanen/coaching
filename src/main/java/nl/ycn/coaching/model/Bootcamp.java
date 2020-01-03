@@ -1,12 +1,27 @@
 package nl.ycn.coaching.model;
 
-import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
+@Entity
 public class Bootcamp {
 	
+	@Id
+	@GeneratedValue
+	public int id;
+	
+	@Column
 	public String bootcampName;
-	public String domain;
-	public List<Course> courseList;
+	
+	@Column
+	public String courseList;
+	
+	public Bootcamp (String bootcampName, String courseList) {
+		this.bootcampName = bootcampName;
+		this.courseList = courseList;
+	}
 	
 	public void getBootcamp() {}
 }

@@ -9,7 +9,9 @@ import java.util.List;
 @Repository
 public interface HardskillRepository extends JpaRepository<PersonalHardskill, Long> {
 
-    List<PersonalHardskill> findByName(String name);
+    PersonalHardskill findByUsername(String username);
+
+    PersonalHardskill findByName(String name);
 
     PersonalHardskill findById(long id);
 

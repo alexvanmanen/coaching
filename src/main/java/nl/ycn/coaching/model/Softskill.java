@@ -1,15 +1,12 @@
 package nl.ycn.coaching.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Softskill {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(name = "Softskill")
@@ -18,11 +15,12 @@ public class Softskill {
     @Column(name = "Beschrijving")
     private String description;
 
+    public Softskill(){}
+
     public Softskill(String name, String description){
         this.name = name;
         this.description = description;
     }
-
 
     public int getId() {
         return id;
