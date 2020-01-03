@@ -4,7 +4,6 @@ import nl.ycn.coaching.database.PepService;
 import nl.ycn.coaching.database.HardskillRepository;
 import nl.ycn.coaching.database.PersonalSoftskillRepository;
 import nl.ycn.coaching.database.SoftskillRepository;
-import nl.ycn.coaching.database.SoftskillRepository;
 import nl.ycn.coaching.database.AppUserService;
 
 import nl.ycn.coaching.model.PersonalEducationPlan;
@@ -113,10 +112,4 @@ public class PepController {
 		return "redirect:/personaleducationplanpage";
 	}
 
-	@PostMapping("/createsoftskill")
-	public String createSoftskill(String name, String description){
-		pepService.addSoftskill(name, description);
-
-		return "redirect:/dashboardpage";
-	}
 }
