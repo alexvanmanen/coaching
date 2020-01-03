@@ -4,7 +4,7 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Coaching | HR-Employee | Dashboard</title>
+    <title >Coaching | HR-Employee | Dashboard</title>
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css"/>
@@ -35,7 +35,7 @@
     <a class="item" href="skills">
         Skills
     </a>
-    <a class="item" href="calendar">
+    <a class="item" href="hrcalendar">
         Calendar
     </a>
 
@@ -45,14 +45,14 @@
         </a>
     </div>
 </div>
-<div class="ui center aligned grid" style="margin-left:20px; margin-right:20px;">
+<div id="grid" class="ui center aligned grid" style="margin-left:20px; margin-right:20px;">
 
             <div class="center aligned two column row">
                 <div class="column">
 
-                    <div class="ui segment">
+                    <div  class="ui segment">
                         <i class="cubes large icon"></i>
-                        <h2>Teams</h2>
+                        <h2 id="Teams">Teams</h2>
                         <p>DevOps-01-19</p>
                         <p>DevOps-02-19</p>
                         <p>BigData-01-19</p>
