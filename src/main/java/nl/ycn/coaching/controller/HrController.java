@@ -1,8 +1,7 @@
 package nl.ycn.coaching.controller;
 
-
-import net.bytebuddy.utility.RandomString;
 import nl.ycn.coaching.database.AppUserService;
+import nl.ycn.coaching.database.HrService;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -10,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Collections;
 import java.util.List;
@@ -21,6 +19,8 @@ public class HrController {
 
 	@Autowired
 	private AppUserService appUserService;
+	@Autowired
+	private HrService hrService;
 
 	//Mappings for HR-Employee
 	@GetMapping("/bootcamps")
@@ -72,6 +72,13 @@ public class HrController {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		appUserService.registerUser(username,  firstname, lastname, email, encoder.encode(password), roles);
 		return "/hremployee/users";
+	}
+
+	@PostMapping("/createsoftskill")
+	public String createSoftskill(String name, String description){
+		hrService.addSoftskill(name, description);
+
+		return "redirect:/dashboardpage";
 	}
 
 }
