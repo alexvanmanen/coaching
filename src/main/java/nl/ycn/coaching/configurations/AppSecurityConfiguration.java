@@ -58,7 +58,11 @@ public class AppSecurityConfiguration extends WebSecurityConfigurerAdapter {
             .formLogin()
             .loginPage("/login")
                 .defaultSuccessUrl("/redirectLogin")
-                .failureUrl("/login");
+                .failureUrl("/login")
+            .and()
+                .logout()
+                .logoutSuccessUrl("/logout")
+                .logoutUrl("/logout");
 
     }
 

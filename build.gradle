@@ -30,6 +30,7 @@ dependencies {
     implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
     implementation 'org.springframework.session:spring-session-core'
     implementation 'com.h2database:h2'
+    compile 'org.apache.commons:commons-lang3:3.9'
     compile 'org.springframework.mobile:spring-mobile-device:2.0.0.M3'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
