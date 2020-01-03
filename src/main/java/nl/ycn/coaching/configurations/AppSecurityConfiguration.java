@@ -1,6 +1,7 @@
 package nl.ycn.coaching.configurations;
 
 import nl.ycn.coaching.database.AppUserService;
+import org.hibernate.metamodel.model.domain.ManagedDomainType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -58,7 +59,11 @@ public class AppSecurityConfiguration extends WebSecurityConfigurerAdapter {
             .formLogin()
             .loginPage("/login")
                 .defaultSuccessUrl("/redirectLogin")
-                .failureUrl("/login");
+                .failureUrl("/login")
+            .and()
+                .logout()
+                .logoutSuccessUrl("/logout")
+                .logoutUrl("/logout");
 
     }
 
