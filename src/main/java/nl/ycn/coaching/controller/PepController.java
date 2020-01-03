@@ -112,10 +112,4 @@ public class PepController {
 		return "redirect:/personaleducationplanpage";
 	}
 
-	@PostMapping("/createsoftskill")
-	public String createSoftskill(String name, String description){
-		pepService.addSoftskill(name, description);
-
-		return "redirect:/dashboardpage";
-	}
 }
