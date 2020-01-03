@@ -167,4 +167,19 @@ public class WebpageController {
 
         return "/dashboardpages/dashboardpage";
     }
+
+
+    @GetMapping("/accountsettings")
+    public String accountsettings() {
+
+        return "/accountsettings";
+    }
+
+    @PostMapping("/changepassword")
+    public String changepassword(String password, String password_test) {
+
+        //TODO change old password in database to new password
+
+        return "redirect:/accountsettings";
+    }
 }
