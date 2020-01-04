@@ -19,13 +19,21 @@
                             new_password: {
                                 identifier: 'new_password',
                                 rules: [
-                                    {
-                                        type: 'empty',
-                                        prompt: 'Please enter a password'
+                                    {   type: 'regExp[.*[A-Z]]',
+                                        prompt: 'Your password must at least contain 1 capital'
+
+                                    },
+                                    {   type: 'regExp[(.*[0-9]){2}]',
+                                        prompt: 'Your password must at least contain 2 digits'
+
+                                    },
+                                    {   type: 'regExp[(.*[!@#$%^&]){2}]',
+                                        prompt: 'Your password must at least contain 2 special characters (!@#$%^&)'
+
                                     },
                                     {
-                                        type: 'minLength[6]',
-                                        prompt: 'Your password must be at least {ruleValue} characters'
+                                        type: 'regExp[.{10,}]',
+                                        prompt: 'Your password must at least 10 characters long'
                                     }
                                 ]
                             },
@@ -99,7 +107,7 @@
             <input placeholder="Confirm New Password" name="confirm_password" type="password">
         </div>
     </div>
-    <div class="ui primary submit button">Submit</div>
+    <div class="ui primary submit button">Change</div>
     <div class="ui error message"></div>
 </form>
 

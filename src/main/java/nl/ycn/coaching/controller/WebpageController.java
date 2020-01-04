@@ -1,11 +1,13 @@
 package nl.ycn.coaching.controller;
 
+import nl.ycn.coaching.database.AppUserRepository;
 import nl.ycn.coaching.database.AppUserService;
 import nl.ycn.coaching.model.users.AppUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mobile.device.Device;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +18,9 @@ public class WebpageController {
 
     @Autowired
     private AppUserService appUserService;
+
+    @Autowired
+    private AppUserRepository appUserRepository;
 
     @Autowired
     public WebpageController(){
@@ -147,9 +152,12 @@ public class WebpageController {
     }
 
     @PostMapping("/changepassword")
-    public String changepassword(String password, String password_test) {
+    public String changepassword(String new_password, String confirm_password) {
 
-        //TODO change old password in database to new password
+        //If new password equals confirmation password then update the database
+        if (new_password.equals(confirm_password)) {
+            appUserService.changePassword(new_password);
+        }
 
         return "redirect:/accountsettings";
     }
