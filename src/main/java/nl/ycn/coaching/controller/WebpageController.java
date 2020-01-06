@@ -12,119 +12,124 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpSession;
-import java.util.Collection;
 
 @Controller
 public class WebpageController {
 
-    @Autowired
-    private AppUserService appUserService;
+	@Autowired
+	private AppUserService appUserService;
 
-    @Autowired
-    public WebpageController(){
+	@Autowired
+	public WebpageController() {
 
-    }
+	}
 
-    private static final Logger logger =
-            LoggerFactory.getLogger(WebpageController.class);
+	private static final Logger logger =
+			LoggerFactory.getLogger(WebpageController.class);
 
-    @GetMapping({"/","/home", "/index"})
-    public String home(Device device) {
-        if (device.isMobile()) {
-            logger.info("Hello mobile user!");
-            return "/mobile/login";
-        } else if (device.isTablet()) {
-            logger.info("Hello tablet user!");
-            return "/tablet/login";
-        } else {
-            logger.info("Hello desktop user!");
-            return "login";
-        }
-    }
+	@GetMapping({"/", "/home", "/index"})
+	public String home(Device device) {
+		if (device.isMobile()) {
+			logger.info("Hello mobile user!");
+			return "/mobile/login";
+		} else if (device.isTablet()) {
+			logger.info("Hello tablet user!");
+			return "/tablet/login";
+		} else {
+			logger.info("Hello desktop user!");
+			return "login";
+		}
+	}
 
-    @GetMapping("/login")
-    public String login(){
-        return "login";
-    }
+	@GetMapping("/login")
+	public String login() {
+		return "login";
+	}
 
-    @PostMapping("/logout")
-    public String logout(HttpSession session){
-        session.invalidate();
-        return "/logout";
-    }
+	@PostMapping("/logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "/logout";
+	}
 
-    @GetMapping("/logout")
-    public String getLogout(HttpSession session){
-        session.invalidate();
-        return "/logout";
-    }
+	//return logout page
+	@GetMapping("/logout")
+	public String getLogout(HttpSession session) {
+		session.invalidate();
+		return "/logout";
+	}
 
-    @GetMapping("/open/**")
-    public String open() {
-        return "open";
-    }
-
-
-    @GetMapping("/admin/**")
-    public String admin() {
-        return "admin";
-    }
+	@GetMapping("/open/**")
+	public String open() {
+		return "open";
+	}
 
 
-    @GetMapping({"redirectLogin","/dashboard"})
-    public String getDashBoard() {
-
-        try {
-            AppUser user = appUserService.getActiveUser();
-            String role = user.getRole();
-            return "/" +role.toLowerCase()+"/dashboard";
-        } catch (Exception e) {
-            return "login";
-        }
-    }
-
-    @GetMapping("/coursespage")
-    public String getHardSkillsPage(Model model){
-        //model.addAttribute(DashController.getHardskillsList());
-        return "/dashboardpages/coursespage";
-    }
+	@GetMapping("/admin/**")
+	public String admin() {
+		return "admin";
+	}
 
 
-    @GetMapping("/agendapage")
-    public String getAgendaPage(){
-        return "/dashboardpages/agendapage";
-    }
+	@GetMapping({"redirectLogin", "/dashboard"})
+	public String getDashBoard() {
+
+		try {
+			AppUser user = appUserService.getActiveUser();
+			String role = user.getRole();
+			return "redirect:/" + role.toLowerCase() + "/dashboard";
+		} catch (Exception e) {
+			return "login";
+		}
+	}
+
+	@GetMapping("/trainee/dashboard")
+	public String getTraineeDashboard(){
+		return "/trainee/dashboard";
+	}
+
+	@GetMapping("/coursespage")
+	public String getHardSkillsPage(Model model) {
+		//model.addAttribute(DashController.getHardskillsList());
+		return "/dashboardpages/coursespage";
+	}
 
 
-    @GetMapping("/contactdetails")
-    public String getcontactdetailPage(){
-        return "/dashboardpages/contactdetails";
-    }
+	@GetMapping("/agendapage")
+	public String getAgendaPage() {
+		return "/dashboardpages/agendapage";
+	}
 
 
-    @PostMapping("/login")
-    public String validateLogin(){
-        return "/dashboardpages/dashboardpage";
-    }
+	@GetMapping("/contactdetails")
+	public String getcontactdetailPage() {
+		return "/dashboardpages/contactdetails";
+	}
 
-    @PostMapping("/coursespage")
-    public String goToHardSkills(){
-        return "/dashboardpages/coursespage";
-    }
 
-    @PostMapping("/contactdetails")
-    public String goTocontactdetails(){
-        return "/dashboardpages/contactdetails";
-    }
+	@PostMapping("/login")
+	public String validateLogin() {
+		return "/dashboardpages/dashboardpage";
+	}
 
-    @PostMapping("/agendapage")
-    public String goToAgenda(){
-        return "/dashboardpages/agendapage";
-    }
+	@PostMapping("/coursespage")
+	public String goToHardSkills() {
+		return "/dashboardpages/coursespage";
+	}
 
-    @PostMapping("/dashboard")
-    public String goToDashoard(){
-        return "/dashboardpages/dashboardpage";
-    }
+	@PostMapping("/contactdetails")
+	public String goTocontactdetails() {
+		return "/dashboardpages/contactdetails";
+	}
+
+	@PostMapping("/agendapage")
+	public String goToAgenda() {
+		return "/dashboardpages/agendapage";
+	}
+
+	@PostMapping("/dashboard")
+	public String goToDashoard() {
+		return "/dashboardpages/dashboardpage";
+	}
 
 }

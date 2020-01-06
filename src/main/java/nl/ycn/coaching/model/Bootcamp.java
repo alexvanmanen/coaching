@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.util.Date;
 
 @Entity
 public class Bootcamp {
@@ -14,9 +15,17 @@ public class Bootcamp {
 	
 	@Column
 	public String bootcampName;
+
+	@Column
+	public Date beginDate;
+
+	@Column
+	public Date endDate;
 	
 	@Column
 	public String courseList;
+
+
 	
 	public Bootcamp (String bootcampName, String courseList) {
 		this.bootcampName = bootcampName;
