@@ -19,6 +19,10 @@
                             new_password: {
                                 identifier: 'new_password',
                                 rules: [
+                                    {   type: 'regExp[S+]',
+                                        prompt: 'Your password must NOT contain any spaces'
+
+                                    },
                                     {   type: 'regExp[.*[A-Z]]',
                                         prompt: 'Your password must at least contain 1 capital'
 
