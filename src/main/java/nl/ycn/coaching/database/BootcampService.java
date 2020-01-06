@@ -6,13 +6,17 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class BootcampService {
-	
-	@Autowired
+
 	private BootcampRepository bootcampRepository;
 	
 	@Autowired
 	private CourseRepository courseRepository;
-	
+
+	@Autowired
+	public void setBootcampRepository(BootcampRepository bootcampRepository){
+		this.bootcampRepository = bootcampRepository;
+	}
+
 	public void addBootcamp(
 			String bootcampName,
 			String courseList){
