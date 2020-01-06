@@ -70,7 +70,7 @@ public class HrController {
 	public String register(String username, String firstname, String lastname, String email, String password, String roles){
 
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		appUserService.registerUser(username,  firstname, lastname, email, encoder.encode(password), roles);
+		appUserService.registerUser(username,  firstname, lastname, email, encoder.encode(password), roles, true, false);
 		return "/hremployee/users";
 	}
 

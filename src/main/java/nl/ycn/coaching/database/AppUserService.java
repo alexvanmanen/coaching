@@ -37,10 +37,12 @@ public class AppUserService implements UserDetailsService {
 			String lastname,
 			String email,
 			String password,
-			String roles) {
+			String roles,
+			boolean enabled,
+			boolean activated) {
 		AppUser user = appUserRepository.findByUsername(username);
 		if (user == null){
-			AppUser newUser = new AppUser(username, firstname, lastname, email, password, roles);
+			AppUser newUser = new AppUser(username, firstname, lastname, email, password, roles, enabled, activated);
 			appUserRepository.save(newUser);
 		} else {
 			System.out.print("username already taken");
