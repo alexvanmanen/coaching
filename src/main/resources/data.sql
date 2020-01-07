@@ -53,11 +53,11 @@ INSERT INTO COURSE VALUES(3, 'TESTING', 'ISTQB');
 
 INSERT INTO BOOTCAMP VALUES (1, 'DevOps', 'IREB');
 
-INSERT INTO USERS VALUES (1, 'luukwempe@hotmail.com', false, 'Luuk', 'Wempe', '$2a$10$IvTHLGHypnYOmKQfvMKXFOrjSuLYeZDjYnJ6t9BlEVZjktzdDDxQ.', 'ADMIN', 'luuk');
-INSERT INTO USERS VALUES (2, 'alex@vanmanenit.nl', false, 'Alex', 'van Manen', '$2a$10$f63HtncNuNk8GAErm8k5Yez8ZoOfOPJTw2dMVi/fYgnRVQ1ytGcZi', 'TRAINEE', 'Alex');
-INSERT INTO USERS VALUES (3, 'vuong.anime@gmail.com', false, 'Vuong', 'Ngo', '$2a$10$K.ereCislpkFp2gBCbPqg.QDP0uex3hV39LPqdbVj1lbaCkYt/.sW', 'MANAGER', 'Vuong');
-INSERT INTO USERS VALUES (4, 'scm15-8@live.nl', false, 'Simone', 'Meijers', '$2a$10$WSOqxucmkA0IDRzUKTg5PO/bOTgHoCFMFUlECpcALA3deFyzghduu', 'TALENTMANAGER', 'Simone');
-INSERT INTO USERS VALUES (5, 'wouterabels@hotmail.com', false, 'Wouter', 'Abels', '$2a$10$LBl/nvCwO3BlV1lANBYTFO2e3aK8PkSWa0NmsB.4SqYYFAPxo.4/O', 'HREMPLOYEE', 'Wouter');
+-- INSERT INTO USERS VALUES (1, 'luukwempe@hotmail.com', false, 'Luuk', 'Wempe', '$2a$10$IvTHLGHypnYOmKQfvMKXFOrjSuLYeZDjYnJ6t9BlEVZjktzdDDxQ.', 'ADMIN', 'luuk');
+-- INSERT INTO USERS VALUES (2, 'alex@vanmanenit.nl', false, 'Alex', 'van Manen', 'hallo', 'TRAINEE', 'Alex');
+-- INSERT INTO USERS VALUES (3, 'vuong.anime@gmail.com', false, 'Vuong', 'Ngo', '$2a$10$K.ereCislpkFp2gBCbPqg.QDP0uex3hV39LPqdbVj1lbaCkYt/.sW', 'MANAGER', 'Vuong');
+-- INSERT INTO USERS VALUES (4, 'scm15-8@live.nl', false, 'Simone', 'Meijers', '$2a$10$WSOqxucmkA0IDRzUKTg5PO/bOTgHoCFMFUlECpcALA3deFyzghduu', 'TALENTMANAGER', 'Simone');
+-- INSERT INTO USERS VALUES (5, 'wouterabels@hotmail.com', false, 'Wouter', 'Abels', '$2a$10$LBl/nvCwO3BlV1lANBYTFO2e3aK8PkSWa0NmsB.4SqYYFAPxo.4/O', 'HREMPLOYEE', 'Wouter');
 
-INSERT INTO TRAINEES VALUES (1,2,1);
+-- INSERT INTO TRAINEES VALUES (1,2,1);
 
