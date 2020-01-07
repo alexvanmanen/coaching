@@ -1,14 +1,6 @@
 package nl.ycn.coaching.model.users;
 
-import javassist.bytecode.stackmap.BasicBlock;
-import nl.ycn.coaching.model.Calendar;
-import nl.ycn.coaching.model.ContactDetails;
-import nl.ycn.coaching.model.Notifications;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name="users")
@@ -16,7 +8,7 @@ public class AppUser {
 
 	@Id
 	@GeneratedValue
-	private long Id;
+	private long id;
 
 	@Column(name="username")
 	private String username;
@@ -68,11 +60,11 @@ public class AppUser {
 
 
 	public long getId() {
-		return Id;
+		return id;
 	}
 
 	public void setId(long id) {
-		Id = id;
+		this.id = id;
 	}
 
 	public String getUsername() {
