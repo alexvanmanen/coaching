@@ -51,8 +51,6 @@ INSERT INTO COURSE VALUES(1, 'EEN AGILE WERKMETHODE', 'SCRUM');
 INSERT INTO COURSE VALUES(2, 'REQUIREMENTS ENGINEERINGING', 'IREB');
 INSERT INTO COURSE VALUES(3, 'TESTING', 'ISTQB');
 
-INSERT INTO BOOTCAMP VALUES (1, 'DevOps', 'IREB');
-
 -- INSERT INTO USERS VALUES (1, 'luukwempe@hotmail.com', false, 'Luuk', 'Wempe', '$2a$10$IvTHLGHypnYOmKQfvMKXFOrjSuLYeZDjYnJ6t9BlEVZjktzdDDxQ.', 'ADMIN', 'luuk');
 -- INSERT INTO USERS VALUES (2, 'alex@vanmanenit.nl', false, 'Alex', 'van Manen', 'hallo', 'TRAINEE', 'Alex');
 -- INSERT INTO USERS VALUES (3, 'vuong.anime@gmail.com', false, 'Vuong', 'Ngo', '$2a$10$K.ereCislpkFp2gBCbPqg.QDP0uex3hV39LPqdbVj1lbaCkYt/.sW', 'MANAGER', 'Vuong');
