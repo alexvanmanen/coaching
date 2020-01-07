@@ -1,8 +1,12 @@
 package nl.ycn.coaching.controller;
 
+import nl.ycn.coaching.database.AppUserRepository;
+import nl.ycn.coaching.database.BootcampRepository;
 import nl.ycn.coaching.database.BootcampService;
 import nl.ycn.coaching.database.CourseRepository;
+import nl.ycn.coaching.model.Bootcamp;
 import nl.ycn.coaching.model.Course;
+import nl.ycn.coaching.model.users.AppUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,15 +22,32 @@ public class BootcampController {
 	private CourseRepository courseRepository;
 	@Autowired
 	private BootcampService bootcampService;
+	@Autowired
+	private BootcampRepository bootcampRepository;
 	
 	private List<Course> retrieveCourseList() {
 		return courseRepository.findAll();
+	}
+	
+	private List<AppUser> retrieveTraineeList() {
+		return bootcampService.fillTraineeList ();
+	}
+	
+	private List<Bootcamp> retrieveBootcampList() {
+		return bootcampRepository.findAll ();
 	}
 	
 	@GetMapping("createbootcamp")
 	public String createbootcampform (Model model) {
 		model.addAttribute ("courseList", retrieveCourseList ());
 		return "/hremployee/createbootcamp";
+	}
+	
+	@GetMapping("addbootcamptotrainee")
+	public String addbootcamptotrainee (Model model) {
+		model.addAttribute ("traineeList", retrieveTraineeList ());
+		model.addAttribute ("bootcampList", retrieveBootcampList ());
+		return "/hremployee/addbootcamptotrainee";
 	}
 	
 	@PostMapping("createbootcamp")

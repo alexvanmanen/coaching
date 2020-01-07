@@ -1,19 +1,23 @@
 package nl.ycn.coaching.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import nl.ycn.coaching.model.users.Trainee;
+
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Date;
 
 @Entity
 public class Bootcamp {
-
-
-
+	
 	@Id
 	@GeneratedValue
 	public int id;
+	
+	@Column
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "bootcamp")
+	private Set<Trainee> trainees = new HashSet<> ();
+	
 	@Column
 	public String bootcampName;
 

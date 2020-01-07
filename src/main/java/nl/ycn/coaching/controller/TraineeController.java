@@ -43,6 +43,12 @@ public class TraineeController {
 		return "/trainee/contactdetails";
 	}
 
+	@GetMapping("/trainee/accountsettings")
+	public String getAccountSettings(){
+		return "/trainee/accountsettings";
+	}
+
+
 	@PostMapping("/createpersonalhardskill")
 	public String createPersonalHardskill(String name, String description, String report, String state, Date start, Date end){
 		String username = appUserService.getActiveUser().getUsername();
