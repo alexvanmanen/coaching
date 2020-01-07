@@ -4,35 +4,44 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.util.Date;
 
 @Entity
 public class Bootcamp {
 
-    @Id
-    @GeneratedValue
-    public int id;
 
-    @Column
-    public String bootcampName;
 
-    @Column
-    public String courseList;
+	@Id
+	@GeneratedValue
+	public int id;
+	@Column
+	public String bootcampName;
 
-    public Bootcamp(){}
+	@Column
+	public Date beginDate;
 
-    public Bootcamp(String bootcampName, String courseList) {
-        this.bootcampName = bootcampName;
-        this.courseList = courseList;
-    }
+	@Column
+	public Date endDate;
 
-    public void getBootcamp() {
-    }
+	@Column
+	public String courseList;
 
-    public String getName() {
-        return bootcampName;
-    }
+	//default constructor
+	public Bootcamp(){}
 
-    public String getCourseList() {
-        return courseList;
-    }
+	//overloaded constructor
+	public Bootcamp (String bootcampName, String courseList) {
+		this.bootcampName = bootcampName;
+		this.courseList = courseList;
+	}
+	
+	public void getBootcamp() {}
+
+	public String getName() {
+		return bootcampName;
+	}
+
+	public String getCourseList() {
+		return courseList;
+	}
 }

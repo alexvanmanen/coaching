@@ -66,6 +66,7 @@ public class AppSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     }
 
+
     @Autowired
     public DataSource dataSource;
 
