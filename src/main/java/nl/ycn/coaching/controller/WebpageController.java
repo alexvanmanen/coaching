@@ -83,53 +83,8 @@ public class WebpageController {
 		}
 	}
 
-	@GetMapping("/trainee/dashboard")
-	public String getTraineeDashboard(){
-		return "/trainee/dashboard";
-	}
-
-	@GetMapping("/coursespage")
-	public String getHardSkillsPage(Model model) {
-		//model.addAttribute(DashController.getHardskillsList());
-		return "/dashboardpages/coursespage";
-	}
-
-
-	@GetMapping("/agendapage")
-	public String getAgendaPage() {
-		return "/dashboardpages/agendapage";
-	}
-
-
-	@GetMapping("/contactdetails")
-	public String getcontactdetailPage() {
-		return "/dashboardpages/contactdetails";
-	}
-
-
 	@PostMapping("/login")
 	public String validateLogin() {
 		return "/dashboardpages/dashboardpage";
 	}
-
-	@PostMapping("/coursespage")
-	public String goToHardSkills() {
-		return "/dashboardpages/coursespage";
-	}
-
-	@PostMapping("/contactdetails")
-	public String goTocontactdetails() {
-		return "/dashboardpages/contactdetails";
-	}
-
-	@PostMapping("/agendapage")
-	public String goToAgenda() {
-		return "/dashboardpages/agendapage";
-	}
-
-	@PostMapping("/dashboard")
-	public String goToDashoard() {
-		return "/dashboardpages/dashboardpage";
-	}
-
 }

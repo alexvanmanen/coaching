@@ -28,7 +28,7 @@ public class HrController {
 	private HrService hrService;
 
 	//Mappings for HR-Employee
-	@GetMapping("/bootcamps")
+	@GetMapping("hremployee/bootcamps")
 	public String getBootcamps() {
 		try {
 			AppUser user = appUserService.getActiveUser();
@@ -47,29 +47,29 @@ public class HrController {
 
 
 
-	@GetMapping("/users")
+	@GetMapping("/hremployee/users")
 	public String getUsers() {
 		try {
 			AppUser user = appUserService.getActiveUser();
 			String role = user.getRole();
-			return role.toLowerCase() + "/users";
+			return "/" + role.toLowerCase() + "/users";
 		} catch (Exception e) {
 			return "/login";
 		}
 	}
 
-	@GetMapping("/teams")
+	@GetMapping("/hremployee/teams")
 	public String getTeams() {
 		try {
 			AppUser user = appUserService.getActiveUser();
 			String role = user.getRole();
-			return role.toLowerCase() + "/teams";
+			return "/" + role.toLowerCase() + "/teams";
 		} catch (Exception e) {
 			return "/login";
 		}
 	}
 
-	@GetMapping("/skills")
+	@GetMapping("/hremployee/skills")
 	public String getSkills() {
 		try {
 			AppUser user = appUserService.getActiveUser();
@@ -80,7 +80,7 @@ public class HrController {
 		}
 	}
 
-	@GetMapping("/createsoftskillform")
+	@GetMapping("/hremployee/createsoftskillform")
 	public String getSoftskillForm() {
 		try {
 			AppUser user = appUserService.getActiveUser();
@@ -91,7 +91,7 @@ public class HrController {
 		}
 	}
 
-	@GetMapping("/register")
+	@GetMapping("/hremployee/register")
 	public String register(Model model) {
 
 		try {
@@ -121,13 +121,13 @@ public class HrController {
 		}
 	}
 
-	@GetMapping("/hrcalendar")
+	@GetMapping("/hremployee/hrcalendar")
 	public String getCalendar() {
 		return "/hremployee/hrcalendar";
 	}
 
 	//register a new AppUser (from hremployee/register)
-	@PostMapping("/addappuser")
+	@PostMapping("/hremployee/addappuser")
 	public String register(String username, String firstname, String lastname, String email, String password, String roles) {
 
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -135,11 +135,11 @@ public class HrController {
 		return "/hremployee/users";
 	}
 
-	@PostMapping("/createsoftskill")
+	@PostMapping("/hremployee/createsoftskill")
 	public String createSoftskill(String name, String description) {
 		hrService.addSoftskill(name, description);
 
-		return "redirect:/dashboardpage";
+		return "/hremployee/hrdashboard";
 	}
 
 }

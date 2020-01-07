@@ -8,11 +8,12 @@ import java.util.Date;
 
 @Entity
 public class Bootcamp {
+
+
 	
 	@Id
 	@GeneratedValue
 	public int id;
-	
 	@Column
 	public String bootcampName;
 
@@ -25,8 +26,10 @@ public class Bootcamp {
 	@Column
 	public String courseList;
 
+	//default constructor
+	public Bootcamp(){}
 
-	
+	//overloaded constructor
 	public Bootcamp (String bootcampName, String courseList) {
 		this.bootcampName = bootcampName;
 		this.courseList = courseList;

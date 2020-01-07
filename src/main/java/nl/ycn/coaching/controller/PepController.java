@@ -34,6 +34,10 @@ public class PepController {
 	private PersonalSoftskillRepository personalSoftskillRepository;
 	@Autowired
 	private SoftskillRepository softskillRepository;
+	@Autowired
+	public PepController(PepService pepService){
+		this.pepService = pepService;
+	}
 
 	private List<PersonalHardskill> retrieveHardskillList() {
 		return hardskillRepository.findAll();
@@ -60,7 +64,7 @@ public class PepController {
 		return softskillRepository.findByName (name);
 	}
 
-	@GetMapping("personaleducationplanpage")
+	@GetMapping("/personaleducationplanpage")
 	public String goToPepPage(Model model, String name){
 		PersonalEducationPlan personalEducationPlan = new PersonalEducationPlan();
 
@@ -75,41 +79,26 @@ public class PepController {
 		model.addAttribute("hardskillList", personalEducationPlan.getPersonalHardskillList());
 		model.addAttribute ("personalHardskill", retrieveHardskillByName(name));
 
-		return "/dashboardpages/personaleducationplanpage";
+		return "/trainee/personaleducationplanpage";
 	}
 
-	@GetMapping("personalhardskillform")
+	@GetMapping("/personalhardskillform")
 	public String getpersonalhardskillform(){
-		return "/dashboardpages/personalhardskillform";
+		return "/trainee/personalhardskillform";
 	}
 
-	@GetMapping("personalsoftskillform")
+	@GetMapping("/personalsoftskillform")
 	public String getpersonalsoftskillform(Model model, String name){
 		model.addAttribute ("softskillList", retrieveSoftskillList ());
 		model.addAttribute ("softskill", retrieveSoftskillByName (name));
-		return "/dashboardpages/personalsoftskillform";
+		return "/trainee/personalsoftskillform";
 	}
 
 	@GetMapping("addsoftskillspage")
-	public String getaddsoftskillpage() { return "/dashboardpages/addsoftskillpage"; }
+	public String getaddsoftskillpage() { return "/trainee/addsoftskillpage"; }
 
-	@Autowired
-	public PepController(PepService pepService){
-		this.pepService = pepService;
-	}
 
-	@PostMapping("/createpersonalhardskill")
-	public String createPersonalHardskill(String name, String description, String report, String state, Date start, Date end){
-		String username = appUserService.getActiveUser().getUsername();
-		pepService.addHardskill (name, description, report, state, start, end, username);
-		return "redirect:/personaleducationplanpage";
-	}
 
-	@PostMapping("/createpersonalsoftskill")
-	public String createPersonalSoftskill(String name, String report){
-		String username = appUserService.getActiveUser().getUsername();
-		pepService.addPersonalSoftskill (name, report, username);
-		return "redirect:/personaleducationplanpage";
-	}
+
 
 }
