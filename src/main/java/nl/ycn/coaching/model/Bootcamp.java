@@ -18,10 +18,10 @@ public class Bootcamp {
 	public String bootcampName;
 
 	@Column
-	public Date beginDate;
+	public String beginDate;
 
 	@Column
-	public Date endDate;
+	public String endDate;
 
 	@Column
 	public String courseList;

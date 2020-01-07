@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class BootcampService {
 
+	@Autowired
 	private BootcampRepository bootcampRepository;
 	
 	@Autowired
@@ -23,4 +24,6 @@ public class BootcampService {
 		Bootcamp bootcamp = new Bootcamp (bootcampName, courseList);
 		bootcampRepository.save (bootcamp);
 	}
+
+
 }
