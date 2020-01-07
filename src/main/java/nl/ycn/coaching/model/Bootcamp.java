@@ -10,7 +10,7 @@ import java.util.Date;
 public class Bootcamp {
 
 
-	
+
 	@Id
 	@GeneratedValue
 	public int id;
@@ -22,7 +22,7 @@ public class Bootcamp {
 
 	@Column
 	public Date endDate;
-	
+
 	@Column
 	public String courseList;
 
@@ -36,4 +36,12 @@ public class Bootcamp {
 	}
 	
 	public void getBootcamp() {}
+
+	public String getName() {
+		return bootcampName;
+	}
+
+	public String getCourseList() {
+		return courseList;
+	}
 }
