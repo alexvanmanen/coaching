@@ -20,27 +20,27 @@
     <a class = "item">
         <img src="../ycnlogo.png" class="image">
     </a>
-    <a class="item active" href="dashboardpage">
+    <a class="item active" href="dashboard">
         Dashboard
     </a>
-    <a class="item" href="teams">
+    <a class="item" href="/hremployee/teams">
         Teams
     </a>
-    <a class="item" href="users">
+    <a class="item" href="/hremployee/users">
         Users
     </a>
-    <a class="item" href="bootcamps">
+    <a class="item" href="/hremployee/bootcamps">
         Bootcamps
     </a>
-    <a class="item" href="skills">
+    <a class="item" href="/hremployee/skills">
         Skills
     </a>
-    <a class="item" href="hrcalendar">
+    <a class="item" href="/hremployee/hrcalendar">
         Calendar
     </a>
 
     <div class="right menu">
-        <a class="ui item" href="login">
+        <a class="ui item" href="/logout">
             Logout
         </a>
     </div>
@@ -49,16 +49,11 @@
 
             <div class="center aligned two column row">
                 <div class="column">
-
                     <div  class="ui segment">
-                        <i class="cubes large icon"></i>
-                        <h2 id="Teams">Teams</h2>
-                        <p>DevOps-01-19</p>
-                        <p>DevOps-02-19</p>
-                        <p>BigData-01-19</p>
-                        <p>Java-02-19</p>
-                        <p>Java-01-19</p>
-
+                        <h1>Bootcamps</h1>
+                        <div class="ui icon message" th:each="bootcamps:${activeBootcamps}">
+                        <h3><i class="newspaper icon"></i><span th:text="${bootcamps.bootcampName}"></span></h3>
+                        </div>
                     </div>
                 </div>
 

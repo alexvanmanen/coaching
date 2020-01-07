@@ -5,6 +5,7 @@ import nl.ycn.coaching.model.users.Trainee;
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.Date;
 
 @Entity
 public class Bootcamp {
@@ -19,17 +20,32 @@ public class Bootcamp {
 	
 	@Column
 	public String bootcampName;
-	
+
+	@Column
+	public Date beginDate;
+
+	@Column
+	public Date endDate;
+
 	@Column
 	public String courseList;
-	
+
+	//default constructor
+	public Bootcamp(){}
+
+	//overloaded constructor
 	public Bootcamp (String bootcampName, String courseList) {
 		this.bootcampName = bootcampName;
 		this.courseList = courseList;
 	}
 	
-	public Bootcamp () {
-	}
-	
 	public void getBootcamp() {}
+
+	public String getName() {
+		return bootcampName;
+	}
+
+	public String getCourseList() {
+		return courseList;
+	}
 }

@@ -8,6 +8,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -30,18 +31,18 @@ public class AppUserService implements UserDetailsService {
 		return userDetails;
 	}
 
-
-
 	public void registerUser(
 			String username,
 			String firstname,
 			String lastname,
 			String email,
 			String password,
-			String roles) {
+			String roles,
+			boolean enabled,
+			boolean activated) {
 		AppUser user = appUserRepository.findByUsername(username);
 		if (user == null){
-			AppUser newUser = new AppUser(username, firstname, lastname, email, password, roles);
+			AppUser newUser = new AppUser(username, firstname, lastname, email, password, roles, enabled, activated);
 			appUserRepository.save(newUser);
 		} else {
 			System.out.print("username already taken");
@@ -58,6 +59,23 @@ public class AppUserService implements UserDetailsService {
 		UserDetails details = (UserDetails) authentication.getPrincipal();
 		AppUser user = getUser(details.getUsername());
 		return user;
+	}
+
+	//Changes the current user's password to a new given password
+	public void changePassword(String new_password){
+
+		//Password encoder
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
+		//Get current user entity
+		String username = getActiveUser().getUsername();
+		AppUser updated_appUser = appUserRepository.findByUsername(username);
+
+		//Update current user's password
+		updated_appUser.setPassword(encoder.encode(new_password));
+
+		//Save to repository
+		appUserRepository.save(updated_appUser);
 	}
 
 }

@@ -20,6 +20,12 @@ public class BootcampService {
 	@Autowired
 	private AppUserRepository appUserRepository;
 	
+
+	@Autowired
+	public void setBootcampRepository(BootcampRepository bootcampRepository){
+		this.bootcampRepository = bootcampRepository;
+	}
+
 	public void addBootcamp(
 			String bootcampName,
 			String courseList){
