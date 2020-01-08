@@ -97,7 +97,7 @@ public class WebpageController {
     @GetMapping("/accountsettings")
     public String accountsettings() {
 
-        return "/accountsettings";
+        return "/trainee/accountsettings";
     }
 
 	@PostMapping("/login")
