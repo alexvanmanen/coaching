@@ -4,7 +4,6 @@ package nl.ycn.coaching.controller;
 import net.bytebuddy.utility.RandomString;
 import nl.ycn.coaching.database.AppUserRepository;
 import nl.ycn.coaching.database.AppUserService;
-import nl.ycn.coaching.model.users.AppUser;
 import nl.ycn.coaching.database.HrService;
 import nl.ycn.coaching.model.users.AppUser;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -25,16 +24,16 @@ public class HrController {
 	@Autowired
 	private AppUserService appUserService;
 
-
 	@Autowired
 	private HrService hrService;
 
 	//Mappings for HR-Employee
 	@GetMapping("hremployee/bootcamps")
-	public String getBootcamps() {
+	public String getBootcamps(Model model) {
 		try {
 			AppUser user = appUserService.getActiveUser();
 			String role = user.getRole();
+			model.addAttribute("activeBootcamps", hrService.getTopBootcamps(100));
 			return role.toLowerCase() + "/bootcamps";
 		} catch (Exception e) {
 			return "/login";
@@ -46,7 +45,6 @@ public class HrController {
 		model.addAttribute("activeBootcamps",hrService.getTopBootcamps(5));
 		return "/hremployee/hrdashboard";
 	}
-
 
 
 	@GetMapping("/hremployee/users")
