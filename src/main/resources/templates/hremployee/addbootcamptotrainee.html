@@ -50,47 +50,45 @@
 
 <div>
     <h1 class="ui block header"
-        style="padding: 10px; margin-left: 25px; margin-right: 25px; margin-top: 10px; margin-bottom: 10px"> Nieuwe bootcamp
+        style="padding: 10px; margin-left: 25px; margin-right: 25px; margin-top: 10px; margin-bottom: 10px"> Trainee
     </h1>
 </div>
 
-<form class="ui form" method="post" action="/createbootcamp" style="margin-left: 25px; margin-right: 25px;">
+<form class="ui form" method="post" action="/addbootcamptotrainee" style="margin-left: 25px; margin-right: 25px;">
     <div class="field">
 
-        <label>Bootcampnaam:</label>
-        <input type="text" name="bootcampName" placeholder="bootcamp-nr-jaar">
-        <br>
-        <br>
-
-        <label>Vak: </label>
-        <div id="vak" style="display: flex;">
+        <label>Trainee:</label>
+        <div id="trainee" style="display: flex;">
             <br>
             <div class="ui search selection dropdown">
-                <input type="hidden" name="courseList">
+                <input type="hidden" name="traineeList">
                 <i class="dropdown icon"></i>
-                <div class="default text">Kies vak</div>
+                <div class="default text">Kies trainee</div>
                 <div class="menu" >
-                    <div class="item" th:each="course : ${courseList}" th:text="${course.name}">
+                    <div class="item" th:each="trainee : ${traineeList}" th:text="${trainee.firstName} + ' ' + ${trainee.lastName}">
                     </div>
                 </div>
-
             </div>
-            <div class="ui button" onclick="extraskill()" style="margin-left: 10px">Nog een vak</div>
+        </div>
+        <br>
+
+        <label>Bootcamp: </label>
+        <div id="bootcamp" style="display: flex;">
+            <br>
+            <div class="ui search selection dropdown">
+                <input type="hidden" name="bootcampList">
+                <i class="dropdown icon"></i>
+                <div class="default text">Kies bootcamp</div>
+                <div class="menu" >
+                    <div class="item" th:each="bootcamp : ${bootcampList}" th:text="${bootcamp.bootcampName}">
+                    </div>
+                </div>
+            </div>
             <br>
         </div>
-
-        <p id="vaktoevoegen"></p>
-
+        <br>
         <button class="ui button" type="submit">Creëer</button>
-
-        <script>
-            function extraskill() {
-                var chooseskill = document.getElementById("vak").innerHTML;
-                document.getElementById("vaktoevoegen").innerHTML = document.getElementById("vaktoevoegen").innerHTML + chooseskill;
-                $('.ui.dropdown').dropdown();
-            }
-        </script>
-    </div>
+    <div>
 </form>
 
 <script>$('.ui.dropdown').dropdown();</script>

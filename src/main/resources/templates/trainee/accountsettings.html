@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:width="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Coaching | Account settings</title>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <script src="../elements.js"></script>
+
+    <script src="https://visjs.github.io/vis-network/standalone/umd/vis-network.min.js"></script>
+
+    <script src="../password_validation.js"></script>
+
+    <link href="https://d36bmc1enj16yj.cloudfront.net/production/assets/pages/next-theme-420a2b84df4422f527df4b319c89641a8a309d6e0bdaa4deed04baed5633ea70.css"
+          media="screen"
+          rel="stylesheet"/>
+</head>
+<body style="background-color: cadetblue">
+
+<div th:insert="~{trainee/header :: header}"></div>
+<script>$('#accountsettings').addClass('active');</script>
+
+<div>
+    <h1 class="ui block header"
+        style="padding: 10px; margin-left: 25px; margin-right: 25px; margin-top: 10px; margin-bottom: 10px">Account
+        settings</h1>
+</div>
+
+<form class="ui form segment" method="post" action="/changepassword">
+    <p>Change Password</p>
+    <div class="two fields">
+        <div class="field">
+            <label>New Password</label>
+            <input placeholder="New Password" name="new_password" type="password">
+        </div>
+        <div class="field">
+            <label>Confirm New Password</label>
+            <input placeholder="Confirm New Password" name="confirm_password" type="password">
+        </div>
+    </div>
+    <div class="ui primary submit button">Change</div>
+    <div class="ui error message"></div>
+</form>
+
+
+</body>
+</html>

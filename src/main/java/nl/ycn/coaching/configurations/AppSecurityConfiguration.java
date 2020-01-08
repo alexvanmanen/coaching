@@ -1,6 +1,8 @@
 package nl.ycn.coaching.configurations;
 
 import nl.ycn.coaching.database.AppUserService;
+import nl.ycn.coaching.database.TraineeRepository;
+import nl.ycn.coaching.model.users.Trainee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -47,7 +49,6 @@ public class AppSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 "/manager/**").hasRole("MANAGER")
 
 
-
                 .and()
             .csrf().ignoringAntMatchers("/**")
 
@@ -62,9 +63,11 @@ public class AppSecurityConfiguration extends WebSecurityConfigurerAdapter {
             .and()
                 .logout()
                 .logoutSuccessUrl("/logout")
-                .logoutUrl("/logout");
+                .logoutUrl("/logout")
+                .invalidateHttpSession(true);
 
     }
+
 
     @Autowired
     public DataSource dataSource;
@@ -72,6 +75,9 @@ public class AppSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     public AppUserService appUserService;
 
+    @Autowired
+    public TraineeRepository traineeRepository;
+    
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
 
@@ -86,11 +92,11 @@ public class AppSecurityConfiguration extends WebSecurityConfigurerAdapter {
            .dataSource(dataSource)
            .passwordEncoder(encoder);
 
-        appUserService.registerUser("luuk","Luuk", "Wempe", "luukwempe@hotmail.com", encoder.encode("hallo"), "ADMIN");
-        appUserService.registerUser("alex","Alex", "van Manen", "alex@vanmanenit.nl", encoder.encode("hallo"), "TRAINEE");
-        appUserService.registerUser("vuong","Vuong", "Ngo", "vuong.anime@gmail.com", encoder.encode("hallo"), "MANAGER");
-        appUserService.registerUser("simone","Simone", "Meijers", "scm15-8@live.nl", encoder.encode("hallo"), "TALENTMANAGER");
-        appUserService.registerUser("wouter","Wouter", "Abels", "wouterabels@hotmail.com", encoder.encode("hallo"), "HREMPLOYEE");
+        appUserService.registerUser("luuk","Luuk", "Wempe", "luukwempe@hotmail.com", encoder.encode("hallo"), "ADMIN", true, false);
+        appUserService.registerUser("alex","Alex", "van Manen", "alex@vanmanenit.nl", encoder.encode("hallo"), "TRAINEE", true, false);
+        appUserService.registerUser("vuong","Vuong", "Ngo", "vuong.anime@gmail.com", encoder.encode("hallo"), "MANAGER", true, true);
+        appUserService.registerUser("simone","Simone", "Meijers", "scm15-8@live.nl", encoder.encode("hallo"), "TALENTMANAGER", true, false);
+        appUserService.registerUser("wouter","Wouter", "Abels", "wouterabels@hotmail.com", encoder.encode("hallo"), "HREMPLOYEE", true, false);
 
     }
 

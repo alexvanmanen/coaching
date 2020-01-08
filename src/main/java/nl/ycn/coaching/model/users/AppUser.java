@@ -1,14 +1,6 @@
 package nl.ycn.coaching.model.users;
 
-import javassist.bytecode.stackmap.BasicBlock;
-import nl.ycn.coaching.model.Calendar;
-import nl.ycn.coaching.model.ContactDetails;
-import nl.ycn.coaching.model.Notifications;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name="users")
@@ -16,16 +8,13 @@ public class AppUser {
 
 	@Id
 	@GeneratedValue
-	private long Id;
+	private long id;
 
 	@Column(name="username")
 	private String username;
 
 	@Column(name="password")
 	private String password;
-
-	@Column(name="enabled")
-	private boolean enabled;
 
 	@Column(name="role")
 	private String role;
@@ -39,6 +28,12 @@ public class AppUser {
 	@Column(name="email")
 	private String email;
 
+	@Column(name="enabled")
+	private boolean enabled;
+
+	@Column(name="activated")
+	private boolean activated;
+
 //	@Column(name="contactdetails")
 //	private ContactDetails details;
 //
@@ -50,7 +45,7 @@ public class AppUser {
 	public AppUser() {
 	}
 
-	public AppUser(String username, String firstName, String lastName, String email, String password, String role) {
+	public AppUser(String username, String firstName, String lastName, String email, String password, String role, boolean enabled, boolean activated) {
 
 			this.username = username;
 			this.password = password;
@@ -58,16 +53,18 @@ public class AppUser {
 			this.firstName = firstName;
 			this.lastName = lastName;
 			this.email = email;
+			this.enabled = enabled;
+			this.activated = activated;
 
 		}
 
 
 	public long getId() {
-		return Id;
+		return id;
 	}
 
 	public void setId(long id) {
-		Id = id;
+		this.id = id;
 	}
 
 	public String getUsername() {
@@ -125,6 +122,22 @@ public class AppUser {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
+	public boolean isActivated() {
+		return activated;
+	}
+
+	public void setActivated(boolean activated) {
+		this.activated = activated;
 	}
 
 	public void login(){

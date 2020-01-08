@@ -16,32 +16,8 @@
 </head>
 <body style="background-color: cadetblue">
 
-<div class="ui secondary pointing menu" style="background-color:white">
-    <a class = "item">
-        <img src="../ycnlogo.png" class="image">
-    </a>
-    <a class="item" href="dashboardpage">
-        Dashboard
-    </a>
-    <a class="item" href="coursespage">
-        Courses
-    </a>
-    <a class="item" href="personaleducationplanpage">
-        Personal Education Plan
-    </a>
-    <a class="item active" href="agendapage">
-        Calendar
-    </a>
-    <a class="item" href="contactdetails">
-        Contact Details
-    </a>
-
-    <div class="right menu">
-        <a class="ui item" href="login">
-            Logout
-        </a>
-    </div>
-</div>
+<div th:insert="~{trainee/header :: header}"></div>
+<script>$('#calendar').addClass('active');</script>
 
 <div class="ui calendar" id="inline_calendar">
 </div>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Coaching | YoungCapital NEXT</title>
@@ -17,32 +17,8 @@
 </head>
 <body style="background-color: cadetblue">
 
-<div class="ui secondary pointing menu" style="background-color:white">
-    <a class="item">
-        <img class="image" src="../ycnlogo.png">
-    </a>
-    <a class="item" href="dashboardpage">
-        Dashboard
-    </a>
-    <a class="item" href="coursespage">
-        Courses
-    </a>
-    <a class="item" href="personaleducationplanpage">
-        Personal Education Plan
-    </a>
-    <a class="item" href="agendapage">
-        Calendar
-    </a>
-    <a class="item active" href="contactdetails">
-        Contact Details
-    </a>
-
-    <div class="right menu">
-        <a class="ui item" href="login">
-            Logout
-        </a>
-    </div>
-</div>
+<div th:insert="~{trainee/header :: header}"></div>
+<script>$('#contactdetails').addClass('active');</script>
 
 <div>
     <h1 class="ui block header" style="padding: 10px; margin-left: 25px; margin-right: 25px; margin-top: 10px; margin-bottom: 10px"> Gegevens wijzigen</h1>
@@ -340,6 +316,7 @@
             </div>
         </div>
     </div>
+
     <h4 class="ui dividing header">Contact gegevens</h4>
     <div class="field">
         <div class="two fields">
@@ -363,6 +340,7 @@
         </div>
     </div>
     <div class="ui button" tabindex="0">Accepteer wijzigingen</div>
+    </div>
 </form>
 
 
