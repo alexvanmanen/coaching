@@ -1,7 +1,11 @@
 package nl.ycn.coaching.database;
 
+import nl.ycn.coaching.model.Bootcamp;
 import nl.ycn.coaching.model.users.AppUser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -10,6 +14,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class AppUserService implements UserDetailsService {
@@ -59,6 +65,11 @@ public class AppUserService implements UserDetailsService {
 		UserDetails details = (UserDetails) authentication.getPrincipal();
 		AppUser user = getUser(details.getUsername());
 		return user;
+	}
+
+	public List<AppUser> getAppUsersByRole(String role){
+		List<AppUser> listAppUsersByRole = appUserRepository.findByRole(role);
+		return listAppUsersByRole;
 	}
 
 	//Changes the current user's password to a new given password

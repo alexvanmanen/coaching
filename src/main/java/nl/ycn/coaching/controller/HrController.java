@@ -1,6 +1,8 @@
 package nl.ycn.coaching.controller;
 
 
+import net.bytebuddy.utility.RandomString;
+import nl.ycn.coaching.database.AppUserRepository;
 import nl.ycn.coaching.database.AppUserService;
 import nl.ycn.coaching.database.HrService;
 import nl.ycn.coaching.model.users.AppUser;
@@ -46,10 +48,14 @@ public class HrController {
 
 
 	@GetMapping("/hremployee/users")
-	public String getUsers() {
+	public String getUsers(Model model) {
 		try {
 			AppUser user = appUserService.getActiveUser();
 			String role = user.getRole();
+			model.addAttribute("hremployees", appUserService.getAppUsersByRole("HREMPLOYEE"));
+			model.addAttribute("trainees", appUserService.getAppUsersByRole("TRAINEE"));
+			model.addAttribute("managers", appUserService.getAppUsersByRole("MANAGER"));
+			model.addAttribute("talentmanagers", appUserService.getAppUsersByRole("TALENTMANAGER"));
 			return "/" + role.toLowerCase() + "/users";
 		} catch (Exception e) {
 			return "/login";
@@ -129,8 +135,8 @@ public class HrController {
 	public String register(String username, String firstname, String lastname, String email, String password, String roles) {
 
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		appUserService.registerUser(username, firstname, lastname, email, encoder.encode(password), roles, true, false);
-		return "/hremployee/users";
+		appUserService.registerUser(username, firstname, lastname, email, encoder.encode(password), roles, true, true);
+		return "redirect:/hremployee/users";
 	}
 
 	@PostMapping("/hremployee/createsoftskill")

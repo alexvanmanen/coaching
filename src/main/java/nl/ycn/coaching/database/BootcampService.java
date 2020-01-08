@@ -10,16 +10,16 @@ import java.util.List;
 
 @Service
 public class BootcampService {
-
+	
 	@Autowired
 	private BootcampRepository bootcampRepository;
 	
 	@Autowired
 	private CourseRepository courseRepository;
-
+	
 	@Autowired
 	private AppUserRepository appUserRepository;
-
+	
 
 	@Autowired
 	public void setBootcampRepository(BootcampRepository bootcampRepository){
@@ -32,7 +32,7 @@ public class BootcampService {
 		Bootcamp bootcamp = new Bootcamp (bootcampName, courseList);
 		bootcampRepository.save (bootcamp);
 	}
-
+	
 	public List<AppUser> fillTraineeList() {
 		List<AppUser> traineeList = new ArrayList<AppUser>();
 		List<AppUser> allUsers = appUserRepository.findAll();

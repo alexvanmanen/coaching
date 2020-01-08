@@ -53,6 +53,6 @@ public class BootcampController {
 	@PostMapping("createbootcamp")
 	public String createbootcamp (String bootcampName, String courseList) {
 		bootcampService.addBootcamp (bootcampName, courseList);
-		return "redirect:hremployee/bootcamps";
+		return "redirect:/bootcamps";
 	}
 }

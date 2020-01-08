@@ -22,10 +22,10 @@ public class Bootcamp {
 	public String bootcampName;
 
 	@Column
-	public String beginDate;
+	public Date beginDate;
 
 	@Column
-	public String endDate;
+	public Date endDate;
 
 	@Column
 	public String courseList;
