@@ -38,6 +38,11 @@ public class TraineeController {
 		return "/trainee/calendar";
 	}
 
+	@GetMapping("/trainee/header")
+	public String getHeader(){
+		return "/trainee/header";
+	}
+
 	@GetMapping("/trainee/contactdetails")
 	public String getContact(){
 		return "/trainee/contactdetails";
