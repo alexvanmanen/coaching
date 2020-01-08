@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:width="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:width="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Coaching | Account settings</title>
@@ -17,6 +18,8 @@
           rel="stylesheet"/>
 </head>
 <body style="background-color: cadetblue">
+
+<div th:replace="/header :: header">
 
 <div class="ui secondary pointing menu" style="background-color:white">
     <a class="item">
@@ -50,6 +53,7 @@
         style="padding: 10px; margin-left: 25px; margin-right: 25px; margin-top: 10px; margin-bottom: 10px">Account
         settings</h1>
 </div>
+
 <form class="ui form segment" method="post" action="/changepassword">
     <p>Change Password</p>
     <div class="two fields">
