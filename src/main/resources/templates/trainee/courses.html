@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Coaching | Hardskills</title>
@@ -17,34 +17,7 @@
 </head>
 <body style="background-color: cadetblue">
 
-<div class="ui secondary pointing menu" style="background-color:white">
-    <a class="item">
-        <img class="image" src="../ycnlogo.png">
-    </a>
-    <a class="item" href="dashboard">
-        Dashboard
-    </a>
-    <a class="item active" href="/trainee/courses">
-        Courses
-    </a>
-    <a class="item" href="/trainee/personaleducationplanpage">
-        Personal Education Plan
-    </a>
-    <a class="item" href="/trainee/calendar">
-        Calendar
-    </a>
-    <a class="item" href="/trainee/contactdetails">
-        Contact Details
-    </a>
-
-    <div class="right menu">
-        <a class="ui item" href="/login">
-            Logout
-        </a>
-    </div>
-</div>
-
-
+<div th:insert="~{trainee/header :: header}"></div>
 
 <div class="ui center aligned grid" style="margin-left:20px; margin-right:20px;">
     <div class="center aligned two column row">
