@@ -17,7 +17,7 @@
 <body style="background-color: cadetblue">
 
 <div class="ui secondary pointing menu" style="background-color:white">
-    <a class = "item">
+    <a class="item">
         <img src="../ycnlogo.png" class="image">
     </a>
     <a class="item" href="dashboard">
@@ -51,42 +51,18 @@
         <h1>HR-Employees</h1>
     </div>
 
-    <div class="ui tiny icon message">
-        <i class="compass icon"></i>
+    <div class="ui mini icon message" th:each="hremployee:${hremployees}">
+        <i class="tiny newspaper icon"></i>
         <div class="content">
-            <div class="header">
-                Wouter Abels
-            </div>
+            <h3><span th:text="${hremployee.username}"></span></h3>
         </div>
-        <i class="edit icon"></i>
-        <i class="trash alternate icon"></i>
+        <i class="right floated tiny edit icon"></i>
     </div>
 
-    <div class="ui tiny  icon message">
-        <i class="compass icon"></i>
-        <div class="content">
-            <div class="header">
-               Lars Hoogeveen
-            </div>
-        </div>
-        <i class="edit icon"></i>
-        <i class="trash alternate icon"></i>
-    </div>
-
-    <div class="ui tiny icon message">
-        <i class="compass icon"></i>
-        <div class="content">
-            <div class="header">
-               Merel de Vries
-            </div>
-        </div>
-        <i class="edit icon"></i>
-        <i class="trash alternate icon"></i>
-    </div>
 
     <div>
         <a class="item" href="register">
-        <button class="ui fluid large teal submit button" type="submit">+ add HR-Employee</button>
+            <button class="ui fluid large teal submit button" type="submit">+ add HR-Employee</button>
         </a>
     </div>
 </div>
@@ -96,42 +72,18 @@
         <h1>Trainees</h1>
     </div>
 
-    <div class="ui tiny icon message">
-        <i class="compass icon"></i>
+    <div class="ui mini icon message" th:each="trainee:${trainees}">
+        <i class="tiny newspaper icon"></i>
         <div class="content">
-            <div class="header">
-                Luuk Wempe
-            </div>
+            <h3><span th:text="${trainee.username}"></span></h3>
         </div>
-        <i class="edit icon"></i>
-        <i class="trash alternate icon"></i>
-    </div>
+        <i class="right floated tiny edit icon"></i>
 
-    <div class="ui tiny icon message">
-        <i class="compass icon"></i>
-        <div class="content">
-            <div class="header">
-               Jurre de Jong
-            </div>
-        </div>
-        <i class="edit icon"></i>
-        <i class="trash alternate icon"></i>
-    </div>
-
-    <div class="ui tiny icon message">
-        <i class="compass icon"></i>
-        <div class="content">
-            <div class="header">
-                Robert van Dam
-            </div>
-        </div>
-        <i class="edit icon"></i>
-        <i class="trash alternate icon"></i>
     </div>
 
     <div>
         <a class="item" href="register">
-        <button class="ui fluid large teal submit button" type="submit">+ add Trainee</button>
+            <button class="ui fluid large teal submit button" type="submit">+ add Trainee</button>
         </a>
     </div>
 </div>
@@ -141,42 +93,18 @@
         <h1>Managers</h1>
     </div>
 
-    <div class="ui tiny icon message">
-        <i class="compass icon"></i>
+    <div class="ui mini icon message" th:each="manager:${managers}">
+        <i class="newspaper icon"></i>
         <div class="content">
-            <div class="header">
-                Vuong Ngo
-            </div>
+            <h3><span th:text="${manager.username}"></span></h3>
         </div>
         <i class="edit icon"></i>
-        <i class="trash alternate icon"></i>
     </div>
 
-    <div class="ui tiny icon message">
-        <i class="compass icon"></i>
-        <div class="content">
-            <div class="header">
-                Mariska van Leeuwensteyn
-            </div>
-        </div>
-        <i class="edit icon"></i>
-        <i class="trash alternate icon"></i>
-    </div>
-
-    <div class="ui tiny icon message">
-        <i class="compass icon"></i>
-        <div class="content">
-            <div class="header">
-                Marco van der Luyt
-            </div>
-        </div>
-        <i class="edit icon"></i>
-        <i class="trash alternate icon"></i>
-    </div>
 
     <div>
         <a class="item" href="register">
-        <button class="ui fluid large teal submit button" type="submit">+ add Manager</button>
+            <button class="ui fluid large teal submit button" type="submit">+ add Manager</button>
         </a>
     </div>
 </div>
@@ -186,42 +114,17 @@
         <h1>Talent Managers</h1>
     </div>
 
-    <div class="ui tiny icon message">
-        <i class="compass icon"></i>
+    <div class="ui mini icon message" th:each="talentmanager:${talentmanagers}">
+        <i class="newspaper icon"></i>
         <div class="content">
-            <div class="header">
-                Simone Meijers
-            </div>
+        <h3><span th:text="${talentmanager.username}"></span></h3>
         </div>
         <i class="edit icon"></i>
-        <i class="trash alternate icon"></i>
-    </div>
-
-    <div class="ui tiny icon message">
-        <i class="compass icon"></i>
-        <div class="content">
-            <div class="header">
-                Naomi Goedhart
-            </div>
-        </div>
-        <i class="edit icon"></i>
-        <i class="trash alternate icon"></i>
-    </div>
-
-    <div class="ui tiny icon message">
-        <i class="compass icon"></i>
-        <div class="content">
-            <div class="header">
-                Peter Lommerse
-            </div>
-        </div>
-        <i class="edit icon"></i>
-        <i class="trash alternate icon"></i>
     </div>
 
     <div>
         <a class="item" href="register">
-        <button class="ui fluid large teal submit button" type="submit">+ add Talent Manager</button>
+            <button class="ui fluid large teal submit button" type="submit">+ add Talent Manager</button>
         </a>
     </div>
 </div>
