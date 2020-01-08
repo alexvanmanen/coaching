@@ -44,7 +44,7 @@ public class BootcampController {
 	}
 	
 	@GetMapping("addbootcamptotrainee")
-	public String addbootcamptotrainee (Model model) {
+	public String addbootcamptotraineeform (Model model) {
 		model.addAttribute ("traineeList", retrieveTraineeList ());
 		model.addAttribute ("bootcampList", retrieveBootcampList ());
 		return "/hremployee/addbootcamptotrainee";
@@ -53,6 +53,12 @@ public class BootcampController {
 	@PostMapping("createbootcamp")
 	public String createbootcamp (String bootcampName, String courseList) {
 		bootcampService.addBootcamp (bootcampName, courseList);
-		return "redirect:/bootcamps";
+		return "redirect:/hremployee/bootcamps";
+	}
+	
+	@PostMapping("addbootcamptotrainee")
+	public String addbootcamptotrainee (String traineeList, String bootcampList) {
+		System.out.println (traineeList);
+		return "redirect:/hremployee/dashboard";
 	}
 }

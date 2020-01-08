@@ -2,6 +2,7 @@ package nl.ycn.coaching.database;
 
 import nl.ycn.coaching.model.Bootcamp;
 import nl.ycn.coaching.model.users.AppUser;
+import nl.ycn.coaching.model.users.Trainee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,9 @@ public class BootcampService {
 	
 	@Autowired
 	private AppUserRepository appUserRepository;
+	
+	@Autowired
+	private TraineeRepository traineeRepository;
 	
 
 	@Autowired
@@ -42,5 +46,10 @@ public class BootcampService {
 			}
 		}
 		return allUsers;
+	}
+	
+	public void addBootcampToTrainee(String traineeList, String bootcampList) {
+	
+//		Trainee trainee = new Trainee (userId, bootcampId)
 	}
 }
