@@ -58,23 +58,23 @@ public class AppUserService implements UserDetailsService {
 		if (user == null){
 			switch (roles) {
 				case "TRAINEE":
-					AppUser newUser = new Trainee(username, firstname, lastname, email, password, roles, enabled, activated);
+					AppUser newUser = new Trainee(username, firstname, lastname, email, password, roles, enabled, activated, dateofbirth, zipcode, street, streetnumber, city, country, telephonenumber);
 					appUserRepository.save (newUser);
 					break;
 				case "HREMPLOYEE":
-					newUser = new HrEmployee (username, firstname, lastname, email, password, roles, enabled, activated);
+					newUser = new HrEmployee (username, firstname, lastname, email, password, roles, enabled, activated, dateofbirth, zipcode, street, streetnumber, city, country, telephonenumber);
 					appUserRepository.save (newUser);
 					break;
 				case "MANAGER":
-					newUser = new Manager (username, firstname, lastname, email, password, roles, enabled, activated);
+					newUser = new Manager (username, firstname, lastname, email, password, roles, enabled, activated, dateofbirth, zipcode, street, streetnumber, city, country, telephonenumber);
 					appUserRepository.save (newUser);
 					break;
 				case "TALENTMANAGER":
-					newUser = new TalentManager (username, firstname, lastname, email, password, roles, enabled, activated);
+					newUser = new TalentManager (username, firstname, lastname, email, password, roles, enabled, activated, dateofbirth, zipcode, street, streetnumber, city, country, telephonenumber);
 					appUserRepository.save (newUser);
 					break;
 				case "ADMIN":
-					newUser = new AppUser (username, firstname, lastname, email, password, roles, enabled, activated);
+					newUser = new AppUser (username, firstname, lastname, email, password, roles, enabled, activated, dateofbirth, zipcode, street, streetnumber, city, country, telephonenumber);
 					appUserRepository.save (newUser);
 					break;
 					}

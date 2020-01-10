@@ -3,6 +3,7 @@ package nl.ycn.coaching.model.users;
 import nl.ycn.coaching.model.*;
 
 import javax.persistence.*;
+import java.sql.Date;
 import java.util.List;
 
 @Entity
@@ -27,16 +28,15 @@ public class Trainee extends AppUser{
 		this.user = user;
 	}
 	
-	public Trainee (String username, String firstName, String lastName, String email, String password, String role, boolean enabled, boolean activated) {
-		super (username, firstName, lastName, email, password, role, enabled, activated);
+	public Trainee (String username, String firstName, String lastName, String email, String password, String role, boolean enabled, boolean activated, Date dateofbirth, String zipcode, String street, int streetnumber, String city, String country, String telephonenumber) {
+		super (username, firstName, lastName, email, password, role, enabled, activated, dateofbirth, zipcode, street, streetnumber, city, country, telephonenumber);
 	}
 	
-	public Trainee (String username, String firstName, String lastName, String email, String password, String role, boolean enabled, boolean activated, Bootcamp bootcamp, AppUser user) {
-		super (username, firstName, lastName, email, password, role, enabled, activated);
+	public Trainee (String username, String firstName, String lastName, String email, String password, String role, boolean enabled, boolean activated, Date dateofbirth, String zipcode, String street, int streetnumber, String city, String country, String telephonenumber, Bootcamp bootcamp, AppUser user) {
+		super (username, firstName, lastName, email, password, role, enabled, activated, dateofbirth, zipcode, street, streetnumber, city, country, telephonenumber);
 		this.bootcamp = bootcamp;
 		this.user = user;
 	}
-	
 	
 	public void setBootcamp(Bootcamp bootcamp) {
 		this.bootcamp = bootcamp;
