@@ -15,6 +15,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
 import java.util.List;
 
 @Service
@@ -22,9 +23,6 @@ public class AppUserService implements UserDetailsService {
 
 	@Autowired
 	private AppUserRepository appUserRepository;
-	
-	@Autowired
-	private TraineeRepository traineeRepository;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -48,7 +46,14 @@ public class AppUserService implements UserDetailsService {
 			String password,
 			String roles,
 			boolean enabled,
-			boolean activated) {
+			boolean activated,
+			Date dateofbirth,
+			String zipcode,
+			String street,
+			int streetnumber,
+			String city,
+			String country,
+			String telephonenumber) {
 		AppUser user = appUserRepository.findByUsername(username);
 		if (user == null){
 			switch (roles) {

@@ -135,7 +135,7 @@ public class HrController {
 	public String register(String username, String firstname, String lastname, String email, String password, String roles) {
 		
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		appUserService.registerUser(username, firstname, lastname, email, encoder.encode(password), roles, true, true);
+		appUserService.registerUser(username, firstname, lastname, email, encoder.encode(password), roles, true, true, null, null, null, 0, null, null, null);
 		return "redirect:/hremployee/users";
 	}
 

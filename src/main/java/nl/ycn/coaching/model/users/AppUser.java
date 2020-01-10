@@ -1,6 +1,7 @@
 package nl.ycn.coaching.model.users;
 
 import javax.persistence.*;
+import java.sql.Date;
 
 @Entity
 @Table(name="users")
@@ -34,6 +35,28 @@ public class AppUser {
 	@Column(name="activated")
 	private boolean activated;
 
+	//Contactgegevens
+	@Column(name="dateofbirth")
+	private Date dateofbirth;
+
+	@Column(name="zipcode")
+	private String zipcode;
+
+	@Column(name="street")
+	private String street;
+
+	@Column(name="streetnumber")
+	private int streetnumber;
+
+	@Column(name="city")
+	private String city;
+
+	@Column(name="country")
+	private String country;
+
+	@Column(name="telephonenumber")
+	private String telephonenumber;
+
 //	@Column(name="contactdetails")
 //	private ContactDetails details;
 //
@@ -45,7 +68,21 @@ public class AppUser {
 	public AppUser() {
 	}
 
-	public AppUser(String username, String firstName, String lastName, String email, String password, String role, boolean enabled, boolean activated) {
+	public AppUser(String username,
+				   String firstName,
+				   String lastName,
+				   String email,
+				   String password,
+				   String role,
+				   boolean enabled,
+				   boolean activated,
+				   Date dateofbirth,
+				   String zipcode,
+				   String street,
+				   int streetnumber,
+				   String city,
+				   String country,
+				   String telephonenumber) {
 
 			this.username = username;
 			this.password = password;
@@ -55,9 +92,15 @@ public class AppUser {
 			this.email = email;
 			this.enabled = enabled;
 			this.activated = activated;
+			this.dateofbirth = dateofbirth;
+			this.zipcode = zipcode;
+			this.street = street;
+			this.streetnumber = streetnumber;
+			this.city = city;
+			this.country = country;
+			this.telephonenumber = telephonenumber;
 
 		}
-
 
 	public long getId() {
 		return id;
@@ -138,6 +181,62 @@ public class AppUser {
 
 	public void setActivated(boolean activated) {
 		this.activated = activated;
+	}
+
+	public Date getDateofbirth() {
+		return dateofbirth;
+	}
+
+	public void setDateofbirth(Date dateofbirth) {
+		this.dateofbirth = dateofbirth;
+	}
+
+	public String getZipcode() {
+		return zipcode;
+	}
+
+	public void setZipcode(String zipcode) {
+		this.zipcode = zipcode;
+	}
+
+	public String getStreet() {
+		return street;
+	}
+
+	public void setStreet(String street) {
+		this.street = street;
+	}
+
+	public int getStreetnumber() {
+		return streetnumber;
+	}
+
+	public void setStreetnumber(int streetnumber) {
+		this.streetnumber = streetnumber;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public String getTelephonenumber() {
+		return telephonenumber;
+	}
+
+	public void setTelephonenumber(String telephonenumber) {
+		this.telephonenumber = telephonenumber;
 	}
 
 	public void login(){
