@@ -48,8 +48,13 @@ public class BootcampService {
 		return allUsers;
 	}
 	
-	public void addBootcampToTrainee(String traineeList, String bootcampList) {
-	
-//		Trainee trainee = new Trainee (userId, bootcampId)
+	public void addBootcampToTrainee(String traineeFirstName, String bootcampName) {
+		Bootcamp bootcamp = bootcampRepository.findByBootcampName (bootcampName);
+		Trainee trainee = traineeRepository.findByFirstName (traineeFirstName);
+		trainee.setBootcamp (bootcamp);
+		appUserRepository.save (trainee);
+		//		AppUser user = appUserRepository.findById (traineeFirstName);
+//		Trainee trainee = new Trainee (user, bootcamp);
+//		traineeRepository.save (trainee);
 	}
 }

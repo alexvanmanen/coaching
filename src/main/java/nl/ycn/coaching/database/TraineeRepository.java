@@ -6,4 +6,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface TraineeRepository extends JpaRepository<Trainee, Long> {
+	
+	Trainee findByFirstName(String firstName);
+	Trainee findByUsername(String username);
 }

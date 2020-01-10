@@ -74,9 +74,6 @@ public class AppSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public AppUserService appUserService;
-
-    @Autowired
-    public TraineeRepository traineeRepository;
     
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
@@ -92,12 +89,13 @@ public class AppSecurityConfiguration extends WebSecurityConfigurerAdapter {
            .dataSource(dataSource)
            .passwordEncoder(encoder);
 
+        
+        
         appUserService.registerUser("luuk","Luuk", "Wempe", "luukwempe@hotmail.com", encoder.encode("hallo"), "ADMIN", true, false);
-        appUserService.registerUser("alex","Alex", "van Manen", "alex@vanmanenit.nl", encoder.encode("hallo"), "TRAINEE", true, false);
+        appUserService.registerUser("alex","Alex", "van Manen", "alex@vanmanenit.nl", encoder.encode("hallo") , "TRAINEE", true, false);
         appUserService.registerUser("vuong","Vuong", "Ngo", "vuong.anime@gmail.com", encoder.encode("hallo"), "MANAGER", true, true);
         appUserService.registerUser("simone","Simone", "Meijers", "scm15-8@live.nl", encoder.encode("hallo"), "TALENTMANAGER", true, false);
         appUserService.registerUser("wouter","Wouter", "Abels", "wouterabels@hotmail.com", encoder.encode("hallo"), "HREMPLOYEE", true, false);
-
     }
 
 }

@@ -1,7 +1,7 @@
 package nl.ycn.coaching.database;
 
 import nl.ycn.coaching.model.Bootcamp;
-import nl.ycn.coaching.model.users.AppUser;
+import nl.ycn.coaching.model.users.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -22,6 +22,9 @@ public class AppUserService implements UserDetailsService {
 
 	@Autowired
 	private AppUserRepository appUserRepository;
+	
+	@Autowired
+	private TraineeRepository traineeRepository;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -48,8 +51,28 @@ public class AppUserService implements UserDetailsService {
 			boolean activated) {
 		AppUser user = appUserRepository.findByUsername(username);
 		if (user == null){
-			AppUser newUser = new AppUser(username, firstname, lastname, email, password, roles, enabled, activated);
-			appUserRepository.save(newUser);
+			switch (roles) {
+				case "TRAINEE":
+					AppUser newUser = new Trainee(username, firstname, lastname, email, password, roles, enabled, activated);
+					appUserRepository.save (newUser);
+					break;
+				case "HREMPLOYEE":
+					newUser = new HrEmployee (username, firstname, lastname, email, password, roles, enabled, activated);
+					appUserRepository.save (newUser);
+					break;
+				case "MANAGER":
+					newUser = new Manager (username, firstname, lastname, email, password, roles, enabled, activated);
+					appUserRepository.save (newUser);
+					break;
+				case "TALENTMANAGER":
+					newUser = new TalentManager (username, firstname, lastname, email, password, roles, enabled, activated);
+					appUserRepository.save (newUser);
+					break;
+				case "ADMIN":
+					newUser = new AppUser (username, firstname, lastname, email, password, roles, enabled, activated);
+					appUserRepository.save (newUser);
+					break;
+					}
 		} else {
 			System.out.print("username already taken");
 		}

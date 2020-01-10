@@ -6,9 +6,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name="trainees")
-@DiscriminatorValue (value = "trainee")
-public class Trainee {
+public class Trainee extends AppUser{
 	
 	@Id
 	@GeneratedValue
@@ -24,11 +22,38 @@ public class Trainee {
 	
 	public Trainee(){}
 	
-	public Trainee(AppUser user, Bootcamp bootcamp) {
+	public Trainee (Bootcamp bootcamp, AppUser user) {
+		this.bootcamp = bootcamp;
 		this.user = user;
+	}
+	
+	public Trainee (String username, String firstName, String lastName, String email, String password, String role, boolean enabled, boolean activated) {
+		super (username, firstName, lastName, email, password, role, enabled, activated);
+	}
+	
+	public Trainee (String username, String firstName, String lastName, String email, String password, String role, boolean enabled, boolean activated, Bootcamp bootcamp, AppUser user) {
+		super (username, firstName, lastName, email, password, role, enabled, activated);
+		this.bootcamp = bootcamp;
+		this.user = user;
+	}
+	
+	
+	public void setBootcamp(Bootcamp bootcamp) {
 		this.bootcamp = bootcamp;
 	}
-
+	
+	public Bootcamp getBootcamp () {
+		return bootcamp;
+	}
+	
+	public AppUser getUser () {
+		return user;
+	}
+	
+	public void setUser (AppUser user) {
+		this.user = user;
+	}
+	
 	public void addCertificate(){}
 
 	public void createPersonalEducationPlan(){

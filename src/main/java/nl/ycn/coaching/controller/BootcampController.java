@@ -1,12 +1,10 @@
 package nl.ycn.coaching.controller;
 
-import nl.ycn.coaching.database.AppUserRepository;
-import nl.ycn.coaching.database.BootcampRepository;
-import nl.ycn.coaching.database.BootcampService;
-import nl.ycn.coaching.database.CourseRepository;
+import nl.ycn.coaching.database.*;
 import nl.ycn.coaching.model.Bootcamp;
 import nl.ycn.coaching.model.Course;
 import nl.ycn.coaching.model.users.AppUser;
+import nl.ycn.coaching.model.users.Trainee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,12 +23,15 @@ public class BootcampController {
 	@Autowired
 	private BootcampRepository bootcampRepository;
 	
+	@Autowired
+	private TraineeRepository traineeRepository;
+	
 	private List<Course> retrieveCourseList() {
 		return courseRepository.findAll();
 	}
 	
-	private List<AppUser> retrieveTraineeList() {
-		return bootcampService.fillTraineeList ();
+	private List<Trainee> retrieveTraineeList() {
+		return traineeRepository.findAll ();
 	}
 	
 	private List<Bootcamp> retrieveBootcampList() {
@@ -57,8 +58,12 @@ public class BootcampController {
 	}
 	
 	@PostMapping("addbootcamptotrainee")
-	public String addbootcamptotrainee (String traineeList, String bootcampList) {
-		System.out.println (traineeList);
+	public String addbootcamptotrainee (String traineeId, String bootcampName) {
+		System.out.println (traineeId);
+		System.out.println (bootcampName);
+		String[] traineeName = traineeId.split (" ");
+		
+		bootcampService.addBootcampToTrainee (traineeName[0], bootcampName);
 		return "redirect:/hremployee/dashboard";
 	}
 }
