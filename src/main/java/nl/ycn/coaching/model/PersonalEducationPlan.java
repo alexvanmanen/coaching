@@ -1,10 +1,5 @@
 package nl.ycn.coaching.model;
 
-import nl.ycn.coaching.database.AppUserService;
-import nl.ycn.coaching.database.HardskillRepository;
-import nl.ycn.coaching.model.users.AppUser;
-import org.springframework.beans.factory.annotation.Autowired;
-
 import java.util.ArrayList;
 import java.util.List;
 

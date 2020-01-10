@@ -1,10 +1,8 @@
 package nl.ycn.coaching.controller;
 
 
-import net.bytebuddy.utility.RandomString;
-import nl.ycn.coaching.database.AppUserRepository;
-import nl.ycn.coaching.database.AppUserService;
-import nl.ycn.coaching.database.HrService;
+import nl.ycn.coaching.services.AppUserService;
+import nl.ycn.coaching.services.HrService;
 import nl.ycn.coaching.model.users.AppUser;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,10 +72,12 @@ public class HrController {
 	}
 
 	@GetMapping("/hremployee/skills")
-	public String getSkills() {
+	public String getSkills(Model model) {
 		try {
 			AppUser user = appUserService.getActiveUser();
 			String role = user.getRole();
+			model.addAttribute("softskills", hrService.getSoftskillsForSkillspage());
+			model.addAttribute("course", hrService.getCoursesForSkillspage());
 			return role.toLowerCase() + "/skills";
 		} catch (Exception e) {
 			return "/login";

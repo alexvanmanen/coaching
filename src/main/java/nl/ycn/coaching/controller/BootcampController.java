@@ -1,8 +1,7 @@
 package nl.ycn.coaching.controller;
 
-import nl.ycn.coaching.database.AppUserRepository;
 import nl.ycn.coaching.database.BootcampRepository;
-import nl.ycn.coaching.database.BootcampService;
+import nl.ycn.coaching.services.BootcampService;
 import nl.ycn.coaching.database.CourseRepository;
 import nl.ycn.coaching.model.Bootcamp;
 import nl.ycn.coaching.model.Course;

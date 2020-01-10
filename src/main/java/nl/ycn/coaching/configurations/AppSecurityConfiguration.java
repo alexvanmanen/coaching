@@ -1,8 +1,7 @@
 package nl.ycn.coaching.configurations;
 
-import nl.ycn.coaching.database.AppUserService;
+import nl.ycn.coaching.services.AppUserService;
 import nl.ycn.coaching.database.TraineeRepository;
-import nl.ycn.coaching.model.users.Trainee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;

@@ -2,12 +2,14 @@
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
+
+>
 <head>
     <meta charset="UTF-8">
     <title>HR-Employee | Skills</title>
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" rel="stylesheet"/>
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
 
     <script src="https://visjs.github.io/vis-network/standalone/umd/vis-network.min.js"></script>
@@ -17,8 +19,8 @@
 <body style="background-color: cadetblue">
 
 <div class="ui secondary pointing menu" style="background-color:white">
-    <a class = "item">
-        <img src="../ycnlogo.png" class="image">
+    <a class="item">
+        <img class="image" src="../ycnlogo.png">
     </a>
     <a class="item" href="dashboard">
         Dashboard
@@ -49,8 +51,28 @@
 <div class="ui segment" style="margin-left: 25px; margin-right: 25px;">
     <div>
         <h1>Softskills</h1>
+    </div>
+
+    <div class="ui mini icon message" th:each="hremployee:${hremployees}">
+        <i class="tiny newspaper icon"></i>
+        <div class="content">
+            <h3><span th:text="${hremployee.username}"></span></h3>
+        </div>
+        <i class="right floated tiny edit icon"></i>
+    </div>
 
 
+    <div>
+        <a class="item" href="createsoftskillform">
+            <button class="ui fluid large teal submit button" type="submit">+ add Softskill</button>
+        </a>
+    </div>
+</div>
+
+
+<div class="ui segment" style="margin-left: 25px; margin-right: 25px;">
+    <div>
+        <h1>Softskills</h1>
     </div>
 
     <div class="ui tiny icon message">
@@ -91,7 +113,7 @@
 
     <div>
         <a class="item" href="createsoftskillform">
-        <button class="ui fluid large teal submit button" type="submit">+ add Softskill</button>
+            <button class="ui fluid large teal submit button" type="submit">+ add Softskill</button>
         </a>
     </div>
 </div>
@@ -142,58 +164,8 @@
             <button class="ui fluid large teal submit button" type="submit">+ add Course</button>
         </a>
     </div>
-
-
 </div>
 
-<!--<div>-->
-<!--    <h1 class="ui block header" style="padding: 10px; margin-left: 25px; margin-right: 25px; margin-top: 10px; margin-bottom: 10px"> Softskills-->
-<!--        <a class="item" href="createsoftskillform">-->
-<!--            <button type="submit" class="ui right floated button">+ add softskill</button>-->
-<!--        </a>-->
-<!--    </h1>-->
-<!--</div>-->
-
-<!--<div class="ui grid" style="margin-left: 20px; margin-right: 20px;">-->
-<!--    <div class="five wide column">-->
-<!--        <div class="ui vertical fluid tabular menu">-->
-<!--            <a class="item"></a>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--    <div class="eleven wide stretched column">-->
-<!--        <div class="ui segment">-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-<!--<br>-->
-<!--<br>-->
-<!--<div>-->
-<!--    <h1 class="ui block header" style="padding: 10px; margin-left: 25px; margin-right: 25px; margin-top: 10px; margin-bottom: 10px">-->
-<!--        Hardskills-->
-<!--        <a class="item" href="personalhardskillform">-->
-<!--            <button type="submit" class="ui right floated button">+ add hardskill</button>-->
-<!--        </a>-->
-<!--    </h1>-->
-<!--</div>-->
-
-<!--<div class="ui grid" style="margin-left: 20px; margin-right: 20px;">-->
-<!--    <div class="five wide column">-->
-<!--        <div class="ui vertical fluid tabular menu">-->
-<!--            <a th:href="'dashboardpages/personaleducationplanpage?name=' + ${hardskill.name}" class="item" th:each="hardskill : ${hardskillList}" >-->
-<!--                <p>-->
-<!--                    <span th:text="${hardskill.name}"></span>-->
-<!--                </p>-->
-<!--            </a>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--    <div class="eleven wide stretched column">-->
-<!--        <div class="ui segment" >-->
-<!--            <p th:each="pep : ${personalHardskill}">-->
-<!--                <span th:text="${pep.report}"></span>-->
-<!--            </p>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
 
 </body>
 </html>

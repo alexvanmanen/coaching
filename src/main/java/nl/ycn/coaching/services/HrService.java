@@ -1,12 +1,14 @@
-package nl.ycn.coaching.database;
+package nl.ycn.coaching.services;
 
+import nl.ycn.coaching.database.BootcampRepository;
+import nl.ycn.coaching.database.CourseRepository;
+import nl.ycn.coaching.database.SoftskillRepository;
 import nl.ycn.coaching.model.Bootcamp;
+import nl.ycn.coaching.model.Course;
 import nl.ycn.coaching.model.Softskill;
-import nl.ycn.coaching.model.Team;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +23,8 @@ public class HrService {
     private BootcampService bootcampService;
     @Autowired
     private SoftskillRepository softskillRepository;
+    @Autowired
+    private CourseRepository courseRepository;
 
 
     public void addSoftskill(
@@ -36,4 +40,16 @@ public class HrService {
         return topBootcamps.getContent();
     }
 
+    public List<Softskill> getSoftskillsForSkillspage() {
+        List<Softskill> softskills = softskillRepository.findAll();
+        return  softskills;
+
+    }
+
+    public List<Course> getCoursesForSkillspage() {
+        List<Course> courses = courseRepository.findAll();
+        return courses;
+    }
+
 }
+
