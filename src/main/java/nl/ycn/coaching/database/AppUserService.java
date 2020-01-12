@@ -89,4 +89,18 @@ public class AppUserService implements UserDetailsService {
 		appUserRepository.save(updated_appUser);
 	}
 
+	public void updateAppUser(String username, String firstname, String lastname, String email, String bootcamp, String street, String streetnr, String zipcode, String city, String country){
+		AppUser updateUser = appUserRepository.findByUsername(username);
+		updateUser.setFirstName(firstname);
+		updateUser.setLastName(lastname);
+		updateUser.setEmail(email);
+		updateUser.setBootcamp(bootcamp);
+		updateUser.setStreet(street);
+		updateUser.setStreetNr(streetnr);
+		updateUser.setZipcode(zipcode);
+		updateUser.setCity(city);
+		updateUser.setCountry(country);
+		appUserRepository.save(updateUser);
+	}
+
 }

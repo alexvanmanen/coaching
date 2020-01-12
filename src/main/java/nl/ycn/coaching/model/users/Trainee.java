@@ -24,6 +24,7 @@ public class Trainee {
 	private Bootcamp bootcamp;
 	///private Team team;
 	//private List<Test360> tests360;
+
 	
 	public int getUserId () {
 		return userId;
@@ -51,19 +52,11 @@ public class Trainee {
 
 	}
 
-	public void addCertificate(){}
-
-	public void createPersonalEducationPlan(){
-		PersonalEducationPlan plan = new PersonalEducationPlan();
+	public Bootcamp getBootcamp() {
+		return bootcamp;
 	}
 
-	public void send360Request(){}
-
-	//public PersonalEducationPlan getPepPlan(){
-	//	return this.pepPlan;
-	//}
-
-
-
-
+	public void setBootcamp(Bootcamp bootcamp) {
+		this.bootcamp = bootcamp;
+	}
 }

@@ -1,6 +1,5 @@
 package nl.ycn.coaching.controller;
 
-import nl.ycn.coaching.database.AppUserRepository;
 import nl.ycn.coaching.database.BootcampRepository;
 import nl.ycn.coaching.database.BootcampService;
 import nl.ycn.coaching.database.CourseRepository;
@@ -47,7 +46,7 @@ public class BootcampController {
 	public String addbootcamptotrainee (Model model) {
 		model.addAttribute ("traineeList", retrieveTraineeList ());
 		model.addAttribute ("bootcampList", retrieveBootcampList ());
-		return "/hremployee/addbootcamptotrainee";
+		return "appuserinfo";
 	}
 	
 	@PostMapping("createbootcamp")

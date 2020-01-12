@@ -1,5 +1,7 @@
 package nl.ycn.coaching.model.users;
 
+import nl.ycn.coaching.model.Bootcamp;
+
 import javax.persistence.*;
 
 @Entity
@@ -27,6 +29,26 @@ public class AppUser {
 
 	@Column(name="email")
 	private String email;
+
+
+	//add a bootcamp to the trainee
+	@Column(name="bootcamp")
+	private String bootcamp;
+
+	@Column(name="street")
+	private String street;
+
+	@Column(name="streetNr")
+	private String streetNr;
+
+	@Column(name="country")
+	private String country;
+
+	@Column(name="city")
+	private String city;
+
+	@Column(name="zipcode")
+	private String zipcode;
 
 	@Column(name="enabled")
 	private boolean enabled;
@@ -140,11 +162,48 @@ public class AppUser {
 		this.activated = activated;
 	}
 
-	public void login(){
 
+	public void setStreet(String street) {
+		this.street = street;
 	}
 
-	public void logout(){
+	public String getStreetNr() {
+		return streetNr;
+	}
 
+	public void setStreetNr(String streetnr) {
+		this.streetNr = streetnr;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getStreet() {
+		return this.street;
+	}
+
+	public String getZipcode() {
+		return zipcode;
+	}
+
+	public void setZipcode(String zipcode) {
+		this.zipcode = zipcode;
+	}
+
+	public void setBootcamp(String bootcamp) {
+		this.bootcamp = bootcamp;
 	}
 }
