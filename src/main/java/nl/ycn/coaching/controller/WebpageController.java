@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpSession;
+import java.sql.Date;
 
 @Controller
 public class WebpageController {
@@ -127,10 +128,40 @@ public class WebpageController {
     }
 
     @PostMapping("/register")
-    public String register(String username, String firstname, String lastname, String email, String password, String roles){
+    public String register(String username,
+						   String firstname,
+						   String lastname,
+						   String email,
+						   String password,
+						   String roles,
+						   String bootcamp,
+						   boolean enabled,
+						   boolean activated,
+						   Date dateofbirth,
+						   String zipcode,
+						   String street,
+						   String streetNr,
+						   String city,
+						   String country,
+						   String telephonenumber){
 
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        appUserService.registerUser(username,  firstname, lastname, email, encoder.encode(password), roles, true, true, null, null, null, 0, null, null ,null);
+        appUserService.registerUser(username,
+				firstname,
+				lastname,
+				email,
+				encoder.encode(password),
+				roles,
+				bootcamp,
+				enabled,
+				activated,
+				dateofbirth,
+				zipcode,
+				street,
+				streetNr,
+				city,
+				country,
+				telephonenumber);
 
         return "/dashboardpages/dashboardpage";
     }

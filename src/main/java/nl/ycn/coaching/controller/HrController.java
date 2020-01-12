@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Date;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -33,6 +34,8 @@ public class HrController {
 
 	@Autowired
 	private HrService hrService;
+
+	BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
 	//Mappings for HR-Employee
 	@GetMapping("hremployee/bootcamps")
@@ -69,8 +72,36 @@ public class HrController {
 	}
 
 	@PostMapping(path="hremployee/updateappuserinfo/{username}")
-	public String updateAppUserInfo(@PathVariable("username") String username, String firstname, String lastname, String email, String bootcamp, String street, String streetnr, String zipcode, String city, String country){
-		appUserService.updateAppUser(username, firstname, lastname, email, bootcamp, street, streetnr, zipcode, city, country);
+	public String updateAppUserInfo(@PathVariable("username") String username,
+									String firstname,
+									String lastname,
+									String email,
+									String roles,
+									String bootcamp,
+									boolean enabled,
+									boolean activated,
+									Date dateofbirth,
+									String zipcode,
+									String street,
+									String streetNr,
+									String city,
+									String country,
+									String telephonenumber){
+		appUserService.updateAppUser(username,
+				firstname,
+				lastname,
+				email,
+				roles,
+				bootcamp,
+				enabled,
+				activated,
+				dateofbirth,
+				zipcode,
+				street,
+				streetNr,
+				city,
+				country,
+				telephonenumber);
 		return "redirect:/hremployee/users";
 	}
 
@@ -160,10 +191,26 @@ public class HrController {
 
 	//register a new AppUser (from hremployee/register)
 	@PostMapping("/hremployee/addappuser")
-	public String register(String username, String firstname, String lastname, String email, String password, String roles) {
+	public String register(String username,
+						   String firstname,
+						   String lastname,
+						   String email,
+						   String password,
+						   String roles,
+						   boolean enabled,
+						   boolean activated) {
 
-		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		appUserService.registerUser(username, firstname, lastname, email, encoder.encode(password), roles, true, true, null, null, null, 0, null, null, null);
+
+		appUserService.registerUser(
+							username,
+							firstname,
+							lastname,
+							email,
+							encoder.encode(password),
+							roles,
+							enabled,
+							activated);
+
 		return "redirect:/hremployee/users";
 	}
 

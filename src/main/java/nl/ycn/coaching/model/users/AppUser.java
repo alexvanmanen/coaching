@@ -82,6 +82,26 @@ public class AppUser {
 				   String password,
 				   String role,
 				   boolean enabled,
+				   boolean activated){
+		this.username = username;
+		this.password = password;
+		this.role = role.toUpperCase();
+		this.firstName = firstName.substring(0,1).toUpperCase() + firstName.substring(1).toLowerCase();
+		this.lastName = lastName.substring(0,1).toUpperCase() + lastName.substring(1).toLowerCase();
+		this.email = email.toLowerCase();
+		this.enabled = enabled;
+		this.activated = activated;
+
+	}
+
+	public AppUser(String username,
+				   String firstName,
+				   String lastName,
+				   String email,
+				   String password,
+				   String role,
+				   String bootcamp,
+				   boolean enabled,
 				   boolean activated,
 				   Date dateofbirth,
 				   String zipcode,
@@ -93,21 +113,22 @@ public class AppUser {
 
 			this.username = username;
 			this.password = password;
-			this.role = role;
-			this.firstName = firstName;
-			this.lastName = lastName;
-			this.email = email;
+			this.role = role.toUpperCase();
+			this.firstName = firstName.substring(0,1).toUpperCase() + firstName.substring(1).toLowerCase();
+			this.lastName = lastName.substring(0,1).toUpperCase() + lastName.substring(1).toLowerCase();
+			this.email = email.toLowerCase();
+			this.bootcamp = bootcamp;
 			this.enabled = enabled;
 			this.activated = activated;
 			this.dateofbirth = dateofbirth;
 			this.zipcode = zipcode;
-			this.street = street;
+			this.street = street.substring(0,1).toUpperCase() + street.substring(1).toLowerCase();;
 			this.streetNr = streetNr;
-			this.city = city;
-			this.country = country;
+			this.city = city.substring(0,1).toUpperCase() + city.substring(1).toLowerCase();;
+			this.country = country.substring(0,1).toUpperCase() + country.substring(1).toLowerCase();;
 			this.telephonenumber = telephonenumber;
-
 		}
+
 
 	public long getId() {
 		return id;
@@ -246,11 +267,11 @@ public class AppUser {
 		this.telephonenumber = telephonenumber;
 	}
 
-	public void login(){
-
+	public String getBootcamp() {
+		return bootcamp;
 	}
 
-	public void logout(){
-
+	public void setBootcamp(String bootcamp) {
+		this.bootcamp = bootcamp;
 	}
 }
