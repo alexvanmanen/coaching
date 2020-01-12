@@ -64,7 +64,7 @@ public class PepController {
 		return softskillRepository.findByName (name);
 	}
 
-	@GetMapping("/personaleducationplanpage")
+	@GetMapping("/trainee/personaleducationplanpage")
 	public String goToPepPage(Model model, String name){
 		PersonalEducationPlan personalEducationPlan = new PersonalEducationPlan();
 
@@ -82,12 +82,12 @@ public class PepController {
 		return "/trainee/personaleducationplanpage";
 	}
 
-	@GetMapping("/personalhardskillform")
+	@GetMapping("/trainee/personalhardskillform")
 	public String getpersonalhardskillform(){
 		return "/trainee/personalhardskillform";
 	}
 
-	@GetMapping("/personalsoftskillform")
+	@GetMapping("/trainee/personalsoftskillform")
 	public String getpersonalsoftskillform(Model model, String name){
 		model.addAttribute ("softskillList", retrieveSoftskillList ());
 		model.addAttribute ("softskill", retrieveSoftskillByName (name));
@@ -95,10 +95,8 @@ public class PepController {
 	}
 
 	@GetMapping("addsoftskillspage")
-	public String getaddsoftskillpage() { return "/trainee/addsoftskillpage"; }
-
-
-
-
+	public String getaddsoftskillpage() {
+		return "/trainee/addsoftskillpage";
+	}
 
 }

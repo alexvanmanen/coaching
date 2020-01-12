@@ -97,7 +97,7 @@ public class WebpageController {
     @GetMapping("/accountsettings")
     public String accountsettings() {
 
-        return "/accountsettings";
+        return "/trainee/accountsettings";
     }
 
 	@PostMapping("/login")
@@ -130,7 +130,7 @@ public class WebpageController {
     public String register(String username, String firstname, String lastname, String email, String password, String roles){
 
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        appUserService.registerUser(username,  firstname, lastname, email, encoder.encode(password), roles, true, true);
+        appUserService.registerUser(username,  firstname, lastname, email, encoder.encode(password), roles, true, true, null, null, null, 0, null, null ,null);
 
         return "/dashboardpages/dashboardpage";
     }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Coaching | Softskills toevoegen</title>
@@ -18,34 +18,10 @@
 </head>
 <body style="background-color: cadetblue">
 
-<div class="ui secondary pointing menu" style="background-color:white">
-    <a class="item">
-        <img class="image" src="../ycnlogo.png">
-    </a>
-    <a class="item" href="/trainee/dashboard">
-        Dashboard
-    </a>
-    <a class="item" href="/trainee/courses">
-        Courses
-    </a>
-    <a class="item active" href="/trainee/personaleducationplanpage">
-        Personal Education Plan
-    </a>
-    <a class="item" href="/trainee/calendar">
-        Calendar
-    </a>
-    <a class="item" href="/trainee/contactdetails">
-        Contact Details
-    </a>
+<div th:insert="~{trainee/header :: header}">
+<script>$('#createsoftskillform').addClass('active');</script>
 
-    <div class="right menu">
-        <a class="ui item" href="login">
-            Logout
-        </a>
-    </div>
-</div>
-
-<div>
+    <div>
     <h1 class="ui block header"
         style="padding: 10px; margin-left: 25px; margin-right: 25px; margin-top: 10px; margin-bottom: 10px"> Maak een
         softskill aan</h1>
