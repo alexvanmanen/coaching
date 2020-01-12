@@ -67,7 +67,9 @@ public class HrController {
 		model.addAttribute("zipcode", appUserService.getUser(username).getZipcode());
 		model.addAttribute("city", appUserService.getUser(username).getCity());
 		model.addAttribute("country", appUserService.getUser(username).getCountry());
-		model.addAttribute ("bootcampList", bootcampRepository.findAll());
+		model.addAttribute("bootcampList", bootcampRepository.findAll());
+		model.addAttribute("telephonenumber",appUserService.getUser(username).getTelephonenumber());
+		model.addAttribute("dateofbirth", appUserService.getUser(username).getDateofbirth());
 		return "/hremployee/appuserinfo";
 	}
 
