@@ -3,34 +3,47 @@ package nl.ycn.coaching.model.users;
 import nl.ycn.coaching.model.*;
 
 import javax.persistence.*;
+import java.sql.Date;
 import java.util.List;
 
 @Entity
-@Table(name="trainees")
-@DiscriminatorValue (value = "trainee")
-public class Trainee {
+public class Trainee extends AppUser{
 	
 	@Id
 	@GeneratedValue
 	private Long id;
 	
-	@Column
-	private int userId;
-	
-	//private PersonalEducationPlan pepPlan;
-	//private List<Certificate> certificates;
 	@ManyToOne
 	@JoinColumn(name = "BOOTCAMP_ID")
 	private Bootcamp bootcamp;
-	///private Team team;
-	//private List<Test360> tests360;
 	
-	public int getUserId () {
-		return userId;
+	@OneToOne
+	@JoinColumn(name ="userId", insertable = false, updatable = false)
+	private AppUser user;
+	
+	public Trainee(){}
+	
+	public Trainee (Bootcamp bootcamp, AppUser user) {
+		this.bootcamp = bootcamp;
+		this.user = user;
 	}
 	
-	public void setUserId (int userId) {
-		this.userId = userId;
+	public Trainee (String username, String firstName, String lastName, String email, String password, String role, boolean enabled, boolean activated, Date dateofbirth, String zipcode, String street, int streetnumber, String city, String country, String telephonenumber) {
+		super (username, firstName, lastName, email, password, role, enabled, activated, dateofbirth, zipcode, street, streetnumber, city, country, telephonenumber);
+	}
+	
+	public Trainee (String username, String firstName, String lastName, String email, String password, String role, boolean enabled, boolean activated, Date dateofbirth, String zipcode, String street, int streetnumber, String city, String country, String telephonenumber, Bootcamp bootcamp, AppUser user) {
+		super (username, firstName, lastName, email, password, role, enabled, activated, dateofbirth, zipcode, street, streetnumber, city, country, telephonenumber);
+		this.bootcamp = bootcamp;
+		this.user = user;
+	}
+	
+	public void setBootcamp(Bootcamp bootcamp) {
+		this.bootcamp = bootcamp;
+	}
+	
+	public Bootcamp getBootcamp () {
+		return bootcamp;
 	}
 	
 	public AppUser getUser () {
@@ -41,16 +54,6 @@ public class Trainee {
 		this.user = user;
 	}
 	
-	@OneToOne
-	@JoinColumn(name ="userId", insertable = false, updatable = false)
-	private AppUser user;
-
-	public Trainee(){
-		PersonalEducationPlan plan = new PersonalEducationPlan();
-		//this.pepPlan = plan;
-
-	}
-
 	public void addCertificate(){}
 
 	public void createPersonalEducationPlan(){
@@ -59,9 +62,6 @@ public class Trainee {
 
 	public void send360Request(){}
 
-	//public PersonalEducationPlan getPepPlan(){
-	//	return this.pepPlan;
-	//}
 
 
 
