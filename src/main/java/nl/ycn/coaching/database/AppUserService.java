@@ -3,9 +3,6 @@ package nl.ycn.coaching.database;
 import nl.ycn.coaching.model.Bootcamp;
 import nl.ycn.coaching.model.users.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -24,16 +21,19 @@ public class AppUserService implements UserDetailsService {
 	@Autowired
 	private AppUserRepository appUserRepository;
 
+	@Autowired
+	private BootcampRepository bootcampRepository;
+
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		AppUser user = appUserRepository.findByUsername(username);
 		UserDetails userDetails =
 				org.springframework.security.core.userdetails.User
-				.builder()
-				.username(username)
-				.password(user.getPassword())
-				.roles(user.getRole())
-				.build();
+						.builder()
+						.username(username)
+						.password(user.getPassword())
+						.roles(user.getRole())
+						.build();
 
 		return userDetails;
 	}
@@ -46,35 +46,63 @@ public class AppUserService implements UserDetailsService {
 			String password,
 			String roles,
 			boolean enabled,
-			boolean activated,
-			Date dateofbirth,
-			String zipcode,
-			String street,
-			int streetnumber,
-			String city,
-			String country,
-			String telephonenumber) {
+			boolean activated) {
+		AppUser user = appUserRepository.findByUsername(username);
+		if (user == null) {
+			AppUser newUser = new AppUser(
+					username,
+					firstname,
+					lastname,
+					email,
+					password,
+					roles,
+					enabled,
+					activated);
+			appUserRepository.save(newUser);
+		} else {
+			System.out.print("username already taken");
+		}
+	}
+
+	//overloaded method registerUser
+	public void registerUser(
+				String username,
+				String firstName,
+				String lastName,
+				String email,
+				String password,
+				String role,
+				boolean enabled,
+				boolean activated,
+				Date dateofbirth,
+				String zipcode,
+				String street,
+				String streetNr,
+				String city,
+				String country,
+				String telephonenumber,
+				String bootcamp) {
 		AppUser user = appUserRepository.findByUsername(username);
 		if (user == null){
-			switch (roles) {
+			switch (role) {
 				case "TRAINEE":
-					AppUser newUser = new Trainee(username, firstname, lastname, email, password, roles, enabled, activated, dateofbirth, zipcode, street, streetnumber, city, country, telephonenumber);
+					AppUser newUser = new Trainee(username, firstName, lastName, email, password, role, enabled, activated, dateofbirth, zipcode, street, streetNr, city, country, telephonenumber, bootcampRepository.findByBootcampName(bootcamp));
 					appUserRepository.save (newUser);
 					break;
 				case "HREMPLOYEE":
-					newUser = new HrEmployee (username, firstname, lastname, email, password, roles, enabled, activated, dateofbirth, zipcode, street, streetnumber, city, country, telephonenumber);
+					newUser = new HrEmployee (username, firstName, lastName, email, password, role, enabled, activated, dateofbirth, zipcode, street, streetNr, city, country, telephonenumber);
 					appUserRepository.save (newUser);
 					break;
 				case "MANAGER":
-					newUser = new Manager (username, firstname, lastname, email, password, roles, enabled, activated, dateofbirth, zipcode, street, streetnumber, city, country, telephonenumber);
+					newUser = new Manager (username, firstName, lastName, email, password, role, enabled, activated, dateofbirth, zipcode, street, streetNr, city, country, telephonenumber);
 					appUserRepository.save (newUser);
 					break;
 				case "TALENTMANAGER":
-					newUser = new TalentManager (username, firstname, lastname, email, password, roles, enabled, activated, dateofbirth, zipcode, street, streetnumber, city, country, telephonenumber);
+					newUser = new TalentManager (username, firstName, lastName, email, password, role, enabled, activated, dateofbirth, zipcode, street, streetNr, city, country, telephonenumber);
 					appUserRepository.save (newUser);
 					break;
 				case "ADMIN":
-					newUser = new AppUser (username, firstname, lastname, email, password, roles, enabled, activated, dateofbirth, zipcode, street, streetnumber, city, country, telephonenumber);
+					newUser = new AppUser (username, firstName, lastName, email, password, role, enabled, activated, dateofbirth, zipcode, street, streetNr, city, country, telephonenumber);
 					appUserRepository.save (newUser);
 					break;
 					}
@@ -95,13 +123,13 @@ public class AppUserService implements UserDetailsService {
 		return user;
 	}
 
-	public List<AppUser> getAppUsersByRole(String role){
+	public List<AppUser> getAppUsersByRole(String role) {
 		List<AppUser> listAppUsersByRole = appUserRepository.findByRole(role);
 		return listAppUsersByRole;
 	}
 
 	//Changes the current user's password to a new given password
-	public void changePassword(String new_password){
+	public void changePassword(String new_password) {
 
 		//Password encoder
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -115,6 +143,43 @@ public class AppUserService implements UserDetailsService {
 
 		//Save to repository
 		appUserRepository.save(updated_appUser);
+	}
+
+	public void updateAppUser(String username,
+							  String firstname,
+							  String lastname,
+							  String email,
+							  String password,
+							  boolean enabled,
+							  boolean activated,
+							  Date dateofbirth,
+							  String zipcode,
+							  String street,
+							  String streetNr,
+							  String city,
+							  String country,
+							  String telephonenr,
+							  String bootcamp) {
+		AppUser updateUser = appUserRepository.findByUsername(username);
+
+		updateUser.setPassword(password);
+		updateUser.setFirstName(firstname);
+		updateUser.setLastName(lastname);
+		updateUser.setEmail(email);
+		updateUser.setDateofbirth(dateofbirth);
+		updateUser.setStreet(street);
+		updateUser.setStreetNr(streetNr);
+		updateUser.setZipcode(zipcode);
+		updateUser.setCity(city);
+		updateUser.setCountry(country);
+		updateUser.setTelephonenumber(telephonenr);
+		updateUser.setEnabled(enabled);
+		updateUser.setActivated(activated);
+		appUserRepository.save(updateUser);
+		if (updateUser instanceof Trainee){
+			Trainee updateTrainee = (Trainee) updateUser;
+			updateTrainee.setBootcamp(bootcampRepository.findByBootcampName(bootcamp));
+		}
 	}
 
 }

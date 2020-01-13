@@ -21,6 +21,7 @@ repositories {
 }
 
 dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-jdbc'
@@ -30,9 +31,16 @@ dependencies {
     implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
     implementation 'org.springframework.session:spring-session-core'
     implementation 'com.h2database:h2'
+
+    compile 'io.micrometer:micrometer-registry-prometheus:1.3.2'
+    compile 'io.prometheus:simpleclient_spring_boot:0.0.21'
+    compile 'io.prometheus:simpleclient_servlet:0.0.21'
+    compile 'io.prometheus:simpleclient_hotspot:0.0.21'
     compile 'org.apache.commons:commons-lang3:3.9'
     compile 'org.springframework.mobile:spring-mobile-device:2.0.0.M3'
+
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }

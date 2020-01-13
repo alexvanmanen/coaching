@@ -3,7 +3,6 @@ package nl.ycn.coaching.controller;
 import nl.ycn.coaching.database.*;
 import nl.ycn.coaching.model.Bootcamp;
 import nl.ycn.coaching.model.Course;
-import nl.ycn.coaching.model.users.AppUser;
 import nl.ycn.coaching.model.users.Trainee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,7 +24,7 @@ public class BootcampController {
 	
 	@Autowired
 	private TraineeRepository traineeRepository;
-	
+
 	private List<Course> retrieveCourseList() {
 		return courseRepository.findAll();
 	}
@@ -44,26 +43,9 @@ public class BootcampController {
 		return "/hremployee/createbootcamp";
 	}
 	
-	@GetMapping("addbootcamptotrainee")
-	public String addbootcamptotraineeform (Model model) {
-		model.addAttribute ("traineeList", retrieveTraineeList ());
-		model.addAttribute ("bootcampList", retrieveBootcampList ());
-		return "/hremployee/addbootcamptotrainee";
-	}
-	
 	@PostMapping("createbootcamp")
 	public String createbootcamp (String bootcampName, String courseList) {
 		bootcampService.addBootcamp (bootcampName, courseList);
-		return "redirect:/hremployee/bootcamps";
-	}
-	
-	@PostMapping("addbootcamptotrainee")
-	public String addbootcamptotrainee (String traineeId, String bootcampName) {
-		System.out.println (traineeId);
-		System.out.println (bootcampName);
-		String[] traineeName = traineeId.split (" ");
-		
-		bootcampService.addBootcampToTrainee (traineeName[0], bootcampName);
-		return "redirect:/hremployee/dashboard";
+		return "redirect:hremployee/bootcamps";
 	}
 }

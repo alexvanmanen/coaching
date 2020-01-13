@@ -1,5 +1,7 @@
 package nl.ycn.coaching.model.users;
 
+import nl.ycn.coaching.model.Bootcamp;
+
 import javax.persistence.*;
 import java.sql.Date;
 
@@ -29,6 +31,21 @@ public class AppUser {
 	@Column(name="email")
 	private String email;
 
+	@Column(name="street")
+	private String street;
+
+	@Column(name="streetNr")
+	private String streetNr;
+
+	@Column(name="country")
+	private String country;
+
+	@Column(name="city")
+	private String city;
+
+	@Column(name="zipcode")
+	private String zipcode;
+
 	@Column(name="enabled")
 	private boolean enabled;
 
@@ -38,21 +55,6 @@ public class AppUser {
 	//Contactgegevens
 	@Column(name="dateofbirth")
 	private Date dateofbirth;
-
-	@Column(name="zipcode")
-	private String zipcode;
-
-	@Column(name="street")
-	private String street;
-
-	@Column(name="streetnumber")
-	private int streetnumber;
-
-	@Column(name="city")
-	private String city;
-
-	@Column(name="country")
-	private String country;
 
 	@Column(name="telephonenumber")
 	private String telephonenumber;
@@ -75,32 +77,51 @@ public class AppUser {
 				   String password,
 				   String role,
 				   boolean enabled,
+				   boolean activated){
+		this.username = username;
+		this.password = password;
+		this.role = role.toUpperCase();
+		this.firstName = firstName.substring(0,1).toUpperCase() + firstName.substring(1).toLowerCase();
+		this.lastName = lastName.substring(0,1).toUpperCase() + lastName.substring(1).toLowerCase();
+		this.email = email.toLowerCase();
+		this.enabled = enabled;
+		this.activated = activated;
+
+	}
+
+	public AppUser(String username,
+				   String firstName,
+				   String lastName,
+				   String email,
+				   String password,
+				   String role,
+				   boolean enabled,
 				   boolean activated,
 				   Date dateofbirth,
 				   String zipcode,
 				   String street,
-				   int streetnumber,
+				   String streetNr,
 				   String city,
 				   String country,
 				   String telephonenumber) {
 
 			this.username = username;
 			this.password = password;
-			this.role = role;
-			this.firstName = firstName;
-			this.lastName = lastName;
-			this.email = email;
+			this.role = role.toUpperCase();
+			this.firstName = firstName.substring(0,1).toUpperCase() + firstName.substring(1).toLowerCase();
+			this.lastName = lastName.substring(0,1).toUpperCase() + lastName.substring(1).toLowerCase();
+			this.email = email.toLowerCase();
 			this.enabled = enabled;
 			this.activated = activated;
 			this.dateofbirth = dateofbirth;
 			this.zipcode = zipcode;
-			this.street = street;
-			this.streetnumber = streetnumber;
-			this.city = city;
-			this.country = country;
+			this.street = street.substring(0,1).toUpperCase() + street.substring(1).toLowerCase();;
+			this.streetNr = streetNr;
+			this.city = city.substring(0,1).toUpperCase() + city.substring(1).toLowerCase();;
+			this.country = country.substring(0,1).toUpperCase() + country.substring(1).toLowerCase();;
 			this.telephonenumber = telephonenumber;
-
 		}
+
 
 	public long getId() {
 		return id;
@@ -207,12 +228,12 @@ public class AppUser {
 		this.street = street;
 	}
 
-	public int getStreetnumber() {
-		return streetnumber;
+	public String getStreetNr() {
+		return streetNr;
 	}
 
-	public void setStreetnumber(int streetnumber) {
-		this.streetnumber = streetnumber;
+	public void setStreetNr(String streetNr) {
+		this.streetNr = streetNr;
 	}
 
 	public String getCity() {
@@ -239,11 +260,4 @@ public class AppUser {
 		this.telephonenumber = telephonenumber;
 	}
 
-	public void login(){
-
-	}
-
-	public void logout(){
-
-	}
 }
