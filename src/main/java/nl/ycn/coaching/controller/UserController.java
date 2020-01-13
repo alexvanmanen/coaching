@@ -1,7 +1,6 @@
 package nl.ycn.coaching.controller;
 
 import nl.ycn.coaching.database.AppUserRepository;
-import nl.ycn.coaching.database.AppUserService;
 import nl.ycn.coaching.model.users.AppUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,32 +11,24 @@ import org.springframework.web.bind.annotation.RequestBody;
 @org.springframework.web.bind.annotation.RestController
 public class UserController {
 
+	AppUserRepository appUserRepository;
 
-    AppUserService appUserService;
+	@Autowired
+	public UserController(AppUserRepository appUserRepository) {
+		this.appUserRepository = appUserRepository;
+	}
 
-    AppUserRepository appUserRepository;
+	@GetMapping("/getLastName/{username}")
+	public AppUser getLastName(@PathVariable String username) {
+		AppUser appUser = new AppUser();
+		appUser.setLastName("jansen");
+		return appUserRepository.findByUsername(username);
+	}
 
-    @Autowired
-    public UserController(AppUserRepository appUserRepository){
-
-        this.appUserRepository = appUserRepository;
-    }
-
-    @GetMapping("/getLastName/{username}")
-    public AppUser getLastName(@PathVariable String username) {
-        AppUser appUser = new AppUser();
-        appUser.setLastName("jansen");
-        return appUserRepository.findByUsername(username);
-        //return appUser;
-        //return appUserService.getUser(username).getLastName();
-    }
-
-    @PostMapping("/addUser")
-    public AppUser addUser(@RequestBody AppUser appUser){
-        appUserRepository.save(appUser);
-        return appUser;
-
-    }
+	@PostMapping("/addUser")
+	public AppUser addUser(@RequestBody AppUser appUser) {
+		return appUserRepository.save(appUser);
+	}
 
 }
 

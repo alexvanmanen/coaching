@@ -31,11 +31,6 @@ public class AppUser {
 	@Column(name="email")
 	private String email;
 
-
-	//add a bootcamp to the trainee
-	@Column(name="bootcamp")
-	private String bootcamp;
-
 	@Column(name="street")
 	private String street;
 
@@ -100,7 +95,6 @@ public class AppUser {
 				   String email,
 				   String password,
 				   String role,
-				   String bootcamp,
 				   boolean enabled,
 				   boolean activated,
 				   Date dateofbirth,
@@ -117,7 +111,6 @@ public class AppUser {
 			this.firstName = firstName.substring(0,1).toUpperCase() + firstName.substring(1).toLowerCase();
 			this.lastName = lastName.substring(0,1).toUpperCase() + lastName.substring(1).toLowerCase();
 			this.email = email.toLowerCase();
-			this.bootcamp = bootcamp;
 			this.enabled = enabled;
 			this.activated = activated;
 			this.dateofbirth = dateofbirth;
@@ -267,11 +260,4 @@ public class AppUser {
 		this.telephonenumber = telephonenumber;
 	}
 
-	public String getBootcamp() {
-		return bootcamp;
-	}
-
-	public void setBootcamp(String bootcamp) {
-		this.bootcamp = bootcamp;
-	}
 }

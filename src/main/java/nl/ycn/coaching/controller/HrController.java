@@ -82,6 +82,7 @@ public class HrController {
 									String email,
 									String roles,
 									String bootcamp,
+									String password,
 									boolean enabled,
 									boolean activated,
 									Date dateofbirth,
@@ -95,8 +96,7 @@ public class HrController {
 				firstname,
 				lastname,
 				email,
-				roles,
-				bootcamp,
+				password,
 				enabled,
 				activated,
 				dateofbirth,
@@ -105,7 +105,8 @@ public class HrController {
 				streetNr,
 				city,
 				country,
-				telephonenumber);
+				telephonenumber,
+				bootcamp);
 		return "redirect:/hremployee/users";
 	}
 
@@ -214,7 +215,6 @@ public class HrController {
 							roles,
 							enabled,
 							activated);
-
 		return "redirect:/hremployee/users";
 	}
 
