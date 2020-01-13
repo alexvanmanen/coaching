@@ -22,6 +22,9 @@ public class AppUserService implements UserDetailsService {
 	private AppUserRepository appUserRepository;
 
 	@Autowired
+	private BootcampService bootcampService;
+
+	@Autowired
 	private BootcampRepository bootcampRepository;
 
 	@Override
@@ -86,7 +89,7 @@ public class AppUserService implements UserDetailsService {
 		if (user == null){
 			switch (role) {
 				case "TRAINEE":
-					AppUser newUser = new Trainee(username, firstName, lastName, email, password, role, enabled, activated, dateofbirth, zipcode, street, streetNr, city, country, telephonenumber, bootcampRepository.findByBootcampName(bootcamp));
+					AppUser newUser = new Trainee(username, firstName, lastName, email, password, role, enabled, activated, dateofbirth, zipcode, street, streetNr, city, country, telephonenumber, bootcampRepository.findByBootcampName(bootcamp.toLowerCase()));
 					appUserRepository.save (newUser);
 					break;
 				case "HREMPLOYEE":
@@ -161,8 +164,11 @@ public class AppUserService implements UserDetailsService {
 							  String telephonenr,
 							  String bootcamp) {
 		AppUser updateUser = appUserRepository.findByUsername(username);
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		if (updateUser.getPassword()!=null && !updateUser.getPassword().equals(password)){
+			updateUser.setPassword(encoder.encode(password));
+		}
 
-		updateUser.setPassword(password);
 		updateUser.setFirstName(firstname);
 		updateUser.setLastName(lastname);
 		updateUser.setEmail(email);
@@ -175,11 +181,11 @@ public class AppUserService implements UserDetailsService {
 		updateUser.setTelephonenumber(telephonenr);
 		updateUser.setEnabled(enabled);
 		updateUser.setActivated(activated);
-		appUserRepository.save(updateUser);
-		if (updateUser instanceof Trainee){
+		if (getUser(username).getRole().equals("TRAINEE")){
 			Trainee updateTrainee = (Trainee) updateUser;
-			updateTrainee.setBootcamp(bootcampRepository.findByBootcampName(bootcamp));
+			updateTrainee.setBootcamp(bootcampService.updateBootcamp(bootcamp));
 		}
+		appUserRepository.save(updateUser);
 	}
 
 }

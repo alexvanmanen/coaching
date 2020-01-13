@@ -33,8 +33,12 @@ public class BootcampService {
 	public void addBootcamp(
 			String bootcampName,
 			String courseList){
-		Bootcamp bootcamp = new Bootcamp (bootcampName, courseList);
+		Bootcamp bootcamp = new Bootcamp (bootcampName.toLowerCase(), courseList);
 		bootcampRepository.save (bootcamp);
+	}
+
+	public Bootcamp updateBootcamp(String bootcamp){
+		return bootcampRepository.findByBootcampName(bootcamp);
 	}
 	
 	public List<AppUser> fillTraineeList() {
