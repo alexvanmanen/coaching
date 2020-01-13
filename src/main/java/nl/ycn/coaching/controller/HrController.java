@@ -59,7 +59,7 @@ public class HrController {
 	@GetMapping(path="/hremployee/appuserinfo/{username}")
 	public String getAppUserInfo(Model model , @PathVariable("username") String username){
 
-		model.addAttribute("role", appUserService.getUser(username).getRole().substring(0,1).toUpperCase().substring(1).toLowerCase());
+		model.addAttribute("role", appUserService.getUser(username).getRole().toLowerCase());
 		model.addAttribute("username", appUserService.getUser(username).getUsername());
 		model.addAttribute("firstname", appUserService.getUser(username).getFirstName());
 		model.addAttribute("lastname", appUserService.getUser(username).getLastName());
