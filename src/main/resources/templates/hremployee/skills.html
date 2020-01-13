@@ -32,7 +32,6 @@
         </div>
 
 <!--        <form class="ui form" method="get" th:action="@{'/hremployee/softskilledit/' + ${softskill.name}}">-->
-
             <button class="ui orange inverted button" ><i class ="centered edit icon"></i></button>
         </form>
     </div>
@@ -56,15 +55,16 @@
         <div class="content">
             <h3>
                 <span th:text="${course.name}"></span></h3>
-        </div>
-<!--        <form class="ui form" method="get" th:action="@{'/hremployee/softskilledit/' + ${course.name}}">-->
-
-            <button class="ui orange inverted button" ><i class ="centered edit icon"></i></button>
+            <form class="ui form" method="get" th:action="@{'/hremployee/courseedit/' + ${course.name}">
+                <button class="ui orange inverted button" type="submit">
+                    <i class ="centered edit icon"></i>
+                </button>_
         </form>
+        </div>
     </div>
     <div>
-        <a class="item" href="createsoftskillform">
-            <button class="ui fluid large teal submit button" type="submit">+ add Softskill</button>
+        <a class="item" href="createcourseform">
+            <button class="ui fluid large teal submit button" type="submit">+ add Course</button>
         </a>
     </div>
 </div>

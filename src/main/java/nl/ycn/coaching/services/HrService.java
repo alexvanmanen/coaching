@@ -34,6 +34,13 @@ public class HrService {
         softskillRepository.save(softskill);
     }
 
+    public void addCourse(
+            String name,
+            String description) {
+        Course course = new Course(name, description);
+        courseRepository.save(course);
+    }
+
     //retreive top 'length' bootcamps from the repository and return a list with the top 'length' bootcamps.
     public List<Bootcamp> getTopBootcamps(int length){
         Page<Bootcamp> topBootcamps = bootcampRepository.findAll(PageRequest.of(0,length, Sort.by("endDate").descending()));
