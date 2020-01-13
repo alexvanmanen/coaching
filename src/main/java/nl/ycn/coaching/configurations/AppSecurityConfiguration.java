@@ -90,11 +90,11 @@ public class AppSecurityConfiguration extends WebSecurityConfigurerAdapter {
            .dataSource(dataSource)
            .passwordEncoder(encoder);
 
-        appUserService.registerUser("luuk","Luuk", "Wempe", "luukwempe@hotmail.com", encoder.encode("hallo"), "ADMIN", "devops", true, true,Date.valueOf("2020-01-01"),"2000PP", "Bobhof", "1", "Bobdam", "Bobland", "06324543");
-        appUserService.registerUser("alex","Alex", "van Manen", "alex@vanmanenit.nl", encoder.encode("hallo"), "TRAINEE", "devops", true, true, Date.valueOf("2020-01-01") ,"3000PP", "Bobhof", "1", "Bobdam", "Bobland", "112");
-        appUserService.registerUser("vuong","Vuong", "Ngo", "vuong.anime@gmail.com", encoder.encode("hallo"), "MANAGER", "devops", true, true, Date.valueOf("2020-01-01"),"4000PP", "Bobhof", "1", "Bobdam", "Bobland", "112");
-        appUserService.registerUser("simone","Simone", "Meijers", "scm15-8@live.nl", encoder.encode("hallo"), "TALENTMANAGER", "devops", true, true, Date.valueOf("2020-01-01"),"5000PP", "Bobhof", "1", "Bobdam", "Bobland", "112");
-        appUserService.registerUser("wouter","Wouter", "Abels", "wouterabels@hotmail.com", encoder.encode("hallo"), "HREMPLOYEE", "devops", true, true,Date.valueOf("2020-01-01") ,"6000PP", "Bobhof", "1", "Bobdam", "Bobland", "112");
+        appUserService.registerUser("luuk","Luuk", "Wempe", "luukwempe@hotmail.com", encoder.encode("hallo"), "ADMIN", true, true, Date.valueOf("2020-01-01"),"2000PP", "Bobhof", "1", "Bobdam", "Bobland", "06324543", "");
+        appUserService.registerUser("alex","Alex", "van Manen", "alex@vanmanenit.nl", encoder.encode("hallo"), "TRAINEE", true, true, Date.valueOf("2020-01-01") ,"3000PP", "Bobhof", "1", "Bobdam", "Bobland", "112", "DevOps 1");
+        appUserService.registerUser("vuong","Vuong", "Ngo", "vuong.anime@gmail.com", encoder.encode("hallo"), "MANAGER" , true, true, Date.valueOf("2020-01-01"),"4000PP", "Bobhof", "1", "Bobdam", "Bobland", "112", "");
+        appUserService.registerUser("simone","Simone", "Meijers", "scm15-8@live.nl", encoder.encode("hallo"), "TALENTMANAGER", true, true, Date.valueOf("2020-01-01"),"5000PP", "Bobhof", "1", "Bobdam", "Bobland", "112","");
+        appUserService.registerUser("wouter","Wouter", "Abels", "wouterabels@hotmail.com", encoder.encode("hallo"), "HREMPLOYEE",  true, true,Date.valueOf("2020-01-01") ,"6000PP", "Bobhof", "1", "Bobdam", "Bobland", "112", "");
     }
 
 }

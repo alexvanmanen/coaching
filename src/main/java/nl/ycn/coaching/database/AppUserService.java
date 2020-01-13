@@ -1,6 +1,7 @@
 package nl.ycn.coaching.database;
 
-import nl.ycn.coaching.model.users.AppUser;
+import nl.ycn.coaching.model.Bootcamp;
+import nl.ycn.coaching.model.users.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
@@ -19,6 +20,9 @@ public class AppUserService implements UserDetailsService {
 
 	@Autowired
 	private AppUserRepository appUserRepository;
+
+	@Autowired
+	private BootcampRepository bootcampRepository;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -62,42 +66,46 @@ public class AppUserService implements UserDetailsService {
 
 	//overloaded method registerUser
 	public void registerUser(
-			String username,
-			String firstName,
-			String lastName,
-			String email,
-			String password,
-			String role,
-			String bootcamp,
-			boolean enabled,
-			boolean activated,
-			Date dateofbirth,
-			String zipcode,
-			String street,
-			String streetNr,
-			String city,
-			String country,
-			String telephonenumber) {
+				String username,
+				String firstName,
+				String lastName,
+				String email,
+				String password,
+				String role,
+				boolean enabled,
+				boolean activated,
+				Date dateofbirth,
+				String zipcode,
+				String street,
+				String streetNr,
+				String city,
+				String country,
+				String telephonenumber,
+				String bootcamp) {
 		AppUser user = appUserRepository.findByUsername(username);
-		if (user == null) {
-			AppUser newUser = new AppUser(
-					username,
-					firstName,
-					lastName,
-					email,
-					password,
-					role,
-					bootcamp,
-					enabled,
-					activated,
-					dateofbirth,
-					zipcode,
-					street,
-					streetNr,
-					city,
-					country,
-					telephonenumber);
-			appUserRepository.save(newUser);
+		if (user == null){
+			switch (role) {
+				case "TRAINEE":
+					AppUser newUser = new Trainee(username, firstName, lastName, email, password, role, enabled, activated, dateofbirth, zipcode, street, streetNr, city, country, telephonenumber, bootcampRepository.findByBootcampName(bootcamp));
+					appUserRepository.save (newUser);
+					break;
+				case "HREMPLOYEE":
+					newUser = new HrEmployee (username, firstName, lastName, email, password, role, enabled, activated, dateofbirth, zipcode, street, streetNr, city, country, telephonenumber);
+					appUserRepository.save (newUser);
+					break;
+				case "MANAGER":
+					newUser = new Manager (username, firstName, lastName, email, password, role, enabled, activated, dateofbirth, zipcode, street, streetNr, city, country, telephonenumber);
+					appUserRepository.save (newUser);
+					break;
+				case "TALENTMANAGER":
+					newUser = new TalentManager (username, firstName, lastName, email, password, role, enabled, activated, dateofbirth, zipcode, street, streetNr, city, country, telephonenumber);
+					appUserRepository.save (newUser);
+					break;
+				case "ADMIN":
+					newUser = new AppUser (username, firstName, lastName, email, password, role, enabled, activated, dateofbirth, zipcode, street, streetNr, city, country, telephonenumber);
+					appUserRepository.save (newUser);
+					break;
+					}
 		} else {
 			System.out.print("username already taken");
 		}
@@ -141,8 +149,7 @@ public class AppUserService implements UserDetailsService {
 							  String firstname,
 							  String lastname,
 							  String email,
-							  String roles,
-							  String bootcamp,
+							  String password,
 							  boolean enabled,
 							  boolean activated,
 							  Date dateofbirth,
@@ -151,13 +158,15 @@ public class AppUserService implements UserDetailsService {
 							  String streetNr,
 							  String city,
 							  String country,
-							  String telephonenr) {
+							  String telephonenr,
+							  String bootcamp) {
 		AppUser updateUser = appUserRepository.findByUsername(username);
+
+		updateUser.setPassword(password);
 		updateUser.setFirstName(firstname);
 		updateUser.setLastName(lastname);
 		updateUser.setEmail(email);
 		updateUser.setDateofbirth(dateofbirth);
-		updateUser.setBootcamp(bootcamp);
 		updateUser.setStreet(street);
 		updateUser.setStreetNr(streetNr);
 		updateUser.setZipcode(zipcode);
@@ -167,6 +176,10 @@ public class AppUserService implements UserDetailsService {
 		updateUser.setEnabled(enabled);
 		updateUser.setActivated(activated);
 		appUserRepository.save(updateUser);
+		if (updateUser instanceof Trainee){
+			Trainee updateTrainee = (Trainee) updateUser;
+			updateTrainee.setBootcamp(bootcampRepository.findByBootcampName(bootcamp));
+		}
 	}
 
 }

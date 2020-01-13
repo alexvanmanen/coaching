@@ -20,8 +20,8 @@ public class TalentManager extends AppUser {
 	public TalentManager () {
 	}
 	
-	public TalentManager (String username, String firstName, String lastName, String email, String password, String role, boolean enabled, boolean activated, java.sql.Date dateofbirth, String zipcode, String street, int streetnumber, String city, String country, String telephonenumber) {
-		super (username, firstName, lastName, email, password, role, enabled, activated, dateofbirth, zipcode, street, streetnumber, city, country, telephonenumber);
+	public TalentManager (String username, String firstName, String lastName, String email, String password, String role, boolean enabled, boolean activated, java.sql.Date dateofbirth, String zipcode, String street, String streetNr, String city, String country, String telephonenumber) {
+		super (username, firstName, lastName, email, password, role, enabled, activated, dateofbirth, zipcode, street, streetNr, city, country, telephonenumber);
 	}
 	public void makeAppointment(Date date, Trainee trainee) {}
 	
