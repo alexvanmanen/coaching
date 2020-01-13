@@ -1,11 +1,7 @@
 package nl.ycn.coaching.database;
 
-import nl.ycn.coaching.model.Bootcamp;
-import nl.ycn.coaching.model.users.*;
+import nl.ycn.coaching.model.users.AppUser;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -29,11 +25,11 @@ public class AppUserService implements UserDetailsService {
 		AppUser user = appUserRepository.findByUsername(username);
 		UserDetails userDetails =
 				org.springframework.security.core.userdetails.User
-				.builder()
-				.username(username)
-				.password(user.getPassword())
-				.roles(user.getRole())
-				.build();
+						.builder()
+						.username(username)
+						.password(user.getPassword())
+						.roles(user.getRole())
+						.build();
 
 		return userDetails;
 	}
@@ -46,38 +42,62 @@ public class AppUserService implements UserDetailsService {
 			String password,
 			String roles,
 			boolean enabled,
+			boolean activated) {
+		AppUser user = appUserRepository.findByUsername(username);
+		if (user == null) {
+			AppUser newUser = new AppUser(
+					username,
+					firstname,
+					lastname,
+					email,
+					password,
+					roles,
+					enabled,
+					activated);
+			appUserRepository.save(newUser);
+		} else {
+			System.out.print("username already taken");
+		}
+	}
+
+	//overloaded method registerUser
+	public void registerUser(
+			String username,
+			String firstName,
+			String lastName,
+			String email,
+			String password,
+			String role,
+			String bootcamp,
+			boolean enabled,
 			boolean activated,
 			Date dateofbirth,
 			String zipcode,
 			String street,
-			int streetnumber,
+			String streetNr,
 			String city,
 			String country,
 			String telephonenumber) {
 		AppUser user = appUserRepository.findByUsername(username);
-		if (user == null){
-			switch (roles) {
-				case "TRAINEE":
-					AppUser newUser = new Trainee(username, firstname, lastname, email, password, roles, enabled, activated, dateofbirth, zipcode, street, streetnumber, city, country, telephonenumber);
-					appUserRepository.save (newUser);
-					break;
-				case "HREMPLOYEE":
-					newUser = new HrEmployee (username, firstname, lastname, email, password, roles, enabled, activated, dateofbirth, zipcode, street, streetnumber, city, country, telephonenumber);
-					appUserRepository.save (newUser);
-					break;
-				case "MANAGER":
-					newUser = new Manager (username, firstname, lastname, email, password, roles, enabled, activated, dateofbirth, zipcode, street, streetnumber, city, country, telephonenumber);
-					appUserRepository.save (newUser);
-					break;
-				case "TALENTMANAGER":
-					newUser = new TalentManager (username, firstname, lastname, email, password, roles, enabled, activated, dateofbirth, zipcode, street, streetnumber, city, country, telephonenumber);
-					appUserRepository.save (newUser);
-					break;
-				case "ADMIN":
-					newUser = new AppUser (username, firstname, lastname, email, password, roles, enabled, activated, dateofbirth, zipcode, street, streetnumber, city, country, telephonenumber);
-					appUserRepository.save (newUser);
-					break;
-					}
+		if (user == null) {
+			AppUser newUser = new AppUser(
+					username,
+					firstName,
+					lastName,
+					email,
+					password,
+					role,
+					bootcamp,
+					enabled,
+					activated,
+					dateofbirth,
+					zipcode,
+					street,
+					streetNr,
+					city,
+					country,
+					telephonenumber);
+			appUserRepository.save(newUser);
 		} else {
 			System.out.print("username already taken");
 		}
@@ -95,13 +115,13 @@ public class AppUserService implements UserDetailsService {
 		return user;
 	}
 
-	public List<AppUser> getAppUsersByRole(String role){
+	public List<AppUser> getAppUsersByRole(String role) {
 		List<AppUser> listAppUsersByRole = appUserRepository.findByRole(role);
 		return listAppUsersByRole;
 	}
 
 	//Changes the current user's password to a new given password
-	public void changePassword(String new_password){
+	public void changePassword(String new_password) {
 
 		//Password encoder
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -115,6 +135,38 @@ public class AppUserService implements UserDetailsService {
 
 		//Save to repository
 		appUserRepository.save(updated_appUser);
+	}
+
+	public void updateAppUser(String username,
+							  String firstname,
+							  String lastname,
+							  String email,
+							  String roles,
+							  String bootcamp,
+							  boolean enabled,
+							  boolean activated,
+							  Date dateofbirth,
+							  String zipcode,
+							  String street,
+							  String streetNr,
+							  String city,
+							  String country,
+							  String telephonenr) {
+		AppUser updateUser = appUserRepository.findByUsername(username);
+		updateUser.setFirstName(firstname);
+		updateUser.setLastName(lastname);
+		updateUser.setEmail(email);
+		updateUser.setDateofbirth(dateofbirth);
+		updateUser.setBootcamp(bootcamp);
+		updateUser.setStreet(street);
+		updateUser.setStreetNr(streetNr);
+		updateUser.setZipcode(zipcode);
+		updateUser.setCity(city);
+		updateUser.setCountry(country);
+		updateUser.setTelephonenumber(telephonenr);
+		updateUser.setEnabled(enabled);
+		updateUser.setActivated(activated);
+		appUserRepository.save(updateUser);
 	}
 
 }

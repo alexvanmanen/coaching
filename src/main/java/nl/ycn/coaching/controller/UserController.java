@@ -12,25 +12,32 @@ import org.springframework.web.bind.annotation.RequestBody;
 @org.springframework.web.bind.annotation.RestController
 public class UserController {
 
+
+    AppUserService appUserService;
+
     AppUserRepository appUserRepository;
 
     @Autowired
     public UserController(AppUserRepository appUserRepository){
+
         this.appUserRepository = appUserRepository;
     }
 
     @GetMapping("/getLastName/{username}")
     public AppUser getLastName(@PathVariable String username) {
-//        AppUser appuser = new AppUser();
-//                appuser.setLastName ("jansen");
-        return appUserRepository.findByUsername (username);
-//        return  appuser;
+        AppUser appUser = new AppUser();
+        appUser.setLastName("jansen");
+        return appUserRepository.findByUsername(username);
+        //return appUser;
         //return appUserService.getUser(username).getLastName();
     }
 
     @PostMapping("/addUser")
-    public AppUser addUser(@RequestBody AppUser appUser) {
-        return appUserRepository.save (appUser);
+    public AppUser addUser(@RequestBody AppUser appUser){
+        appUserRepository.save(appUser);
+        return appUser;
+
     }
+
 }
 
