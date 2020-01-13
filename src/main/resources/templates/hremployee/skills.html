@@ -3,7 +3,6 @@
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 
->
 <head>
     <meta charset="UTF-8">
     <title>HR-Employee | Skills</title>
@@ -18,35 +17,8 @@
 </head>
 <body style="background-color: cadetblue">
 
-<div class="ui secondary pointing menu" style="background-color:white">
-    <a class="item">
-        <img class="image" src="../ycnlogo.png">
-    </a>
-    <a class="item" href="dashboard">
-        Dashboard
-    </a>
-    <a class="item" href="/hremployee/teams">
-        Teams
-    </a>
-    <a class="item" href="/hremployee/users">
-        Users
-    </a>
-    <a class="item" href="/hremployee/bootcamps">
-        Bootcamps
-    </a>
-    <a class="item active" href="/hremployee/skills">
-        Skills
-    </a>
-    <a class="item" href="/hremployee/hrcalendar">
-        Calendar
-    </a>
-
-    <div class="right menu">
-        <a class="ui item" href="/logout">
-            Logout
-        </a>
-    </div>
-</div>
+<div th:insert="~{/hremployee/header :: header}"></div>
+<script>$('#skills').addClass('active');</script>
 
 <div class="ui segment" style="margin-left: 25px; margin-right: 25px;">
     <div>
@@ -58,29 +30,20 @@
         <div class="content">
             <h3><span th:text="${softskills.name}"></span></h3>
         </div>
-        <i class="right floated orange tiny edit icon"></i>
+
+<!--        <form class="ui form" method="get" th:action="@{'/hremployee/softskilledit/' + ${softskill.name}}">-->
+
+            <button class="ui orange inverted button" ><i class ="centered edit icon"></i></button>
+        </form>
     </div>
-
-<!--    <div class="ui mini icon message" th:each="trainee:${trainees}">-->
-<!--        <i class="tiny newspaper icon"></i>-->
-<!--        <div class="content">-->
-<!--            <h3><span th:text="${trainee.firstName} + ' ' + ${trainee.lastName}"></span></h3>-->
-<!--        </div>-->
-
-<!--        <form class="ui form" method="get" th:action="@{'/hremployee/appuserinfo/' + ${trainee.username}}">-->
-
-<!--            <button class="ui orange inverted button" ><i class ="centered edit icon"></i></button>-->
-<!--        </form>-->
-
-
-<!--    </div>-->
-
-
     <div>
         <a class="item" href="createsoftskillform">
             <button class="ui fluid large teal submit button" type="submit">+ add Softskill</button>
         </a>
     </div>
+</div>
+
+
 </div>
 
 <div class="ui segment" style="margin-left: 25px; margin-right: 25px;">
@@ -94,12 +57,14 @@
             <h3>
                 <span th:text="${course.name}"></span></h3>
         </div>
-        <i class="right floated orange tiny edit icon"></i>
-    </div>
+<!--        <form class="ui form" method="get" th:action="@{'/hremployee/softskilledit/' + ${course.name}}">-->
 
+            <button class="ui orange inverted button" ><i class ="centered edit icon"></i></button>
+        </form>
+    </div>
     <div>
-        <a class="item" href="createCourseform">
-            <button class="ui fluid large teal submit button" type="submit">+ add Course</button>
+        <a class="item" href="createsoftskillform">
+            <button class="ui fluid large teal submit button" type="submit">+ add Softskill</button>
         </a>
     </div>
 </div>
