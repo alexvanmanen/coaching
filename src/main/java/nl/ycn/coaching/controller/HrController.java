@@ -72,12 +72,14 @@ public class HrController {
 	}
 
 	@GetMapping("/hremployee/skills")
-	public String getSkills(Model model) {
+	public String getSkills(Model model, String name) {
 		try {
 			AppUser user = appUserService.getActiveUser();
 			String role = user.getRole();
-			model.addAttribute("softskills", hrService.getSoftskillsForSkillspage());
-			model.addAttribute("course", hrService.getCoursesForSkillspage());
+			model.addAttribute("softskillslist", hrService.getSoftskillsForSkillspage());
+			model.addAttribute("softskills", hrService.getSoftskillsForSkillspageByName (name));
+			model.addAttribute("courseslist", hrService.getCoursesForSkillspage());
+			model.addAttribute("course", hrService.getCourseForSkillspageByName(name));
 			return role.toLowerCase() + "/skills";
 		} catch (Exception e) {
 			return "/login";

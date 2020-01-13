@@ -41,14 +41,22 @@ public class HrService {
     }
 
     public List<Softskill> getSoftskillsForSkillspage() {
-        List<Softskill> softskills = softskillRepository.findAll();
-        return  softskills;
+        List<Softskill> softskillslist = softskillRepository.findAll();
+        return softskillslist;
 
     }
 
+    public Softskill getSoftskillsForSkillspageByName(String name) {
+        return softskillRepository.findByName (name);
+    }
+
     public List<Course> getCoursesForSkillspage() {
-        List<Course> courses = courseRepository.findAll();
-        return courses;
+        List<Course> courseslist = courseRepository.findAll();
+        return courseslist;
+    }
+
+    public Course getCourseForSkillspageByName(String name){
+        return courseRepository.findByName(name);
     }
 
 }

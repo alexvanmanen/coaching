@@ -53,63 +53,28 @@
         <h1>Softskills</h1>
     </div>
 
-    <div class="ui mini icon message" th:each="hremployee:${hremployees}">
+    <div class="ui mini icon message" th:each="softskills : ${softskillslist}">
         <i class="tiny newspaper icon"></i>
         <div class="content">
-            <h3><span th:text="${hremployee.username}"></span></h3>
+            <h3><span th:text="${softskills.name}"></span></h3>
         </div>
-        <i class="right floated tiny edit icon"></i>
+        <i class="right floated orange tiny edit icon"></i>
     </div>
 
+<!--    <div class="ui mini icon message" th:each="trainee:${trainees}">-->
+<!--        <i class="tiny newspaper icon"></i>-->
+<!--        <div class="content">-->
+<!--            <h3><span th:text="${trainee.firstName} + ' ' + ${trainee.lastName}"></span></h3>-->
+<!--        </div>-->
 
-    <div>
-        <a class="item" href="createsoftskillform">
-            <button class="ui fluid large teal submit button" type="submit">+ add Softskill</button>
-        </a>
-    </div>
-</div>
+<!--        <form class="ui form" method="get" th:action="@{'/hremployee/appuserinfo/' + ${trainee.username}}">-->
+
+<!--            <button class="ui orange inverted button" ><i class ="centered edit icon"></i></button>-->
+<!--        </form>-->
 
 
-<div class="ui segment" style="margin-left: 25px; margin-right: 25px;">
-    <div>
-        <h1>Softskills</h1>
-    </div>
+<!--    </div>-->
 
-    <div class="ui tiny icon message">
-        <i class="balance scale icon"></i>
-        <div class="content">
-            <div class="header">
-                Leadership
-            </div>
-            <p>Ability to guide the people around you and to enhance productivity</p>
-        </div>
-        <i class="edit icon"></i>
-        <i class="trash alternate icon"></i>
-    </div>
-
-    <div class="ui tiny icon message">
-        <i class="volume up icon"></i>
-        <div class="content">
-            <div class="header">
-                Communication
-            </div>
-            <p>Ability to effectively exchange information </p>
-        </div>
-        <i class="edit icon"></i>
-        <i class="trash alternate icon"></i>
-    </div>
-
-    <div class="ui tiny icon message">
-        <i class="handshake icon"></i>
-        <div class="content">
-            <div class="header">
-                Collaboration
-            </div>
-            <p>Ability to work together with other people</p>
-        </div>
-        <i class="edit icon"></i>
-        <i class="trash alternate icon"></i>
-    </div>
 
     <div>
         <a class="item" href="createsoftskillform">
@@ -123,40 +88,13 @@
         <h1>Courses</h1>
     </div>
 
-    <div class="ui tiny icon message">
-        <i class="gripfire icon"></i>
+    <div class="ui mini icon message" th:each="course : ${courseslist}">
+        <i class="tiny newspaper icon"></i>
         <div class="content">
-            <div class="header">
-                Java
-            </div>
-            <p>Object Orientated Programming language frequently used in software development</p>
+            <h3>
+                <span th:text="${course.name}"></span></h3>
         </div>
-        <i class="edit icon"></i>
-        <i class="trash alternate icon"></i>
-    </div>
-
-    <div class="ui tiny icon message">
-        <i class="linux icon"></i>
-        <div class="content">
-            <div class="header">
-                Linux
-            </div>
-            <p>Operating System frequently used by software developers</p>
-        </div>
-        <i class="edit icon"></i>
-        <i class="trash alternate icon"></i>
-    </div>
-
-    <div class="ui tiny icon message">
-        <i class="database icon"></i>
-        <div class="content">
-            <div class="header">
-                SQL
-            </div>
-            <p>Structured Query Language, language used to interact with databases</p>
-        </div>
-        <i class="edit icon"></i>
-        <i class="trash alternate icon"></i>
+        <i class="right floated orange tiny edit icon"></i>
     </div>
 
     <div>
