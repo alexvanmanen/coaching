@@ -11,10 +11,12 @@
 
     <script src="https://visjs.github.io/vis-network/standalone/umd/vis-network.min.js"></script>
 
-
     <link href="https://d36bmc1enj16yj.cloudfront.net/production/assets/pages/next-theme-420a2b84df4422f527df4b319c89641a8a309d6e0bdaa4deed04baed5633ea70.css"
           media="screen"
           rel="stylesheet"/>
+
+    <script src="../dropdown.js"></script>
+    <script src="../checkbox.js"></script>
 
 </head>
 <body style="background-color: cadetblue">
@@ -58,11 +60,8 @@
     <div class="two fields">
         <div class="field">
             <label>Stad</label>
-            <div class="ui fluid search selection dropdown">
-                <input name="stad" type="hidden">
-                <i class="dropdown icon"></i>
-                <div class="default text">Selecteer een stad</div>
-                <div class="menu"></div>
+            <div class="field">
+                <input name="stad" type="text" placeholder="Stad">
             </div>
         </div>
         <div class="field">
@@ -344,11 +343,6 @@
     <div class="ui button" tabindex="0">Accepteer wijzigingen</div>
     </div>
 </form>
-
-
-<script>
-    $('.ui.dropdown').dropdown();
-</script>
 
 </body>
 </html>
