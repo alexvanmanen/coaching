@@ -1,7 +1,7 @@
 package nl.ycn.coaching.database;
 
 import nl.ycn.coaching.model.Bootcamp;
-import nl.ycn.coaching.model.users.AppUser;
+import nl.ycn.coaching.model.users.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -56,23 +56,28 @@ public class AppUserService implements UserDetailsService {
 			String telephonenumber) {
 		AppUser user = appUserRepository.findByUsername(username);
 		if (user == null){
-			AppUser newUser = new AppUser(
-					username,
-					firstname,
-					lastname,
-					email,
-					password,
-					roles,
-					enabled,
-					activated,
-					dateofbirth,
-					zipcode,
-					street,
-					streetnumber,
-					city,
-					country,
-					telephonenumber);
-			appUserRepository.save(newUser);
+			switch (roles) {
+				case "TRAINEE":
+					AppUser newUser = new Trainee(username, firstname, lastname, email, password, roles, enabled, activated, dateofbirth, zipcode, street, streetnumber, city, country, telephonenumber);
+					appUserRepository.save (newUser);
+					break;
+				case "HREMPLOYEE":
+					newUser = new HrEmployee (username, firstname, lastname, email, password, roles, enabled, activated, dateofbirth, zipcode, street, streetnumber, city, country, telephonenumber);
+					appUserRepository.save (newUser);
+					break;
+				case "MANAGER":
+					newUser = new Manager (username, firstname, lastname, email, password, roles, enabled, activated, dateofbirth, zipcode, street, streetnumber, city, country, telephonenumber);
+					appUserRepository.save (newUser);
+					break;
+				case "TALENTMANAGER":
+					newUser = new TalentManager (username, firstname, lastname, email, password, roles, enabled, activated, dateofbirth, zipcode, street, streetnumber, city, country, telephonenumber);
+					appUserRepository.save (newUser);
+					break;
+				case "ADMIN":
+					newUser = new AppUser (username, firstname, lastname, email, password, roles, enabled, activated, dateofbirth, zipcode, street, streetnumber, city, country, telephonenumber);
+					appUserRepository.save (newUser);
+					break;
+					}
 		} else {
 			System.out.print("username already taken");
 		}

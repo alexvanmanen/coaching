@@ -74,9 +74,6 @@ public class AppSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public AppUserService appUserService;
-
-    @Autowired
-    public TraineeRepository traineeRepository;
     
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{

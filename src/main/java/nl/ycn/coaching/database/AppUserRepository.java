@@ -10,4 +10,5 @@ import java.util.List;
 public interface AppUserRepository extends JpaRepository<AppUser, Long> {
 	AppUser findByUsername(String username);
 	List<AppUser> findByRole(String role);
+	AppUser findByFirstName(String firstName);
 }
