@@ -28,7 +28,7 @@
     <h1 class="ui block header" style="padding: 10px; margin-left: 25px; margin-right: 25px; margin-top: 10px; margin-bottom: 10px">Change details</h1>
 </div>
 
-<form class="ui form" method="post" th:action="@{/hremployee/updateappuserinfo/{path}(path=${username})}"
+<form class="ui form" method="post" th:action="@{/trainee/contactdetails}"
       style="margin-left: 25px; margin-right: 25px;">
     <div class="ui grid">
 
@@ -55,12 +55,6 @@
                 <input type="text" placeholder="Street Nr" name="streetNr" th:value="${streetnr}">
             </div>
         </div>
-
-        <div class="one column row">
-            <div class="eight wide column">
-                <h3><label>Username:</label></h3>
-                <input type="text" th:placeholder="${username}" name="username">
-            </div>
 
             <div class="eight wide column">
                 <h3><label>Zipcode:</label></h3>
@@ -91,24 +85,6 @@
                 <input type="text" placeholder="+31 6-12345678" name="telephonenr" th:value="${telephonenumber}">
             </div>
         </div>
-
-        <div class="one column row">
-            <div class="eight wide column">
-                <h3><label>Bootcamp:</label></h3>
-
-                <div class="eight wide column" id="bootcamp">
-                    <div class="ui fluid search selection dropdown">
-                        <input type="hidden" name="bootcampList">
-                        <i class="dropdown icon"></i>
-                        <div class="default text">Kies bootcamp</div>
-                        <div class="menu">
-                            <div class="item" th:each="bootcamp : ${bootcampList}" th:text="${bootcamp.bootcampName}">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
 
             <div class="eight wide column">
                 <!--
