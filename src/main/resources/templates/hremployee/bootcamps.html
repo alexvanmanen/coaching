@@ -49,16 +49,18 @@
 
 <div class="ui segment" style="margin-left: 25px; margin-right: 25px;">
     <div class="center aligned two column row">
+
         <div class="column">
             <div class="ui segment">
-                <h1>Bootcamps</h1>
+                <h1>Active Bootcamps</h1>
 
                 <div class="ui divider"></div>
 
                 <div class="content" th:each="bootcamp:${activeBootcamps}">
 
-                     <div class="ui grid">
-                        <div class="two wide center aligned column">
+                    <div class="ui grid">
+
+                        <div class="one wide center aligned column">
                             <i class="large newspaper icon"></i>
                         </div>
 
@@ -68,7 +70,7 @@
                         </div>
 
 
-                        <div class="four wide column">
+                        <div class="five wide column">
                             <h4><span th:text="${bootcamp.courseList}"></span></h4>
                         </div>
 
@@ -82,12 +84,80 @@
                         </div>
 
                         <!--                    th:action="@{'/hremployee/appuserinfo/' + ${manager.username}}"-->
-                        <div class="two wide center aligned column">
+                        <div class="one wide center aligned column">
                             <form class="ui form" method="get">
-                                <button class="ui orange inverted button"><i class="center aligned edit icon"></i></button>
+                                <button class="ui orange inverted button"><i class="center aligned edit icon"></i>
+                                </button>
                             </form>
                         </div>
-                     </div>
+
+                        <div class="one wide center aligned column">
+                            <form class="ui form" method="get">
+                                <button class="ui orange inverted button"><i class="center aligned check icon"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="ui divider"></div>
+                </div>
+                <div>
+                    <a class="item" href="/createbootcamp">
+                        <button class="ui fluid large teal submit button" type="submit">+ add Running Bootcamp</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="ui divider"></div>
+
+        <div class="column">
+            <div class="ui segment">
+                <h1>Finished Bootcamps</h1>
+
+                <div class="ui divider"></div>
+
+                <div class="content" th:each="bootcamp:${finishedBootcamps}">
+
+                    <div class="ui grid">
+
+                        <div class="one wide center aligned column">
+                            <i class="large newspaper icon"></i>
+                        </div>
+
+
+                        <div class="four wide column">
+                            <h3><span th:text="${bootcamp.bootcampName}"></span></h3>
+                        </div>
+
+
+                        <div class="five wide column">
+                            <h4><span th:text="${bootcamp.courseList}"></span></h4>
+                        </div>
+
+
+                        <div class="four wide column">
+                            <div th:each="trainee, iterStat:*{bootcamp.getTrainees()}">
+                                <h4>
+                                    <span th:text="!${iterStat.last} ? ${trainee.firstName + ' ' + trainee.lastName} + ',' : ${trainee.firstName + trainee.lastName}"></span>
+                                </h4>
+                            </div>
+                        </div>
+
+                        <!--                    th:action="@{'/hremployee/appuserinfo/' + ${manager.username}}"-->
+                        <div class="one wide center aligned column">
+                            <form class="ui form" method="get">
+                                <button class="ui orange inverted button"><i class="center aligned edit icon"></i>
+                                </button>
+                            </form>
+                        </div>
+
+                        <div class="one wide center aligned column">
+                            <form class="ui form" method="get">
+                                <button class="ui orange inverted button"><i class="center aligned window close outline icon"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
                     <div class="ui divider"></div>
 
 

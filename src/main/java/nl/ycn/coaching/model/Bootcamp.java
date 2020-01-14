@@ -31,6 +31,9 @@ public class Bootcamp {
 	@Column
 	public String courseList;
 
+	@Column
+	public boolean active;
+
 
 	//default constructor
 	public Bootcamp(){}
@@ -39,6 +42,7 @@ public class Bootcamp {
 	public Bootcamp (String bootcampName, String courseList) {
 		this.bootcampName = bootcampName;
 		this.courseList = courseList;
+		this.active = true;
 	}
 	
 	public void getBootcamp() {}

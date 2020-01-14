@@ -44,7 +44,8 @@ public class HrController {
 		try {
 			AppUser user = appUserService.getActiveUser();
 			String role = user.getRole();
-			model.addAttribute("activeBootcamps", hrService.getTopBootcamps(100));
+			model.addAttribute("activeBootcamps", hrService.getTopActiveBootcamps(100));
+			model.addAttribute("finishedBootcamps",hrService.getTopFinishedBootcamps(100));
 
 			return role.toLowerCase() + "/bootcamps";
 		} catch (Exception e) {
@@ -54,7 +55,9 @@ public class HrController {
 
 	@GetMapping("/hremployee/dashboard")
 	public String getHrDashboard(Model model){
-		model.addAttribute("activeBootcamps",hrService.getTopBootcamps(5));
+		model.addAttribute("activeBootcamps",hrService.getTopActiveBootcamps(5));
+		model.addAttribute("activeBootcamps",hrService.getTopFinishedBootcamps(5));
+
 		return "/hremployee/hrdashboard";
 	}
 
