@@ -1,6 +1,8 @@
 package nl.ycn.coaching.model.users;
 
+import nl.ycn.coaching.database.BootcampRepository;
 import nl.ycn.coaching.model.*;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -8,7 +10,9 @@ import java.util.List;
 
 @Entity
 public class Trainee extends AppUser{
-	
+
+
+
 	@Id
 	@GeneratedValue
 	private Long id;
@@ -20,6 +24,7 @@ public class Trainee extends AppUser{
 	@OneToOne
 	@JoinColumn(name ="userId", insertable = false, updatable = false)
 	private AppUser user;
+
 
 	public Trainee(){}
 
