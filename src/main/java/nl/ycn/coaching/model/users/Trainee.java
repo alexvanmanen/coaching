@@ -17,7 +17,6 @@ public class Trainee extends AppUser{
 	@JoinColumn(name = "BOOTCAMP_ID")
 	private Bootcamp bootcamp;
 
-
 	@OneToOne
 	@JoinColumn(name ="userId", insertable = false, updatable = false)
 	private AppUser user;
