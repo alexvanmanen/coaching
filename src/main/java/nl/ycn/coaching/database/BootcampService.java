@@ -53,9 +53,9 @@ public class BootcampService {
 		return allUsers;
 	}
 
-	public Set<Trainee> getTraineesByBootcamp(String name) {
+	public String getTraineesByBootcamp(String name) {
 		Bootcamp bootcamp = bootcampRepository.findByBootcampName(name);
-		return bootcamp.getTrainees();
+		return bootcamp.getTrainees().toString();
 	}
 
 

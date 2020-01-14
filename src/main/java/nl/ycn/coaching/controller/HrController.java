@@ -2,10 +2,7 @@ package nl.ycn.coaching.controller;
 
 
 import net.bytebuddy.utility.RandomString;
-import nl.ycn.coaching.database.AppUserRepository;
-import nl.ycn.coaching.database.AppUserService;
-import nl.ycn.coaching.database.BootcampRepository;
-import nl.ycn.coaching.database.HrService;
+import nl.ycn.coaching.database.*;
 import nl.ycn.coaching.model.Bootcamp;
 import nl.ycn.coaching.model.users.AppUser;
 import nl.ycn.coaching.model.users.Trainee;
@@ -34,6 +31,9 @@ public class HrController {
 	private BootcampRepository bootcampRepository;
 
 	@Autowired
+	private BootcampService bootcampService;
+
+	@Autowired
 	private HrService hrService;
 
 	BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -45,6 +45,7 @@ public class HrController {
 			AppUser user = appUserService.getActiveUser();
 			String role = user.getRole();
 			model.addAttribute("activeBootcamps", hrService.getTopBootcamps(100));
+
 			return role.toLowerCase() + "/bootcamps";
 		} catch (Exception e) {
 			return "/login";
