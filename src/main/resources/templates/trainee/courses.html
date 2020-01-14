@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Coaching | Hardskills</title>
@@ -20,96 +22,21 @@
 <div th:insert="~{trainee/header :: header}"></div>
 <script>$('#courses').addClass('active');</script>
 
-<div class="ui center aligned grid" style="margin-left:20px; margin-right:20px;">
-    <div class="center aligned two column row">
-        <div class="column" >
-            <div class="ui segment">
-                <div class="ui list">
-                    <div class="item">
-                        <i class="folder icon"></i>
-                        <div class="content">
-                            <div class="header">Java</div>
-                            <div class="description">Backend Development</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="column">
-            <div class="ui segment">
-                <div class="ui list">
-                    <div class="item">
-                        <i class="folder icon"></i>
-                        <div class="content">
-                            <div class="header">Spring</div>
-                            <div class="description">Coupling Web-Java</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<div class="ui segment" style="margin-left: 25px; margin-right: 25px;">
+    <div>
+        <h1>Bootcamp</h1>
     </div>
 
-    <div class="center aligned two column row">
-        <div class="column">
-            <div class="ui segment">
-                <div class="ui list">
-                    <div class="item">
-                        <i class="folder icon"></i>
-                        <div class="content">
-                            <div class="header">SQL</div>
-                            <div class="description">DataBase usage</div>
-                        </div>
-                    </div>
-                </div>
+    <form class="ui form">
+        <!--    <div class="ui mini icon message" th:each="manager:${managers}">-->
+        <button class="ui mini icon message button">
+            <i class="book icon"></i>
+            <div class="content">
+                <h3><span>Course</span></h3>
+            <!--    <h3><span th:text="${manager.firstName} + ' ' + ${manager.lastName}"></span></h3> -->
             </div>
-        </div>
-
-        <div class="column">
-            <div class="ui segment">
-                <div class="ui list">
-                    <div class="item">
-                        <i class="folder icon"></i>
-                        <div class="content">
-                            <div class="header">IREB</div>
-                            <div class="description">Requirements Engineering</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="center aligned two column row">
-        <div class="column">
-            <div class="ui segment">
-                <div class="ui list">
-                    <div class="item">
-                        <i class="folder icon"></i>
-                        <div class="content">
-                            <div class="header">HTML</div>
-                            <div class="description">Hyper Text Markup Language</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="column">
-            <div class="ui segment">
-                <div class="ui list">
-                    <div class="item">
-                        <i class="folder icon"></i>
-                        <div class="content">
-                            <div class="header">ISTQB</div>
-                            <div class="description">Testing</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+        </button>
+    </form>
 
 </div>
 </body>

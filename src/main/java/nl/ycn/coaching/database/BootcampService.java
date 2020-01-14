@@ -23,7 +23,6 @@ public class BootcampService {
 	
 	@Autowired
 	private TraineeRepository traineeRepository;
-	
 
 	@Autowired
 	public void setBootcampRepository(BootcampRepository bootcampRepository){

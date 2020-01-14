@@ -32,11 +32,19 @@ public class TraineeController {
 
 	@GetMapping("/trainee/dashboard")
 	public String getTraineeDashboard(){
+
 		return "/trainee/dashboard";
 	}
 
 	@GetMapping("/trainee/courses")
-	public String getCourses(){
+	public String getCourses(Model model){
+
+		String username = appUserService.getActiveUser().getUsername();
+
+		//model.addAttribute("bootcamp", bootcampRepository. )
+
+
+
 		return "/trainee/courses";
 	}
 

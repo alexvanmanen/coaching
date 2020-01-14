@@ -1,6 +1,7 @@
 package nl.ycn.coaching.configurations;
 
 import nl.ycn.coaching.database.AppUserService;
+import nl.ycn.coaching.database.BootcampRepository;
 import nl.ycn.coaching.database.TraineeRepository;
 import nl.ycn.coaching.model.users.Trainee;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,6 +76,9 @@ public class AppSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public AppUserService appUserService;
+
+    @Autowired
+    private BootcampRepository bootcampRepository;
     
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
@@ -89,6 +93,7 @@ public class AppSecurityConfiguration extends WebSecurityConfigurerAdapter {
            .jdbcAuthentication()
            .dataSource(dataSource)
            .passwordEncoder(encoder);
+
 
         appUserService.registerUser("luuk","Luuk", "Wempe", "luukwempe@hotmail.com", encoder.encode("hallo"), "ADMIN", true, true, Date.valueOf("2020-01-01"),"2000PP", "Bobhof", "1", "Bobdam", "Bobland", "06324543", "");
         appUserService.registerUser("alex","Alex", "van Manen", "alex@vanmanenit.nl", encoder.encode("hallo"), "TRAINEE", true, true, Date.valueOf("2020-01-01") ,"3000PP", "Bobhof", "1", "Bobdam", "Bobland", "112", "DevOps 1");
