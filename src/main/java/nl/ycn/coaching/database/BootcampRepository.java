@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 public interface BootcampRepository extends JpaRepository<Bootcamp, Long> {
 
     Bootcamp findByBootcampName(String name);
+
 }

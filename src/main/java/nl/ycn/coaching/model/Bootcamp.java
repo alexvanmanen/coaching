@@ -4,6 +4,7 @@ import nl.ycn.coaching.model.users.Trainee;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.Date;
 
@@ -30,6 +31,7 @@ public class Bootcamp {
 	@Column
 	public String courseList;
 
+
 	//default constructor
 	public Bootcamp(){}
 
@@ -47,5 +49,9 @@ public class Bootcamp {
 
 	public String getCourseList() {
 		return courseList;
+	}
+
+	public Set<Trainee> getTrainees(){
+		return trainees;
 	}
 }

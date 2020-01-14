@@ -131,6 +131,7 @@ public class AppUserService implements UserDetailsService {
 		return listAppUsersByRole;
 	}
 
+
 	//Changes the current user's password to a new given password
 	public void changePassword(String new_password) {
 
