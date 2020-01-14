@@ -4,6 +4,7 @@ import nl.ycn.coaching.model.users.Trainee;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.Date;
 
@@ -30,6 +31,10 @@ public class Bootcamp {
 	@Column
 	public String courseList;
 
+	@Column
+	public boolean active;
+
+
 	//default constructor
 	public Bootcamp(){}
 
@@ -37,6 +42,7 @@ public class Bootcamp {
 	public Bootcamp (String bootcampName, String courseList) {
 		this.bootcampName = bootcampName;
 		this.courseList = courseList;
+		this.active = true;
 	}
 	
 	public void getBootcamp() {}
@@ -47,5 +53,9 @@ public class Bootcamp {
 
 	public String getCourseList() {
 		return courseList;
+	}
+
+	public Set<Trainee> getTrainees(){
+		return trainees;
 	}
 }

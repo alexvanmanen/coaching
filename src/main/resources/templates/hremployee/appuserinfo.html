@@ -120,21 +120,9 @@
 
         <div class="one column row">
             <div class="eight wide column">
-                <h3><label>Bootcamp:</label></h3>
-
-                <div class="eight wide column" id="bootcamp">
-                    <div class="ui fluid search selection dropdown">
-                        <input type="hidden" name="bootcampList">
-                        <i class="dropdown icon"></i>
-                        <div class="default text">Kies bootcamp</div>
-                        <div class="menu">
-                            <div class="item" th:each="bootcamp : ${bootcampList}" th:text="${bootcamp.bootcampName}">
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <h3><label>Password:</label></h3>
+                <input type="password" placeholder="only change when user forgot password!" name="password" th:value="${password}">
             </div>
-
 
             <div class="eight wide column">
                 <!--
@@ -392,6 +380,35 @@
                     </div>
                 </div>
             </div>
+
+
+        </div>
+
+        <div class="one column row">
+
+            <div class="eight wide column">
+                <h3><label>Bootcamp:</label></h3>
+
+                <div class="eight wide column" id="bootcamp">
+                    <div class="ui fluid search selection dropdown" >
+                        <input type="hidden" th:placeholder="${bootcamp}" name="bootcamp" th:value="${bootcamp}">
+                        <i class="dropdown icon"></i>
+                        <div class="text"></div>
+                        <div class="menu">
+                            <div class="item" th:each="bootcamp : ${bootcampList}" th:text="${bootcamp.bootcampName}" th:value="${bootcamp.bootcampName}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="eight wide column"></div>
+
+        </div>
+
+
+
+
         </div>
 
         <div class="ui divider"></div>
