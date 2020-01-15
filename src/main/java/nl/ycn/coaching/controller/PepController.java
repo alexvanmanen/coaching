@@ -56,7 +56,6 @@ public class PepController {
 	}
 
 	private List<Softskill> retrieveSoftskillList() {
-		System.out.println (softskillRepository.findAll ());
 		return softskillRepository.findAll ();
 	}
 
