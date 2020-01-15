@@ -2,12 +2,10 @@ package nl.ycn.coaching.controller;
 
 
 import net.bytebuddy.utility.RandomString;
-import nl.ycn.coaching.database.AppUserRepository;
-import nl.ycn.coaching.database.AppUserService;
-import nl.ycn.coaching.database.BootcampRepository;
-import nl.ycn.coaching.database.HrService;
+import nl.ycn.coaching.database.*;
 import nl.ycn.coaching.model.Bootcamp;
 import nl.ycn.coaching.model.users.AppUser;
+import nl.ycn.coaching.model.users.Trainee;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -33,6 +31,9 @@ public class HrController {
 	private BootcampRepository bootcampRepository;
 
 	@Autowired
+	private BootcampService bootcampService;
+
+	@Autowired
 	private HrService hrService;
 
 	BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -43,7 +44,9 @@ public class HrController {
 		try {
 			AppUser user = appUserService.getActiveUser();
 			String role = user.getRole();
-			model.addAttribute("activeBootcamps", hrService.getTopBootcamps(100));
+			model.addAttribute("activeBootcamps", hrService.getTopActiveBootcamps(100));
+			model.addAttribute("finishedBootcamps",hrService.getTopFinishedBootcamps(100));
+
 			return role.toLowerCase() + "/bootcamps";
 		} catch (Exception e) {
 			return "/login";
@@ -52,7 +55,9 @@ public class HrController {
 
 	@GetMapping("/hremployee/dashboard")
 	public String getHrDashboard(Model model){
-		model.addAttribute("activeBootcamps",hrService.getTopBootcamps(5));
+		model.addAttribute("activeBootcamps",hrService.getTopActiveBootcamps(5));
+		model.addAttribute("activeBootcamps",hrService.getTopFinishedBootcamps(5));
+
 		return "/hremployee/hrdashboard";
 	}
 
@@ -60,6 +65,7 @@ public class HrController {
 	public String getAppUserInfo(Model model , @PathVariable("username") String username){
 
 		model.addAttribute("role", appUserService.getUser(username).getRole().toLowerCase());
+		model.addAttribute("password", appUserService.getUser(username).getPassword());
 		model.addAttribute("username", appUserService.getUser(username).getUsername());
 		model.addAttribute("firstname", appUserService.getUser(username).getFirstName());
 		model.addAttribute("lastname", appUserService.getUser(username).getLastName());
@@ -72,6 +78,11 @@ public class HrController {
 		model.addAttribute("bootcampList", bootcampRepository.findAll());
 		model.addAttribute("telephonenumber",appUserService.getUser(username).getTelephonenumber());
 		model.addAttribute("dateofbirth", appUserService.getUser(username).getDateofbirth());
+		if (appUserService.getUser(username).getRole().equalsIgnoreCase("trainee")){
+			AppUser user = appUserService.getUser(username);
+			Trainee trainee = (Trainee) user;
+			model.addAttribute("bootcamp",trainee.getBootcamp().getName());
+		}
 		return "/hremployee/appuserinfo";
 	}
 
@@ -81,7 +92,6 @@ public class HrController {
 									String lastname,
 									String email,
 									String roles,
-									String bootcamp,
 									String password,
 									boolean enabled,
 									boolean activated,
@@ -91,7 +101,8 @@ public class HrController {
 									String streetNr,
 									String city,
 									String country,
-									String telephonenumber){
+									String telephonenumber,
+									String bootcamp){
 		appUserService.updateAppUser(username,
 				firstname,
 				lastname,

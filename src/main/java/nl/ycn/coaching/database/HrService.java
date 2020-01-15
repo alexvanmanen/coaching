@@ -31,8 +31,13 @@ public class HrService {
     }
 
     //retreive top 'length' bootcamps from the repository and return a list with the top 'length' bootcamps.
-    public List<Bootcamp> getTopBootcamps(int length){
-        Page<Bootcamp> topBootcamps = bootcampRepository.findAll(PageRequest.of(0,length, Sort.by("endDate").descending()));
+    public List<Bootcamp> getTopActiveBootcamps(int length){
+        Page<Bootcamp> topBootcamps = bootcampRepository.findAllByActive(true, PageRequest.of(0,length, Sort.by("endDate").descending()));
+        return topBootcamps.getContent();
+    }
+
+    public List<Bootcamp> getTopFinishedBootcamps(int length){
+        Page<Bootcamp> topBootcamps = bootcampRepository.findAllByActive(false, PageRequest.of(0,length, Sort.by("endDate").descending()));
         return topBootcamps.getContent();
     }
 

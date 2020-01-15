@@ -42,7 +42,7 @@ public class BootcampController {
 		model.addAttribute ("courseList", retrieveCourseList ());
 		return "/hremployee/createbootcamp";
 	}
-	
+
 	@PostMapping("createbootcamp")
 	public String createbootcamp (String bootcampName, String courseList) {
 		bootcampService.addBootcamp (bootcampName, courseList);
