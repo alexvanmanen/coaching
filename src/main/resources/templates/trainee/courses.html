@@ -24,11 +24,13 @@
 
 <div class="ui segment" style="margin-left: 25px; margin-right: 25px;">
     <div>
-        <h1>Bootcamp</h1>
+        <div style="text-align: center;">
+            <h1><span th:text="${bootcamp.bootcampName}"></span></h1>
+        </div>
     </div>
 
     <form class="ui form">
-        <!--    <div class="ui mini icon message" th:each="manager:${managers}">-->
+        <!--    <div class="ui mini icon message button" th:each="manager:${managers}">-->
         <button class="ui mini icon message button">
             <i class="book icon"></i>
             <div class="content">

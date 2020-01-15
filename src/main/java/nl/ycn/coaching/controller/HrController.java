@@ -81,7 +81,7 @@ public class HrController {
 		if (appUserService.getUser(username).getRole().equalsIgnoreCase("trainee")){
 			AppUser user = appUserService.getUser(username);
 			Trainee trainee = (Trainee) user;
-			model.addAttribute("bootcamp",trainee.getBootcamp().getName());
+			model.addAttribute("bootcamp",trainee.getBootcamp().getBootcampName());
 		}
 		return "/hremployee/appuserinfo";
 	}

@@ -1,11 +1,10 @@
 package nl.ycn.coaching.controller;
 
-import nl.ycn.coaching.database.AppUserRepository;
-import nl.ycn.coaching.database.AppUserService;
-import nl.ycn.coaching.database.BootcampRepository;
-import nl.ycn.coaching.database.PepService;
+import nl.ycn.coaching.database.*;
+import nl.ycn.coaching.model.Bootcamp;
 import nl.ycn.coaching.model.PersonalEducationPlan;
 import nl.ycn.coaching.model.users.AppUser;
+import nl.ycn.coaching.model.users.Trainee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,6 +29,9 @@ public class TraineeController {
 	@Autowired
 	public AppUserRepository appUserRepository;
 
+	@Autowired
+	public TraineeRepository traineeRepository;
+
 	@GetMapping("/trainee/dashboard")
 	public String getTraineeDashboard(){
 
@@ -39,9 +41,12 @@ public class TraineeController {
 	@GetMapping("/trainee/courses")
 	public String getCourses(Model model){
 
-		String username = appUserService.getActiveUser().getUsername();
+		AppUser user = appUserService.getActiveUser();
+		Trainee trainee = traineeRepository.findByUsername(user.getUsername());
+		Bootcamp bootcamp = trainee.getBootcamp();
 
-		//model.addAttribute("bootcamp", bootcampRepository. )
+		model.addAttribute("bootcamp", bootcamp);
+
 
 
 
