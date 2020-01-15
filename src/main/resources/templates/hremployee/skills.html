@@ -19,30 +19,31 @@
 
 <div th:insert="~{/hremployee/header :: header}"></div>
 <script>$('#skills').addClass('active');</script>
+</div>
 
 <div class="ui segment" style="margin-left: 25px; margin-right: 25px;">
     <div>
         <h1>Softskills</h1>
     </div>
 
-    <div class="ui mini icon message" th:each="softskills : ${softskillslist}">
+    <div class="ui mini icon message" th:each="softskill : ${softskillslist}">
         <i class="tiny newspaper icon"></i>
         <div class="content">
-            <h3><span th:text="${softskills.name}"></span></h3>
+            <h3><span th:text="${softskill.name}"></span></h3>
         </div>
 
-<!--        <form class="ui form" method="get" th:action="@{'/hremployee/softskilledit/' + ${softskill.name}}">-->
+        <form class="ui form" method="get" th:action="@{'/hremployee/softskilledit/' + ${softskill.id}}">
             <button class="ui orange inverted button" ><i class ="centered edit icon"></i></button>
         </form>
+
     </div>
+
+
     <div>
-        <a class="item" href="createsoftskillform">
+        <a class="item" href="/hremployee/createsoftskillform">
             <button class="ui fluid large teal submit button" type="submit">+ add Softskill</button>
         </a>
     </div>
-</div>
-
-
 </div>
 
 <div class="ui segment" style="margin-left: 25px; margin-right: 25px;">
@@ -53,22 +54,22 @@
     <div class="ui mini icon message" th:each="course : ${courseslist}">
         <i class="tiny newspaper icon"></i>
         <div class="content">
-            <h3>
-                <span th:text="${course.name}"></span></h3>
-            <form class="ui form" method="get" th:action="@{'/hremployee/courseedit/' + ${course.name}">
-                <button class="ui orange inverted button" type="submit">
-                    <i class ="centered edit icon"></i>
-                </button>_
-        </form>
+            <h3><span th:text="${course.coursename}"></span></h3>
         </div>
+
+        <form class="ui form" method="get" th:action="@{'/hremployee/courseedit/' + ${course.id}}">
+            <button class="ui orange inverted button" ><i class ="centered edit icon"></i></button>
+        </form>
+
     </div>
+
+
     <div>
-        <a class="item" href="createcourseform">
+        <a class="item" href="/hremployee/createcourseform">
             <button class="ui fluid large teal submit button" type="submit">+ add Course</button>
         </a>
     </div>
 </div>
-
 
 </body>
 </html>

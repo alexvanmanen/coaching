@@ -38,19 +38,11 @@ public class HrController {
         }
     }
 
-    @GetMapping("/hremployee/courseedit/{coursename}")
-    public String editcourse(@PathVariable("coursename") String coursename,
-                             String description) {
-        return "/hremployee/courseedit/{coursename}";
-    }
-
-
     @GetMapping("/hremployee/dashboard")
     public String getHrDashboard(Model model) {
         model.addAttribute("activeBootcamps", hrService.getTopBootcamps(5));
         return "/hremployee/hrdashboard";
     }
-
 
     @GetMapping("/hremployee/users")
     public String getUsers(Model model) {
@@ -78,7 +70,6 @@ public class HrController {
         }
     }
 
-
     @GetMapping("/hremployee/skills")
     public String getSkills(Model model, String name) {
         try {
@@ -89,28 +80,6 @@ public class HrController {
             model.addAttribute("courseslist", hrService.getCoursesForSkillspage());
             model.addAttribute("course", hrService.getCourseForSkillspageByName(name));
             return role.toLowerCase() + "/skills";
-        } catch (Exception e) {
-            return "/login";
-        }
-    }
-
-    @GetMapping("/hremployee/createsoftskillform")
-    public String getSoftskillForm() {
-        try {
-            AppUser user = appUserService.getActiveUser();
-            String role = user.getRole();
-            return role.toLowerCase() + "/createsoftskillform";
-        } catch (Exception e) {
-            return "/login";
-        }
-    }
-
-    @GetMapping("/hremployee/createcourseform")
-    public String getCourseForm() {
-        try {
-            AppUser user = appUserService.getActiveUser();
-            String role = user.getRole();
-            return role.toLowerCase() + "/createcourseform";
         } catch (Exception e) {
             return "/login";
         }
@@ -160,6 +129,17 @@ public class HrController {
         return "redirect:/hremployee/users";
     }
 
+    @GetMapping("/hremployee/createsoftskillform")
+    public String getSoftskillForm() {
+        try {
+            AppUser user = appUserService.getActiveUser();
+            String role = user.getRole();
+            return role.toLowerCase() + "/createsoftskillform";
+        } catch (Exception e) {
+            return "/login";
+        }
+    }
+
     @PostMapping("/hremployee/createsoftskillform")
     public String createSoftskill(String name, String description) {
         hrService.addSoftskill(name, description);
@@ -167,10 +147,49 @@ public class HrController {
         return "redirect:/hremployee/skills";
     }
 
+    @GetMapping(path="/hremployee/softskilledit/{id}")
+    public String getSoftskill(Model model, @PathVariable("id") int id) {
+        model.addAttribute("name", hrService.getSoftskillsForSkillspageById(id).getName());
+        model.addAttribute("description", hrService.getSoftskillsForSkillspageById(id).getDescription());
+
+        return "/hremployee/softskilledit";
+    }
+
+    @PostMapping(path="/hremployee/softskilledit/{id}")
+    public String editSoftskill(@PathVariable("id")int id, String name, String description){
+        hrService.editSoftskill(id, name, description);
+        return "redirect:/hremployee/skills";
+    }
+
+    @GetMapping("/hremployee/createcourseform")
+    public String getCourseForm() {
+        try {
+            AppUser user = appUserService.getActiveUser();
+            String role = user.getRole();
+            return role.toLowerCase() + "/createcourseform";
+        } catch (Exception e) {
+            return "/login";
+        }
+    }
+
     @PostMapping("/hremployee/createcourseform")
     public String createCourse(String name, String description) {
         hrService.addCourse(name, description);
 
+        return "redirect:/hremployee/skills";
+    }
+
+    @GetMapping(path="/hremployee/courseedit/{id}")
+    public String getCourse(Model model, @PathVariable("id") int id) {
+        model.addAttribute("coursename", hrService.getCourseForSkillspageById(id).getCoursename());
+        model.addAttribute("coursedescription", hrService.getCourseForSkillspageById(id).getCoursedescription());
+
+        return "/hremployee/courseedit";
+    }
+
+    @PostMapping(path="/hremployee/courseedit/{id}")
+    public String editCourse(@PathVariable("id")int id, String coursename, String coursedescription){
+        hrService.editCourse(id, coursename, coursedescription);
         return "redirect:/hremployee/skills";
     }
 

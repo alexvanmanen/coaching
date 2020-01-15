@@ -29,7 +29,7 @@ public class HrService {
 
     public void addSoftskill(
             String name,
-            String description){
+            String description) {
         Softskill softskill = new Softskill(name, description);
         softskillRepository.save(softskill);
     }
@@ -42,8 +42,8 @@ public class HrService {
     }
 
     //retreive top 'length' bootcamps from the repository and return a list with the top 'length' bootcamps.
-    public List<Bootcamp> getTopBootcamps(int length){
-        Page<Bootcamp> topBootcamps = bootcampRepository.findAll(PageRequest.of(0,length, Sort.by("endDate").descending()));
+    public List<Bootcamp> getTopBootcamps(int length) {
+        Page<Bootcamp> topBootcamps = bootcampRepository.findAll(PageRequest.of(0, length, Sort.by("endDate").descending()));
         return topBootcamps.getContent();
     }
 
@@ -54,7 +54,11 @@ public class HrService {
     }
 
     public Softskill getSoftskillsForSkillspageByName(String name) {
-        return softskillRepository.findByName (name);
+        return softskillRepository.findByName(name);
+    }
+
+    public Softskill getSoftskillsForSkillspageById(int id){
+        return softskillRepository.findBySoftskillId(id);
     }
 
     public List<Course> getCoursesForSkillspage() {
@@ -62,8 +66,28 @@ public class HrService {
         return courseslist;
     }
 
-    public Course getCourseForSkillspageByName(String name){
-        return courseRepository.findByName(name);
+    public Course getCourseForSkillspageByName(String name) {
+        return courseRepository.findByCoursename(name);
+    }
+
+    public Course getCourseForSkillspageById(int id){
+        return courseRepository.findByCourseId(id);
+    }
+
+    public void editCourse(int id, String coursename,
+                           String coursedescription){
+        Course editCourse = courseRepository.findByCourseId(id);
+        editCourse.setCoursename(coursename);
+        editCourse.setCoursedesciption(coursedescription);
+        courseRepository.save(editCourse);
+    }
+
+    public void editSoftskill(int id, String name,
+                              String description){
+        Softskill editSoftskill = softskillRepository.findBySoftskillId(id);
+        editSoftskill.setName(name);
+        editSoftskill.setDescription(description);
+        softskillRepository.save(editSoftskill);
     }
 
 }
