@@ -18,11 +18,8 @@
 
 <body style="background-color: cadetblue">
 
-<div>
-    <h1 class="ui block header"
-        style="padding: 10px; margin-left: 25px; margin-right: 25px; margin-top: 10px; margin-bottom: 10px"> Maak een
-        softskill aan</h1>
-</div>
+<div th:insert="~{/hremployee/header :: header}"></div>
+<script>$('#users').addClass('active');</script>
 
 <div class="ui icon message" style="padding: 10px; margin-left: 25px; margin-right: 25px; margin-top: 10px; margin-bottom: 10px">
     <div class="content">
@@ -101,10 +98,7 @@
             </div>
 
             <div class="eight wide column">
-                <!--
-                <h3><label>Country:</label></h3>
-                <input type="text" placeholder="Country" name="country" th:value="${country}">
-            </div> -->
+
                 <h3><label>Country: </label></h3>
                 <div class="ui fluid search selection dropdown">
                     <input name="country" type="hidden" th:value="${country}">
@@ -382,16 +376,13 @@
 
         </div>
 
-
-
-
         </div>
 
         <div class="ui divider"></div>
 
         <div class="one column row">
             <div class="sixteen wide column">
-                <button class="ui orange fluid large button" type="submit">Save Changes</button>
+                <button class="ui fluid button" type="submit">Save Changes</button>
             </div>
         </div>
     </div>

@@ -25,80 +25,75 @@
 
 <div>
     <h1 class="ui block header"
-        style="padding: 10px; margin-left: 25px; margin-right: 25px; margin-top: 10px; margin-bottom: 10px"> Gegevens
-        wijzigen</h1>
+        style="padding: 10px; margin-left: 25px; margin-right: 25px; margin-top: 10px; margin-bottom: 10px"> Create User</h1>
 </div>
 
 <form class="ui form" method="post" action="/hremployee/addappuser" style="margin-left: 25px; margin-right: 25px;">
-    <h4 class="ui dividing header">Persoonlijke gegevens</h4>
-    <div class="ui grid">
 
-        <div class="three column row">
-                <div class="column">
-                    <label>Firstname</label>
-                    <input placeholder="Firstname" type="text" name="firstname" >
-                </div>
-        </div>
+    <div class="ui one column centered grid">
 
-        <div class="three column row">
-            <div class="column">
-                <label>Lastname</label>
-                <input placeholder="Lastname" type="text" name="lastname" >
-            </div>
-        </div>
+        <div class="row">
 
-        <div class="three column row">
-            <div class="column">
-                <label>Username</label>
+            <div class="eight wide column">
+
+                <h2 class="ui dividing header">Personal information</h2>
+
+                <h3><label>Firstname:</label></h3>
+                <input placeholder="Firstname" type="text" name="firstname" th:value="${firstname}">
+
+                <h3><label>Lastname:</label></h3>
+                <input placeholder="Lastname" type="text" name="lastname" th:value="${lastname}">
+
+                <h3><label>Username</label></h3>
                 <input type="text" placeholder="Username (email)" name="username" >
-            </div>
-        </div>
 
-        <div class="three column row">
-            <div class="column">
-                <label>Email</label>
-                <input type="text" placeholder="Email" name="email" >
-            </div>
-        </div>
+                <h3><label>Email:</label></h3>
+                <input type="text" placeholder="Email" name="email" th:value="${email}">
 
-        <div class="three column row">
-            <div class="column">
-                <label>Password</label>
+                <h3><label>Password</label></h3>
                 <input type="text" placeholder="Password" name="password" value="randomPassword" th:value="${randomPassword}">
+
+                <h3 class="ui dividing header">Role</h3>
+
+                <div class="ui segment">
+                <div class="ui center aligned grid">
+
+                    <div class="four wide column">
+                    <div class="ui radio checkbox">
+                        <input type="checkbox" name="roles" value="HREMPLOYEE">
+                        <label>HR-Employee</label>
+                    </div>
+                    </div>
+
+                    <div class="four wide column">
+                    <div class="ui radio checkbox">
+                        <input type="checkbox" name="roles" value="MANAGER">
+                        <label>Manager </label>
+                    </div>
+                    </div>
+
+                    <div class="four wide column">
+                    <div class="ui radio checkbox">
+                        <input type="checkbox" name="roles" value="TALENTMANAGER">
+                        <label>Talent Manager </label>
+                    </div>
+                    </div>
+
+                    <div class="four wide column">
+                    <div class="ui radio checkbox">
+                        <input type="checkbox" name="roles" value="TRAINEE">
+                        <label>Trainee </label>
+                    </div>
+                    </div>
+
+                </div>
+                </div>
             </div>
         </div>
 
-
-    </div>
-    <h4 class="ui dividing header">Role</h4>
-    <div class="column">
-        <div class="ui radio checkbox">
-            <input type="checkbox" name="roles" value="HREMPLOYEE">
-            <label>HR-Employee </label>
+        <div class="sixteen wide column">
+            <button class="ui button fluid" type="submit">+ Create New user</button>
         </div>
-    </div>
-    <div class="column">
-
-        <div class="ui radio checkbox">
-            <input type="checkbox" name="roles" value="MANAGER">
-            <label>Manager </label>
-        </div>
-    </div>
-    <div class="column">
-        <div class="ui radio checkbox">
-            <input type="checkbox" name="roles" value="TALENTMANAGER">
-            <label>Talent Manager </label>
-        </div>
-    </div>
-    <div class="column">
-        <div class="ui radio checkbox">
-            <input type="checkbox" name="roles" value="TRAINEE">
-            <label>Trainee </label>
-        </div>
-    </div>
-    <h4 class="ui dividing header"></h4>
-    <div class="column">
-        <button class="ui button" style="margin-left: 25px; margin-right: 25px;" type="submit">Register!</button>
     </div>
 
 </form>

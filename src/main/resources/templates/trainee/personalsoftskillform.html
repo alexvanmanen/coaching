@@ -35,7 +35,7 @@
                 <h4><label>Softskill: </label></h4>
                 <div class="field">
                     <select class="ui search dropdown" name="name" id="dropdown">
-                        <option value="" disabled selected>Kies softskill</option>
+                        <option value="" disabled selected>Choose softskill</option>
                         <option th:value="${softskill.name}" th:name="${softskill.name}" th:each="softskill : ${softskillList}">
                             <span th:text="${softskill.name}"></span>
                     </select>
@@ -46,14 +46,14 @@
             <div class="eleven wide column">
 
                 <div class="ui segment" style="height:200px">
-                    <h4><label >Beschrijving:</label></h4>
+                    <h4><label >Description:</label></h4>
                         <div th:each="pep : ${softskill}">
                             <div type="text" th:text="${pep.description}"></div>
                         </div>
                 </div>
 
                 <div class="ui segment" style="height:200px">
-                    <h4><label >Verslag:</label></h4>
+                    <h4><label >Report:</label></h4>
                     <input class="ui segment" type="text" name="report" placeholder="Report" style="height:100px">
                 </div>
 
@@ -65,7 +65,7 @@
         </div>
 
         <div class="fifteen wide column">
-        <button class="ui button fluid" type="submit">Voeg toe</button>
+        <button class="ui button fluid" type="submit">+ Add Softskill</button>
         </div>
     </div>
 
