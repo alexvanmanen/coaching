@@ -6,6 +6,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface SoftskillRepository extends JpaRepository<Softskill, Long> {
+
+	Softskill findBySoftskillId(int id);
 	
 	Softskill findByName(String name);
 

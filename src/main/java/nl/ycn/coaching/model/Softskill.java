@@ -7,7 +7,7 @@ public class Softskill {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int softskillId;
 
     @Column(name = "Softskill")
     private String name;
@@ -23,11 +23,11 @@ public class Softskill {
     }
 
     public int getId() {
-        return id;
+        return softskillId;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.softskillId = id;
     }
 
     public String getName() {
