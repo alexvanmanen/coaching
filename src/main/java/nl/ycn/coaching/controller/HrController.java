@@ -86,7 +86,7 @@ public class HrController {
 		if (appUserService.getUser(username).getRole().equalsIgnoreCase("trainee")){
 			AppUser user = appUserService.getUser(username);
 			Trainee trainee = (Trainee) user;
-			model.addAttribute("bootcamp",trainee.getBootcamp().getName());
+			model.addAttribute("bootcamp",trainee.getBootcamp().getBootcampName());
 		}
 		return "/hremployee/appuserinfo";
 	}
@@ -141,18 +141,7 @@ public class HrController {
 			return "/login";
 		}
 	}
-
-	@GetMapping("/hremployee/teams")
-	public String getTeams() {
-		try {
-			AppUser user = appUserService.getActiveUser();
-			String role = user.getRole();
-			return role.toLowerCase() + "/teams";
-		} catch (Exception e) {
-			return "/login";
-		}
-	}
-
+	
     @GetMapping("/hremployee/skills")
     public String getSkills(Model model, String name) {
         try {

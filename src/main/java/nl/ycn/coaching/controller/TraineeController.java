@@ -1,11 +1,17 @@
 package nl.ycn.coaching.controller;
 
 import nl.ycn.coaching.database.AppUserRepository;
+import nl.ycn.coaching.database.CourseRepository;
+import nl.ycn.coaching.database.TraineeRepository;
 import nl.ycn.coaching.services.AppUserService;
 import nl.ycn.coaching.database.BootcampRepository;
+import nl.ycn.coaching.services.BootcampService;
 import nl.ycn.coaching.services.PepService;
+import nl.ycn.coaching.model.Bootcamp;
+import nl.ycn.coaching.model.Course;
 import nl.ycn.coaching.model.PersonalEducationPlan;
 import nl.ycn.coaching.model.users.AppUser;
+import nl.ycn.coaching.model.users.Trainee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +20,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.sql.Date;
+import java.util.List;
 
 @Controller
 public class TraineeController {
@@ -25,19 +32,48 @@ public class TraineeController {
 	public AppUserService appUserService;
 
 	@Autowired
+	public BootcampService bootcampService;
+
+	@Autowired
 	public BootcampRepository bootcampRepository;
+
+	@Autowired
+	public CourseRepository courseRepository;
 
 	@Autowired
 	public AppUserRepository appUserRepository;
 
+	@Autowired
+	public TraineeRepository traineeRepository;
+
 	@GetMapping("/trainee/dashboard")
 	public String getTraineeDashboard(){
+
 		return "/trainee/dashboard";
 	}
 
 	@GetMapping("/trainee/courses")
-	public String getCourses(){
+	public String getCourses(Model model){
+
+		AppUser user = appUserService.getActiveUser();
+		Trainee trainee = traineeRepository.findByUsername(user.getUsername());
+		Bootcamp bootcamp = trainee.getBootcamp();
+		List<Course> courseList = bootcampService.getCourseList(bootcamp.getBootcampName());
+
+		model.addAttribute("bootcamp", bootcamp);
+		model.addAttribute("courseList", courseList);
+
 		return "/trainee/courses";
+	}
+
+	@GetMapping(path="/trainee/course/{name}")
+	public String getCourse(Model model, @PathVariable("name") String name){
+
+		Course course = courseRepository.findByCoursename(name);
+
+		model.addAttribute("course", course);
+
+		return "/trainee/course";
 	}
 
 	@GetMapping("/trainee/calendar")
@@ -88,5 +124,65 @@ public class TraineeController {
 		String username = appUserService.getActiveUser().getUsername();
 		pepService.addPersonalSoftskill (name, report, username);
 		return "redirect:/trainee/personaleducationplanpage";
+	}
+
+	@PostMapping(path="trainee/contactdetails")
+	public String updateContactDetails(
+									String firstname,
+									String lastname,
+									String email,
+									Date dateofbirth,
+									String zipcode,
+									String street,
+									String streetNr,
+									String city,
+									String country,
+									String telephonenumber){
+
+		AppUser user = appUserService.getActiveUser();
+
+		if (firstname != null) {
+			user.setFirstName(firstname);
+		}
+
+		if (lastname != null) {
+			user.setLastName(lastname);
+		}
+
+		if (email != null) {
+			user.setEmail(email);
+		}
+
+		if (dateofbirth != null) {
+			user.setDateofbirth(dateofbirth);
+		}
+
+		if (zipcode != null) {
+			user.setZipcode(zipcode);
+		}
+
+		if (street != null) {
+			user.setStreet(street);
+		}
+
+		if (streetNr != null) {
+			user.setStreetNr(streetNr);
+		}
+
+		if (city != null) {
+			user.setCity(city);
+		}
+
+		if (country != null) {
+			user.setCountry(country);
+		}
+
+		if (telephonenumber != null) {
+			user.setTelephonenumber(telephonenumber);
+		}
+
+		appUserRepository.save(user);
+
+		return "redirect:/trainee/dashboard";
 	}
 }

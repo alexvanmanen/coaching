@@ -1,5 +1,6 @@
 package nl.ycn.coaching.configurations;
 
+import nl.ycn.coaching.database.BootcampRepository;
 import nl.ycn.coaching.services.AppUserService;
 import nl.ycn.coaching.database.TraineeRepository;
 import nl.ycn.coaching.model.users.Trainee;
@@ -75,7 +76,10 @@ public class AppSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public AppUserService appUserService;
-    
+
+    @Autowired
+    private BootcampRepository bootcampRepository;
+
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
 
