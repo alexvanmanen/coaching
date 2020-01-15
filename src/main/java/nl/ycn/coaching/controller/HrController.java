@@ -141,18 +141,7 @@ public class HrController {
 			return "/login";
 		}
 	}
-
-	@GetMapping("/hremployee/teams")
-	public String getTeams() {
-		try {
-			AppUser user = appUserService.getActiveUser();
-			String role = user.getRole();
-			return role.toLowerCase() + "/teams";
-		} catch (Exception e) {
-			return "/login";
-		}
-	}
-
+	
     @GetMapping("/hremployee/skills")
     public String getSkills(Model model, String name) {
         try {
