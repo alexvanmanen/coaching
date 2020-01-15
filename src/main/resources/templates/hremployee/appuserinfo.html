@@ -18,6 +18,9 @@
 
 <body style="background-color: cadetblue">
 
+<div th:insert="~{/hremployee/header :: header}"></div>
+<script>$('#users').addClass('active');</script>
+
 <div class="ui icon message" style="padding: 10px; margin-left: 25px; margin-right: 25px; margin-top: 10px; margin-bottom: 10px">
     <div class="content">
         <h1><span th:text="${role}"></span></h1>
