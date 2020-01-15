@@ -2,8 +2,8 @@ package nl.ycn.coaching.database;
 
 
 import nl.ycn.coaching.model.Bootcamp;
+import nl.ycn.coaching.services.BootcampService;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;

@@ -1,5 +1,8 @@
-package nl.ycn.coaching.database;
+package nl.ycn.coaching.services;
 
+import nl.ycn.coaching.database.AppUserRepository;
+import nl.ycn.coaching.database.BootcampRepository;
+import nl.ycn.coaching.database.CourseRepository;
 import nl.ycn.coaching.model.Bootcamp;
 import nl.ycn.coaching.model.users.AppUser;
 import nl.ycn.coaching.model.users.Trainee;

@@ -1,9 +1,9 @@
 package nl.ycn.coaching.controller;
 
 import nl.ycn.coaching.database.AppUserRepository;
-import nl.ycn.coaching.database.AppUserService;
+import nl.ycn.coaching.services.AppUserService;
 import nl.ycn.coaching.database.BootcampRepository;
-import nl.ycn.coaching.database.PepService;
+import nl.ycn.coaching.services.PepService;
 import nl.ycn.coaching.model.PersonalEducationPlan;
 import nl.ycn.coaching.model.users.AppUser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -88,65 +88,5 @@ public class TraineeController {
 		String username = appUserService.getActiveUser().getUsername();
 		pepService.addPersonalSoftskill (name, report, username);
 		return "redirect:/trainee/personaleducationplanpage";
-	}
-
-	@PostMapping(path="trainee/contactdetails")
-	public String updateContactDetails(
-									String firstname,
-									String lastname,
-									String email,
-									Date dateofbirth,
-									String zipcode,
-									String street,
-									String streetNr,
-									String city,
-									String country,
-									String telephonenumber){
-
-		AppUser user = appUserService.getActiveUser();
-
-		if (firstname != null) {
-			user.setFirstName(firstname);
-		}
-
-		if (lastname != null) {
-			user.setLastName(lastname);
-		}
-
-		if (email != null) {
-			user.setEmail(email);
-		}
-
-		if (dateofbirth != null) {
-			user.setDateofbirth(dateofbirth);
-		}
-
-		if (zipcode != null) {
-			user.setZipcode(zipcode);
-		}
-
-		if (street != null) {
-			user.setStreet(street);
-		}
-
-		if (streetNr != null) {
-			user.setStreetNr(streetNr);
-		}
-
-		if (city != null) {
-			user.setCity(city);
-		}
-
-		if (country != null) {
-			user.setCountry(country);
-		}
-
-		if (telephonenumber != null) {
-			user.setTelephonenumber(telephonenumber);
-		}
-
-		appUserRepository.save(user);
-
-		return "redirect:/trainee/dashboard";
 	}
 }

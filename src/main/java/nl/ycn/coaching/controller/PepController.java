@@ -1,10 +1,10 @@
 package nl.ycn.coaching.controller;
 
-import nl.ycn.coaching.database.PepService;
+import nl.ycn.coaching.services.PepService;
 import nl.ycn.coaching.database.HardskillRepository;
 import nl.ycn.coaching.database.PersonalSoftskillRepository;
 import nl.ycn.coaching.database.SoftskillRepository;
-import nl.ycn.coaching.database.AppUserService;
+import nl.ycn.coaching.services.AppUserService;
 
 import nl.ycn.coaching.model.PersonalEducationPlan;
 
@@ -15,9 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 
-import java.sql.Date;
 import java.util.List;
 
 @Controller
