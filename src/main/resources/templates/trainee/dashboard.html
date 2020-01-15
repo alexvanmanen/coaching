@@ -106,16 +106,23 @@
                         <p>- Bart heeft je gevraagd een 360-graden test in te vullen.</p>
                     </div>
                 </div>
-                <div class="column">
 
+                <div class="column">
                     <div class="ui segment">
-                        <i class="id card large icon"></i>
-                        <h2>Contact Details</h2>
-                        <p>Username: th.value=${user.getUsername()}</p>
-                        <p>Geboortedatum: 24-06-1997</p>
-                        <p>Traineeship: DevOps</p>
-                        <p>Rotatie: november 2019</p>
-                        <p>Address: Lansiershof 6, 2171TC, Sassenheim, Nederland.</p>
+
+                        <form class="ui form" method="get" action="/trainee/contactdetails" style="margin-bottom: 10px">
+                            <button class="ui mini icon teal message button">
+                                <div class="content">
+                                    <h2><span>Contact Details</span></h2>
+                                </div>
+                            </button>
+                        </form>
+
+                        <p th:text="'Name: ' + ${user.firstName} + ' ' + ${user.lastName}"></p>
+                        <p th:text="'Day of birth: ' + ${user.dateofbirth}"></p>
+                        <p th:text="'Email: ' + ${user.email}"></p>
+                        <p th:text="'Telephone number: ' + ${user.telephonenumber}"></p>
+                        <p th:text="'Address: ' + ${user.street} + ' ' + ${user.streetNr} + ', ' + ${user.zipcode} + ', ' + ${user.city}"></p>
                     </div>
                 </div>
             </div>
@@ -123,26 +130,51 @@
             <div class="center aligned two column row">
                 <div class="column">
                     <div class="ui segment">
-                        <i class="calendar alternate large icon"></i>
-                        <h2>Calendar</h2>
+
+                        <form class="ui form" method="get" action="/trainee/calendar" style="margin-bottom: 10px">
+                            <button class="ui mini icon teal message button">
+                                <div class="content">
+                                    <h2><span>Calendar</span></h2>
+                                </div>
+                            </button>
+                        </form>
+
+
                         <div class="item" >
-                            <img src="../agenda.png" class="image">
+                            <img src="/agenda.png" class="image">
 
                         </div>
                     </div>
                 </div>
-                <div class="column">
 
+                <div class="column">
                     <div class="ui segment">
-                        <i class="user large icon"></i>
-                        <h2>Team</h2>
-                        <p>Naam: Luuk Wempe</p>
-                        <p>Naam: Simone Meijers</p>
-                        <p>Naam: Wouter Abels</p>
-                        <p>Naam: Vuong Gno</p>
-                        <p>Naam: Naomi Goedhart</p>
+
+                        <form class="ui form" method="get" action="/trainee/accountsettings" style="margin-bottom: 10px">
+                            <button class="ui mini icon teal message button">
+                                <div class="content">
+                                    <h2><span>Account details</span></h2>
+                                </div>
+                            </button>
+                        </form>
+
+                        <p th:text="'Username: ' + ${user.username}"></p>
+                        <p th:text="'Activated: ' + ${user.activated}"></p>
                     </div>
                 </div>
+
+<!--                <div class="column">-->
+
+<!--                    <div class="ui segment">-->
+<!--                        <i class="user large icon"></i>-->
+<!--                        <h2>Team</h2>-->
+<!--                        <p>Naam: Luuk Wempe</p>-->
+<!--                        <p>Naam: Simone Meijers</p>-->
+<!--                        <p>Naam: Wouter Abels</p>-->
+<!--                        <p>Naam: Vuong Gno</p>-->
+<!--                        <p>Naam: Naomi Goedhart</p>-->
+<!--                    </div>-->
+<!--                </div>-->
             </div>
     </div>
 </body>

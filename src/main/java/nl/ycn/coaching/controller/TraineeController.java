@@ -61,6 +61,8 @@ public class TraineeController {
 		//Fill the hardskill list and set it
 		personalEducationPlan.setPersonalHardskillList(pepService.fillPersonalHardskillList());
 
+		model.addAttribute("user", user);
+		model.addAttribute("trainee", trainee);
 		model.addAttribute("courseList", courseList);
 		model.addAttribute("personalsoftskillList", personalEducationPlan.getPersonalSoftskillList());
 		model.addAttribute("personalhardskillList", personalEducationPlan.getPersonalHardskillList());
