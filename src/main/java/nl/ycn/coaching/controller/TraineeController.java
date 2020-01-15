@@ -2,6 +2,7 @@ package nl.ycn.coaching.controller;
 
 import nl.ycn.coaching.database.*;
 import nl.ycn.coaching.model.Bootcamp;
+import nl.ycn.coaching.model.Course;
 import nl.ycn.coaching.model.PersonalEducationPlan;
 import nl.ycn.coaching.model.users.AppUser;
 import nl.ycn.coaching.model.users.Trainee;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.sql.Date;
+import java.util.List;
 
 @Controller
 public class TraineeController {
@@ -24,7 +26,13 @@ public class TraineeController {
 	public AppUserService appUserService;
 
 	@Autowired
+	public BootcampService bootcampService;
+
+	@Autowired
 	public BootcampRepository bootcampRepository;
+
+	@Autowired
+	public CourseRepository courseRepository;
 
 	@Autowired
 	public AppUserRepository appUserRepository;
@@ -44,13 +52,22 @@ public class TraineeController {
 		AppUser user = appUserService.getActiveUser();
 		Trainee trainee = traineeRepository.findByUsername(user.getUsername());
 		Bootcamp bootcamp = trainee.getBootcamp();
+		List<Course> courseList = bootcampService.getCourseList(bootcamp.getBootcampName());
 
 		model.addAttribute("bootcamp", bootcamp);
-
-
-
+		model.addAttribute("courseList", courseList);
 
 		return "/trainee/courses";
+	}
+
+	@GetMapping(path="/trainee/course/{name}")
+	public String getCourse(Model model, @PathVariable("name") String name){
+
+		Course course = courseRepository.findByName(name);
+
+		model.addAttribute("course", course);
+
+		return "/trainee/course";
 	}
 
 	@GetMapping("/trainee/calendar")

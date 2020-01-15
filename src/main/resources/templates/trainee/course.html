@@ -1,10 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Coaching | Course</title>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+
+    <script src="https://visjs.github.io/vis-network/standalone/umd/vis-network.min.js"></script>
+
+
+    <link href="https://d36bmc1enj16yj.cloudfront.net/production/assets/pages/next-theme-420a2b84df4422f527df4b319c89641a8a309d6e0bdaa4deed04baed5633ea70.css"
+          media="screen"
+          rel="stylesheet"/>
+
 </head>
-<body>
+<body style="background-color: cadetblue">
+
+<div th:insert="~{trainee/header :: header}"></div>
+<script>$('#courses').addClass('active');</script>
+
+<div class="ui segment" style="margin-left: 25px; margin-right: 25px;">
+    <div>
+        <div style="text-align: center;">
+            <h1><span th:text="${course.name}"></span></h1>
+        </div>
+    </div>
+</div>
+
+<div class="ui segment" style="margin-left: 25px; margin-right: 25px;">
+    <div>
+        <div style="text-align: center; margin-bottom: 10px;">
+            <h3><span>Description</span></h3>
+        </div>
+    </div>
+
+    <div>
+        <div style="text-align: center; margin-bottom: 25px;">
+            <span th:text="${course.description}"></span>
+        </div>
+    </div>
+
+</div>
 
 </body>
 </html>

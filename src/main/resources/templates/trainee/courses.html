@@ -4,7 +4,7 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Coaching | Hardskills</title>
+    <title>Coaching | Courses</title>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" rel="stylesheet"/>
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
@@ -28,14 +28,20 @@
             <h1><span th:text="${bootcamp.bootcampName}"></span></h1>
         </div>
     </div>
+</div>
 
-    <form class="ui form">
-        <!--    <div class="ui mini icon message button" th:each="manager:${managers}">-->
+<div class="ui segment" style="margin-left: 25px; margin-right: 25px;">
+    <div>
+        <div style="text-align: center; margin-bottom: 25px;">
+            <h2><span>Courses</span></h2>
+        </div>
+    </div>
+
+    <form class="ui form" method="get" th:action="@{'/trainee/course/' + ${course.name}}" th:each="course:${courseList}">
         <button class="ui mini icon message button">
             <i class="book icon"></i>
             <div class="content">
-                <h3><span>Course</span></h3>
-            <!--    <h3><span th:text="${manager.firstName} + ' ' + ${manager.lastName}"></span></h3> -->
+                <h3><span th:text="${course.name}"></span></h3>
             </div>
         </button>
     </form>
