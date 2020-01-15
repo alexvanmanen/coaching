@@ -47,7 +47,14 @@ public class TraineeController {
 	public TraineeRepository traineeRepository;
 
 	@GetMapping("/trainee/dashboard")
-	public String getTraineeDashboard(){
+	public String getTraineeDashboard(Model model){
+
+		AppUser user = appUserService.getActiveUser();
+		Trainee trainee = traineeRepository.findByUsername(user.getUsername());
+		Bootcamp bootcamp = trainee.getBootcamp();
+		List<Course> courseList = bootcampService.getCourseList(bootcamp.getBootcampName());
+
+		model.addAttribute("courseList", courseList);
 
 		return "/trainee/dashboard";
 	}

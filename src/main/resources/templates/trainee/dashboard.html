@@ -11,7 +11,7 @@
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
 
     <script src="https://visjs.github.io/vis-network/standalone/umd/vis-network.min.js"></script>
-    <script src="./static/elements.js"></script>
+    <script src="../elements.js"></script>
 
 </head>
 <body style="background-color: cadetblue">
@@ -25,13 +25,22 @@
                 <div class="column">
 
                     <div class="ui segment">
-                        <i class="cubes large icon"></i>
-                        <h2>Courses</h2>
-                        <p>Java</p>
-                        <p>Spring</p>
-                        <p>SQL</p>
-                        <p>JavaScript</p>
-                        <p>HTML</p>
+                        <form class="ui form" method="get" action="/trainee/courses">
+                            <button class="ui mini icon message button">
+                                <div class="content">
+                                    <h2><span>Courses</span></h2>
+                                </div>
+                            </button>
+                        </form>
+
+                        <form class="ui form" method="get" th:action="@{'/trainee/course/' + ${course.coursename}}" th:each="course:${courseList}">
+                            <button class="ui mini icon inverted message button">
+                                <i class="book icon"></i>
+                                <div class="content">
+                                    <h3><span th:text="${course.coursename}"></span></h3>
+                                </div>
+                            </button>
+                        </form>
                     </div>
                 </div>
 
