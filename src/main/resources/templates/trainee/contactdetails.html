@@ -30,67 +30,43 @@
 
 <form class="ui form" method="post" th:action="@{/trainee/contactdetails}"
       style="margin-left: 25px; margin-right: 25px;">
-    <div class="ui grid">
 
-        <div class="one column row">
+    <div class="ui two column centered grid">
+        <div class="row">
+
             <div class="eight wide column">
+
                 <h3><label>Firstname:</label></h3>
                 <input placeholder="Firstname" type="text" name="firstname" th:value="${firstname}">
-            </div>
 
-            <div class="eight wide column">
-                <h3><label>Street</label></h3>
-                <input type="text" placeholder="Street" name="street" th:value="${street}">
-            </div>
-        </div>
-
-        <div class="one column row">
-            <div class="eight wide column">
                 <h3><label>Lastname:</label></h3>
                 <input placeholder="Lastname" type="text" name="lastname" th:value="${lastname}">
-            </div>
 
-            <div class="eight wide column">
-                <h3><label>Street Nr:</label></h3>
-                <input type="text" placeholder="Street Nr" name="streetNr" th:value="${streetnr}">
-            </div>
-        </div>
-
-            <div class="eight wide column">
-                <h3><label>Zipcode:</label></h3>
-                <input type="text" placeholder="Zipcode" name="zipcode" th:value="${zipcode}">
-            </div>
-        </div>
-
-        <div class="one column row">
-            <div class="eight wide column">
                 <h3><label>Email:</label></h3>
                 <input type="text" placeholder="Email" name="email" th:value="${email}">
-            </div>
 
-            <div class="eight wide column">
-                <h3><label>City:</label></h3>
-                <input type="text" placeholder="City" name="city" th:value="${city}">
-            </div>
-        </div>
-
-        <div class="one column row">
-            <div class="eight wide column">
-                <h3><label>Date of Birth:</label></h3>
-                <input type="text" placeholder="YYYY-MM-DD" name="dateofbirth" th:value="${dateofbirth}">
-            </div>
-
-            <div class="eight wide column">
                 <h3><label>Telephone Nr:</label></h3>
                 <input type="text" placeholder="+31 6-12345678" name="telephonenr" th:value="${telephonenumber}">
+
+                <h3><label>Date of Birth:</label></h3>
+                <input type="text" placeholder="YYYY-MM-DD" name="dateofbirth" th:value="${dateofbirth}">
+
             </div>
-        </div>
 
             <div class="eight wide column">
-                <!--
-                <h3><label>Country:</label></h3>
-                <input type="text" placeholder="Country" name="country" th:value="${country}">
-            </div> -->
+
+                <h3><label>Street</label></h3>
+                <input type="text" placeholder="Street" name="street" th:value="${street}">
+
+                <h3><label>Street Nr:</label></h3>
+                <input type="text" placeholder="Street Nr" name="streetNr" th:value="${streetnr}">
+
+                <h3><label>Zipcode:</label></h3>
+                <input type="text" placeholder="Zipcode" name="zipcode" th:value="${zipcode}">
+
+                <h3><label>City:</label></h3>
+                <input type="text" placeholder="City" name="city" th:value="${city}">
+
                 <h3><label>Country: </label></h3>
                 <div class="ui fluid search selection dropdown">
                     <input name="country" type="hidden" th:value="${country}">
@@ -340,18 +316,16 @@
                         <div class="item" data-value="Zambia"><i class="zm flag"></i>Zambia</div>
                         <div class="item" data-value="Zimbabwe"><i class="zw flag"></i>Zimbabwe</div>
                     </div>
-                </div>
+            </div>
+
             </div>
         </div>
 
-        <div class="ui divider"></div>
-
-        <div class="one column row">
-            <div class="sixteen wide column">
-                <button class="ui orange fluid large button" type="submit">Save Changes</button>
-            </div>
+        <div class="sixteen wide column">
+            <button class="ui button fluid" type="submit">Voeg toe</button>
         </div>
     </div>
+
 </form>
 
 </body>
