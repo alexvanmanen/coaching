@@ -47,8 +47,40 @@ public class Bootcamp {
 	
 	public void getBootcamp() {}
 
-	public String getName() {
+	public String getBootcampName() {
 		return bootcampName;
+	}
+
+	public void setBootcampName(String bootcampName) {
+		this.bootcampName = bootcampName;
+	}
+
+	public String getBeginDate() {
+		return beginDate;
+	}
+
+	public void setBeginDate(String beginDate) {
+		this.beginDate = beginDate;
+	}
+
+	public String getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
+	}
+
+	public void setCourseList(String courseList) {
+		this.courseList = courseList;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 
 	public String getCourseList() {

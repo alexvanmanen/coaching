@@ -25,7 +25,7 @@
     </div>
 
     <div class="ui mini icon message" th:each="hremployee:${hremployees}">
-        <i class="tiny newspaper icon"></i>
+        <i class="tiny address card icon"></i>
         <div class="content">
             <h3><span th:text="${hremployee.firstName} + ' ' +${hremployee.lastName}"></span></h3>
         </div>
@@ -50,7 +50,7 @@
     </div>
 
     <div class="ui mini icon message" th:each="trainee:${trainees}">
-        <i class="tiny newspaper icon"></i>
+        <i class="tiny address card icon"></i>
         <div class="content">
             <h3><span th:text="${trainee.firstName} + ' ' + ${trainee.lastName}"></span></h3>
         </div>
@@ -73,7 +73,7 @@
     </div>
 
     <div class="ui mini icon message" th:each="manager:${managers}">
-        <i class="newspaper icon"></i>
+        <i class="tiny address card icon"></i>
         <div class="content">
             <h3><span th:text="${manager.firstName} + ' ' + ${manager.lastName}"></span></h3>
         </div>
@@ -97,7 +97,7 @@
     </div>
 
     <div class="ui mini icon message" th:each="talentmanager:${talentmanagers}">
-        <i class="newspaper icon"></i>
+        <i class="tiny address card icon"></i>
         <div class="content">
         <h3><span th:text="${talentmanager.firstName} + ' ' + ${talentmanager.lastName}"></span></h3>
         </div>

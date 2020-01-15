@@ -4,7 +4,7 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Coaching | Courses</title>
+    <title>Coaching | Course</title>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" rel="stylesheet"/>
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
@@ -25,27 +25,25 @@
 <div class="ui segment" style="margin-left: 25px; margin-right: 25px;">
     <div>
         <div style="text-align: center;">
-            <h1><span th:text="${bootcamp.bootcampName}"></span></h1>
+            <h1><span th:text="${course.coursename}"></span></h1>
         </div>
     </div>
 </div>
 
 <div class="ui segment" style="margin-left: 25px; margin-right: 25px;">
     <div>
-        <div style="text-align: center; margin-bottom: 25px;">
-            <h2><span>Courses</span></h2>
+        <div style="text-align: center; margin-bottom: 10px;">
+            <h3><span>Description</span></h3>
         </div>
     </div>
 
-    <form class="ui form" method="get" th:action="@{'/trainee/course/' + ${course.coursename}}" th:each="course:${courseList}">
-        <button class="ui mini icon message button">
-            <i class="book icon"></i>
-            <div class="content">
-                <h3><span th:text="${course.coursename}"></span></h3>
-            </div>
-        </button>
-    </form>
+    <div>
+        <div style="text-align: center; margin-bottom: 25px;">
+            <span th:text="${course.coursedescription}"></span>
+        </div>
+    </div>
 
 </div>
+
 </body>
 </html>
