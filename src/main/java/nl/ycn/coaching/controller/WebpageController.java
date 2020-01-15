@@ -2,17 +2,21 @@ package nl.ycn.coaching.controller;
 
 import nl.ycn.coaching.database.AppUserRepository;
 import nl.ycn.coaching.services.AppUserService;
+import nl.ycn.coaching.database.AppUserRepository;
 import nl.ycn.coaching.model.users.AppUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mobile.device.Device;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpSession;
+import java.sql.Date;
 
 @Controller
 public class WebpageController {
@@ -123,12 +127,43 @@ public class WebpageController {
         return "redirect:/trainee/accountsettings";
     }
 
-    @PostMapping("/register")
-    public String register(String username, String firstname, String lastname, String email, String password, String roles){
 
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        appUserService.registerUser(username,  firstname, lastname, email, encoder.encode(password), roles, true, true, null, null, null, 0, null, null ,null);
+	@PostMapping("/register")
+	public String register(String username,
+						   String firstName,
+						   String lastName,
+						   String email,
+						   String password,
+						   String role,
+						   boolean enabled,
+						   boolean activated,
+						   Date dateofbirth,
+						   String zipcode,
+						   String street,
+						   String streetNr,
+						   String city,
+						   String country,
+						   String telephonenumber,
+						   String bootcamp){
 
-        return "/dashboardpages/dashboardpage";
-    }
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		appUserService.registerUser(username,
+				firstName,
+				lastName,
+				email,
+				encoder.encode(password),
+				role,
+				enabled,
+				activated,
+				dateofbirth,
+				zipcode,
+				street,
+				streetNr,
+				city,
+				country,
+				telephonenumber,
+				bootcamp);
+
+		return "/dashboardpages/dashboardpage";
+	}
 }

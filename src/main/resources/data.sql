@@ -51,16 +51,13 @@ INSERT INTO COURSE VALUES(1, 'EEN AGILE WERKMETHODE', 'SCRUM');
 INSERT INTO COURSE VALUES(2, 'REQUIREMENTS ENGINEERINGING', 'IREB');
 INSERT INTO COURSE VALUES(3, 'TESTING', 'ISTQB');
 
-INSERT INTO BOOTCAMP VALUES(1, '12-12', 'Devops 1', 'Python, SQL', '12-20');
-INSERT INTO BOOTCAMP VALUES(2, '06-13', 'Devops 2', 'Java, Linux', '12-20');
-INSERT INTO BOOTCAMP VALUES(3, '12-13', 'Devops 3', 'Java, C++', '12-20');
-INSERT INTO BOOTCAMP VALUES(4, '12-12', 'Java 1', 'C+, CSS', '12-20');
-
--- INSERT INTO USERS VALUES (1, 'luukwempe@hotmail.com', false, 'Luuk', 'Wempe', '$2a$10$IvTHLGHypnYOmKQfvMKXFOrjSuLYeZDjYnJ6t9BlEVZjktzdDDxQ.', 'ADMIN', 'luuk');
--- INSERT INTO USERS VALUES (2, 'alex@vanmanenit.nl', false, 'Alex', 'van Manen', 'hallo', 'TRAINEE', 'Alex');
--- INSERT INTO USERS VALUES (3, 'vuong.anime@gmail.com', false, 'Vuong', 'Ngo', '$2a$10$K.ereCislpkFp2gBCbPqg.QDP0uex3hV39LPqdbVj1lbaCkYt/.sW', 'MANAGER', 'Vuong');
--- INSERT INTO USERS VALUES (4, 'scm15-8@live.nl', false, 'Simone', 'Meijers', '$2a$10$WSOqxucmkA0IDRzUKTg5PO/bOTgHoCFMFUlECpcALA3deFyzghduu', 'TALENTMANAGER', 'Simone');
--- INSERT INTO USERS VALUES (5, 'wouterabels@hotmail.com', false, 'Wouter', 'Abels', '$2a$10$LBl/nvCwO3BlV1lANBYTFO2e3aK8PkSWa0NmsB.4SqYYFAPxo.4/O', 'HREMPLOYEE', 'Wouter');
-
--- INSERT INTO TRAINEES VALUES (1,2,1);
-
+INSERT INTO BOOTCAMP VALUES(1, false, '2019-02-12', 'devops-01-19', 'Python, SQL', '2019-05-20');
+INSERT INTO BOOTCAMP VALUES(2, false, '2019-02-12', 'java-01-19', 'C+, CSS', '2019-05-22');
+INSERT INTO BOOTCAMP VALUES(3, false, '2019-04-12', 'bigdata-01-19', 'C+, CSS', '2019-07-17');
+INSERT INTO BOOTCAMP VALUES(4, false, '2019-06-13', 'devops-02-19', 'Java, Linux', '2019-09-20');
+INSERT INTO BOOTCAMP VALUES(5, false, '2019-06-27', 'java-02-19', 'C+, CSS', '2019-08-22');
+INSERT INTO BOOTCAMP VALUES(6, true, '2019-08-12', 'bigdata-02-19', 'C+, CSS', '2019-10-17');
+INSERT INTO BOOTCAMP VALUES(7, true, '2019-09-28', 'devops-03-19', 'Java, C++', '2019-11-15');
+INSERT INTO BOOTCAMP VALUES(8, true, '2019-09-12', 'java-03-19', 'C+, CSS', '2019-12-22');
+INSERT INTO BOOTCAMP VALUES(9, true, '2019-11-18', 'devops-04-19', 'Java, C++', '2020-01-20');
+INSERT INTO BOOTCAMP VALUES(10, true, '2019-12-12', 'bigdata-03-19', 'C+, CSS', '2020-02-17');

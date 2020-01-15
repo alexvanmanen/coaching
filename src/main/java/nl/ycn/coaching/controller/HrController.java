@@ -1,8 +1,14 @@
 package nl.ycn.coaching.controller;
 
+
+import net.bytebuddy.utility.RandomString;
+import nl.ycn.coaching.database.*;
+import nl.ycn.coaching.model.Bootcamp;
 import nl.ycn.coaching.model.users.AppUser;
 import nl.ycn.coaching.services.AppUserService;
+import nl.ycn.coaching.services.BootcampService;
 import nl.ycn.coaching.services.HrService;
+import nl.ycn.coaching.model.users.Trainee;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -11,7 +17,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
+import java.sql.Date;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -24,51 +32,126 @@ public class HrController {
 
     @Autowired
     private HrService hrService;
+	@Autowired
+	private AppUserRepository appUserRepository;
 
-    //Mappings for HR-Employee
-    @GetMapping("hremployee/bootcamps")
-    public String getBootcamps(Model model) {
-        try {
-            AppUser user = appUserService.getActiveUser();
-            String role = user.getRole();
-            model.addAttribute("activeBootcamps", hrService.getTopBootcamps(100));
-            return role.toLowerCase() + "/bootcamps";
-        } catch (Exception e) {
-            return "/login";
-        }
-    }
+	@Autowired
+	private BootcampRepository bootcampRepository;
 
-    @GetMapping("/hremployee/dashboard")
-    public String getHrDashboard(Model model) {
-        model.addAttribute("activeBootcamps", hrService.getTopBootcamps(5));
-        return "/hremployee/hrdashboard";
-    }
+	@Autowired
+	private BootcampService bootcampService;
 
-    @GetMapping("/hremployee/users")
-    public String getUsers(Model model) {
-        try {
-            AppUser user = appUserService.getActiveUser();
-            String role = user.getRole();
-            model.addAttribute("hremployees", appUserService.getAppUsersByRole("HREMPLOYEE"));
-            model.addAttribute("trainees", appUserService.getAppUsersByRole("TRAINEE"));
-            model.addAttribute("managers", appUserService.getAppUsersByRole("MANAGER"));
-            model.addAttribute("talentmanagers", appUserService.getAppUsersByRole("TALENTMANAGER"));
-            return "/" + role.toLowerCase() + "/users";
-        } catch (Exception e) {
-            return "/login";
-        }
-    }
+	BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
-    @GetMapping("/hremployee/teams")
-    public String getTeams() {
-        try {
-            AppUser user = appUserService.getActiveUser();
-            String role = user.getRole();
-            return "/" + role.toLowerCase() + "/teams";
-        } catch (Exception e) {
-            return "/login";
-        }
-    }
+	//Mappings for HR-Employee
+	@GetMapping("hremployee/bootcamps")
+	public String getBootcamps(Model model) {
+		try {
+			AppUser user = appUserService.getActiveUser();
+			String role = user.getRole();
+			model.addAttribute("activeBootcamps", hrService.getTopActiveBootcamps(100));
+			model.addAttribute("finishedBootcamps",hrService.getTopFinishedBootcamps(100));
+
+			return role.toLowerCase() + "/bootcamps";
+		} catch (Exception e) {
+			return "/login";
+		}
+	}
+
+	@GetMapping("/hremployee/dashboard")
+	public String getHrDashboard(Model model){
+		model.addAttribute("activeBootcamps",hrService.getTopActiveBootcamps(5));
+		model.addAttribute("activeBootcamps",hrService.getTopFinishedBootcamps(5));
+
+		return "/hremployee/hrdashboard";
+	}
+
+	@GetMapping(path="/hremployee/appuserinfo/{username}")
+	public String getAppUserInfo(Model model , @PathVariable("username") String username){
+
+		model.addAttribute("role", appUserService.getUser(username).getRole().toLowerCase());
+		model.addAttribute("password", appUserService.getUser(username).getPassword());
+		model.addAttribute("username", appUserService.getUser(username).getUsername());
+		model.addAttribute("firstname", appUserService.getUser(username).getFirstName());
+		model.addAttribute("lastname", appUserService.getUser(username).getLastName());
+		model.addAttribute("email", appUserService.getUser(username).getEmail());
+		model.addAttribute("street", appUserService.getUser(username).getStreet());
+		model.addAttribute("streetnr", appUserService.getUser(username).getStreetNr());
+		model.addAttribute("zipcode", appUserService.getUser(username).getZipcode());
+		model.addAttribute("city", appUserService.getUser(username).getCity());
+		model.addAttribute("country", appUserService.getUser(username).getCountry());
+		model.addAttribute("bootcampList", bootcampRepository.findAll());
+		model.addAttribute("telephonenumber",appUserService.getUser(username).getTelephonenumber());
+		model.addAttribute("dateofbirth", appUserService.getUser(username).getDateofbirth());
+		if (appUserService.getUser(username).getRole().equalsIgnoreCase("trainee")){
+			AppUser user = appUserService.getUser(username);
+			Trainee trainee = (Trainee) user;
+			model.addAttribute("bootcamp",trainee.getBootcamp().getName());
+		}
+		return "/hremployee/appuserinfo";
+	}
+
+	@PostMapping(path="hremployee/updateappuserinfo/{username}")
+	public String updateAppUserInfo(@PathVariable("username") String username,
+									String firstname,
+									String lastname,
+									String email,
+									String roles,
+									String password,
+									boolean enabled,
+									boolean activated,
+									Date dateofbirth,
+									String zipcode,
+									String street,
+									String streetNr,
+									String city,
+									String country,
+									String telephonenumber,
+									String bootcamp){
+		appUserService.updateAppUser(username,
+				firstname,
+				lastname,
+				email,
+				password,
+				enabled,
+				activated,
+				dateofbirth,
+				zipcode,
+				street,
+				streetNr,
+				city,
+				country,
+				telephonenumber,
+				bootcamp);
+		return "redirect:/hremployee/users";
+	}
+
+
+	@GetMapping("/hremployee/users")
+	public String getUsers(Model model) {
+		try {
+			AppUser user = appUserService.getActiveUser();
+			String role = user.getRole();
+			model.addAttribute("hremployees", appUserService.getAppUsersByRole("HREMPLOYEE"));
+			model.addAttribute("trainees", appUserService.getAppUsersByRole("TRAINEE"));
+			model.addAttribute("managers", appUserService.getAppUsersByRole("MANAGER"));
+			model.addAttribute("talentmanagers", appUserService.getAppUsersByRole("TALENTMANAGER"));
+			return "/" + role.toLowerCase() + "/users";
+		} catch (Exception e) {
+			return "/login";
+		}
+	}
+
+	@GetMapping("/hremployee/teams")
+	public String getTeams() {
+		try {
+			AppUser user = appUserService.getActiveUser();
+			String role = user.getRole();
+			return role.toLowerCase() + "/teams";
+		} catch (Exception e) {
+			return "/login";
+		}
+	}
 
     @GetMapping("/hremployee/skills")
     public String getSkills(Model model, String name) {
@@ -120,14 +203,29 @@ public class HrController {
         return "/hremployee/hrcalendar";
     }
 
-    //register a new AppUser (from hremployee/register)
-    @PostMapping("/hremployee/addappuser")
-    public String register(String username, String firstname, String lastname, String email, String password, String roles) {
+	//register a new AppUser (from hremployee/register)
+	@PostMapping("/hremployee/addappuser")
+	public String register(String username,
+						   String firstname,
+						   String lastname,
+						   String email,
+						   String password,
+						   String roles,
+						   boolean enabled,
+						   boolean activated) {
 
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        appUserService.registerUser(username, firstname, lastname, email, encoder.encode(password), roles, true, true, null, null, null, 0, null, null, null);
-        return "redirect:/hremployee/users";
-    }
+
+		appUserService.registerUser(
+							username,
+							firstname,
+							lastname,
+							email,
+							encoder.encode(password),
+							roles,
+							enabled,
+							activated);
+		return "redirect:/hremployee/users";
+	}
 
     @GetMapping("/hremployee/createsoftskillform")
     public String getSoftskillForm() {

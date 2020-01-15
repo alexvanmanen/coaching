@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org" xmlns:href="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>HR-Employee | Users</title>
@@ -27,9 +27,13 @@
     <div class="ui mini icon message" th:each="hremployee:${hremployees}">
         <i class="tiny newspaper icon"></i>
         <div class="content">
-            <h3><span th:text="${hremployee.username}"></span></h3>
+            <h3><span th:text="${hremployee.firstName} + ' ' +${hremployee.lastName}"></span></h3>
         </div>
-        <i class="right floated tiny edit icon"></i>
+
+        <form class="ui form" method="get" th:action="@{'/hremployee/appuserinfo/' + ${hremployee.username}}">
+            <button class="ui orange inverted button" ><i class ="centered edit icon"></i></button>
+        </form>
+
     </div>
 
 
@@ -48,10 +52,12 @@
     <div class="ui mini icon message" th:each="trainee:${trainees}">
         <i class="tiny newspaper icon"></i>
         <div class="content">
-            <h3><span th:text="${trainee.username}"></span></h3>
+            <h3><span th:text="${trainee.firstName} + ' ' + ${trainee.lastName}"></span></h3>
         </div>
-        <i class="right floated tiny edit icon"></i>
 
+        <form class="ui form" method="get" th:action="@{'/hremployee/appuserinfo/' + ${trainee.username}}">
+            <button class="ui orange inverted button" ><i class ="centered edit icon"></i></button>
+        </form>
     </div>
 
     <div>
@@ -69,9 +75,12 @@
     <div class="ui mini icon message" th:each="manager:${managers}">
         <i class="newspaper icon"></i>
         <div class="content">
-            <h3><span th:text="${manager.username}"></span></h3>
+            <h3><span th:text="${manager.firstName} + ' ' + ${manager.lastName}"></span></h3>
         </div>
-        <i class="edit icon"></i>
+
+        <form class="ui form" method="get" th:action="@{'/hremployee/appuserinfo/' + ${manager.username}}">
+            <button class="ui orange inverted button" ><i class ="centered edit icon"></i></button>
+        </form>
     </div>
 
 
@@ -90,9 +99,12 @@
     <div class="ui mini icon message" th:each="talentmanager:${talentmanagers}">
         <i class="newspaper icon"></i>
         <div class="content">
-        <h3><span th:text="${talentmanager.username}"></span></h3>
+        <h3><span th:text="${talentmanager.firstName} + ' ' + ${talentmanager.lastName}"></span></h3>
         </div>
-        <i class="edit icon"></i>
+
+        <form class="ui form" method="get" th:action="@{'/hremployee/appuserinfo/' + ${talentmanager.username}}">
+            <button class="ui orange inverted button" ><i class ="centered edit icon"></i></button>
+        </form>
     </div>
 
     <div>

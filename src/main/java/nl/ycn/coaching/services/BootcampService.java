@@ -5,45 +5,33 @@ import nl.ycn.coaching.database.BootcampRepository;
 import nl.ycn.coaching.database.CourseRepository;
 import nl.ycn.coaching.model.Bootcamp;
 import nl.ycn.coaching.model.users.AppUser;
+import nl.ycn.coaching.model.users.Trainee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class BootcampService {
-	
-	@Autowired
-	private BootcampRepository bootcampRepository;
-	
-	@Autowired
-	private CourseRepository courseRepository;
-	
-	@Autowired
-	private AppUserRepository appUserRepository;
-	
 
 	@Autowired
-	public void setBootcampRepository(BootcampRepository bootcampRepository){
+	private BootcampRepository bootcampRepository;
+
+	@Autowired
+	public void setBootcampRepository(BootcampRepository bootcampRepository) {
 		this.bootcampRepository = bootcampRepository;
 	}
 
 	public void addBootcamp(
 			String bootcampName,
-			String courseList){
-		Bootcamp bootcamp = new Bootcamp (bootcampName, courseList);
-		bootcampRepository.save (bootcamp);
+			String courseList) {
+		Bootcamp bootcamp = new Bootcamp(bootcampName.toLowerCase(), courseList);
+		bootcampRepository.save(bootcamp);
 	}
-	
-	public List<AppUser> fillTraineeList() {
-		List<AppUser> traineeList = new ArrayList<AppUser>();
-		List<AppUser> allUsers = appUserRepository.findAll();
-		for (AppUser user : allUsers) {
-			if (user.getRole ().equals("TRAINEE")) {
-				traineeList.add(user);
-			}
-		}
-		return allUsers;
+
+	public Bootcamp updateBootcamp(String bootcamp) {
+		return bootcampRepository.findByBootcampName(bootcamp);
 	}
 }
