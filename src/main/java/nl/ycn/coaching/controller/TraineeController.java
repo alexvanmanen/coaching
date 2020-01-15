@@ -53,8 +53,17 @@ public class TraineeController {
 		Trainee trainee = traineeRepository.findByUsername(user.getUsername());
 		Bootcamp bootcamp = trainee.getBootcamp();
 		List<Course> courseList = bootcampService.getCourseList(bootcamp.getBootcampName());
+		PersonalEducationPlan personalEducationPlan = new PersonalEducationPlan();
+
+		//Fill the softskill list and set it
+		personalEducationPlan.setPersonalSoftskillList(pepService.fillPersonalSoftskillList());
+
+		//Fill the hardskill list and set it
+		personalEducationPlan.setPersonalHardskillList(pepService.fillPersonalHardskillList());
 
 		model.addAttribute("courseList", courseList);
+		model.addAttribute("personalsoftskillList", personalEducationPlan.getPersonalSoftskillList());
+		model.addAttribute("personalhardskillList", personalEducationPlan.getPersonalHardskillList());
 
 		return "/trainee/dashboard";
 	}

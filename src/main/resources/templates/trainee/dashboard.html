@@ -25,8 +25,8 @@
                 <div class="column">
 
                     <div class="ui segment">
-                        <form class="ui form" method="get" action="/trainee/courses">
-                            <button class="ui mini icon message button">
+                        <form class="ui form" method="get" action="/trainee/courses" style="margin-bottom: 10px">
+                            <button class="ui mini icon teal message button">
                                 <div class="content">
                                     <h2><span>Courses</span></h2>
                                 </div>
@@ -34,8 +34,7 @@
                         </form>
 
                         <form class="ui form" method="get" th:action="@{'/trainee/course/' + ${course.coursename}}" th:each="course:${courseList}">
-                            <button class="ui mini icon inverted message button">
-                                <i class="book icon"></i>
+                            <button class="ui mini icon message button">
                                 <div class="content">
                                     <h3><span th:text="${course.coursename}"></span></h3>
                                 </div>
@@ -47,13 +46,43 @@
                 <div class="column">
 
                     <div class="ui segment">
-                        <i class="newspaper large icon"></i>
-                        <h2>Personal Education Plan</h2>
-                        <b><p>Personal Softskills</p></b>
-                        <p>Leadership</p>
-                        <p>Communication</p>
-                        <b><p>Personal Hardskills</p></b>
-                        <p>Oracle Certified Associate</p>
+
+                        <form class="ui form" method="get" action="/trainee/personaleducationplanpage" style="margin-bottom: 10px">
+                            <button class="ui mini icon teal message button">
+                                <div class="content">
+                                    <h2><span>Personal Education Plan</span></h2>
+                                </div>
+                            </button>
+                        </form>
+
+                        <div class="ui center aligned grid">
+
+                            <div class="ui center aligned two column row">
+
+                                <div class="column">
+                                    <b><p>Personal Softskills:</p></b>
+
+                                    <a style="color:teal" th:href="'/trainee/personaleducationplanpage?name=' + ${personalsoftskill.name}" class="item" th:each="personalsoftskill : ${personalsoftskillList}" >
+                                        <p>
+                                            <span th:text="${personalsoftskill.name}"></span>
+                                        </p>
+                                    </a>
+                                </div>
+
+                                <div class="column">
+                                    <b><p>Personal Hardskills:</p></b>
+
+                                    <a style="color:teal" th:href="'/trainee/personaleducationplanpage?name=' + ${personalhardskill.name}" class="item" th:each="personalhardskill : ${personalhardskillList}" >
+                                        <p>
+                                            <span th:text="${personalhardskill.name}"></span>
+                                        </p>
+                                    </a>
+                                </div>
+
+                            </div>
+
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -62,8 +91,14 @@
                 <div class="column">
 
                     <div class="ui segment">
-                        <i class="envelope large icon"></i>
-                        <h2>Notifications</h2>
+                        <form class="ui form" method="get" action="/trainee/dashboard" style="margin-bottom: 10px">
+                            <button class="ui mini icon teal message button">
+                                <div class="content">
+                                    <h2><span>Notifications</span></h2>
+                                </div>
+                            </button>
+                        </form>
+
                         <p>- Gefeliciteerd met het behalen van IREB.</p>
                         <p>- Gefeliciteerd met het behalen van Scrum.</p>
                         <p>- Vergeet niet je declaraties in te vullen.</p>
