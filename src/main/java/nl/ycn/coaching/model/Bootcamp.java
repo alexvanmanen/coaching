@@ -10,15 +10,15 @@ import java.util.Date;
 
 @Entity
 public class Bootcamp {
-	
+
 	@Id
 	@GeneratedValue
 	public int id;
-	
+
 	@Column
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "bootcamp")
-	private Set<Trainee> trainees = new HashSet<> ();
-	
+	private Set<Trainee> trainees = new HashSet<>();
+
 	@Column
 	public String bootcampName;
 
@@ -32,30 +32,50 @@ public class Bootcamp {
 	public String courseList;
 
 	@Column
-	public boolean active;
+	public boolean status;
 
 
 	//default constructor
-	public Bootcamp(){}
+	public Bootcamp() {
+	}
 
 	//overloaded constructor
-	public Bootcamp (String bootcampName, String courseList) {
+	public Bootcamp(String bootcampName, String courseList) {
 		this.bootcampName = bootcampName;
 		this.courseList = courseList;
-		this.active = true;
+		this.status = true;
 	}
-	
-	public void getBootcamp() {}
+
+	public void getBootcamp() {
+	}
 
 	public String getName() {
 		return bootcampName;
 	}
 
-	public String getCourseList() {
+	public void setBootcampName(String bootcampName){
+		this.bootcampName = bootcampName;
+	}
+
+	public String getCourseList(){
 		return courseList;
 	}
 
-	public Set<Trainee> getTrainees(){
+	public void setCourseList(String courseList){
+		this.courseList = courseList;
+	}
+
+
+
+	public Set<Trainee> getTrainees() {
 		return trainees;
+	}
+
+	public void setActive(boolean status) {
+		this.status = status;
+	}
+
+	public boolean getActive() {
+		return status;
 	}
 }

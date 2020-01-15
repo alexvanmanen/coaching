@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>HR-Employee | Edit Bootcamp</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+
+    <script src="https://visjs.github.io/vis-network/standalone/umd/vis-network.min.js"></script>
+    <script src="../../static/elements.js"></script>
+
+</head>
+
+
+<body style="background-color: cadetblue">
+
+<div class="ui secondary pointing menu" style="background-color:white">
+    <a class="item">
+        <img src="../ycnlogo.png" class="image">
+    </a>
+    <a class="item" href="/dashboard">
+        Dashboard
+    </a>
+    <a class="item" href="/hremployee/teams">
+        Teams
+    </a>
+    <a class="item" href="/hremployee/users">
+        Users
+    </a>
+    <a class="item active" href="/hremployee/bootcamps">
+        Bootcamps
+    </a>
+    <a class="item" href="/hremployee/skills">
+        Skills
+    </a>
+    <a class="item" href="/hremployee/hrcalendar">
+        Calendar
+    </a>
+
+    <div class="right menu">
+        <a class="ui item" href="/logout">
+            Logout
+        </a>
+    </div>
+</div>
+
+<div class="ui segment"
+     style="padding: 10px; margin-left: 25px; margin-right: 25px; margin-top: 10px; margin-bottom: 10px">
+    <div class="content">
+        <h1><span th:text="${bootcamp.bootcampName}"></span></h1>
+    </div>
+</div>
+
+<form class="ui form" method="post" th:action="@{/hremployee/editbootcamp/{path}(path=${bootcamp.bootcampName})}"
+      style="margin-left: 25px; margin-right: 25px;">
+
+
+    <div class="ui segment">
+        <h3><label>Bootcamp Name:</label></h3>
+        <input placeholder="name-version-year (devops-01-19)" type="text" name="bootcampname"
+               th:value="${bootcamp.bootcampName}">
+    </div>
+
+
+    <div class="ui segment">
+        <h3><label>Bootcamp Courses:</label></h3>
+
+        <div th:each="course:${courselist}">
+            <div class="ui grid">
+
+                <div class="two wide column">
+                    <i></i>
+                </div>
+
+                <div class="four wide column">
+                    <input placeholder="Course name" type="text" name="bootcampcourse" th:value="${course.getName()}">
+                </div>
+
+                <div class="six wide column">
+                    <h4><span th:text="${course.getDesciption()}"></span></h4>
+                </div>
+
+                <div class="two wide center aligned column" style="margin-top: 10px">
+                        <a class="item" th:href="@{/hremployee/deletecourse/{path}(path=${bootcamp.bootcampName})/{path}(path=${course.getName()})}">
+                            <button class="ui fluid orange inverted button">Delete Course</button>
+                        </a>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div style="margin-top: 10px">
+            <a class="item" th:href="@{/hremployee/addcourse/{path}(path=${bootcamp.bootcampName})}">
+                <button class="ui fluid orange inverted button">Add Course</button>
+            </a>
+        </div>
+
+    </div>
+
+    <div class="ui segment">
+        <h3><label>Bootcamp Name:</label></h3>
+        <input placeholder="name-version-year (devops-01-19)" type="text" name="bootcampname"
+               th:value="${bootcamp.bootcampName}">
+    </div>
+
+    <div class="ui segment">
+        <div class="ui grid">
+            <div class="eight wide center aligned column">
+                <h3><label>Bootcamp begin date:</label></h3>
+                <input placeholder="YYYY-MM-DD" type="text" name="bootcampbegindate" th:value="${bootcamp.beginDate}">
+            </div>
+
+            <div class="eight wide center aligned column">
+                <h3><label>Bootcamp end date:</label></h3>
+                <input placeholder="YYYY-MM-DD" type="text" name="bootcampenddate"
+                       th:value="${bootcamp.endDate}">
+            </div>
+        </div>
+    </div>
+
+    <div class="ui divider"></div>
+
+    <div style="margin-left: 25px; margin-right: 25px;">
+        <button class="ui orange fluid large button" type="submit">Save Changes</button>
+    </div>
+
+
+</form>
+<!--<script>$('.ui.dropdown').dropdown();</script>-->
+
+</body>
+</html>

@@ -13,6 +13,6 @@ import java.util.List;
 public interface BootcampRepository extends JpaRepository<Bootcamp, Long> {
 
     Bootcamp findByBootcampName(String name);
-    Page<Bootcamp> findAllByActive(boolean active, Pageable pageable);
+    Page<Bootcamp> findAllByStatus(boolean status, Pageable pageable);
 
 }

@@ -65,36 +65,33 @@
                         </div>
 
 
-                        <div class="four wide column">
-                            <h3><span th:text="${bootcamp.bootcampName}"></span></h3>
+                        <div class="three wide column">
+                            <h4><span th:text="${bootcamp.bootcampName}"></span></h4>
                         </div>
 
 
-                        <div class="five wide column">
-                            <h4><span th:text="${bootcamp.courseList}"></span></h4>
+                        <div class="four wide column">
+                            <h5><span th:text="${bootcamp.courseList}"></span></h5>
                         </div>
 
 
                         <div class="four wide column">
                             <div th:each="trainee, iterStat:*{bootcamp.getTrainees()}">
-                                <h4>
+                                <h5>
                                     <span th:text="!${iterStat.last} ? ${trainee.firstName + ' ' + trainee.lastName} + ',' : ${trainee.firstName + trainee.lastName}"></span>
-                                </h4>
+                                </h5>
                             </div>
                         </div>
 
-                        <!--                    th:action="@{'/hremployee/appuserinfo/' + ${manager.username}}"-->
-                        <div class="one wide center aligned column">
-                            <form class="ui form" method="get">
-                                <button class="ui orange inverted button"><i class="center aligned edit icon"></i>
-                                </button>
+                        <div class="two wide center aligned column">
+                            <form class="ui form" method="get" th:action="@{'/hremployee/editbootcamp/' + ${bootcamp.bootcampName}}">
+                                <button class="ui orange inverted button">Edit</button>
                             </form>
                         </div>
 
-                        <div class="one wide center aligned column">
-                            <form class="ui form" method="get">
-                                <button class="ui orange inverted button"><i class="center aligned check icon"></i>
-                                </button>
+                        <div class="two wide center aligned column">
+                            <form class="ui form" method="post" th:action="@{'/hremployee/setactivationbootcamp/' + ${bootcamp.bootcampName}}">
+                                <button class="ui orange inverted button">Finish</button>
                             </form>
                         </div>
                     </div>
@@ -108,7 +105,7 @@
             </div>
         </div>
 
-        <div class="ui divider"></div>
+        <div class="ui orange divider"></div>
 
         <div class="column">
             <div class="ui segment">
@@ -125,36 +122,39 @@
                         </div>
 
 
-                        <div class="four wide column">
-                            <h3><span th:text="${bootcamp.bootcampName}"></span></h3>
+                        <div class="three wide column">
+                            <h4><span th:text="${bootcamp.bootcampName}"></span></h4>
                         </div>
 
 
-                        <div class="five wide column">
-                            <h4><span th:text="${bootcamp.courseList}"></span></h4>
+                        <div class="three wide column">
+                            <h5><span th:text="${bootcamp.courseList}"></span></h5>
                         </div>
 
 
-                        <div class="four wide column">
+                        <div class="three wide column">
                             <div th:each="trainee, iterStat:*{bootcamp.getTrainees()}">
-                                <h4>
+                                <h5>
                                     <span th:text="!${iterStat.last} ? ${trainee.firstName + ' ' + trainee.lastName} + ',' : ${trainee.firstName + trainee.lastName}"></span>
-                                </h4>
+                                </h5>
                             </div>
                         </div>
 
-                        <!--                    th:action="@{'/hremployee/appuserinfo/' + ${manager.username}}"-->
-                        <div class="one wide center aligned column">
-                            <form class="ui form" method="get">
-                                <button class="ui orange inverted button"><i class="center aligned edit icon"></i>
-                                </button>
+                        <div class="two wide center aligned column">
+                            <form class="ui form" method="get" th:action="@{'/hremployee/editbootcamp/' + ${bootcamp.bootcampName}}">
+                                <button class="ui orange inverted button">Edit</button>
                             </form>
                         </div>
 
-                        <div class="one wide center aligned column">
-                            <form class="ui form" method="get">
-                                <button class="ui orange inverted button"><i class="center aligned window close outline icon"></i>
-                                </button>
+                        <div class="two wide center aligned column">
+                            <form class="ui form" method="post" th:action="@{'/hremployee/setactivationbootcamp/' + ${bootcamp.bootcampName}}">
+                                <button class="ui orange inverted button">Reactivate</button>
+                            </form>
+                        </div>
+
+                        <div class="two wide center aligned column">
+                            <form class="ui form" method="post">
+                                <button class="ui orange inverted button">Delete</button>
                             </form>
                         </div>
                     </div>
