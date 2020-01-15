@@ -4,6 +4,7 @@ import nl.ycn.coaching.database.*;
 import nl.ycn.coaching.model.Bootcamp;
 import nl.ycn.coaching.model.Course;
 import nl.ycn.coaching.model.users.Trainee;
+import nl.ycn.coaching.services.BootcampService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

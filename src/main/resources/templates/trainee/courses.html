@@ -37,11 +37,11 @@
         </div>
     </div>
 
-    <form class="ui form" method="get" th:action="@{'/trainee/course/' + ${course.name}}" th:each="course:${courseList}">
+    <form class="ui form" method="get" th:action="@{'/trainee/course/' + ${course.coursename}}" th:each="course:${courseList}">
         <button class="ui mini icon message button">
             <i class="book icon"></i>
             <div class="content">
-                <h3><span th:text="${course.name}"></span></h3>
+                <h3><span th:text="${course.coursename}"></span></h3>
             </div>
         </button>
     </form>

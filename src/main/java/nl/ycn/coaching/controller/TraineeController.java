@@ -1,6 +1,12 @@
 package nl.ycn.coaching.controller;
 
-import nl.ycn.coaching.database.*;
+import nl.ycn.coaching.database.AppUserRepository;
+import nl.ycn.coaching.database.CourseRepository;
+import nl.ycn.coaching.database.TraineeRepository;
+import nl.ycn.coaching.services.AppUserService;
+import nl.ycn.coaching.database.BootcampRepository;
+import nl.ycn.coaching.services.BootcampService;
+import nl.ycn.coaching.services.PepService;
 import nl.ycn.coaching.model.Bootcamp;
 import nl.ycn.coaching.model.Course;
 import nl.ycn.coaching.model.PersonalEducationPlan;
@@ -63,7 +69,7 @@ public class TraineeController {
 	@GetMapping(path="/trainee/course/{name}")
 	public String getCourse(Model model, @PathVariable("name") String name){
 
-		Course course = courseRepository.findByName(name);
+		Course course = courseRepository.findByCoursename(name);
 
 		model.addAttribute("course", course);
 

@@ -1,5 +1,8 @@
-package nl.ycn.coaching.database;
+package nl.ycn.coaching.services;
 
+import nl.ycn.coaching.database.AppUserRepository;
+import nl.ycn.coaching.database.BootcampRepository;
+import nl.ycn.coaching.database.CourseRepository;
 import nl.ycn.coaching.model.Bootcamp;
 import nl.ycn.coaching.model.Course;
 import nl.ycn.coaching.model.users.AppUser;
@@ -42,7 +45,7 @@ public class BootcampService {
 		String[] courseArray = camp.getCourseList().split(", ");
 
 		for (String course : courseArray){
-			coursesList.add(courseRepository.findByName(course));
+			coursesList.add(courseRepository.findByCoursename(course));
 		}
 
 		return coursesList;
