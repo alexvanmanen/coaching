@@ -55,7 +55,8 @@
     </div>
 </div>
 
-<form class="ui form" method="post" th:action="@{/hremployee/editbootcamp/{path}(path=${bootcamp.bootcampName})}"
+<form class="ui form" method="post" th:action="@{/hremployee/savebootcamp/{path}(path=${bootcamp.bootcampName})}"
+      th:object="${coursesdto}"
       style="margin-left: 25px; margin-right: 25px;">
 
 
@@ -69,7 +70,9 @@
     <div class="ui segment">
         <h3><label>Bootcamp Courses:</label></h3>
 
-        <div th:each="course:${courselist}">
+        <div class="ui divider"></div>
+
+        <div th:each="course, itemStat : *{courses}">
             <div class="ui grid">
 
                 <div class="two wide column">
@@ -77,35 +80,32 @@
                 </div>
 
                 <div class="four wide column">
-                    <input placeholder="Course name" type="text" name="bootcampcourse" th:value="${course.getName()}">
+                    <input th:field="*{courses[__${itemStat.index}__].name}"
+                           placeholder="Course name"
+                           type="text">
                 </div>
 
                 <div class="six wide column">
-                    <h4><span th:text="${course.getDesciption()}"></span></h4>
+                    <h4><span th:text="${course.getDescription()}"></span></h4>
                 </div>
 
-                <div class="two wide center aligned column" style="margin-top: 10px">
-                        <a class="item" th:href="@{/hremployee/deletecourse/{path}(path=${bootcamp.bootcampName})/{path}(path=${course.getName()})}">
-                            <button class="ui fluid orange inverted button">Delete Course</button>
+                <div class="four wide center aligned column" style="margin-top: 10px">
+                        <a class="item" th:href="@{/hremployee/deletecourse/{path}(path=${bootcamp.bootcampName})/{path}(path=${course.name})}">
+                            <button type="button" class="ui fluid orange inverted button">Delete Course</button>
                         </a>
                 </div>
-
             </div>
+
+            <div class="ui divider"></div>
         </div>
 
 
         <div style="margin-top: 10px">
             <a class="item" th:href="@{/hremployee/addcourse/{path}(path=${bootcamp.bootcampName})}">
-                <button class="ui fluid orange inverted button">Add Course</button>
+                <button type="button" class="ui fluid orange inverted button">Add Course</button>
             </a>
         </div>
 
-    </div>
-
-    <div class="ui segment">
-        <h3><label>Bootcamp Name:</label></h3>
-        <input placeholder="name-version-year (devops-01-19)" type="text" name="bootcampname"
-               th:value="${bootcamp.bootcampName}">
     </div>
 
     <div class="ui segment">
@@ -126,7 +126,9 @@
     <div class="ui divider"></div>
 
     <div style="margin-left: 25px; margin-right: 25px;">
+        <a type="item" th:href="@{/hremployee/savebootcamp/{path}(path=${bootcamp.bootcampName})}">
         <button class="ui orange fluid large button" type="submit">Save Changes</button>
+        </a>
     </div>
 
 

@@ -17,13 +17,13 @@ public class Course {
     private String name;
 
     @Column
-    private String desciption;
+    private String description;
     
     public Course() {}
     
     public Course(String name, String description) {
         this.name = name;
-        this.desciption = description;
+        this.description = description;
     }
     
     public int getId () {
@@ -42,11 +42,11 @@ public class Course {
         this.name = name;
     }
     
-    public String getDesciption () {
-        return desciption;
+    public String getDescription () {
+        return description;
     }
     
-    public void setDesciption (String desciption) {
-        this.desciption = desciption;
+    public void setDescription (String description) {
+        this.description = description;
     }
 }
