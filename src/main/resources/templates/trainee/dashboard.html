@@ -33,7 +33,7 @@
                             </button>
                         </form>
 
-                        <form class="ui form" method="get" th:action="@{'/trainee/course/' + ${course.coursename}}" th:each="course:${courseList}">
+                        <form class="ui form" method="get" th:action="@{'/trainee/course/' + ${course.coursename}}" th:each="course, iterStat:${courseList}" th:if="${iterStat.index} < 5">
                             <button class="ui mini icon message button">
                                 <div class="content">
                                     <h3><span th:text="${course.coursename}"></span></h3>
@@ -62,7 +62,7 @@
                                 <div class="column">
                                     <b><p>Personal Softskills:</p></b>
 
-                                    <a style="color:teal" th:href="'/trainee/personaleducationplanpage?name=' + ${personalsoftskill.name}" class="item" th:each="personalsoftskill : ${personalsoftskillList}" >
+                                    <a style="color:teal" th:href="'/trainee/personaleducationplanpage?name=' + ${personalsoftskill.name}" class="item" th:each="personalsoftskill, softStat : ${personalsoftskillList}" th:if="${softStat.index} < 5" >
                                         <p>
                                             <span th:text="${personalsoftskill.name}"></span>
                                         </p>
@@ -72,7 +72,7 @@
                                 <div class="column">
                                     <b><p>Personal Hardskills:</p></b>
 
-                                    <a style="color:teal" th:href="'/trainee/personaleducationplanpage?name=' + ${personalhardskill.name}" class="item" th:each="personalhardskill : ${personalhardskillList}" >
+                                    <a style="color:teal" th:href="'/trainee/personaleducationplanpage?name=' + ${personalhardskill.name}" class="item" th:each="personalhardskill, hardStat : ${personalhardskillList}" th:if="${hardStat.index} < 5" >
                                         <p>
                                             <span th:text="${personalhardskill.name}"></span>
                                         </p>
