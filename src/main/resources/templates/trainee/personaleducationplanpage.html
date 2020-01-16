@@ -42,11 +42,15 @@
     <div class="eleven wide stretched column">
         <div class="ui segment" >
             <p th:each="pep : ${personalSoftskill}">
-                Beschrijving:
+                <b>Softskill:</b>
+                <br>
+                <span th:text="${pep.name}"></span>
+                <br>
+                <b>Beschrijving:</b>
                 <br>
                 <span th:text="${pep.description}"></span>
                 <br>
-                Verslag:
+                <b>Verslag:</b>
                 <br>
                 <span th:text="${pep.report}"></span>
             </p>
@@ -77,11 +81,15 @@
     <div class="eleven wide stretched column">
         <div class="ui segment" >
             <p th:each="pep : ${personalHardskill}">
-                Beschrijving:
+                <b>Hardskill:</b>
+                <br>
+                <span th:text="${pep.name}"></span>
+                <br>
+                <b>Beschrijving:</b>
                 <br>
                 <span th:text="${pep.description}"></span>
                 <br>
-                Verslag:
+                <b>Verslag:</b>
                 <br>
                 <span th:text="${pep.report}"></span>
             </p>
