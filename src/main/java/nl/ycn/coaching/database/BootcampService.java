@@ -67,12 +67,13 @@ public class BootcampService {
 		String courseListString = String.join(",", courseNames);
 		bootcamp.setCourseList(courseListString);
 		bootcampRepository.save(bootcamp);
+
 	}
 
 
 	public void addCourse(CourseCreationDto courseCreationDto, Bootcamp camp) {
 		List<Course> list = courseCreationDto.getCourses();
-		Course c = new Course("NewCourse", "description");
+		Course c = new Course("new course", "description");
 		list.add(c);
 		setCourseList(camp, list);
 	}
@@ -80,10 +81,10 @@ public class BootcampService {
 	public void deleteCourse(CourseCreationDto courseCreationDto, Bootcamp camp) {
 	}
 
-	public void saveBootcamp(CourseCreationDto courseCreationDto, Bootcamp camp, String name, String beginDate, String endDate) {
-		if (camp.getName().equals(name)) {
+	public void saveBootcamp(CourseCreationDto courseCreationDto, String name, String beginDate, String endDate) {
+		if (bootcampRepository.findByBootcampName(name)!=null) {
 			List<Course> list = courseCreationDto.getCourses();
-			setCourseList(camp, list);
+			setCourseList(bootcampRepository.findByBootcampName(name), list);
 		} else {
 			Bootcamp bootcamp = new Bootcamp(name);
 			bootcamp.setBeginDate(beginDate);

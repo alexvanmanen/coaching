@@ -68,32 +68,54 @@ public class HrController {
 		return "/hremployee/editbootcamp";
 	}
 
-	@PostMapping("/hremployee/updatebootcamp/{bootcampName}")
-	public String updateCourse(@PathVariable("bootcampName") String bootcampName,
+	@PostMapping("/hremployee/updatebootcamp")
+	public String updateBootcamp(
 							CourseCreationDto courseCreationDto,
 							@RequestParam(value="action", required = false) String action,
-							@RequestParam(value="bootcampname") String name,
-							@RequestParam(value="bootcampbegindate") String beginDate,
-							@RequestParam(value="bootcampenddate") String endDate){
-		Bootcamp camp = bootcampRepository.findByBootcampName(bootcampName);
+							@RequestParam(value="bootcampname", required = false) String bootcampname,
+							@RequestParam(value="bootcampbegindate", required = false) String beginDate,
+							@RequestParam(value="bootcampenddate", required = false) String endDate){
 
+		String[] actions = action.split(":");
+		System.out.println(Arrays.toString(actions));
+		Bootcamp camp = bootcampRepository.findByBootcampName(bootcampname);
+		switch (actions[0]) {
+			case "add_course":
+				bootcampService.addCourse(courseCreationDto, camp);
+				return "redirect:/hremployee/editbootcamp/"+actions[1];
 
-		if (action.equals("add_course")){
-			bootcampService.addCourse(courseCreationDto, camp);
+			case "delete_course":
+				bootcampService.deleteCourse(courseCreationDto, camp);
+				return "redirect:/hremployee/editbootcamp/"+actions[1];
 
-			return "redirect:/hremployee/editbootcamp/{bootcampName}";
-		} else if (action.equals("delete_course")){
-			bootcampService.deleteCourse(courseCreationDto, camp);
-			return "redirect:/hremployee/editbootcamp/{bootcampName}";
-		} else if (action.equals("save_bootcamp")){
-			bootcampService.saveBootcamp(courseCreationDto, camp, name, beginDate, endDate);
-			return "redirect:/hremployee/bootcamps";
-		} else {
-			return "redirect:/hremployee/bootcamps";
+			case "save_bootcamp":
+				bootcampService.saveBootcamp(courseCreationDto, bootcampname, beginDate, endDate);
+				return "redirect:/hremployee/bootcamps";
+
+			case "edit_bootcamp":
+				return "redirect:/hremployee/editbootcamp/"+actions[1];
+
+			case "activate_bootcamp":
+				Bootcamp disBootcamp = bootcampRepository.findByBootcampName(actions[1]);
+				boolean active = disBootcamp.getActive();
+				disBootcamp.setActive(!active);
+				bootcampRepository.save(disBootcamp);
+				return "redirect:/hremployee/bootcamps";
+
+			case "add_bootcamp":
+				Bootcamp newBootcamp = new Bootcamp("newbootcamp");
+				newBootcamp.setBeginDate("2020-01-01");
+				newBootcamp.setEndDate("2020-01-02");
+				newBootcamp.setCourseList("java");
+				bootcampService.setCourseList(newBootcamp, courseCreationDto.getCourses());
+				return "redirect:/hremployee/editbootcamp/"+ newBootcamp.getName();
+
+			default:
+				return "redirect:/hremployee/bootcamps";
 		}
-
 	}
 
+	//GetMapping to go to the create bootcamp page
 	@GetMapping("/hremployee/addbootcamp")
 	public String addBootcamp(Model model){
 		model.addAttribute("bootcampName", "");
@@ -103,21 +125,6 @@ public class HrController {
 		return "/hremployee/createbootcamp";
 	}
 
-
-	@GetMapping("/hremployee/deletecourse/{bootcamp}/{course}")
-	public String deleteCourse(@PathVariable("bootcamp") String bootcamp, @PathVariable("course") String course) {
-		return "redirect:/hremployee/editbootcamp/{bootcamp}";
-	}
-
-	//postmapping to change the state of the bootcamp active <--> inactive
-	@PostMapping(path = "/hremployee/setactivationbootcamp/{bootcamp}")
-	public String setActivationBootcamp(Model model, @PathVariable("bootcamp") String bootcamp) {
-		Bootcamp disBootcamp = bootcampRepository.findByBootcampName(bootcamp);
-		boolean active = disBootcamp.getActive();
-		disBootcamp.setActive(!active);
-		bootcampRepository.save(disBootcamp);
-		return "redirect:/hremployee/bootcamps";
-	}
 
 	@GetMapping({"/hremployee/dashboard","/hremployee"})
 	public String getHrDashboard(Model model) {

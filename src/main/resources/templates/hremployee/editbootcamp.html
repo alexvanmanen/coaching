@@ -55,7 +55,7 @@
     </div>
 </div>
 
-<form class="ui form" method="post" th:action="@{/hremployee/updatebootcamp/{path}(path=${bootcamp.bootcampName})}"
+<form class="ui form" method="post" th:action="@{/hremployee/updatebootcamp}"
       th:object="${coursesdto}"
       style="margin-left: 25px; margin-right: 25px;">
 
@@ -123,7 +123,7 @@
                 </div>
 
                 <div class="four wide center aligned middle aligned column" style="margin-top: 10px">
-                    <button type="submit" th:name="action" th:value="delete_course"
+                    <button type="submit" th:name="action" th:value="'delete_course:'+ ${bootcamp.bootcampName}+':'+ ${course.name}"
                             class="ui fluid orange inverted button">Delete Course
                     </button>
                 </div>
@@ -134,7 +134,7 @@
 
 
         <div style="margin-top: 10px">
-            <button type="submit" th:name="action" th:value="add_course" class="ui fluid orange inverted button">Add
+            <button type="submit" th:name="action" th:value="'add_course:'+ ${bootcamp.bootcampName}" class="ui fluid orange inverted button">Add
                 Course
             </button>
         </div>
@@ -145,7 +145,7 @@
     <div class="ui divider"></div>
 
     <div style="margin-left: 25px; margin-right: 25px;">
-            <button th:name="action" th:value="save_bootcamp" class="ui orange fluid large button" type="submit">Save Changes</button>
+            <button th:name="action" th:value="'save_bootcamp:'+ ${bootcamp.bootcampName}" class="ui orange fluid large button" type="submit">Save Changes</button>
     </div>
 
 

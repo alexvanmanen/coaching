@@ -12,7 +12,7 @@ import java.util.Date;
 public class Bootcamp {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public int id;
 
 	@Column
