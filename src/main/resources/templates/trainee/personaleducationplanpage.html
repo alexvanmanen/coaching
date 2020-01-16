@@ -32,7 +32,7 @@
 <div class="ui grid" style="margin-left: 20px; margin-right: 20px;">
     <div class="five wide column">
         <div class="ui vertical fluid tabular menu">
-            <a th:href="'./personaleducationplanpage?name=' + ${personalSoftskill.name}" class="item" th:each="personalSoftskill : ${personalSoftskillList}" >
+            <a th:href="'./personaleducationplanpage?softskillname=' + ${personalSoftskill.name}" class="item" th:each="personalSoftskill : ${personalSoftskillList}" >
                 <p>
                     <span th:text="${personalSoftskill.name}"></span>
                 </p>
@@ -71,7 +71,7 @@
 <div class="ui grid" style="margin-left: 20px; margin-right: 20px;">
     <div class="five wide column">
         <div class="ui vertical fluid tabular menu">
-            <a th:href="'./personaleducationplanpage?name=' + ${hardskill.name}" class="item" th:each="hardskill : ${hardskillList}" >
+            <a th:href="'./personaleducationplanpage?hardskillname=' + ${hardskill.name}" class="item" th:each="hardskill : ${hardskillList}" >
                 <p>
                     <span th:text="${hardskill.name}"></span>
                 </p>

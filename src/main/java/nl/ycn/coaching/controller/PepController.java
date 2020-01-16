@@ -62,7 +62,7 @@ public class PepController {
 	}
 
 	@GetMapping("/trainee/personaleducationplanpage")
-	public String goToPepPage(Model model, String name){
+	public String goToPepPage(Model model, String softskillname, String hardskillname){
 		PersonalEducationPlan personalEducationPlan = new PersonalEducationPlan();
 
 		//Fill the softskill list and set it
@@ -72,9 +72,9 @@ public class PepController {
 		personalEducationPlan.setPersonalHardskillList(pepService.fillPersonalHardskillList());
 
 		model.addAttribute("personalSoftskillList", personalEducationPlan.getPersonalSoftskillList());
-		model.addAttribute ("personalSoftskill", retrievePersonalSoftskillByName(name));
+		model.addAttribute ("personalSoftskill", retrievePersonalSoftskillByName(softskillname));
 		model.addAttribute("hardskillList", personalEducationPlan.getPersonalHardskillList());
-		model.addAttribute ("personalHardskill", retrieveHardskillByName(name));
+		model.addAttribute ("personalHardskill", retrieveHardskillByName(hardskillname));
 
 		return "/trainee/personaleducationplanpage";
 	}
