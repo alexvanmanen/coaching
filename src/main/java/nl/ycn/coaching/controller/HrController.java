@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.*;
-
 import java.sql.Date;
 import java.util.Collections;
 import java.util.List;
@@ -60,8 +59,12 @@ public class HrController {
 
 	@GetMapping("/hremployee/dashboard")
 	public String getHrDashboard(Model model){
+
+		AppUser user = appUserService.getActiveUser();
+		model.addAttribute("user", user);
+		model.addAttribute("trainees", hrService.getTrainees("TRAINEE"));
 		model.addAttribute("activeBootcamps",hrService.getTopActiveBootcamps(5));
-		model.addAttribute("activeBootcamps",hrService.getTopFinishedBootcamps(5));
+		model.addAttribute("finishedBootcamps",hrService.getTopFinishedBootcamps(5));
 
 		return "/hremployee/hrdashboard";
 	}
