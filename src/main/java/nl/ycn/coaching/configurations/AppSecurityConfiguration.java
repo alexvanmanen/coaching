@@ -94,13 +94,13 @@ public class AppSecurityConfiguration extends WebSecurityConfigurerAdapter {
            .dataSource(dataSource)
            .passwordEncoder(encoder);
 
-        appUserService.registerUser("luuk","Luuk", "Wempe", "luukwempe@hotmail.com", encoder.encode("hallo"), "ADMIN", true, true, Date.valueOf("1996-01-01"),"2000PP", "Bobhof", "1", "Bobdam", "Bobland", "06324543", "");
-        appUserService.registerUser("alex","Alex", "van Manen", "alex@vanmanenit.nl", encoder.encode("hallo"), "TRAINEE", true, false, Date.valueOf("1997-01-01") ,"3000PP", "Bobhof", "1", "Bobdam", "Bobland", "112", "devops-02-19");
-        appUserService.registerUser("jurre","Jurre", "Wempe", "jurrewempe@hotmail.com", encoder.encode("hallo"), "TRAINEE", true, false, Date.valueOf("2000-01-01") ,"3000PP", "Lansiershof", "6", "Sassenheim", "The Netherlands", "+316-52498741", "java-03-19");
-        appUserService.registerUser("jeanine","Jeanine", "van Dongen", "jeaninevdongen@gmail.com", encoder.encode("hallo"), "TRAINEE", true, false, Date.valueOf("1997-01-01") ,"2216TL", "Ter Beek", "4", "Lisse", "The Netherlands", "+316-45389142", "bigdata-02-19");
-        appUserService.registerUser("vuong","Vuong", "Ngo", "vuong.anime@gmail.com", encoder.encode("hallo"), "MANAGER" , true, true, Date.valueOf("1994-01-01"),"4000PP", "Bobhof", "1", "Bobdam", "Bobland", "112", "");
-        appUserService.registerUser("simone","Simone", "Meijers", "scm15-8@live.nl", encoder.encode("hallo"), "TALENTMANAGER", true, true, Date.valueOf("1993-01-01"),"5000PP", "Bobhof", "1", "Bobdam", "Bobland", "112","");
-        appUserService.registerUser("wouter","Wouter", "Abels", "wouterabels@hotmail.com", encoder.encode("hallo"), "HREMPLOYEE",  true, true,Date.valueOf("1995-01-01") ,"6000PP", "Bobhof", "1", "Bobdam", "Bobland", "112", "");
+        appUserService.registerUser("luuk","Luuk", "Wempe", "soepsoep123@hotmail.com", encoder.encode("hallo"), "ADMIN", true, true, Date.valueOf("1996-01-01"),"2000PP", "Bobhof", "1", "Bobdam", "Bobland", "06324543", "");
+        appUserService.registerUser("alex","Alex", "van Manen", "superalex3@hotmail.nl", encoder.encode("hallo"), "TRAINEE", true, false, Date.valueOf("1997-01-01") ,"3000PP", "Bobhof", "1", "Bobdam", "Bobland", "112", "devops-02-19");
+        appUserService.registerUser("jurre","Jurre", "Wempe", "firedragon@hotmail.com", encoder.encode("hallo"), "TRAINEE", true, false, Date.valueOf("2000-01-01") ,"3000PP", "Lansiershof", "6", "Sassenheim", "The Netherlands", "+316-52498741", "java-03-19");
+        appUserService.registerUser("jeanine","Jeanine", "van Dongen", "darkdeathxxx@gmail.com", encoder.encode("hallo"), "TRAINEE", true, false, Date.valueOf("1997-01-01") ,"2216TL", "Ter Beek", "4", "Lisse", "The Netherlands", "+316-45389142", "devops-02-19");
+        appUserService.registerUser("vuong","Vuong", "Ngo", "vongbong@gmail.com", encoder.encode("hallo"), "MANAGER" , true, true, Date.valueOf("1994-01-01"),"4000PP", "Bobhof", "1", "Bobdam", "Bobland", "112", "");
+        appUserService.registerUser("simone","Simone", "Meijers", "simeunedeune@live.nl", encoder.encode("hallo"), "TALENTMANAGER", true, true, Date.valueOf("1993-01-01"),"5000PP", "Bobhof", "1", "Bobdam", "Bobland", "112","");
+        appUserService.registerUser("wouter","Wouter", "Abels", "walterdeman@hotmail.com", encoder.encode("hallo"), "HREMPLOYEE",  true, true,Date.valueOf("1995-01-01") ,"6000PP", "Bobhof", "1", "Bobdam", "Bobland", "112", "");
     }
 
 }
