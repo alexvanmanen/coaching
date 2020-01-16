@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 public class TraineeController {
@@ -52,6 +53,7 @@ public class TraineeController {
 		AppUser user = appUserService.getActiveUser();
 		Trainee trainee = traineeRepository.findByUsername(user.getUsername());
 		Bootcamp bootcamp = trainee.getBootcamp();
+		Set<Trainee> trainees = bootcamp.getTrainees();
 		List<Course> courseList = bootcampService.getCourseList(bootcamp.getBootcampName());
 		PersonalEducationPlan personalEducationPlan = new PersonalEducationPlan();
 
@@ -63,6 +65,7 @@ public class TraineeController {
 
 		model.addAttribute("user", user);
 		model.addAttribute("trainee", trainee);
+		model.addAttribute("team", trainees);
 		model.addAttribute("courseList", courseList);
 		model.addAttribute("personalsoftskillList", personalEducationPlan.getPersonalSoftskillList());
 		model.addAttribute("personalhardskillList", personalEducationPlan.getPersonalHardskillList());

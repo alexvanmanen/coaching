@@ -150,16 +150,23 @@
                 <div class="column">
                     <div class="ui segment">
 
-                        <form class="ui form" method="get" action="/trainee/accountsettings" style="margin-bottom: 10px">
+                        <form class="ui form" method="get" action="/trainee/dashboard" style="margin-bottom: 10px">
                             <button class="ui mini icon teal message button">
                                 <div class="content">
-                                    <h2><span>Account details</span></h2>
+                                    <h2><span>Team</span></h2>
                                 </div>
                             </button>
                         </form>
 
-                        <p th:text="'Username: ' + ${user.username}"></p>
-                        <p th:text="'Activated: ' + ${user.activated}"></p>
+                        <form class="ui form" th:each="teammember : ${team}">
+                            <button class="ui mini icon message button">
+                                <div class="content">
+                                    <h3><span th:text="${teammember.firstName} + ' ' + ${teammember.lastName}"></span></h3>
+                                </div>
+                            </button>
+                        </form>
+
+
                     </div>
                 </div>
 
