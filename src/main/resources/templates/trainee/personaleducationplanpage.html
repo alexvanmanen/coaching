@@ -32,7 +32,7 @@
 <div class="ui grid" style="margin-left: 20px; margin-right: 20px;">
     <div class="five wide column">
         <div class="ui vertical fluid tabular menu">
-            <a th:href="'./personaleducationplanpage?name=' + ${personalSoftskill.name}" class="item" th:each="personalSoftskill : ${personalSoftskillList}" >
+            <a th:href="'./personaleducationplanpage?softskillname=' + ${personalSoftskill.name}" class="item" th:each="personalSoftskill : ${personalSoftskillList}" >
                 <p>
                     <span th:text="${personalSoftskill.name}"></span>
                 </p>
@@ -42,11 +42,15 @@
     <div class="eleven wide stretched column">
         <div class="ui segment" >
             <p th:each="pep : ${personalSoftskill}">
-                Beschrijving:
+                <b>Softskill:</b>
+                <br>
+                <span th:text="${pep.name}"></span>
+                <br>
+                <b>Beschrijving:</b>
                 <br>
                 <span th:text="${pep.description}"></span>
                 <br>
-                Verslag:
+                <b>Verslag:</b>
                 <br>
                 <span th:text="${pep.report}"></span>
             </p>
@@ -67,7 +71,7 @@
 <div class="ui grid" style="margin-left: 20px; margin-right: 20px;">
     <div class="five wide column">
         <div class="ui vertical fluid tabular menu">
-            <a th:href="'./personaleducationplanpage?name=' + ${hardskill.name}" class="item" th:each="hardskill : ${hardskillList}" >
+            <a th:href="'./personaleducationplanpage?hardskillname=' + ${hardskill.name}" class="item" th:each="hardskill : ${hardskillList}" >
                 <p>
                     <span th:text="${hardskill.name}"></span>
                 </p>
@@ -77,11 +81,15 @@
     <div class="eleven wide stretched column">
         <div class="ui segment" >
             <p th:each="pep : ${personalHardskill}">
-                Beschrijving:
+                <b>Hardskill:</b>
+                <br>
+                <span th:text="${pep.name}"></span>
+                <br>
+                <b>Beschrijving:</b>
                 <br>
                 <span th:text="${pep.description}"></span>
                 <br>
-                Verslag:
+                <b>Verslag:</b>
                 <br>
                 <span th:text="${pep.report}"></span>
             </p>
