@@ -263,8 +263,8 @@ public class HrController {
     }
 
     @PostMapping("/hremployee/createcourseform")
-    public String createCourse(String name, String description) {
-        hrService.addCourse(name, description);
+    public String createCourse(String coursename, String coursedescription) {
+        hrService.addCourse(coursename, coursedescription);
 
         return "redirect:/hremployee/skills";
     }

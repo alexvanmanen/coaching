@@ -13,6 +13,7 @@
 
     <script src="https://visjs.github.io/vis-network/standalone/umd/vis-network.min.js"></script>
 
+    <script src="/hr_course_validation.js"></script>
 </head>
 
 <body style="background-color: cadetblue">
@@ -32,15 +33,17 @@
         <div class="two field">
             <div class="field">
                 <label>Naam van de course:</label>
-                <input name="name" placeholder="Course" type="text">
+                <input name="coursename" placeholder="Course" type="text">
             </div>
             <div class="field">
                 <label>Beschrijving:</label>
-                <textarea name="description" placeholder="Beschrijving van de course" rows="4" type="text"></textarea>
+                <textarea name="coursedescription" placeholder="Beschrijving van de course" rows="4" type="text"></textarea>
             </div>
         </div>
 
         <button class="ui button" type="submit">Voeg toe</button>
+
+        <div class="ui error message"></div>
     </form>
 </div>
 

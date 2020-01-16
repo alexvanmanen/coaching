@@ -11,15 +11,22 @@
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
 
     <script src="https://visjs.github.io/vis-network/standalone/umd/vis-network.min.js"></script>
-    <script src="../../static/elements.js"></script>
+
+    <link href="https://d36bmc1enj16yj.cloudfront.net/production/assets/pages/next-theme-420a2b84df4422f527df4b319c89641a8a309d6e0bdaa4deed04baed5633ea70.css"
+          media="screen"
+          rel="stylesheet"/>
+
+    <script src="/elements.js"></script>
+    <script src="/dropdown.js"></script>
+    <script src="/hr_appuserinfo_validation.js"></script>
 
 </head>
 
 
-<body style="background-color: cadetblue">
+<body style="background-color: cadetblue; overflow-scrolling: auto">
 
 <div th:insert="~{/hremployee/header :: header}"></div>
-<script>$('#users').addClass('active');</script>
+<script>$('#appuserinfo').addClass('active');</script>
 
 <div class="ui icon message" style="padding: 10px; margin-left: 25px; margin-right: 25px; margin-top: 10px; margin-bottom: 10px">
     <div class="content">
@@ -58,7 +65,7 @@
         <div class="one column row">
             <div class="eight wide column">
                 <h3><label>Username:</label></h3>
-                <input type="text" th:placeholder="${username}" name="username">
+                <input type="text" th:placeholder="${username}" name="username" th:value="${username}">
             </div>
 
             <div class="eight wide column">
@@ -386,9 +393,9 @@
             </div>
         </div>
     </div>
-</form>
 
-<script>$('.ui.dropdown').dropdown();</script>
+    <div class="ui error message"></div>
+</form>
 
 </body>
 </html>
