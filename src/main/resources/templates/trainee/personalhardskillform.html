@@ -24,53 +24,70 @@
     <h1 class="ui block header" style="padding: 10px; margin-left: 25px; margin-right: 25px; margin-top: 10px; margin-bottom: 10px"> Hardskill</h1>
 </div>
 
-<div class="ui grid" style="margin-left: 20px; margin-right: 20px;">
-    <div class="five wide column">
-        <div class="ui vertical fluid tabular menu">
-            <a class="active item">
-                Hardskill toevoegen
-            </a>
-            <a class="item">
-                Hardskill verwijderen
-            </a>
+<form class="ui form" method="post" action="/createpersonalhardskill">
+    <div class="ui two column centered grid">
+        <div class="row">
+
+            <div class="four wide column">
+
+                <h4><label>Hardskill:</label></h4>
+                    <input type="text" name="name" placeholder="Hardskill">
+
+                    <h4><label>Status: </label></h4>
+                    <select class="ui dropdown" name="state">
+                        <option value="" disabled selected>Choose Status</option>
+                        <option value="finished">Finished</option>
+                        <option value="ongoing">Ongoing</option>
+                    </select>
+
+            </div>
+
+            <div class="four wide column">
+                <div class="ui segment" style="height:200px">
+                    <h4><label>Description:</label></h4>
+                    <input type="text" name="description" placeholder="Description" style="height:100px">
+                </div>
+
+            </div>
+
+            <br>
+            <br>
+
+        </div>
+
+        <div class="row">
+
+                <div class="four wide column">
+
+                    <h4><label>Start Date:</label></h4>
+                    <input type="text" name="start" placeholder="YYYY-MM-DD">
+
+                    <h4><label>End Date:</label></h4>
+                    <input type="text" name="end" placeholder="YYYY-MM-DD">
+
+                </div>
+
+                <div class="four wide column">
+
+                    <div class="ui segment" style="height:200px">
+                        <h4><label >Report:</label></h4>
+                        <input class="ui segment" type="text" name="report" placeholder="Report" style="height:100px">
+                    </div>
+
+                </div>
+
+                <br>
+                <br>
+
+        </div>
+
+
+        <div class="fifteen wide column">
+            <button class="ui button fluid" type="submit">+ Add Hardskill</button>
         </div>
     </div>
 
-    <form class="ui form" method="post" action="/createpersonalhardskill">
-        <div class="field">
-            <label>Hardskill:</label>
-            <input type="text" name="name" placeholder="Hardskill">
-        </div>
-        <div class="field">
-            <label>Descriptie:</label>
-            <input type="text" name="description" placeholder="Descriptie">
-        </div>
-        <div class="field">
-            <label>Verslag:</label>
-            <input type="text" name="report" placeholder="Verslag">
-        </div>
-        <div class="field">
-            <label>Hardskill status: </label>
-            <select class="ui dropdown" name="state">
-                <option value="" disabled selected>Kies status</option>
-                <option value="finished">Afgerond</option>
-                <option value="ongoing">Gaande</option>
-            </select>
-        </div>
-
-        <div class="field">
-            <label>Begin datum:</label>
-            <input type="text" name="start" placeholder="YYYY-MM-DD">
-        </div>
-
-        <div class="field">
-            <label>Eind datum:</label>
-            <input type="text" name="end" placeholder="YYYY-MM-DD">
-        </div>
-
-        <button class="ui button" type="submit">Voeg toe</button>
-    </form>
-</div>
+</form>
 
 
 
