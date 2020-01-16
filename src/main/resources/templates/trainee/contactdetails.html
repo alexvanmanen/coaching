@@ -11,12 +11,9 @@
 
     <script src="https://visjs.github.io/vis-network/standalone/umd/vis-network.min.js"></script>
 
-    <link href="https://d36bmc1enj16yj.cloudfront.net/production/assets/pages/next-theme-420a2b84df4422f527df4b319c89641a8a309d6e0bdaa4deed04baed5633ea70.css"
-          media="screen"
-          rel="stylesheet"/>
-
-    <script src="../dropdown.js"></script>
-    <script src="../checkbox.js"></script>
+    <script src="/dropdown.js"></script>
+    <script src="/checkbox.js"></script>
+    <script src="/contactdetails_validation.js"></script>
 
 </head>
 <body style="background-color: cadetblue">
@@ -36,11 +33,11 @@
 
             <div class="eight wide column">
 
-                <h3><label>Firstname:</label></h3>
-                <input placeholder="Firstname" type="text" name="firstname" th:value="${firstname}">
+                <h3><label>First name:</label></h3>
+                <input placeholder="Firstname" type="text" name="firstname" th:value="${firstname}" style="color:#888; background-color: lightgray" readonly>
 
-                <h3><label>Lastname:</label></h3>
-                <input placeholder="Lastname" type="text" name="lastname" th:value="${lastname}">
+                <h3><label>Last name:</label></h3>
+                <input placeholder="Lastname" type="text" name="lastname" th:value="${lastname}" style="color:#888; background-color: lightgray" readonly>
 
                 <h3><label>Email:</label></h3>
                 <input type="text" placeholder="Email" name="email" th:value="${email}">
@@ -49,7 +46,7 @@
                 <input type="text" placeholder="+31 6-12345678" name="telephonenr" th:value="${telephonenumber}">
 
                 <h3><label>Date of Birth:</label></h3>
-                <input type="text" placeholder="YYYY-MM-DD" name="dateofbirth" th:value="${dateofbirth}">
+                <input type="text" placeholder="YYYY-MM-DD" name="dateofbirth" th:value="${dateofbirth}" style="color:#888; background-color: lightgray" readonly>
 
             </div>
 
@@ -325,6 +322,8 @@
             <button class="ui button fluid" type="submit">+ Change Contact Details</button>
         </div>
     </div>
+
+    <div class="ui error message"></div>
 
 </form>
 

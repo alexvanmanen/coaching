@@ -1,11 +1,13 @@
 package nl.ycn.coaching.services;
 
+import nl.ycn.coaching.database.AppUserRepository;
 import nl.ycn.coaching.database.BootcampRepository;
 import nl.ycn.coaching.database.CourseRepository;
 import nl.ycn.coaching.database.SoftskillRepository;
 import nl.ycn.coaching.model.Bootcamp;
 import nl.ycn.coaching.model.Course;
 import nl.ycn.coaching.model.Softskill;
+import nl.ycn.coaching.model.users.AppUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -19,6 +21,8 @@ public class HrService {
 
     @Autowired
     private BootcampRepository bootcampRepository;
+    @Autowired
+    private AppUserRepository appUserRepository;
     @Autowired
     private BootcampService bootcampService;
     @Autowired
@@ -45,6 +49,16 @@ public class HrService {
         return topBootcamps.getContent();
     }
 
+    public List<AppUser> getTrainees(String role) {
+        List<AppUser> Trainees = appUserRepository.findByRole(role);
+        return Trainees;
+    }
+
+    public List<AppUser> getUsers(){
+        List<AppUser> Users = appUserRepository.findAll();
+        return Users;
+
+    }
 
     public void addCourse(
             String name,
