@@ -4,7 +4,7 @@
       xmlns:th = "http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>HR-Employee | Bootcamp</title>
+    <title>HR-Employee | Create Bootcamp</title>
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css"/>
@@ -54,23 +54,25 @@
     </h1>
 </div>
 
-<form class="ui form" method="post" action="/createbootcamp" style="margin-left: 25px; margin-right: 25px;">
+<form class="ui form" method="post" action="/hremployee/updatebootcamp/{bootcampName}" style="margin-left: 25px; margin-right: 25px;" th:object="${coursesdto}">
     <div class="field">
 
         <label>Bootcampnaam:</label>
-        <input type="text" name="bootcampName" placeholder="bootcamp-nr-jaar">
+        <input type="text" name="bootcampName" placeholder="Bootcamp Name-NR-YEAR" th:value="${bootcampName}">
         <br>
         <br>
 
         <label>Vak: </label>
-        <div id="vak" style="display: flex;">
+        <div id="vak" style="display: flex;" th:each="course, itemStat : *{courses}">
             <br>
             <div class="ui search selection dropdown">
-                <input type="hidden" name="courseList">
+                <input type="hidden" name="courseList" th:value="${course.getName()}" th:field="*{courses[__${itemStat.index}__].name}">
                 <i class="dropdown icon"></i>
                 <div class="default text">Kies vak</div>
                 <div class="menu" >
-                    <div class="item" th:each="course : ${courseList}" th:text="${course.name}">
+                    <div class="item"
+                         th:each="course : ${courseList}"
+                         th:text="${course.name}">
                     </div>
                 </div>
 
@@ -81,7 +83,7 @@
 
         <p id="vaktoevoegen"></p>
 
-        <button class="ui button" type="submit">Creëer</button>
+        <button class="ui button" type="submit" th:name="action" th:value="save_bootcamp">Creëer</button>
 
         <script>
             function extraskill() {

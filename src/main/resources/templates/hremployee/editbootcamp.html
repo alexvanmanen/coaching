@@ -55,15 +55,34 @@
     </div>
 </div>
 
-<form class="ui form" method="post" th:action="@{/hremployee/savebootcamp/{path}(path=${bootcamp.bootcampName})}"
+<form class="ui form" method="post" th:action="@{/hremployee/updatebootcamp/{path}(path=${bootcamp.bootcampName})}"
       th:object="${coursesdto}"
       style="margin-left: 25px; margin-right: 25px;">
 
 
     <div class="ui segment">
         <h3><label>Bootcamp Name:</label></h3>
-        <input placeholder="name-version-year (devops-01-19)" type="text" name="bootcampname"
+        <input placeholder="name-version-year (devops-01-19)" type="text"
+               th:name="bootcampname"
                th:value="${bootcamp.bootcampName}">
+    </div>
+
+    <div class="ui segment">
+        <div class="ui grid">
+            <div class="eight wide center aligned column">
+                <h3><label>Bootcamp begin date:</label></h3>
+                <input placeholder="YYYY-MM-DD" type="text"
+                       th:name="bootcampbegindate"
+                       th:value="${bootcamp.beginDate}">
+            </div>
+
+            <div class="eight wide center aligned column">
+                <h3><label>Bootcamp end date:</label></h3>
+                <input placeholder="YYYY-MM-DD" type="text"
+                       th:name="bootcampenddate"
+                       th:value="${bootcamp.endDate}">
+            </div>
+        </div>
     </div>
 
 
@@ -75,24 +94,38 @@
         <div th:each="course, itemStat : *{courses}">
             <div class="ui grid">
 
-                <div class="two wide column">
-                    <i></i>
+                <div class="one wide center aligned middle aligned column">
+                    <i class="big server icon"></i>
                 </div>
 
-                <div class="four wide column">
-                    <input th:field="*{courses[__${itemStat.index}__].name}"
-                           placeholder="Course name"
-                           type="text">
+                <div class="four wide center aligned middle aligned column">
+                    <div class="eight wide column" id="course">
+                        <div class="ui fluid search selection dropdown">
+                            <input type="hidden" name="course"
+                                   th:value="${course.getName()}"
+                                   th:field="*{courses[__${itemStat.index}__].name}">
+                            <i class="dropdown icon"></i>
+                            <div class="default text" th:value="${course.getName()}"></div>
+                            <div class="menu">
+                                <div class="item"
+                                     th:each="course : ${allcourses}"
+                                     th:text="${course.getName()}"
+                                     th:value="${course.getName()}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="six wide column">
-                    <h4><span th:text="${course.getDescription()}"></span></h4>
+
+                <div class="seven wide middle aligned column">
+                    <h4><span th:field="*{courses[__${itemStat.index}__].description}" th:value="${course.getDescription()}"></span></h4>
                 </div>
 
-                <div class="four wide center aligned column" style="margin-top: 10px">
-                        <a class="item" th:href="@{/hremployee/deletecourse/{path}(path=${bootcamp.bootcampName})/{path}(path=${course.name})}">
-                            <button type="button" class="ui fluid orange inverted button">Delete Course</button>
-                        </a>
+                <div class="four wide center aligned middle aligned column" style="margin-top: 10px">
+                    <button type="submit" th:name="action" th:value="delete_course"
+                            class="ui fluid orange inverted button">Delete Course
+                    </button>
                 </div>
             </div>
 
@@ -101,39 +134,23 @@
 
 
         <div style="margin-top: 10px">
-            <a class="item" th:href="@{/hremployee/addcourse/{path}(path=${bootcamp.bootcampName})}">
-                <button type="button" class="ui fluid orange inverted button">Add Course</button>
-            </a>
+            <button type="submit" th:name="action" th:value="add_course" class="ui fluid orange inverted button">Add
+                Course
+            </button>
         </div>
 
     </div>
 
-    <div class="ui segment">
-        <div class="ui grid">
-            <div class="eight wide center aligned column">
-                <h3><label>Bootcamp begin date:</label></h3>
-                <input placeholder="YYYY-MM-DD" type="text" name="bootcampbegindate" th:value="${bootcamp.beginDate}">
-            </div>
-
-            <div class="eight wide center aligned column">
-                <h3><label>Bootcamp end date:</label></h3>
-                <input placeholder="YYYY-MM-DD" type="text" name="bootcampenddate"
-                       th:value="${bootcamp.endDate}">
-            </div>
-        </div>
-    </div>
 
     <div class="ui divider"></div>
 
     <div style="margin-left: 25px; margin-right: 25px;">
-        <a type="item" th:href="@{/hremployee/savebootcamp/{path}(path=${bootcamp.bootcampName})}">
-        <button class="ui orange fluid large button" type="submit">Save Changes</button>
-        </a>
+            <button th:name="action" th:value="save_bootcamp" class="ui orange fluid large button" type="submit">Save Changes</button>
     </div>
 
 
 </form>
-<!--<script>$('.ui.dropdown').dropdown();</script>-->
+<script>$('.ui.dropdown').dropdown();</script>
 
 </body>
 </html>

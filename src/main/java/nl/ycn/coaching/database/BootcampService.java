@@ -2,6 +2,7 @@ package nl.ycn.coaching.database;
 
 import nl.ycn.coaching.model.Bootcamp;
 import nl.ycn.coaching.model.Course;
+import nl.ycn.coaching.model.CourseCreationDto;
 import nl.ycn.coaching.model.users.AppUser;
 import nl.ycn.coaching.model.users.Trainee;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,17 +58,37 @@ public class BootcampService {
 
 
 
-	public void setCourseList(String bootcampName, List<Course> courses) {
-		Bootcamp camp = bootcampRepository.findByBootcampName(bootcampName);
+	public void setCourseList(Bootcamp bootcamp, List<Course> courses) {
 		List<String> courseNames = new ArrayList<>();
 
 		for (Course course : courses){
 			courseNames.add(course.getName());
 		}
-		String courseList = String.join(",", courseNames);
-		camp.setCourseList(courseList);
-		bootcampRepository.save(camp);
+		String courseListString = String.join(",", courseNames);
+		bootcamp.setCourseList(courseListString);
+		bootcampRepository.save(bootcamp);
 	}
 
 
+	public void addCourse(CourseCreationDto courseCreationDto, Bootcamp camp) {
+		List<Course> list = courseCreationDto.getCourses();
+		Course c = new Course("NewCourse", "description");
+		list.add(c);
+		setCourseList(camp, list);
+	}
+
+	public void deleteCourse(CourseCreationDto courseCreationDto, Bootcamp camp) {
+	}
+
+	public void saveBootcamp(CourseCreationDto courseCreationDto, Bootcamp camp, String name, String beginDate, String endDate) {
+		if (camp.getName().equals(name)) {
+			List<Course> list = courseCreationDto.getCourses();
+			setCourseList(camp, list);
+		} else {
+			Bootcamp bootcamp = new Bootcamp(name);
+			bootcamp.setBeginDate(beginDate);
+			bootcamp.setEndDate(endDate);
+			setCourseList(bootcamp, courseCreationDto.getCourses());
+		}
+	}
 }

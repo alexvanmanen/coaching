@@ -1,10 +1,14 @@
 package nl.ycn.coaching.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CourseCreationDto {
 	List<Course> courses;
 
+	public CourseCreationDto(){
+		this.courses = new ArrayList<>();
+	}
 	public CourseCreationDto(List<Course> courses){
 		this.courses = courses;
 	}

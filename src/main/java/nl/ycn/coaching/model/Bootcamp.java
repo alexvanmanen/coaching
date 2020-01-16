@@ -34,7 +34,6 @@ public class Bootcamp {
 	@Column
 	public boolean status;
 
-
 	//default constructor
 	public Bootcamp() {
 	}
@@ -44,6 +43,35 @@ public class Bootcamp {
 		this.bootcampName = bootcampName;
 		this.courseList = courseList;
 		this.status = true;
+	}
+
+	public Bootcamp(String bootcampName) {
+		this.bootcampName = bootcampName;
+		this.status = true;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getBeginDate() {
+		return beginDate;
+	}
+
+	public void setBeginDate(String beginDate) {
+		this.beginDate = beginDate;
+	}
+
+	public String getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
 	}
 
 	public void getBootcamp() {
@@ -61,8 +89,8 @@ public class Bootcamp {
 		return courseList;
 	}
 
-	public void setCourseList(String courseList){
-		this.courseList = courseList;
+	public void setCourseList(String courseListString){
+		this.courseList = courseListString;
 	}
 
 
