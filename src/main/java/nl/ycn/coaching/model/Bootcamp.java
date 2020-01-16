@@ -58,6 +58,17 @@ public class Bootcamp {
 		this.id = id;
 	}
 
+	public void getBootcamp() {
+	}
+
+	public String getBootcampName() {
+		return bootcampName;
+	}
+
+	public void setBootcampName(String bootcampName) {
+		this.bootcampName = bootcampName;
+	}
+
 	public String getBeginDate() {
 		return beginDate;
 	}
@@ -74,18 +85,17 @@ public class Bootcamp {
 		this.endDate = endDate;
 	}
 
-	public void getBootcamp() {
+
+
+	public boolean isActive() {
+		return status;
 	}
 
-	public String getName() {
-		return bootcampName;
+	public void setActive(boolean active) {
+		this.status = active;
 	}
 
-	public void setBootcampName(String bootcampName){
-		this.bootcampName = bootcampName;
-	}
-
-	public String getCourseList(){
+	public String getCourseList() {
 		return courseList;
 	}
 
@@ -93,14 +103,8 @@ public class Bootcamp {
 		this.courseList = courseListString;
 	}
 
-
-
 	public Set<Trainee> getTrainees() {
 		return trainees;
-	}
-
-	public void setActive(boolean status) {
-		this.status = status;
 	}
 
 	public boolean getActive() {

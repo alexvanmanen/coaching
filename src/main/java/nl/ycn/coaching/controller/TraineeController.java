@@ -1,11 +1,17 @@
 package nl.ycn.coaching.controller;
 
 import nl.ycn.coaching.database.AppUserRepository;
-import nl.ycn.coaching.database.AppUserService;
+import nl.ycn.coaching.database.CourseRepository;
+import nl.ycn.coaching.database.TraineeRepository;
+import nl.ycn.coaching.services.AppUserService;
 import nl.ycn.coaching.database.BootcampRepository;
-import nl.ycn.coaching.database.PepService;
+import nl.ycn.coaching.services.BootcampService;
+import nl.ycn.coaching.services.PepService;
+import nl.ycn.coaching.model.Bootcamp;
+import nl.ycn.coaching.model.Course;
 import nl.ycn.coaching.model.PersonalEducationPlan;
 import nl.ycn.coaching.model.users.AppUser;
+import nl.ycn.coaching.model.users.Trainee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +20,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.sql.Date;
+import java.util.List;
+import java.util.Set;
 
 @Controller
 public class TraineeController {
@@ -25,19 +33,68 @@ public class TraineeController {
 	public AppUserService appUserService;
 
 	@Autowired
+	public BootcampService bootcampService;
+
+	@Autowired
 	public BootcampRepository bootcampRepository;
+
+	@Autowired
+	public CourseRepository courseRepository;
 
 	@Autowired
 	public AppUserRepository appUserRepository;
 
+	@Autowired
+	public TraineeRepository traineeRepository;
+
 	@GetMapping("/trainee/dashboard")
-	public String getTraineeDashboard(){
+	public String getTraineeDashboard(Model model){
+
+		AppUser user = appUserService.getActiveUser();
+		Trainee trainee = traineeRepository.findByUsername(user.getUsername());
+		Bootcamp bootcamp = trainee.getBootcamp();
+		Set<Trainee> trainees = bootcamp.getTrainees();
+		List<Course> courseList = bootcampService.getCourseList(bootcamp.getBootcampName());
+		PersonalEducationPlan personalEducationPlan = new PersonalEducationPlan();
+
+		//Fill the softskill list and set it
+		personalEducationPlan.setPersonalSoftskillList(pepService.fillPersonalSoftskillList());
+
+		//Fill the hardskill list and set it
+		personalEducationPlan.setPersonalHardskillList(pepService.fillPersonalHardskillList());
+
+		model.addAttribute("user", user);
+		model.addAttribute("trainee", trainee);
+		model.addAttribute("team", trainees);
+		model.addAttribute("courseList", courseList);
+		model.addAttribute("personalsoftskillList", personalEducationPlan.getPersonalSoftskillList());
+		model.addAttribute("personalhardskillList", personalEducationPlan.getPersonalHardskillList());
+
 		return "/trainee/dashboard";
 	}
 
 	@GetMapping("/trainee/courses")
-	public String getCourses(){
+	public String getCourses(Model model){
+
+		AppUser user = appUserService.getActiveUser();
+		Trainee trainee = traineeRepository.findByUsername(user.getUsername());
+		Bootcamp bootcamp = trainee.getBootcamp();
+		List<Course> courseList = bootcampService.getCourseList(bootcamp.getBootcampName());
+
+		model.addAttribute("bootcamp", bootcamp);
+		model.addAttribute("courseList", courseList);
+
 		return "/trainee/courses";
+	}
+
+	@GetMapping(path="/trainee/course/{name}")
+	public String getCourse(Model model, @PathVariable("name") String name){
+
+		Course course = courseRepository.findByCoursename(name);
+
+		model.addAttribute("course", course);
+
+		return "/trainee/course";
 	}
 
 	@GetMapping("/trainee/calendar")

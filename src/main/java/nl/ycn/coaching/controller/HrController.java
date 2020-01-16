@@ -6,14 +6,19 @@ import nl.ycn.coaching.model.Bootcamp;
 import nl.ycn.coaching.model.Course;
 import nl.ycn.coaching.model.CourseCreationDto;
 import nl.ycn.coaching.model.users.AppUser;
+import nl.ycn.coaching.services.AppUserService;
+import nl.ycn.coaching.services.BootcampService;
+import nl.ycn.coaching.services.HrService;
 import nl.ycn.coaching.model.users.Trainee;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.*;
-
 import java.sql.Date;
 import java.util.Arrays;
 import java.util.Collections;
@@ -24,9 +29,11 @@ import java.util.stream.Collectors;
 @Controller
 public class HrController {
 
-	@Autowired
-	private AppUserService appUserService;
+    @Autowired
+    private AppUserService appUserService;
 
+    @Autowired
+    private HrService hrService;
 	@Autowired
 	private AppUserRepository appUserRepository;
 
@@ -38,9 +45,6 @@ public class HrController {
 
 	@Autowired
 	private BootcampService bootcampService;
-
-	@Autowired
-	private HrService hrService;
 
 	BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
@@ -128,8 +132,12 @@ public class HrController {
 
 	@GetMapping({"/hremployee/dashboard","/hremployee"})
 	public String getHrDashboard(Model model) {
+
+		AppUser user = appUserService.getActiveUser();
+		model.addAttribute("user", user);
+		model.addAttribute("trainees", hrService.getTrainees("TRAINEE"));
 		model.addAttribute("activeBootcamps", hrService.getTopActiveBootcamps(5));
-		model.addAttribute("activeBootcamps", hrService.getTopFinishedBootcamps(5));
+		model.addAttribute("finishedBootcamps", hrService.getTopFinishedBootcamps(5));
 
 		return "/hremployee/hrdashboard";
 	}
@@ -143,7 +151,7 @@ public class HrController {
 		if (appUserService.getUser(username).getRole().equalsIgnoreCase("trainee")) {
 			AppUser user = appUserService.getUser(username);
 			Trainee trainee = (Trainee) user;
-			model.addAttribute("bootcamp", trainee.getBootcamp().getName());
+			model.addAttribute("bootcamp", trainee.getBootcamp().getBootcampName());
 		}
 		return "/hremployee/appuserinfo";
 	}
@@ -199,73 +207,55 @@ public class HrController {
 		}
 	}
 
-	@GetMapping("/hremployee/teams")
-	public String getTeams() {
-		try {
-			AppUser user = appUserService.getActiveUser();
-			String role = user.getRole();
-			return role.toLowerCase() + "/teams";
-		} catch (Exception e) {
-			return "/login";
-		}
-	}
+    @GetMapping("/hremployee/skills")
+    public String getSkills(Model model, String name) {
+        try {
+            AppUser user = appUserService.getActiveUser();
+            String role = user.getRole();
+            model.addAttribute("softskillslist", hrService.getSoftskillsForSkillspage());
+            model.addAttribute("softskills", hrService.getSoftskillsForSkillspageByName(name));
+            model.addAttribute("courseslist", hrService.getCoursesForSkillspage());
+            model.addAttribute("course", hrService.getCourseForSkillspageByName(name));
+            return role.toLowerCase() + "/skills";
+        } catch (Exception e) {
+            return "/login";
+        }
+    }
 
-	@GetMapping("/hremployee/skills")
-	public String getSkills() {
-		try {
-			AppUser user = appUserService.getActiveUser();
-			String role = user.getRole();
-			return role.toLowerCase() + "/skills";
-		} catch (Exception e) {
-			return "/login";
-		}
-	}
+    @GetMapping("/hremployee/register")
+    public String register(Model model) {
 
-	@GetMapping("/hremployee/createsoftskillform")
-	public String getSoftskillForm() {
-		try {
-			AppUser user = appUserService.getActiveUser();
-			String role = user.getRole();
-			return role.toLowerCase() + "/createsoftskillform";
-		} catch (Exception e) {
-			return "/login";
-		}
-	}
+        try {
+            AppUser user = appUserService.getActiveUser();
+            String role = user.getRole();
 
-	@GetMapping("/hremployee/register")
-	public String register(Model model) {
+            String upperCaseLetters = RandomStringUtils.random(3, 65, 90, true, true);
+            String lowerCaseLetters = RandomStringUtils.random(3, 97, 122, true, true);
+            String numbers = RandomStringUtils.randomNumeric(3);
+            String specialChar = RandomStringUtils.random(3, 33, 47, false, false);
+            String totalChars = RandomStringUtils.randomAlphanumeric(3);
+            String combinedChars = upperCaseLetters.concat(lowerCaseLetters)
+                    .concat(numbers)
+                    .concat(specialChar)
+                    .concat(totalChars);
+            List<Character> pwdChars = combinedChars.chars()
+                    .mapToObj(c -> (char) c)
+                    .collect(Collectors.toList());
+            Collections.shuffle(pwdChars);
+            String password = pwdChars.stream()
+                    .collect(StringBuilder::new, StringBuilder::append, StringBuilder::append)
+                    .toString();
+            model.addAttribute("randomPassword", password);
+            return role.toLowerCase() + "/register";
+        } catch (Exception e) {
+            return "/login";
+        }
+    }
 
-		try {
-			AppUser user = appUserService.getActiveUser();
-			String role = user.getRole();
-
-			String upperCaseLetters = RandomStringUtils.random(3, 65, 90, true, true);
-			String lowerCaseLetters = RandomStringUtils.random(3, 97, 122, true, true);
-			String numbers = RandomStringUtils.randomNumeric(3);
-			String specialChar = RandomStringUtils.random(3, 33, 47, false, false);
-			String totalChars = RandomStringUtils.randomAlphanumeric(3);
-			String combinedChars = upperCaseLetters.concat(lowerCaseLetters)
-					.concat(numbers)
-					.concat(specialChar)
-					.concat(totalChars);
-			List<Character> pwdChars = combinedChars.chars()
-					.mapToObj(c -> (char) c)
-					.collect(Collectors.toList());
-			Collections.shuffle(pwdChars);
-			String password = pwdChars.stream()
-					.collect(StringBuilder::new, StringBuilder::append, StringBuilder::append)
-					.toString();
-			model.addAttribute("randomPassword", password);
-			return role.toLowerCase() + "/register";
-		} catch (Exception e) {
-			return "/login";
-		}
-	}
-
-	@GetMapping("/hremployee/hrcalendar")
-	public String getCalendar() {
-		return "/hremployee/hrcalendar";
-	}
+    @GetMapping("/hremployee/hrcalendar")
+    public String getCalendar() {
+        return "/hremployee/hrcalendar";
+    }
 
 	//register a new AppUser (from hremployee/register)
 	@PostMapping("/hremployee/addappuser")
@@ -291,12 +281,68 @@ public class HrController {
 		return "redirect:/hremployee/users";
 	}
 
-	@PostMapping("/hremployee/createsoftskill")
-	public String createSoftskill(String name, String description) {
-		hrService.addSoftskill(name, description);
+    @GetMapping("/hremployee/createsoftskillform")
+    public String getSoftskillForm() {
+        try {
+            AppUser user = appUserService.getActiveUser();
+            String role = user.getRole();
+            return role.toLowerCase() + "/createsoftskillform";
+        } catch (Exception e) {
+            return "/login";
+        }
+    }
 
-		return "/hremployee/hrdashboard";
-	}
+    @PostMapping("/hremployee/createsoftskillform")
+    public String createSoftskill(String name, String description) {
+        hrService.addSoftskill(name, description);
 
+        return "redirect:/hremployee/skills";
+    }
+
+    @GetMapping(path="/hremployee/softskilledit/{id}")
+    public String getSoftskill(Model model, @PathVariable("id") int id) {
+        model.addAttribute("name", hrService.getSoftskillsForSkillspageById(id).getName());
+        model.addAttribute("description", hrService.getSoftskillsForSkillspageById(id).getDescription());
+
+        return "/hremployee/softskilledit";
+    }
+
+    @PostMapping(path="/hremployee/softskilledit/{id}")
+    public String editSoftskill(@PathVariable("id")int id, String name, String description){
+        hrService.editSoftskill(id, name, description);
+        return "redirect:/hremployee/skills";
+    }
+
+    @GetMapping("/hremployee/createcourseform")
+    public String getCourseForm() {
+        try {
+            AppUser user = appUserService.getActiveUser();
+            String role = user.getRole();
+            return role.toLowerCase() + "/createcourseform";
+        } catch (Exception e) {
+            return "/login";
+        }
+    }
+
+    @PostMapping("/hremployee/createcourseform")
+    public String createCourse(String coursename, String coursedescription) {
+        hrService.addCourse(coursename, coursedescription);
+
+        return "redirect:/hremployee/skills";
+    }
+
+    @GetMapping(path="/hremployee/courseedit/{id}")
+    public String getCourse(Model model, @PathVariable("id") int id) {
+        model.addAttribute("coursename", hrService.getCourseForSkillspageById(id).getCoursename());
+        model.addAttribute("coursedescription", hrService.getCourseForSkillspageById(id).getCoursedescription());
+
+        return "/hremployee/courseedit";
+    }
+
+    @PostMapping(path="/hremployee/courseedit/{id}")
+    public String editCourse(@PathVariable("id")int id, String coursename, String coursedescription){
+        hrService.editCourse(id, coursename, coursedescription);
+        return "redirect:/hremployee/skills";
+    }
 
 }

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>HR-Employee | Skills</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+
+    <script src="https://visjs.github.io/vis-network/standalone/umd/vis-network.min.js"></script>
+
+    <script src="/hr_course_validation.js"></script>
+</head>
+
+<body style="background-color: cadetblue">
+
+<div th:insert="~{hremployee/header :: header}"></div>
+<script>$('#skills').addClass('active');</script>
+
+<div>
+    <h1 class="ui block header"
+        style="padding: 10px; margin-left: 25px; margin-right: 25px; margin-top: 10px; margin-bottom: 10px"> Maak een
+        course aan</h1>
+</div>
+
+<div>
+    <form action="/hremployee/createcourseform" class="ui form" method="post"
+          style="margin-left: 20px; margin-right: 20px; margin-top: 10px;">
+        <div class="two field">
+            <div class="field">
+                <label>Naam van de course:</label>
+                <input name="coursename" placeholder="Course" type="text">
+            </div>
+            <div class="field">
+                <label>Beschrijving:</label>
+                <textarea name="coursedescription" placeholder="Beschrijving van de course" rows="4" type="text"></textarea>
+            </div>
+        </div>
+
+        <button class="ui button" type="submit">Voeg toe</button>
+
+        <div class="ui error message"></div>
+    </form>
+</div>
+
+
+
+</body>
+</html>

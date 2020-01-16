@@ -4,10 +4,10 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title >Coaching | HR-Employee | Dashboard</title>
+    <title>Coaching | HR-Employee | Dashboard</title>
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" rel="stylesheet"/>
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
 
     <script src="https://visjs.github.io/vis-network/standalone/umd/vis-network.min.js"></script>
@@ -16,106 +16,101 @@
 </head>
 <body style="background-color: cadetblue">
 
-<div class="ui secondary pointing menu" style="background-color:white">
-    <a class = "item">
-        <img src="../ycnlogo.png" class="image">
-    </a>
-    <a class="item active" href="dashboard">
-        Dashboard
-    </a>
-    <a class="item" href="/hremployee/teams">
-        Teams
-    </a>
-    <a class="item" href="/hremployee/users">
-        Users
-    </a>
-    <a class="item" href="/hremployee/bootcamps">
-        Bootcamps
-    </a>
-    <a class="item" href="/hremployee/skills">
-        Skills
-    </a>
-    <a class="item" href="/hremployee/hrcalendar">
-        Calendar
-    </a>
+<div th:insert="~{/hremployee/header :: header}"></div>
+<script>$('#dashboard').addClass('active');</script>
 
-    <div class="right menu">
-        <a class="ui item" href="/logout">
-            Logout
-        </a>
-    </div>
-</div>
-<div id="grid" class="ui center aligned grid" style="margin-left:20px; margin-right:20px;">
+<div class="ui center aligned grid" id="grid" style="margin-left:11px; margin-right:11px; margin-top: 1px" >
 
-            <div class="center aligned two column row">
-                <div class="column">
-                    <div  class="ui segment">
-                        <h1>Bootcamps</h1>
-                        <div class="ui icon message" th:each="bootcamps:${activeBootcamps}">
-                        <h3><i class="newspaper icon"></i><span th:text="${bootcamps.bootcampName}"></span></h3>
+    <div class="center aligned two column row">
+        <div class="column">
+            <div class="ui segment">
+                <form action="/hremployee/bootcamps" class="ui form" method="get" style="margin-bottom: 10px">
+                    <button class="ui mini icon teal message button">
+                        <div class="content">
+                            <h2><span>Active Bootcamps</span></h2>
                         </div>
-                    </div>
-                </div>
+                    </button>
+                </form>
 
-                <div class="column">
-
-                    <div class="ui segment">
-                        <i class="newspaper large icon"></i>
-                        <h2>Bootcamps</h2>
-                        <p>DevOps-03-19</p>
-                        <p>DevOps-02-19</p>
-                        <p>DevOps-01-19</p>
-                        <p>Java-02-19</p>
-                        <p>BigData-01-19</p>
-                    </div>
-                </div>
+                <form class="ui form" method="get" th:action="@{'/hremployee/bootcamps/' + ${bootcamps.bootcampName}}"
+                      th:each="bootcamps:${activeBootcamps}">
+                    <button class="ui mini icon message button">
+                        <div class="content">
+                            <h3><span th:text="${bootcamps.bootcampName}"></span></h3>
+                        </div>
+                    </button>
+                </form>
             </div>
 
-            <div class="center aligned two column row">
-                <div class="column">
+        </div>
 
-                    <div class="ui segment">
-                        <i class="envelope large icon"></i>
-                        <h2>New Users</h2>
-                        <p>- Luuk Wempe</p>
-                        <p>- Simone Meijers</p>
-                        <p>- Naomi Goedhart</p>
-                        <p>- Jeroen de Jong</p>
-                        <p>- Vuong Ngo</p>
-                    </div>
-                </div>
+        <div class="column">
 
-                <div class="column">
+            <div class="ui segment">
+                <form action="/hremployee/users/" class="ui form" method="get" style="margin-bottom: 10px">
+                    <button class="ui mini icon teal message button">
+                        <div class="content">
+                            <h2><span>Trainees</span></h2>
+                        </div>
+                    </button>
+                </form>
 
-                    <div class="ui segment">
-                        <i class="id card large icon"></i>
-                        <h2>Contact Details</h2>
-                        <p>Name: Wouter Abels</p>
-                        <p>Date of Birth: 24-06-1997</p>
-                        <p>Role: HR-Employee</p>
-                        <p>Address: Nieuwegein, Nederland</p>
-                    </div>
-                </div>
+                <form class="ui form" method="get" th:action="@{'/hremployee/appuserinfo/' + ${trainee.username}}"
+                      th:each="trainee:${trainees}">
+                    <button class="ui mini icon message button">
+                        <div class="content">
+                            <h3><span th:text="${trainee.firstName} + ' ' + ${trainee.lastName}"></span></h3>
+                        </div>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="center aligned two column row">
+
+        <div class="column">
+
+            <div class="ui segment">
+                <form class="ui form" style="margin-bottom: 10px">
+                    <button class="ui mini icon teal message button">
+                        <div class="content">
+                            <h2><span>Notifications</span></h2>
+                        </div>
+                    </button>
+                </form>
+
+                <p> Trainee Luuk Wempe heeft SCRUM behaald.</p>
+                <p> Java-03-19 is gestart.</p>
+                <p> Manager Vuong Ngo heeft zijn contact gegevens gewijzigd.</p>
+                <p> Devops-02-19 is vanaf vandaag afgelopen.</p>
+                <p> Java-02-19 is vanaf vandaag afgelopen.</p>
             </div>
 
-            <div class="center aligned two column row">
+        </div>
 
-                <div class="column">
-                <div class="ui segment">
-                    <i class="id card large icon"></i>
-                    <h2>Contact Details</h2>
-                    <p>Name: Wouter Abels</p>
-                    <p>Date of Birth: 24-06-1997</p>
-                    <p>Role: HR-Employee</p>
-                    <p>Employed since: 02-11-2019</p>
-                    <p>Address: Nieuwegein, Nederland</p>
-                </div>
-                </div>
+        <div class="column">
 
-                <div class="column">
-
-                </div>
+            <div class="ui segment">
+                <form class="ui form" method="get" style="margin-bottom: 10px"
+                      th:action="@{'/hremployee/appuserinfo/' + ${user.username}}">
+                    <button class="ui mini icon teal message button">
+                        <div class="content">
+                            <h2><span>Contact Details</span></h2>
+                        </div>
+                    </button>
+                </form>
+                <p th:text="'Name: ' + ${user.firstName} + ' ' + ${user.lastName}"></p>
+                <p th:text="'Day of birth: ' + ${user.dateofbirth}"></p>
+                <p th:text="'Email: ' + ${user.email}"></p>
+                <p th:text="'Telephone number: ' + ${user.telephonenumber}"></p>
+                <p th:text="'Address: ' + ${user.street} + ' ' + ${user.streetNr} + ', ' + ${user.zipcode} + ', ' + ${user.city}"></p>
             </div>
+        </div>
+
+    </div>
+
 </div>
 </body>
 </html>

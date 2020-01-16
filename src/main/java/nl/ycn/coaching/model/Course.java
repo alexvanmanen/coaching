@@ -1,52 +1,49 @@
 package nl.ycn.coaching.model;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Course {
-    
+
     @Id
-    @GeneratedValue
-    private int id;
-    
-    @Column
-    private String name;
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    private int courseId;
 
     @Column
-    private String description;
-    
+    private String coursename;
+
+    @Column
+    private String coursedescription;
+
     public Course() {}
-    
-    public Course(String name, String description) {
-        this.name = name;
-        this.description = description;
+
+    public Course(String coursename, String coursedescription) {
+        this.coursename = coursename;
+        this.coursedescription = coursedescription;
     }
-    
+
     public int getId () {
-        return id;
+        return courseId;
     }
-    
+
     public void setId (int id) {
-        this.id = id;
+        this.courseId = id;
     }
-    
-    public String getName () {
-        return name;
+
+    public String getCoursename() {
+        return coursename;
     }
-    
-    public void setName (String name) {
-        this.name = name;
+
+    public void setCoursename(String coursename) {
+        this.coursename = coursename;
     }
-    
-    public String getDescription () {
-        return description;
+
+    public String getCoursedescription() {
+        return coursedescription;
     }
-    
-    public void setDescription (String description) {
-        this.description = description;
+
+    public void setCoursedesciption(String coursedescription) {
+        this.coursedescription = coursedescription;
     }
 }

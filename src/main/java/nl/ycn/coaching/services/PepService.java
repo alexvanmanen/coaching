@@ -1,5 +1,8 @@
-package nl.ycn.coaching.database;
+package nl.ycn.coaching.services;
 
+import nl.ycn.coaching.database.HardskillRepository;
+import nl.ycn.coaching.database.PersonalSoftskillRepository;
+import nl.ycn.coaching.database.SoftskillRepository;
 import nl.ycn.coaching.model.PersonalHardskill;
 import nl.ycn.coaching.model.PersonalSoftskill;
 import nl.ycn.coaching.model.Softskill;

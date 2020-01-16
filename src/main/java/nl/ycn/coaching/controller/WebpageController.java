@@ -1,9 +1,8 @@
 package nl.ycn.coaching.controller;
 
 import nl.ycn.coaching.database.AppUserRepository;
-import nl.ycn.coaching.database.AppUserService;
+import nl.ycn.coaching.services.AppUserService;
 import nl.ycn.coaching.database.AppUserRepository;
-import nl.ycn.coaching.database.BootcampRepository;
 import nl.ycn.coaching.model.users.AppUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,9 +23,6 @@ public class WebpageController {
 
 	@Autowired
 	private AppUserService appUserService;
-
-	@Autowired
-	private BootcampRepository bootcampRepository;
 
 	@Autowired
 	public WebpageController() {}
@@ -131,8 +127,9 @@ public class WebpageController {
         return "redirect:/trainee/accountsettings";
     }
 
-    @PostMapping("/register")
-    public String register(String username,
+
+	@PostMapping("/register")
+	public String register(String username,
 						   String firstName,
 						   String lastName,
 						   String email,
@@ -149,24 +146,24 @@ public class WebpageController {
 						   String telephonenumber,
 						   String bootcamp){
 
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        appUserService.registerUser(username,
-									firstName,
-									lastName,
-									email,
-									encoder.encode(password),
-									role,
-									enabled,
-									activated,
-									dateofbirth,
-									zipcode,
-									street,
-									streetNr,
-									city,
-									country,
-									telephonenumber,
-									bootcamp);
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		appUserService.registerUser(username,
+				firstName,
+				lastName,
+				email,
+				encoder.encode(password),
+				role,
+				enabled,
+				activated,
+				dateofbirth,
+				zipcode,
+				street,
+				streetNr,
+				city,
+				country,
+				telephonenumber,
+				bootcamp);
 
-        return "/dashboardpages/dashboardpage";
-    }
+		return "/dashboardpages/dashboardpage";
+	}
 }

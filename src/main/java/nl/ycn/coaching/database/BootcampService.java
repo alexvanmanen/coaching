@@ -43,8 +43,8 @@ public class BootcampService {
 
 		String[] courseArray = camp.getCourseList().split(",");
 		for (String course : courseArray){
-			if (courseRepository.findByName(course) != null) {
-				coursesList.add(courseRepository.findByName(course));
+			if (courseRepository.findByCoursename(course) != null) {
+				coursesList.add(courseRepository.findByCoursename(course));
 			}
 		}
 		return coursesList;
@@ -62,7 +62,7 @@ public class BootcampService {
 		List<String> courseNames = new ArrayList<>();
 
 		for (Course course : courses){
-			courseNames.add(course.getName());
+			courseNames.add(course.getCoursename());
 		}
 		String courseListString = String.join(",", courseNames);
 		bootcamp.setCourseList(courseListString);
