@@ -15,6 +15,31 @@ $(document)
         dropdown.onchange = function() {
             location.assign( './personalsoftskillform?name=' + this.options[ this.selectedIndex ].value, "self" );
         };
+
+            $('.ui.form')
+                .form({
+                    fields: {
+                        name: {
+                            identifier: 'name',
+                            rules: [
+                                {
+                                    type: 'empty',
+                                    prompt: 'Please choose a softskill.'
+                                }
+                            ]
+                        },
+                        report: {
+                            identifier: 'report',
+                            rules: [
+                                {
+                                    type: 'empty',
+                                    prompt: 'Please enter a report.'
+                                }
+                            ]
+                        }
+                    }
+                })
+            ;
     }
     );
 
