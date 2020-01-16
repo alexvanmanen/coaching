@@ -85,7 +85,7 @@ public class WebpageController {
 		try {
 			AppUser user = appUserService.getActiveUser();
             if (!(user.isActivated())) {
-                return "/trainee/accountsettings";
+                return "/trainee/accountsettings_firsttime";
             } else {
                 String role = user.getRole();
                 return "redirect:/" + role.toLowerCase() + "/dashboard";
