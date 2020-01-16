@@ -1,18 +1,15 @@
 package nl.ycn.coaching.services;
 
-import nl.ycn.coaching.database.AppUserRepository;
 import nl.ycn.coaching.database.BootcampRepository;
 import nl.ycn.coaching.database.CourseRepository;
 import nl.ycn.coaching.model.Bootcamp;
 import nl.ycn.coaching.model.Course;
-import nl.ycn.coaching.model.users.AppUser;
-import nl.ycn.coaching.model.users.Trainee;
+import nl.ycn.coaching.model.CourseCreationDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Service
 public class BootcampService {
@@ -42,9 +39,9 @@ public class BootcampService {
 	public List<Course> getCourseList(String bootcampName) {
 		Bootcamp camp = bootcampRepository.findByBootcampName(bootcampName);
 		List<Course> coursesList = new ArrayList<>();
-		String[] courseArray = camp.getCourseList().split(", ");
+		String[] courseArray = camp.getCourseList().split(",");
 
-		for (String course : courseArray){
+		for (String course : courseArray) {
 			coursesList.add(courseRepository.findByCoursename(course));
 		}
 
@@ -57,6 +54,39 @@ public class BootcampService {
 		bootcampRepository.save(camp);
 	}
 
+	public void setCourseList(Bootcamp bootcamp, List<Course> courses) {
+		List<String> courseNames = new ArrayList<>();
+
+		for (Course course : courses) {
+			courseNames.add(course.getCoursename());
+		}
+		String courseListString = String.join(",", courseNames);
+		bootcamp.setCourseList(courseListString);
+		bootcampRepository.save(bootcamp);
+
+	}
+
+	public void saveBootcamp(CourseCreationDto courseCreationDto, String name, String beginDate, String endDate) {
+		if (bootcampRepository.findByBootcampName(name) != null) {
+			List<Course> list = courseCreationDto.getCourses();
+			setCourseList(name, list);
+		} else {
+			Bootcamp bootcamp = new Bootcamp(name);
+			bootcamp.setBeginDate(beginDate);
+			bootcamp.setEndDate(endDate);
+			setCourseList(bootcamp.getBootcampName(), courseCreationDto.getCourses());
+		}
+	}
+
+	public void deleteCourse(CourseCreationDto courseCreationDto, Bootcamp camp) {
+	}
+
+	public void addCourse(CourseCreationDto courseCreationDto, Bootcamp camp) {
+		List<Course> list = courseCreationDto.getCourses();
+		Course c = new Course("new course", "description");
+		list.add(c);
+		setCourseList(camp.getBootcampName(), list);
+	}
 
 
 	public void setCourseList(String bootcampName, List<Course> courses) {

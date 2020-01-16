@@ -24,8 +24,6 @@ public class HrService {
     @Autowired
     private AppUserRepository appUserRepository;
     @Autowired
-    private BootcampService bootcampService;
-    @Autowired
     private SoftskillRepository softskillRepository;
     @Autowired
     private CourseRepository courseRepository;
@@ -40,23 +38,21 @@ public class HrService {
 
     //retreive top 'length' bootcamps from the repository and return a list with the top 'length' bootcamps.
     public List<Bootcamp> getTopActiveBootcamps(int length){
-        Page<Bootcamp> topBootcamps = bootcampRepository.findAllByActive(true, PageRequest.of(0,length, Sort.by("endDate").descending()));
+        Page<Bootcamp> topBootcamps = bootcampRepository.findAllByStatus(true, PageRequest.of(0,length, Sort.by("endDate").descending()));
         return topBootcamps.getContent();
     }
 
     public List<Bootcamp> getTopFinishedBootcamps(int length){
-        Page<Bootcamp> topBootcamps = bootcampRepository.findAllByActive(false, PageRequest.of(0,length, Sort.by("endDate").descending()));
+        Page<Bootcamp> topBootcamps = bootcampRepository.findAllByStatus(false, PageRequest.of(0,length, Sort.by("endDate").descending()));
         return topBootcamps.getContent();
     }
 
     public List<AppUser> getTrainees(String role) {
-        List<AppUser> Trainees = appUserRepository.findByRole(role);
-        return Trainees;
+        return appUserRepository.findByRole(role);
     }
 
     public List<AppUser> getUsers(){
-        List<AppUser> Users = appUserRepository.findAll();
-        return Users;
+        return appUserRepository.findAll();
 
     }
 
@@ -74,8 +70,7 @@ public class HrService {
     }
 
     public List<Softskill> getSoftskillsForSkillspage() {
-        List<Softskill> softskillslist = softskillRepository.findAll();
-        return softskillslist;
+        return softskillRepository.findAll();
 
     }
 
@@ -88,8 +83,7 @@ public class HrService {
     }
 
     public List<Course> getCoursesForSkillspage() {
-        List<Course> courseslist = courseRepository.findAll();
-        return courseslist;
+        return courseRepository.findAll();
     }
 
     public Course getCourseForSkillspageByName(String name) {

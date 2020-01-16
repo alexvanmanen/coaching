@@ -102,15 +102,15 @@
                     <div class="eight wide column" id="course">
                         <div class="ui fluid search selection dropdown">
                             <input type="hidden" name="course"
-                                   th:value="${course.getName()}"
-                                   th:field="*{courses[__${itemStat.index}__].name}">
+                                   th:value="${course.coursename}"
+                                   th:field="*{courses[__${itemStat.index}__].coursename}">
                             <i class="dropdown icon"></i>
-                            <div class="default text" th:value="${course.getName()}"></div>
+                            <div class="default text" th:value="${course.coursename}"></div>
                             <div class="menu">
                                 <div class="item"
                                      th:each="course : ${allcourses}"
-                                     th:text="${course.getName()}"
-                                     th:value="${course.getName()}">
+                                     th:text="${course.coursename}"
+                                     th:value="${course.coursename}">
                                 </div>
                             </div>
                         </div>
@@ -119,11 +119,11 @@
 
 
                 <div class="seven wide middle aligned column">
-                    <h4><span th:field="*{courses[__${itemStat.index}__].description}" th:value="${course.getDescription()}"></span></h4>
+                    <h4><span th:field="*{courses[__${itemStat.index}__].coursedescription}" th:value="${course.coursedescription}"></span></h4>
                 </div>
 
                 <div class="four wide center aligned middle aligned column" style="margin-top: 10px">
-                    <button type="submit" th:name="action" th:value="'delete_course:'+ ${bootcamp.bootcampName}+':'+ ${course.name}"
+                    <button type="submit" th:name="action" th:value="'delete_course:'+ ${bootcamp.bootcampName}+':'+ ${course.coursename}"
                             class="ui fluid orange inverted button">Delete Course
                     </button>
                 </div>
@@ -134,7 +134,7 @@
 
 
         <div style="margin-top: 10px">
-            <button type="submit" th:name="action" th:value="'add_course:'+ ${bootcamp.bootcampName}" class="ui fluid orange inverted button">Add
+            <button type="submit" th:name="action" th:value="'add_course:'+ ${bootcamp.getBootcampName()}" class="ui fluid orange inverted button">Add
                 Course
             </button>
         </div>
@@ -145,7 +145,7 @@
     <div class="ui divider"></div>
 
     <div style="margin-left: 25px; margin-right: 25px;">
-            <button th:name="action" th:value="'save_bootcamp:'+ ${bootcamp.bootcampName}" class="ui orange fluid large button" type="submit">Save Changes</button>
+            <button th:name="action" th:value="'save_bootcamp:'+ ${bootcamp.getBootcampName()}" class="ui orange fluid large button" type="submit">Save Changes</button>
     </div>
 
 

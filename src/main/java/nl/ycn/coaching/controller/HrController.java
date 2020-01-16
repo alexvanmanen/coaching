@@ -1,15 +1,16 @@
 package nl.ycn.coaching.controller;
 
 
-import nl.ycn.coaching.database.*;
+import nl.ycn.coaching.database.AppUserRepository;
+import nl.ycn.coaching.database.BootcampRepository;
+import nl.ycn.coaching.database.CourseRepository;
 import nl.ycn.coaching.model.Bootcamp;
-import nl.ycn.coaching.model.Course;
 import nl.ycn.coaching.model.CourseCreationDto;
 import nl.ycn.coaching.model.users.AppUser;
+import nl.ycn.coaching.model.users.Trainee;
 import nl.ycn.coaching.services.AppUserService;
 import nl.ycn.coaching.services.BootcampService;
 import nl.ycn.coaching.services.HrService;
-import nl.ycn.coaching.model.users.Trainee;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -18,12 +19,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import java.sql.Date;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 @Controller
@@ -111,8 +112,8 @@ public class HrController {
 				newBootcamp.setBeginDate("2020-01-01");
 				newBootcamp.setEndDate("2020-01-02");
 				newBootcamp.setCourseList("java");
-				bootcampService.setCourseList(newBootcamp, courseCreationDto.getCourses());
-				return "redirect:/hremployee/editbootcamp/"+ newBootcamp.getName();
+				bootcampService.setCourseList(newBootcamp.getBootcampName(), courseCreationDto.getCourses());
+				return "redirect:/hremployee/editbootcamp/"+ newBootcamp.getBootcampName();
 
 			default:
 				return "redirect:/hremployee/bootcamps";

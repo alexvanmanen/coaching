@@ -4,9 +4,7 @@ import nl.ycn.coaching.model.users.Trainee;
 
 import javax.persistence.*;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
-import java.util.Date;
 
 @Entity
 public class Bootcamp {
@@ -86,7 +84,6 @@ public class Bootcamp {
 	}
 
 
-
 	public boolean isActive() {
 		return status;
 	}
@@ -99,7 +96,7 @@ public class Bootcamp {
 		return courseList;
 	}
 
-	public void setCourseList(String courseListString){
+	public void setCourseList(String courseListString) {
 		this.courseList = courseListString;
 	}
 
