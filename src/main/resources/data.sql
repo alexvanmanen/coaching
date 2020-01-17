@@ -58,13 +58,13 @@ INSERT INTO COURSE VALUES(null, 'Programmeertaal', 'Java');
 INSERT INTO COURSE VALUES(null, 'Operating System', 'Linux');
 
 
-INSERT INTO BOOTCAMP VALUES(1, false, '2019-02-12', 'devops-01-19', 'Python, SQL', '2019-05-20');
-INSERT INTO BOOTCAMP VALUES(2, false, '2019-02-12', 'java-01-19', 'C+, CSS', '2019-05-22');
-INSERT INTO BOOTCAMP VALUES(3, false, '2019-04-12', 'bigdata-01-19', 'C+, CSS', '2019-07-17');
-INSERT INTO BOOTCAMP VALUES(4, false, '2019-06-13', 'devops-02-19', 'Java, Linux', '2019-09-20');
-INSERT INTO BOOTCAMP VALUES(5, false, '2019-06-27', 'java-02-19', 'C+, CSS', '2019-08-22');
-INSERT INTO BOOTCAMP VALUES(6, true, '2019-08-12', 'bigdata-02-19', 'C+, CSS', '2019-10-17');
-INSERT INTO BOOTCAMP VALUES(7, true, '2019-09-28', 'devops-03-19', 'Java, C++', '2019-11-15');
-INSERT INTO BOOTCAMP VALUES(8, true, '2019-09-12', 'java-03-19', 'C+, CSS', '2019-12-22');
-INSERT INTO BOOTCAMP VALUES(9, true, '2019-11-18', 'devops-04-19', 'Java, C++', '2020-01-20');
-INSERT INTO BOOTCAMP VALUES(10, true, '2019-12-12', 'bigdata-03-19', 'C+, CSS', '2020-02-17');
+INSERT INTO BOOTCAMP VALUES(1, false, 'https://calendar.google.com/calendar/embed?src=f9psc2js4rvst8v63kn0dkjv0o%40group.calendar.google.com&ctz=Europe%2FAmsterdam', '2019-02-12', 'devops-01-19', 'Python, SQL', '2019-05-20');
+INSERT INTO BOOTCAMP VALUES(2, false, 'https://calendar.google.com/calendar/embed?src=shu5i6ivltqs4m6jrhier0qs6o%40group.calendar.google.com&ctz=Europe%2FAmsterdam', '2019-02-12', 'java-01-19', 'C+, CSS', '2019-05-22');
+INSERT INTO BOOTCAMP VALUES(3, false, 'https://calendar.google.com/calendar/embed?src=lhgl8qo8r9e6o1mvfb1mhbk9a4%40group.calendar.google.com&ctz=Europe%2FAmsterdam', '2019-04-12', 'bigdata-01-19', 'C+, CSS', '2019-07-17');
+INSERT INTO BOOTCAMP VALUES(4, false, 'https://calendar.google.com/calendar/embed?src=1fhuokuoi66uoa3ue4ngjldmvc%40group.calendar.google.com&ctz=Europe%2FAmsterdam', '2019-06-13', 'devops-02-19', 'Java, Linux', '2019-09-20');
+INSERT INTO BOOTCAMP VALUES(5, false, 'https://calendar.google.com/calendar/embed?src=id0blcfnjdparutn3tk99cg7to%40group.calendar.google.com&ctz=Europe%2FAmsterdam', '2019-06-27', 'java-02-19', 'C+, CSS', '2019-08-22');
+INSERT INTO BOOTCAMP VALUES(6, true, 'https://calendar.google.com/calendar/embed?src=1fhuokuoi66uoa3ue4ngjldmvc%40group.calendar.google.com&ctz=Europe%2FAmsterdam', '2019-08-12', 'bigdata-02-19', 'C+, CSS', '2019-10-17');
+INSERT INTO BOOTCAMP VALUES(7, true, 'https://calendar.google.com/calendar/embed?src=s736hs1u8jdca5nh32nfkcnj9g%40group.calendar.google.com&ctz=Europe%2FAmsterdam', '2019-09-28', 'devops-03-19', 'Java, C++', '2019-11-15');
+INSERT INTO BOOTCAMP VALUES(8, true, 'https://calendar.google.com/calendar/embed?src=u5g33hu41819li9prjfb0bhi30%40group.calendar.google.com&ctz=Europe%2FAmsterdam', '2019-09-12', 'java-03-19', 'C+, CSS', '2019-12-22');
+INSERT INTO BOOTCAMP VALUES(9, true, 'https://calendar.google.com/calendar/embed?src=m6qe8qn1n0libhgp7japm6vn7s%40group.calendar.google.com&ctz=Europe%2FAmsterdam', '2019-11-18', 'devops-04-19', 'Java, C++', '2020-01-20');
+INSERT INTO BOOTCAMP VALUES(10, true, 'https://calendar.google.com/calendar/embed?src=etf9lfrf5hgq86fnvd9jknb5bk%40group.calendar.google.com&ctz=Europe%2FAmsterdam', '2019-12-12', 'bigdata-03-19', 'C+, CSS', '2020-02-17');

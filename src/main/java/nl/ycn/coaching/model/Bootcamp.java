@@ -34,6 +34,7 @@ public class Bootcamp {
 	@Column
 	public boolean active;
 
+	private String agendaUrl;
 
 	//default constructor
 	public Bootcamp(){}
@@ -89,5 +90,9 @@ public class Bootcamp {
 
 	public Set<Trainee> getTrainees(){
 		return trainees;
+	}
+
+	public String getAgendaUrl() {
+		return agendaUrl;
 	}
 }

@@ -95,7 +95,7 @@ public class AppSecurityConfiguration extends WebSecurityConfigurerAdapter {
            .passwordEncoder(encoder);
 
         appUserService.registerUser("luuk","Luuk", "Wempe", "soepsoep123@hotmail.com", encoder.encode("hallo"), "ADMIN", true, true, Date.valueOf("1996-01-01"),"2000PP", "Bobhof", "1", "Bobdam", "Bobland", "06324543", "");
-        appUserService.registerUser("alex","Alex", "van Manen", "superalex3@hotmail.nl", encoder.encode("hallo"), "TRAINEE", true, false, Date.valueOf("1997-01-01") ,"3000PP", "Bobhof", "1", "Bobdam", "Italy", "112", "devops-02-19");
+        appUserService.registerUser("alex","Alex", "van Manen", "superalex3@hotmail.nl", encoder.encode("hallo"), "TRAINEE", true, true, Date.valueOf("1997-01-01") ,"3000PP", "Bobhof", "1", "Bobdam", "Italy", "112", "devops-02-19");
         appUserService.registerUser("jurre","Jurre", "Wempe", "firedragon@hotmail.com", encoder.encode("hallo"), "TRAINEE", true, false, Date.valueOf("2000-01-01") ,"3000PP", "Lansiershof", "6", "Sassenheim", "The Netherlands", "+316-52498741", "java-03-19");
         appUserService.registerUser("jeanine","Jeanine", "van Dongen", "darkdeathxxx@gmail.com", encoder.encode("hallo"), "TRAINEE", true, false, Date.valueOf("1997-01-01") ,"2216TL", "Ter Beek", "4", "Lisse", "The Netherlands", "+316-45389142", "devops-02-19");
         appUserService.registerUser("vuong","Vuong", "Ngo", "vongbong@gmail.com", encoder.encode("hallo"), "MANAGER" , true, true, Date.valueOf("1994-01-01"),"4000PP", "Bobhof", "1", "Bobdam", "Bobland", "112", "");
