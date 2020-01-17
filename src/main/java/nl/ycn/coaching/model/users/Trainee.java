@@ -32,7 +32,11 @@ public class Trainee extends AppUser{
 		super(username, firstName, lastName, email, password, role, enabled, activated, dateofbirth, zipcode, street, streetNr, city, country, telephonenumber);
 		this.bootcamp = bootcamp;
 	}
-
+	
+	public Trainee (String username, String firstName, String lastName, String email, String password, String role, boolean enabled, boolean activated) {
+		super (username, firstName, lastName, email, password, role, enabled, activated);
+	}
+	
 	public void setBootcamp(Bootcamp bootcamp) {
 		this.bootcamp = bootcamp;
 	}
