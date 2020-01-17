@@ -4,7 +4,7 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>HR-Employee | Bootcamp</title>
+    <title>HR-Employee | User Info</title>
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css"/>
@@ -30,7 +30,7 @@
 
 <div class="ui icon message" style="padding: 10px; margin-left: 25px; margin-right: 25px; margin-top: 10px; margin-bottom: 10px">
     <div class="content">
-        <h1><span th:text="${role}"></span></h1>
+        <h1><span th:text="${appuser.getRole()}"></span></h1>
     </div>
 </div>
 
@@ -41,74 +41,73 @@
         <div class="one column row">
             <div class="eight wide column">
                 <h3><label>Firstname:</label></h3>
-                <input placeholder="Firstname" type="text" name="firstname" th:value="${firstname}">
+                <input placeholder="Firstname" type="text" name="firstname" th:value="${appuser.getFirstName()}">
             </div>
 
             <div class="eight wide column">
                 <h3><label>Street</label></h3>
-                <input type="text" placeholder="Street" name="street" th:value="${street}">
+                <input type="text" placeholder="Street" name="street" th:value="${appuser.getStreet()}">
             </div>
         </div>
 
         <div class="one column row">
             <div class="eight wide column">
                 <h3><label>Lastname:</label></h3>
-                <input placeholder="Lastname" type="text" name="lastname" th:value="${lastname}">
+                <input placeholder="Lastname" type="text" name="lastname" th:value="${appuser.getLastName()}">
             </div>
 
             <div class="eight wide column">
                 <h3><label>Street Nr:</label></h3>
-                <input type="text" placeholder="Street Nr" name="streetNr" th:value="${streetnr}">
+                <input type="text" placeholder="Street Nr" name="streetNr" th:value="${appuser.getStreetNr()}">
             </div>
         </div>
 
         <div class="one column row">
             <div class="eight wide column">
                 <h3><label>Username:</label></h3>
-                <input type="text" th:placeholder="${username}" name="username" th:value="${username}">
+                <input type="text" th:placeholder="${appuser.getUsername()}" name="username" th:value="${username}">
             </div>
 
             <div class="eight wide column">
                 <h3><label>Zipcode:</label></h3>
-                <input type="text" placeholder="Zipcode" name="zipcode" th:value="${zipcode}">
+                <input type="text" placeholder="Zipcode" name="zipcode" th:value="${appuser.getZipcode()}">
             </div>
         </div>
 
         <div class="one column row">
             <div class="eight wide column">
                 <h3><label>Email:</label></h3>
-                <input type="text" placeholder="Email" name="email" th:value="${email}">
+                <input type="text" placeholder="Email" name="email" th:value="${appuser.getEmail()}">
             </div>
 
             <div class="eight wide column">
                 <h3><label>City:</label></h3>
-                <input type="text" placeholder="City" name="city" th:value="${city}">
+                <input type="text" placeholder="City" name="city" th:value="${appuser.getCity()}">
             </div>
         </div>
 
         <div class="one column row">
             <div class="eight wide column">
                 <h3><label>Date of Birth:</label></h3>
-                <input type="text" placeholder="YYYY-MM-DD" name="dateofbirth" th:value="${dateofbirth}">
+                <input type="text" placeholder="YYYY-MM-DD" name="dateofbirth" th:value="${appuser.getDateofbirth()}">
             </div>
 
             <div class="eight wide column">
                 <h3><label>Telephone Nr:</label></h3>
-                <input type="text" placeholder="+31 6-12345678" name="telephonenr" th:value="${telephonenumber}">
+                <input type="text" placeholder="+31 6-12345678" name="telephonenr" th:value="${appuser.getTelephonenumber()}">
             </div>
         </div>
 
         <div class="one column row">
             <div class="eight wide column">
                 <h3><label>Password:</label></h3>
-                <input type="password" placeholder="only change when user forgot password!" name="password" th:value="${password}">
+                <input type="password" placeholder="only change when user forgot password!" name="password" th:value="${appuser.getPassword()}">
             </div>
 
             <div class="eight wide column">
-
                 <h3><label>Country: </label></h3>
                 <div class="ui fluid search selection dropdown">
-                    <input name="country" type="hidden" th:value="${country}">
+                    <input name="country" type="hidden" th:value="${appuser.getCountry()}">
                     <i class="dropdown icon"></i>
                     <div class="default text">Select your country</div>
                     <div class="menu">

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:margin-left="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>HR-Employee | Edit Bootcamp</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+
+    <script src="https://visjs.github.io/vis-network/standalone/umd/vis-network.min.js"></script>
+    <script src="../../static/elements.js"></script>
+
+</head>
+
+
+<body style="background-color: cadetblue">
+
+<div class="ui secondary pointing menu" style="background-color:white">
+    <a class="item">
+        <img src="../ycnlogo.png" class="image">
+    </a>
+    <a class="item" href="/dashboard">
+        Dashboard
+    </a>
+    <a class="item" href="/hremployee/teams">
+        Teams
+    </a>
+    <a class="item" href="/hremployee/users">
+        Users
+    </a>
+    <a class="item active" href="/hremployee/bootcamps">
+        Bootcamps
+    </a>
+    <a class="item" href="/hremployee/skills">
+        Skills
+    </a>
+    <a class="item" href="/hremployee/hrcalendar">
+        Calendar
+    </a>
+
+    <div class="right menu">
+        <a class="ui item" href="/logout">
+            Logout
+        </a>
+    </div>
+</div>
+<div style="margin-top: 20px;"></div>
+<div class="ui segment"
+     style="padding: 10px; margin-left: 25px; margin-right: 25px; margin-top: 10px; margin-bottom: 10px">
+    <div class="content">
+        <h1><span th:text="${bootcamp.bootcampName}"></span></h1>
+    </div>
+</div>
+
+<form class="ui form" method="post" th:action="@{/hremployee/updatebootcamp}"
+      th:object="${coursesdto}"
+      style="margin-left: 25px; margin-right: 25px;">
+
+
+    <div class="ui segment">
+        <h3><label>Bootcamp Name:</label></h3>
+        <input placeholder="name-version-year (devops-01-19)" type="text"
+               th:name="bootcampname"
+               th:value="${bootcamp.bootcampName}">
+    </div>
+
+    <div class="ui segment">
+        <div class="ui grid">
+            <div class="eight wide center aligned column">
+                <h3><label>Bootcamp begin date:</label></h3>
+                <input placeholder="YYYY-MM-DD" type="text"
+                       th:name="bootcampbegindate"
+                       th:value="${bootcamp.beginDate}">
+            </div>
+
+            <div class="eight wide center aligned column">
+                <h3><label>Bootcamp end date:</label></h3>
+                <input placeholder="YYYY-MM-DD" type="text"
+                       th:name="bootcampenddate"
+                       th:value="${bootcamp.endDate}">
+            </div>
+        </div>
+    </div>
+
+
+    <div class="ui segment">
+        <h3><label>Bootcamp Courses:</label></h3>
+
+        <div class="ui divider"></div>
+
+        <div th:each="course, itemStat : *{courses}">
+            <div class="ui grid">
+
+                <div class="one wide center aligned middle aligned column">
+                    <i class="big server icon"></i>
+                </div>
+
+                <div class="four wide center aligned middle aligned column">
+                    <div class="eight wide column" id="course">
+                        <div class="ui fluid search selection dropdown">
+                            <input type="hidden" name="course"
+                                   th:value="${course.getCoursename()}"
+                                   th:field="*{courses[__${itemStat.index}__].coursename}">
+                            <i class="dropdown icon"></i>
+                            <div class="default text" th:value="${course.getCoursename()}"></div>
+                            <div class="menu">
+                                <div class="item"
+                                     th:each="course : ${allcourses}"
+                                     th:text="${course.getCoursename()}"
+                                     th:value="${course.getCoursename()}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="seven wide middle aligned column">
+                    <h4><span th:field="*{courses[__${itemStat.index}__].coursedescription}" th:value="${course.getCoursedescription()}" th:text="${course.getCoursedescription()}"></span></h4>
+                </div>
+
+                <div class="four wide center aligned middle aligned column" style="margin-top: 10px">
+                    <button type="submit" th:name="action" th:value="'delete_course:'+ ${bootcamp.bootcampName}+':'+ ${course.coursename}"
+                            class="ui fluid orange inverted button">Delete Course
+                    </button>
+                </div>
+            </div>
+
+            <div class="ui divider"></div>
+        </div>
+
+
+        <div style="margin-top: 10px">
+            <button type="submit" th:name="action" th:value="'add_course:'+ ${bootcamp.getBootcampName()}" class="ui fluid orange inverted button">Add
+                Course
+            </button>
+        </div>
+
+    </div>
+
+
+    <div></div>
+
+    <div>
+            <button th:name="action" th:value="'save_bootcamp:'+ ${bootcamp.getBootcampName()}" class="ui orange fluid large button" type="submit">Save Changes</button>
+    </div>
+
+
+</form>
+<div style="margin-top: 20px;"></div>
+<script>$('.ui.dropdown').dropdown();</script>
+
+</body>
+</html>
