@@ -92,22 +92,22 @@
 
                     <div class="ui grid">
 
-                        <div class="one wide center aligned column">
+                        <div class="one wide center aligned middle aligned column">
                             <i class="large newspaper icon"></i>
                         </div>
 
 
-                        <div class="three wide column">
+                        <div class="three wide middle aligned column">
                             <h4><span th:text="${bootcamp.bootcampName}" th:name="bootcampname"></span></h4>
                         </div>
 
 
-                        <div class="four wide column">
+                        <div class="four wide middle aligned column">
                             <h5><span th:text="${bootcamp.courseList}"></span></h5>
                         </div>
 
 
-                        <div class="two wide column">
+                        <div class="two wide middle aligned column">
                             <div th:each="trainee, iterStat:*{bootcamp.getTrainees()}">
                                 <h5>
                                     <span th:text="!${iterStat.last} ? ${trainee.firstName + ' ' + trainee.lastName} + ',' : ${trainee.firstName + trainee.lastName}"></span>
