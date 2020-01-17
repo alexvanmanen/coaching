@@ -92,7 +92,7 @@ public class HrController {
 				return "redirect:/hremployee/editbootcamp/"+actions[1];
 
 			case "delete_course":
-				bootcampService.deleteCourse(courseCreationDto, camp);
+				bootcampService.deleteCourse(actions[1], actions[2], courseCreationDto);
 				return "redirect:/hremployee/editbootcamp/"+actions[1];
 
 			case "save_bootcamp":
@@ -101,6 +101,10 @@ public class HrController {
 
 			case "edit_bootcamp":
 				return "redirect:/hremployee/editbootcamp/"+actions[1];
+
+			case "delete_bootcamp":
+				bootcampService.deleteBootcamp(actions[1]);
+				return "redirect:/hremployee/bootcamps";
 
 			case "activate_bootcamp":
 				Bootcamp disBootcamp = bootcampRepository.findByBootcampName(actions[1]);
