@@ -91,16 +91,18 @@
                 <div class="column">
 
                     <div class="ui icon segment">
-                        <form class="ui form" method="get" action="/trainee/dashboard" style="margin-bottom: 10px">
+                        <form class="ui form" method="get" action="/trainee/calendar" style="margin-bottom: 10px">
                             <button class="ui mini icon teal message button">
                                 <div class="content">
-                                    <h2><span>Notifications</span></h2>
+                                    <h2><span>Calendar</span></h2>
                                 </div>
                             </button>
                         </form>
 
-                        <i class=" huge wrench icon" style="margin:40px; color: #888888"></i>
-                        <p>Under construction</p>
+                        <div class="item" >
+                            <iframe id="calendar" th:src="${bootcamp.getAgendaUrl()}" style="border: 0" width="600" height="490" frameborder="0" scrolling="no"></iframe>
+
+                        </div>
                     </div>
                 </div>
 
@@ -121,30 +123,7 @@
                         <p th:text="'Telephone number: ' + ${user.telephonenumber}"></p>
                         <p th:text="'Address: ' + ${user.street} + ' ' + ${user.streetNr} + ', ' + ${user.zipcode} + ', ' + ${user.city}"></p>
                     </div>
-                </div>
-            </div>
-
-            <div class="center aligned two column row">
-                <div class="column">
-                    <div class="ui segment">
-
-                        <form class="ui form" method="get" action="/trainee/calendar" style="margin-bottom: 10px">
-                            <button class="ui mini icon teal message button">
-                                <div class="content">
-                                    <h2><span>Calendar</span></h2>
-                                </div>
-                            </button>
-                        </form>
-
-
-                        <div class="item" >
-                            <img src="/agenda.png" class="image">
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="column">
+                    <br>
                     <div class="ui segment">
 
                         <form class="ui form" method="get" action="/trainee/dashboard" style="margin-bottom: 10px">
@@ -163,6 +142,28 @@
                             </button>
                         </form>
                     </div>
+                </div>
+            </div>
+
+            <div class="center aligned two column row">
+                <div class="column">
+                    <div class="ui segment">
+
+                        <form class="ui form" method="get" action="/trainee/dashboard" style="margin-bottom: 10px">
+                            <button class="ui mini icon teal message button">
+                                <div class="content">
+                                    <h2><span>Notifications</span></h2>
+                                </div>
+                            </button>
+                        </form>
+
+                        <i class=" huge wrench icon" style="margin:40px; color: #888888"></i>
+                        <p>Under construction</p>
+
+                    </div>
+                </div>
+
+                <div class="column">
                 </div>
             </div>
     </div>

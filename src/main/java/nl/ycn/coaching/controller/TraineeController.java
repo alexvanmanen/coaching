@@ -80,7 +80,7 @@ public class TraineeController {
 			model.addAttribute ("team", trainees);
 			model.addAttribute ("courseList", courseList);
 		}
-		
+		model.addAttribute ("bootcamp", bootcamp);
 		model.addAttribute ("user", user);
 		model.addAttribute ("trainee", trainee);
 		model.addAttribute ("personalsoftskillList", personalEducationPlan.getPersonalSoftskillList ());
