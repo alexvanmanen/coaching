@@ -32,7 +32,7 @@
                     </button>
                 </form>
 
-                <form class="ui form" method="get" th:action="@{'/hremployee/bootcamps/' + ${bootcamps.bootcampName}}"
+                <form class="ui form" method="get" th:action="@{'/hremployee/editbootcamp/' + ${bootcamps.bootcampName}}"
                       th:each="bootcamps:${activeBootcamps}">
                     <button class="ui mini icon message button">
                         <div class="content">

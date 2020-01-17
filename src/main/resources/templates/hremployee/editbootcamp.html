@@ -18,35 +18,10 @@
 
 <body style="background-color: cadetblue">
 
-<div class="ui secondary pointing menu" style="background-color:white">
-    <a class="item">
-        <img src="../ycnlogo.png" class="image">
-    </a>
-    <a class="item" href="/dashboard">
-        Dashboard
-    </a>
-    <a class="item" href="/hremployee/teams">
-        Teams
-    </a>
-    <a class="item" href="/hremployee/users">
-        Users
-    </a>
-    <a class="item active" href="/hremployee/bootcamps">
-        Bootcamps
-    </a>
-    <a class="item" href="/hremployee/skills">
-        Skills
-    </a>
-    <a class="item" href="/hremployee/hrcalendar">
-        Calendar
-    </a>
+<div th:insert="~{hremployee/header :: header}"></div>
+<script>$('#skills').addClass('active');</script>
 
-    <div class="right menu">
-        <a class="ui item" href="/logout">
-            Logout
-        </a>
-    </div>
-</div>
+
 <div style="margin-top: 20px;"></div>
 <div class="ui segment"
      style="padding: 10px; margin-left: 25px; margin-right: 25px; margin-top: 10px; margin-bottom: 10px">
