@@ -95,23 +95,23 @@ public class AppSecurityConfiguration extends WebSecurityConfigurerAdapter {
            .passwordEncoder(encoder);
 
         //Trainees
-        appUserService.registerUser("luuk","Luuk", "Wempe", "luukwempe@mail.com", encoder.encode("hallo"), "TRAINEE", true, false, Date.valueOf("1996-01-01"),"1632BT", "Klaverstraat", "15", "Sassenheim", "The Netherlands", "06324543", "devops-02-19");
-        appUserService.registerUser("vuong","Vuong", "Ngo", "vuongngo@gmail.com", encoder.encode("hallo"), "TRAINEE" , true, false, Date.valueOf("1995-10-15"),"1628WR", "Han Hoekstrahof", "1", "Hoorn", "The Netherlands", "0229123456", "devops-02-19");
-        appUserService.registerUser("simone","Simone", "Meijers", "scmeijers@mail.com", encoder.encode("hallo"), "TRAINEE", true, false, Date.valueOf("1995-07-09"),"1420BP", "Steenstraat", "21", "Deventer", "The Netherlands", "061123213","devops-02-19");
-        appUserService.registerUser("wouter","Wouter", "Abels", "walterdeman@hotmail.com", encoder.encode("hallo"), "TRAINEE",  true, false,Date.valueOf("1995-02-07") ,"6043JK", "Vlamhof", "34", "Nieuwegein", "The Netherlands", "06232312", "devops-02-19");
+        appUserService.registerUser("luuk","Luuk", "Wempe", "luukwempe@mail.com", encoder.encode("hallo"), "TRAINEE", true, false, Date.valueOf("1996-01-01"),"1632BT", "Klaverstraat", "15", "Sassenheim", "Netherlands", "06324543", "devops-02-19");
+        appUserService.registerUser("vuong","Vuong", "Ngo", "vuongngo@gmail.com", encoder.encode("hallo"), "TRAINEE" , true, false, Date.valueOf("1995-10-15"),"1628WR", "Han Hoekstrahof", "1", "Hoorn", "Netherlands", "0229123456", "devops-02-19");
+        appUserService.registerUser("simone","Simone", "Meijers", "scmeijers@mail.com", encoder.encode("hallo"), "TRAINEE", true, false, Date.valueOf("1995-07-09"),"1420BP", "Steenstraat", "21", "Deventer", "Netherlands", "061123213","devops-02-19");
+        appUserService.registerUser("wouter","Wouter", "Abels", "walterdeman@hotmail.com", encoder.encode("hallo"), "TRAINEE",  true, false,Date.valueOf("1995-02-07") ,"6043JK", "Vlamhof", "34", "Nieuwegein", "Netherlands", "06232312", "devops-02-19");
         appUserService.registerUser("alex","Alex", "van Manen", "alexvanmanen@mail.com", encoder.encode("hallo"), "TRAINEE", true, false, Date.valueOf("1985-05-23") ,"1641PP", "Grashof", "134", "Zwolle", "Italy", "112", "devops-02-19");
 
         //Admin
-        appUserService.registerUser("admin","Bob", "Jenkins", "bobjenkins@mail.com", encoder.encode("hallo"), "ADMIN", true, true, Date.valueOf("1996-01-01"),"2000PP", "Bobhof", "1", "Bobdam", "The Netherlands", "911", "");
+        appUserService.registerUser("admin","Bob", "Jenkins", "bobjenkins@mail.com", encoder.encode("hallo"), "ADMIN", true, true, Date.valueOf("1996-01-01"),"2000PP", "Bobhof", "1", "Bobdam", "Netherlands", "911", "");
 
         //HRemployee
-        appUserService.registerUser("hremployee","Jurre", "Wempe", "jurrewempe@mail.com", encoder.encode("hallo"), "HREMPLOYEE", true, true, Date.valueOf("2000-01-01") ,"3000PP", "Lansiershof", "6", "Sassenheim", "The Netherlands", "+316-52498741", "");
+        appUserService.registerUser("hremployee","Jurre", "Wempe", "jurrewempe@mail.com", encoder.encode("hallo"), "HREMPLOYEE", true, true, Date.valueOf("2000-01-01") ,"3000PP", "Lansiershof", "6", "Sassenheim", "Netherlands", "+316-52498741", "");
 
         //Manager
-        appUserService.registerUser("manager","Jeanine", "van Dongen", "jeanine@mail.com", encoder.encode("hallo"), "MANAGER", true, false, Date.valueOf("1997-01-01") ,"2216TL", "Ter Beek", "4", "Lisse", "The Netherlands", "+316-45389142", "");
+        appUserService.registerUser("manager","Jeanine", "van Dongen", "jeanine@mail.com", encoder.encode("hallo"), "MANAGER", true, false, Date.valueOf("1997-01-01") ,"2216TL", "Ter Beek", "4", "Lisse", "Netherlands", "+316-45389142", "");
 
         //Talentmanager
-        appUserService.registerUser("talentmanager","Joke", "Gaarsen", "jokegaarsen@mail.com", encoder.encode("hallo"), "TALENTMANAGER", true, false, Date.valueOf("1997-01-01") ,"2216TL", "Ter Beek", "4", "Lisse", "The Netherlands", "+316-45389142", "");
+        appUserService.registerUser("talentmanager","Joke", "Gaarsen", "jokegaarsen@mail.com", encoder.encode("hallo"), "TALENTMANAGER", true, false, Date.valueOf("1997-01-01") ,"2216TL", "Ter Beek", "4", "Lisse", "Netherlands", "+316-45389142", "");
     }
 
 }
