@@ -149,14 +149,16 @@ public class HrController {
 
 	@GetMapping(path = "/hremployee/appuserinfo/{username}")
 	public String getAppUserInfo(Model model, @PathVariable("username") String username) {
-
+		
 		model.addAttribute("appuser", appUserService.getUser(username));
 		model.addAttribute("bootcampList", bootcampRepository.findAll());
 
 		if (appUserService.getUser(username).getRole().equalsIgnoreCase("trainee")) {
 			AppUser user = appUserService.getUser(username);
 			Trainee trainee = (Trainee) user;
+			if (trainee.getBootcamp() != null) {
 			model.addAttribute("bootcamp", trainee.getBootcamp().getBootcampName());
+			}
 		}
 		return "/hremployee/appuserinfo";
 	}
@@ -281,7 +283,7 @@ public class HrController {
 				email,
 				encoder.encode(password),
 				roles,
-				enabled,
+				true,
 				activated);
 		return "redirect:/hremployee/users";
 	}

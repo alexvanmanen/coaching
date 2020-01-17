@@ -18,6 +18,10 @@ public class Manager extends AppUser {
 	public Manager () {
 	}
 	
+	public Manager (String username, String firstName, String lastName, String email, String password, String role, boolean enabled, boolean activated) {
+		super (username, firstName, lastName, email, password, role, enabled, activated);
+	}
+	
 	public Manager (String username, String firstName, String lastName, String email, String password, String role, boolean enabled, boolean activated, java.sql.Date dateofbirth, String zipcode, String street, String streetNr, String city, String country, String telephonenumber) {
 		super (username, firstName, lastName, email, password, role, enabled, activated, dateofbirth, zipcode, street, streetNr, city, country, telephonenumber);
 	}

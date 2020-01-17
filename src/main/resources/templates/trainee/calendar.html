@@ -21,9 +21,8 @@
 
 <div class="ui calendar" id="inline_calendar">
 </div>
-<div class="item" >
-    <img src="../agenda.png" class="image">
-
+<div style="text-align: center;">
+    <iframe id="calendar" th:src="${bootcamp.getAgendaUrl()}" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
 </div>
 </body>
 </html>

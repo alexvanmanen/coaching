@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -56,22 +58,33 @@ public class TraineeController {
 		AppUser user = appUserService.getActiveUser();
 		Trainee trainee = traineeRepository.findByUsername(user.getUsername());
 		Bootcamp bootcamp = trainee.getBootcamp();
-		Set<Trainee> trainees = bootcamp.getTrainees();
-		List<Course> courseList = bootcampService.getCourseList(bootcamp.getBootcampName());
-		PersonalEducationPlan personalEducationPlan = new PersonalEducationPlan();
-
+		
+		PersonalEducationPlan personalEducationPlan = new PersonalEducationPlan ();
+		
 		//Fill the softskill list and set it
-		personalEducationPlan.setPersonalSoftskillList(pepService.fillPersonalSoftskillList());
-
+		personalEducationPlan.setPersonalSoftskillList (pepService.fillPersonalSoftskillList ());
+		
 		//Fill the hardskill list and set it
-		personalEducationPlan.setPersonalHardskillList(pepService.fillPersonalHardskillList());
-
-		model.addAttribute("user", user);
-		model.addAttribute("trainee", trainee);
-		model.addAttribute("team", trainees);
-		model.addAttribute("courseList", courseList);
-		model.addAttribute("personalsoftskillList", personalEducationPlan.getPersonalSoftskillList());
-		model.addAttribute("personalhardskillList", personalEducationPlan.getPersonalHardskillList());
+		personalEducationPlan.setPersonalHardskillList (pepService.fillPersonalHardskillList ());
+		
+		if(bootcamp != null) {
+			Set<Trainee> trainees = bootcamp.getTrainees ();
+			List<Course> courseList = bootcampService.getCourseList (bootcamp.getBootcampName ());
+			
+			model.addAttribute ("team", trainees);
+			model.addAttribute ("courseList", courseList);
+		} else {
+			Set<Trainee> trainees =  new HashSet<> ();
+			List<Course> courseList = new ArrayList<> ();
+			
+			model.addAttribute ("team", trainees);
+			model.addAttribute ("courseList", courseList);
+		}
+		
+		model.addAttribute ("user", user);
+		model.addAttribute ("trainee", trainee);
+		model.addAttribute ("personalsoftskillList", personalEducationPlan.getPersonalSoftskillList ());
+		model.addAttribute ("personalhardskillList", personalEducationPlan.getPersonalHardskillList ());
 
 		return "/trainee/dashboard";
 	}
@@ -101,7 +114,12 @@ public class TraineeController {
 	}
 
 	@GetMapping("/trainee/calendar")
-	public String getCalendar(){
+	public String getCalendar(Model model){
+		AppUser user = appUserService.getActiveUser();
+		Trainee trainee = traineeRepository.findByUsername(user.getUsername());
+		Bootcamp bootcamp = trainee.getBootcamp();
+		List<Course> courseList = bootcampService.getCourseList(bootcamp.getBootcampName());
+		model.addAttribute("bootcamp", bootcamp);
 		return "/trainee/calendar";
 	}
 

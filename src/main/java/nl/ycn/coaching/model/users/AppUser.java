@@ -70,6 +70,7 @@ public class AppUser {
 	public AppUser() {
 	}
 
+	
 	public AppUser(String username,
 				   String firstName,
 				   String lastName,
