@@ -176,7 +176,7 @@ public class HrController {
 									String streetNr,
 									String city,
 									String country,
-									String telephonenumber,
+									String telephonenr,
 									String bootcamp) {
 		appUserService.updateAppUser(username,
 				firstname,
@@ -191,7 +191,7 @@ public class HrController {
 				streetNr,
 				city,
 				country,
-				telephonenumber,
+				telephonenr,
 				bootcamp);
 		return "redirect:/hremployee/users";
 	}
