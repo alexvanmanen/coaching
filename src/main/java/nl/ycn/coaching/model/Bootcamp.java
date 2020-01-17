@@ -4,21 +4,19 @@ import nl.ycn.coaching.model.users.Trainee;
 
 import javax.persistence.*;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
-import java.util.Date;
 
 @Entity
 public class Bootcamp {
-	
+
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public int id;
-	
+
 	@Column
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "bootcamp")
-	private Set<Trainee> trainees = new HashSet<> ();
-	
+	private Set<Trainee> trainees = new HashSet<>();
+
 	@Column
 	public String bootcampName;
 
@@ -32,21 +30,36 @@ public class Bootcamp {
 	public String courseList;
 
 	@Column
-	public boolean active;
+	public boolean status;
 
 	private String agendaUrl;
 
 	//default constructor
-	public Bootcamp(){}
+	public Bootcamp() {
+	}
 
 	//overloaded constructor
-	public Bootcamp (String bootcampName, String courseList) {
+	public Bootcamp(String bootcampName, String courseList) {
 		this.bootcampName = bootcampName;
 		this.courseList = courseList;
-		this.active = true;
+		this.status = true;
 	}
-	
-	public void getBootcamp() {}
+
+	public Bootcamp(String bootcampName) {
+		this.bootcampName = bootcampName;
+		this.status = true;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void getBootcamp() {
+	}
 
 	public String getBootcampName() {
 		return bootcampName;
@@ -72,24 +85,29 @@ public class Bootcamp {
 		this.endDate = endDate;
 	}
 
-	public void setCourseList(String courseList) {
-		this.courseList = courseList;
-	}
 
 	public boolean isActive() {
-		return active;
+		return status;
 	}
 
 	public void setActive(boolean active) {
-		this.active = active;
+		this.status = active;
 	}
 
 	public String getCourseList() {
 		return courseList;
 	}
 
-	public Set<Trainee> getTrainees(){
+	public void setCourseList(String courseListString) {
+		this.courseList = courseListString;
+	}
+
+	public Set<Trainee> getTrainees() {
 		return trainees;
+	}
+
+	public boolean getActive() {
+		return status;
 	}
 
 	public String getAgendaUrl() {

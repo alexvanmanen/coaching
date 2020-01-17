@@ -1,14 +1,17 @@
 package nl.ycn.coaching.controller;
 
 
-import net.bytebuddy.utility.RandomString;
-import nl.ycn.coaching.database.*;
+import nl.ycn.coaching.database.AppUserRepository;
+import nl.ycn.coaching.database.BootcampRepository;
+import nl.ycn.coaching.database.CourseRepository;
 import nl.ycn.coaching.model.Bootcamp;
+import nl.ycn.coaching.model.Course;
+import nl.ycn.coaching.model.CourseCreationDto;
 import nl.ycn.coaching.model.users.AppUser;
+import nl.ycn.coaching.model.users.Trainee;
 import nl.ycn.coaching.services.AppUserService;
 import nl.ycn.coaching.services.BootcampService;
 import nl.ycn.coaching.services.HrService;
-import nl.ycn.coaching.model.users.Trainee;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -17,8 +20,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -35,6 +41,9 @@ public class HrController {
 	private AppUserRepository appUserRepository;
 
 	@Autowired
+	private CourseRepository courseRepository;
+
+	@Autowired
 	private BootcampRepository bootcampRepository;
 
 	@Autowired
@@ -49,7 +58,7 @@ public class HrController {
 			AppUser user = appUserService.getActiveUser();
 			String role = user.getRole();
 			model.addAttribute("activeBootcamps", hrService.getTopActiveBootcamps(100));
-			model.addAttribute("finishedBootcamps",hrService.getTopFinishedBootcamps(100));
+			model.addAttribute("finishedBootcamps", hrService.getTopFinishedBootcamps(100));
 
 			return role.toLowerCase() + "/bootcamps";
 		} catch (Exception e) {
@@ -57,44 +66,102 @@ public class HrController {
 		}
 	}
 
-	@GetMapping("/hremployee/dashboard")
-	public String getHrDashboard(Model model){
+	@GetMapping("/hremployee/editbootcamp/{bootcampName}")
+	public String getEditBootcampPage(Model model, @PathVariable("bootcampName") String bootcampName) {
+		model.addAttribute("bootcamp", bootcampRepository.findByBootcampName(bootcampName));
+		CourseCreationDto c = new CourseCreationDto(bootcampService.getCourseList(bootcampName));
+		model.addAttribute("coursesdto", c);
+		model.addAttribute("allcourses", courseRepository.findAll());
+		return "/hremployee/editbootcamp";
+	}
+
+	@PostMapping("/hremployee/updatebootcamp")
+	public String updateBootcamp(
+							CourseCreationDto courseCreationDto,
+							@RequestParam(value="action", required = false) String action,
+							@RequestParam(value="bootcampname", required = false) String bootcampname,
+							@RequestParam(value="bootcampbegindate", required = false) String beginDate,
+							@RequestParam(value="bootcampenddate", required = false) String endDate){
+
+		String[] actions = action.split(":");
+		System.out.println(Arrays.toString(actions));
+		Bootcamp camp = bootcampRepository.findByBootcampName(bootcampname);
+		switch (actions[0]) {
+			case "add_course":
+				bootcampService.addCourse(courseCreationDto, camp);
+				return "redirect:/hremployee/editbootcamp/"+actions[1];
+
+			case "delete_course":
+				bootcampService.deleteCourse(courseCreationDto, camp);
+				return "redirect:/hremployee/editbootcamp/"+actions[1];
+
+			case "save_bootcamp":
+				bootcampService.saveBootcamp(courseCreationDto, bootcampname, beginDate, endDate);
+				return "redirect:/hremployee/bootcamps";
+
+			case "edit_bootcamp":
+				return "redirect:/hremployee/editbootcamp/"+actions[1];
+
+			case "activate_bootcamp":
+				Bootcamp disBootcamp = bootcampRepository.findByBootcampName(actions[1]);
+				boolean active = disBootcamp.getActive();
+				disBootcamp.setActive(!active);
+				bootcampRepository.save(disBootcamp);
+				return "redirect:/hremployee/bootcamps";
+
+			case "add_bootcamp":
+				Bootcamp newBootcamp = new Bootcamp("new bootcamp");
+				newBootcamp.setBeginDate("2020-01-01");
+				newBootcamp.setEndDate("2020-01-02");
+				newBootcamp.setCourseList("java");
+				List<Course> course = new ArrayList<>();
+				course.add(courseRepository.findByCoursename("java"));
+				bootcampService.setCourseList(newBootcamp, course);
+				return "redirect:/hremployee/editbootcamp/"+ newBootcamp.getBootcampName();
+
+			default:
+				return "redirect:/hremployee/bootcamps";
+		}
+	}
+
+	//GetMapping to go to the create bootcamp page
+	@GetMapping("/hremployee/addbootcamp")
+	public String addBootcamp(Model model){
+		model.addAttribute("bootcampName", "");
+		CourseCreationDto c = new CourseCreationDto();
+		model.addAttribute("coursesdto", c);
+		model.addAttribute("courseList", courseRepository.findAll());
+		return "/hremployee/createbootcamp";
+	}
+
+
+	@GetMapping({"/hremployee/dashboard","/hremployee"})
+	public String getHrDashboard(Model model) {
 
 		AppUser user = appUserService.getActiveUser();
 		model.addAttribute("user", user);
 		model.addAttribute("trainees", hrService.getTrainees("TRAINEE"));
-		model.addAttribute("activeBootcamps",hrService.getTopActiveBootcamps(5));
-		model.addAttribute("finishedBootcamps",hrService.getTopFinishedBootcamps(5));
+		model.addAttribute("activeBootcamps", hrService.getTopActiveBootcamps(5));
+		model.addAttribute("finishedBootcamps", hrService.getTopFinishedBootcamps(5));
 
 		return "/hremployee/hrdashboard";
 	}
 
-	@GetMapping(path="/hremployee/appuserinfo/{username}")
-	public String getAppUserInfo(Model model , @PathVariable("username") String username){
+	@GetMapping(path = "/hremployee/appuserinfo/{username}")
+	public String getAppUserInfo(Model model, @PathVariable("username") String username) {
 
-		model.addAttribute("role", appUserService.getUser(username).getRole().toLowerCase());
-		model.addAttribute("password", appUserService.getUser(username).getPassword());
-		model.addAttribute("username", appUserService.getUser(username).getUsername());
-		model.addAttribute("firstname", appUserService.getUser(username).getFirstName());
-		model.addAttribute("lastname", appUserService.getUser(username).getLastName());
-		model.addAttribute("email", appUserService.getUser(username).getEmail());
-		model.addAttribute("street", appUserService.getUser(username).getStreet());
-		model.addAttribute("streetnr", appUserService.getUser(username).getStreetNr());
-		model.addAttribute("zipcode", appUserService.getUser(username).getZipcode());
-		model.addAttribute("city", appUserService.getUser(username).getCity());
-		model.addAttribute("country", appUserService.getUser(username).getCountry());
+		model.addAttribute("appuser", appUserService.getUser(username));
 		model.addAttribute("bootcampList", bootcampRepository.findAll());
-		model.addAttribute("telephonenumber",appUserService.getUser(username).getTelephonenumber());
-		model.addAttribute("dateofbirth", appUserService.getUser(username).getDateofbirth());
-		if (appUserService.getUser(username).getRole().equalsIgnoreCase("trainee")){
+
+		if (appUserService.getUser(username).getRole().equalsIgnoreCase("trainee")) {
 			AppUser user = appUserService.getUser(username);
 			Trainee trainee = (Trainee) user;
-			model.addAttribute("bootcamp",trainee.getBootcamp().getBootcampName());
+			model.addAttribute("bootcamp", trainee.getBootcamp().getBootcampName());
 		}
 		return "/hremployee/appuserinfo";
 	}
 
-	@PostMapping(path="hremployee/updateappuserinfo/{username}")
+	@PostMapping(path = "hremployee/updateappuserinfo/{username}")
 	public String updateAppUserInfo(@PathVariable("username") String username,
 									String firstname,
 									String lastname,
@@ -109,8 +176,8 @@ public class HrController {
 									String streetNr,
 									String city,
 									String country,
-									String telephonenumber,
-									String bootcamp){
+									String telephonenr,
+									String bootcamp) {
 		appUserService.updateAppUser(username,
 				firstname,
 				lastname,
@@ -124,7 +191,7 @@ public class HrController {
 				streetNr,
 				city,
 				country,
-				telephonenumber,
+				telephonenr,
 				bootcamp);
 		return "redirect:/hremployee/users";
 	}
@@ -144,7 +211,7 @@ public class HrController {
 			return "/login";
 		}
 	}
-	
+
     @GetMapping("/hremployee/skills")
     public String getSkills(Model model, String name) {
         try {
@@ -208,14 +275,14 @@ public class HrController {
 
 
 		appUserService.registerUser(
-							username,
-							firstname,
-							lastname,
-							email,
-							encoder.encode(password),
-							roles,
-							enabled,
-							activated);
+				username,
+				firstname,
+				lastname,
+				email,
+				encoder.encode(password),
+				roles,
+				enabled,
+				activated);
 		return "redirect:/hremployee/users";
 	}
 
@@ -264,7 +331,7 @@ public class HrController {
 
     @PostMapping("/hremployee/createcourseform")
     public String createCourse(String coursename, String coursedescription) {
-        hrService.addCourse(coursename, coursedescription);
+        hrService.addCourse(coursename.toLowerCase(), coursedescription);
 
         return "redirect:/hremployee/skills";
     }

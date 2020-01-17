@@ -101,6 +101,7 @@ public class AppSecurityConfiguration extends WebSecurityConfigurerAdapter {
         appUserService.registerUser("vuong","Vuong", "Ngo", "vongbong@gmail.com", encoder.encode("hallo"), "MANAGER" , true, true, Date.valueOf("1994-01-01"),"4000PP", "Bobhof", "1", "Bobdam", "Bobland", "112", "");
         appUserService.registerUser("simone","Simone", "Meijers", "simeunedeune@live.nl", encoder.encode("hallo"), "TALENTMANAGER", true, true, Date.valueOf("1993-01-01"),"5000PP", "Bobhof", "1", "Bobdam", "Bobland", "112","");
         appUserService.registerUser("wouter","Wouter", "Abels", "walterdeman@hotmail.com", encoder.encode("hallo"), "HREMPLOYEE",  true, true,Date.valueOf("1995-01-01") ,"6000PP", "Bobhof", "1", "Bobdam", "Bobland", "112", "");
+        appUserService.registerUser("wouter2","Wouter", "Abels", "walterdeman@hotmail.com", encoder.encode("hallo"), "HREMPLOYEE",  true, false,Date.valueOf("1995-01-01") ,"6000PP", "Bobhof", "1", "Bobdam", "Bobland", "112", "");
     }
 
 }

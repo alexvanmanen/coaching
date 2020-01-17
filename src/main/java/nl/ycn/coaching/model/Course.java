@@ -13,7 +13,7 @@ public class Course {
     @Column
     private String coursename;
 
-    @Column
+    @Column(length = 512)
     private String coursedescription;
 
     public Course() {}
