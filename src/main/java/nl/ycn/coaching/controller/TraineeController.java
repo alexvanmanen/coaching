@@ -165,7 +165,7 @@ public class TraineeController {
 									String streetNr,
 									String city,
 									String country,
-									String telephonenumber){
+									String telephonenr){
 
 		AppUser user = appUserService.getActiveUser();
 
@@ -205,8 +205,8 @@ public class TraineeController {
 			user.setCountry(country);
 		}
 
-		if (telephonenumber != null) {
-			user.setTelephonenumber(telephonenumber);
+		if (telephonenr != null) {
+			user.setTelephonenumber(telephonenr);
 		}
 
 		appUserRepository.save(user);
