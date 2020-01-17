@@ -1,10 +1,7 @@
 package nl.ycn.coaching.controller;
 
-import nl.ycn.coaching.database.AppUserRepository;
-import nl.ycn.coaching.database.CourseRepository;
-import nl.ycn.coaching.database.TraineeRepository;
+import nl.ycn.coaching.database.*;
 import nl.ycn.coaching.services.AppUserService;
-import nl.ycn.coaching.database.BootcampRepository;
 import nl.ycn.coaching.services.BootcampService;
 import nl.ycn.coaching.services.PepService;
 import nl.ycn.coaching.model.Bootcamp;
@@ -26,6 +23,12 @@ import java.util.Set;
 @Controller
 public class TraineeController {
 
+	@Autowired
+	public PersonalSoftskillRepository personalSoftskillRepository;
+	
+	@Autowired
+	public HardskillRepository hardskillRepository;
+	
 	@Autowired
 	public PepService pepService;
 
@@ -136,14 +139,18 @@ public class TraineeController {
 	@PostMapping("/createpersonalhardskill")
 	public String createPersonalHardskill(String name, String description, String report, String state, Date start, Date end){
 		String username = appUserService.getActiveUser().getUsername();
-		pepService.addHardskill (name, description, report, state, start, end, username);
+		if (hardskillRepository.findByName (name) == null) {
+			pepService.addHardskill (name, description, report, state, start, end, username);
+		}
 		return "redirect:/trainee/personaleducationplanpage";
 	}
 
 	@PostMapping("/createpersonalsoftskill")
 	public String createPersonalSoftskill(String name, String report){
 		String username = appUserService.getActiveUser().getUsername();
-		pepService.addPersonalSoftskill (name, report, username);
+		if (personalSoftskillRepository.findByName (name) == null) {
+			pepService.addPersonalSoftskill (name, report, username);
+		}
 		return "redirect:/trainee/personaleducationplanpage";
 	}
 
