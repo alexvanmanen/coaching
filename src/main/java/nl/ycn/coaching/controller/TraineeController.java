@@ -101,7 +101,12 @@ public class TraineeController {
 	}
 
 	@GetMapping("/trainee/calendar")
-	public String getCalendar(){
+	public String getCalendar(Model model){
+		AppUser user = appUserService.getActiveUser();
+		Trainee trainee = traineeRepository.findByUsername(user.getUsername());
+		Bootcamp bootcamp = trainee.getBootcamp();
+		List<Course> courseList = bootcampService.getCourseList(bootcamp.getBootcampName());
+		model.addAttribute("bootcamp", bootcamp);
 		return "/trainee/calendar";
 	}
 
