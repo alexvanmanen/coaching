@@ -77,13 +77,13 @@ INSERT INTO COURSE VALUES(NULL, 'Amazon Web Services (AWS) is a subsidiary of Am
 INSERT INTO COURSE VALUES(NULL, 'Grafana is an open-source, general purpose dashboard and graph composer, which runs as a web application. It supports graphite, InfluxDB, Prometheus or opentsdb as backends.', 'grafana');
 INSERT INTO COURSE VALUES(NULL, 'Prometheus is a free software application used for event monitoring and alerting. It records real-time metrics in a time series database (allowing for high dimensionality) built using a HTTP pull model, with flexible queries and real-time alerting.', 'prometheus');
 
-INSERT INTO BOOTCAMP VALUES(NULL, '2019-02-12', 'devops-01-19', 'python,sql', '2019-05-20', false);
-INSERT INTO BOOTCAMP VALUES(NULL, '2019-02-12', 'java-01-19', 'c++,css', '2019-05-22', false);
-INSERT INTO BOOTCAMP VALUES(NULL, '2019-04-12', 'bigdata-01-19', 'c++,css', '2019-07-17', false);
-INSERT INTO BOOTCAMP VALUES(NULL, '2019-06-13', 'devops-02-19', 'java,linux', '2019-09-20', false);
-INSERT INTO BOOTCAMP VALUES(NULL, '2019-06-27', 'java-02-19', 'c++,css,istqb', '2019-08-22', false);
-INSERT INTO BOOTCAMP VALUES(NULL, '2019-08-12', 'bigdata-02-19', 'c++,css', '2019-10-17', true);
-INSERT INTO BOOTCAMP VALUES(NULL, '2019-09-28', 'devops-03-19', 'java,c++,sql,thymeleaf', '2019-11-15', true);
-INSERT INTO BOOTCAMP VALUES(NULL, '2019-09-12', 'bigdata-05-19', 'c++,css', '2019-07-17', true);
-INSERT INTO BOOTCAMP VALUES(NULL, '2019-11-18', 'devops-04-19', 'java,c++', '2020-01-20', true);
-INSERT INTO BOOTCAMP VALUES(NULL, '2019-12-12', 'bigdata-03-19', 'c++,css', '2020-02-17', true);
+INSERT INTO BOOTCAMP VALUES(NULL, '2019-02-12', 'devops-01-19', 'c++,css,scrum,ireb cpre,istqb,sql,linux,python,java,devops fundamentals,springboot,spring data jpa,html,jquery,semantic ui,git,gitlab,selenium,apache jmeter,postman,junit,kubernetes,docker,amazon web services', '2019-05-20', false);
+INSERT INTO BOOTCAMP VALUES(NULL, '2019-02-12', 'java-01-19', 'c++,css,scrum,ireb cpre,istqb,sql,linux,python,java,devops fundamentals,springboot,spring data jpa,html,jquery,semantic ui,git,gitlab,selenium,apache jmeter,postman,junit,kubernetes,docker,amazon web services', '2019-05-22', false);
+INSERT INTO BOOTCAMP VALUES(NULL, '2019-04-12', 'bigdata-01-19', 'c++,css,scrum,ireb cpre,istqb,sql,linux,python,java,devops fundamentals,springboot,spring data jpa,html,jquery,semantic ui,git,gitlab,selenium,apache jmeter,postman,junit,kubernetes,docker,amazon web services', '2019-07-17', false);
+INSERT INTO BOOTCAMP VALUES(NULL, '2019-06-13', 'devops-02-19', 'c++,css,scrum,ireb cpre,istqb,sql,linux,python,java,devops fundamentals,springboot,spring data jpa,html,jquery,semantic ui,git,gitlab,selenium,apache jmeter,postman,junit,kubernetes,docker,amazon web services', '2019-09-20', false);
+INSERT INTO BOOTCAMP VALUES(NULL, '2019-06-27', 'java-02-19', 'c++,css,scrum,ireb cpre,istqb,sql,linux,python,java,devops fundamentals,springboot,spring data jpa,html,jquery,semantic ui,git,gitlab,selenium,apache jmeter,postman,junit,kubernetes,docker,amazon web services', '2019-08-22', false);
+INSERT INTO BOOTCAMP VALUES(NULL, '2019-08-12', 'bigdata-02-19', 'c++,css,scrum,ireb cpre,istqb,sql,linux,python,java,devops fundamentals,springboot,spring data jpa,html,jquery,semantic ui,git,gitlab,selenium,apache jmeter,postman,junit,kubernetes,docker,amazon web services', '2019-10-17', true);
+INSERT INTO BOOTCAMP VALUES(NULL, '2019-09-28', 'devops-03-19', 'c++,css,scrum,ireb cpre,istqb,sql,linux,python,java,devops fundamentals,springboot,spring data jpa,html,jquery,semantic ui,git,gitlab,selenium,apache jmeter,postman,junit,kubernetes,docker,amazon web services', '2019-11-15', true);
+INSERT INTO BOOTCAMP VALUES(NULL, '2019-09-12', 'bigdata-05-19', 'c++,css,scrum,ireb cpre,istqb,sql,linux,python,java,devops fundamentals,springboot,spring data jpa,html,jquery,semantic ui,git,gitlab,selenium,apache jmeter,postman,junit,kubernetes,docker,amazon web services', '2019-07-17', true);
+INSERT INTO BOOTCAMP VALUES(NULL, '2019-11-18', 'devops-04-19', 'c++,css,scrum,ireb cpre,istqb,sql,linux,python,java,devops fundamentals,springboot,spring data jpa,html,jquery,semantic ui,git,gitlab,selenium,apache jmeter,postman,junit,kubernetes,docker,amazon web services', '2020-01-20', true);
+INSERT INTO BOOTCAMP VALUES(NULL, '2019-12-12', 'bigdata-03-19', 'c++,css,scrum,ireb cpre,istqb,sql,linux,python,java,devops fundamentals,springboot,spring data jpa,html,jquery,semantic ui,git,gitlab,selenium,apache jmeter,postman,junit,kubernetes,docker,amazon web services', '2020-02-17', true);
