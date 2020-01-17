@@ -37,22 +37,22 @@
 
                     <div class="ui grid">
 
-                        <div class="one wide center aligned column">
+                        <div class="one wide middle aligned center aligned column">
                             <i class="large newspaper icon"></i>
                         </div>
 
 
-                        <div class="three wide column">
+                        <div class="two wide middle aligned column">
                             <h4><span th:text="${bootcamp.bootcampName}" th:name="bootcampname"></span></h4>
                         </div>
 
 
-                        <div class="four wide column">
+                        <div class="six wide middle aligned column">
                             <h5><span th:text="${bootcamp.courseList}"></span></h5>
                         </div>
 
 
-                        <div class="four wide column">
+                        <div class="three wide middle aligned column">
                             <div th:each="trainee, iterStat:*{bootcamp.getTrainees()}">
                                 <h5>
                                     <span th:text="!${iterStat.last} ? ${trainee.firstName + ' ' + trainee.lastName} + ',' : ${trainee.firstName + trainee.lastName}"></span>
@@ -60,13 +60,14 @@
                             </div>
                         </div>
 
-                        <div class="two wide center aligned column">
+                        <div class="two wide center aligned middle aligned column">
                                 <button class="ui orange fluid inverted button" type="submit" th:name="action" th:value="'edit_bootcamp:' + ${bootcamp.bootcampName}">Edit</button>
                         </div>
 
-                        <div class="two wide center aligned column">
+                        <div class="two wide center aligned middle aligned column">
                                 <button class="ui orange fluid inverted button" type="submit" th:name="action" th:value="'activate_bootcamp:' + ${bootcamp.bootcampName}" >Finish</button>
                         </div>
+
                     </div>
                     <div class="ui divider"></div>
                 </div>
@@ -88,22 +89,22 @@
 
                     <div class="ui grid">
 
-                        <div class="one wide center aligned column">
+                        <div class="one wide center aligned middle aligned column">
                             <i class="large newspaper icon"></i>
                         </div>
 
 
-                        <div class="three wide column">
+                        <div class="three wide middle aligned column">
                             <h4><span th:text="${bootcamp.bootcampName}" th:name="bootcampname"></span></h4>
                         </div>
 
 
-                        <div class="three wide column">
+                        <div class="four wide middle aligned column">
                             <h5><span th:text="${bootcamp.courseList}"></span></h5>
                         </div>
 
 
-                        <div class="three wide column">
+                        <div class="two wide middle aligned column">
                             <div th:each="trainee, iterStat:*{bootcamp.getTrainees()}">
                                 <h5>
                                     <span th:text="!${iterStat.last} ? ${trainee.firstName + ' ' + trainee.lastName} + ',' : ${trainee.firstName + trainee.lastName}"></span>
@@ -124,7 +125,6 @@
                         </div>
                     </div>
                     <div class="ui divider"></div>
-
                 </div>
             </div>
         </div>

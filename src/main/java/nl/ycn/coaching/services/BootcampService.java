@@ -84,7 +84,11 @@ public class BootcampService {
 
 	}
 
-	public void deleteCourse(CourseCreationDto courseCreationDto, Bootcamp camp) {
+	public void deleteCourse(String bootcampname, String coursename, CourseCreationDto courseCreationDto) {
+		Bootcamp bootcamp = bootcampRepository.findByBootcampName(bootcampname);
+		String replace = bootcamp.getCourseList().replace(coursename + ",", "");
+		bootcamp.setCourseList(replace);
+		bootcampRepository.save(bootcamp);
 	}
 
 	public void addCourse(CourseCreationDto courseCreationDto, Bootcamp camp) {
@@ -95,4 +99,7 @@ public class BootcampService {
 	}
 
 
+	public void deleteBootcamp(String bootcamp) {
+		bootcampRepository.delete(bootcampRepository.findByBootcampName(bootcamp));
+	}
 }
