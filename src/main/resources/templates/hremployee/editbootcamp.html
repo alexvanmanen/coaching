@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org" xmlns:margin-left="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>HR-Employee | Edit Bootcamp</title>
@@ -47,7 +47,7 @@
         </a>
     </div>
 </div>
-
+<div style="margin-top: 20px;"></div>
 <div class="ui segment"
      style="padding: 10px; margin-left: 25px; margin-right: 25px; margin-top: 10px; margin-bottom: 10px">
     <div class="content">
@@ -142,14 +142,15 @@
     </div>
 
 
-    <div class="ui divider"></div>
+    <div></div>
 
-    <div style="margin-left: 25px; margin-right: 25px;">
+    <div>
             <button th:name="action" th:value="'save_bootcamp:'+ ${bootcamp.getBootcampName()}" class="ui orange fluid large button" type="submit">Save Changes</button>
     </div>
 
 
 </form>
+<div style="margin-top: 20px;"></div>
 <script>$('.ui.dropdown').dropdown();</script>
 
 </body>

@@ -64,6 +64,8 @@ public class BootcampService {
 		bootcamp.setCourseList(courseListString);
 		bootcampRepository.save(bootcamp);
 
+
+
 	}
 
 	public void saveBootcamp(CourseCreationDto courseCreationDto, String name, String beginDate, String endDate) {
@@ -76,6 +78,10 @@ public class BootcampService {
 			bootcamp.setEndDate(endDate);
 			setCourseList(bootcamp, courseCreationDto.getCourses());
 		}
+		if(bootcampRepository.findByBootcampName("new bootcamp") != null){
+			bootcampRepository.delete(bootcampRepository.findByBootcampName("new bootcamp"));
+		}
+
 	}
 
 	public void deleteCourse(CourseCreationDto courseCreationDto, Bootcamp camp) {
