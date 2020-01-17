@@ -60,10 +60,14 @@
                             </div>
                         </div>
 
+                        <div class="two wide center aligned column">
+                                <button class="ui orange fluid inverted button" type="submit" th:name="action" th:value="'edit_bootcamp:' + ${bootcamp.bootcampName}">Edit</button>
                         <div class="two wide center aligned middle aligned column">
                                 <button class="ui orange fluid inverted button" type="submit" th:name="action" th:value="'edit_bootcamp:' + ${bootcamp.bootcampName}">Edit</button>
                         </div>
 
+                        <div class="two wide center aligned column">
+                                <button class="ui orange fluid inverted button" type="submit" th:name="action" th:value="'activate_bootcamp:' + ${bootcamp.bootcampName}" >Finish</button>
                         <div class="two wide center aligned middle aligned column">
                                 <button class="ui orange fluid inverted button" type="submit" th:name="action" th:value="'activate_bootcamp:' + ${bootcamp.bootcampName}" >Finish</button>
                         </div>
