@@ -47,24 +47,25 @@ INSERT INTO PERSONAL_SOFTSKILL VALUES(1, 'OMGAAN MET ANDEREN', 'SAMENWERKEN', 'B
 INSERT INTO PERSONAL_HARDSKILL VALUES(1, 'EEN PROGRAMEERTAAL', '2020-12-21', 'JAVA', 'JAVAJAVA', '2019-12-21', 'FINISHED', 'HENK');
 INSERT INTO PERSONAL_HARDSKILL VALUES(2, 'EEN WERKMETHODE', '2020-12-22', 'SCRUM', 'SCRUMSCRUM', '2019-12-22', 'FINISHED', 'Simone');
 
-INSERT INTO COURSE VALUES(null , 'EEN AGILE WERKMETHODE', 'SCRUM');
-INSERT INTO COURSE VALUES(null , 'REQUIREMENTS ENGINEERINGING', 'IREB');
-INSERT INTO COURSE VALUES(null , 'TESTING', 'ISTQB');
-INSERT INTO COURSE VALUES(null , 'Programmeertaal', 'Python');
-INSERT INTO COURSE VALUES(null , 'Databasetaal', 'SQL');
-INSERT INTO COURSE VALUES(null , 'Programmeertaal', 'C+');
-INSERT INTO COURSE VALUES(null, 'Mooimaaktaal', 'CSS');
-INSERT INTO COURSE VALUES(null, 'Programmeertaal', 'Java');
-INSERT INTO COURSE VALUES(null, 'Operating System', 'Linux');
+INSERT INTO COURSE VALUES(0, 'description', 'new course');
+INSERT INTO COURSE VALUES(1, 'Agile workmethod', 'scrum');
+INSERT INTO COURSE VALUES(2, 'Requirement Engineering', 'ireb');
+INSERT INTO COURSE VALUES(3, 'Testing', 'istqb');
+INSERT INTO COURSE VALUES(4, 'Databases', 'sql');
+INSERT INTO COURSE VALUES(5, 'connect java to HTML', 'thymeleaf');
+INSERT INTO COURSE VALUES(6, 'Programming Language', 'c++');
+INSERT INTO COURSE VALUES(7, 'Programming Language', 'css');
+INSERT INTO COURSE VALUES(8, 'Operating System', 'linux');
+INSERT INTO COURSE VALUES(9, 'Programming Language', 'python');
+INSERT INTO COURSE VALUES(10, 'Programming Language', 'java');
 
-
-INSERT INTO BOOTCAMP VALUES(1, false, '2019-02-12', 'devops-01-19', 'Python, SQL', '2019-05-20');
-INSERT INTO BOOTCAMP VALUES(2, false, '2019-02-12', 'java-01-19', 'C+, CSS', '2019-05-22');
-INSERT INTO BOOTCAMP VALUES(3, false, '2019-04-12', 'bigdata-01-19', 'C+, CSS', '2019-07-17');
-INSERT INTO BOOTCAMP VALUES(4, false, '2019-06-13', 'devops-02-19', 'Java, Linux', '2019-09-20');
-INSERT INTO BOOTCAMP VALUES(5, false, '2019-06-27', 'java-02-19', 'C+, CSS', '2019-08-22');
-INSERT INTO BOOTCAMP VALUES(6, true, '2019-08-12', 'bigdata-02-19', 'C+, CSS', '2019-10-17');
-INSERT INTO BOOTCAMP VALUES(7, true, '2019-09-28', 'devops-03-19', 'Java, C++', '2019-11-15');
-INSERT INTO BOOTCAMP VALUES(8, true, '2019-09-12', 'java-03-19', 'C+, CSS', '2019-12-22');
-INSERT INTO BOOTCAMP VALUES(9, true, '2019-11-18', 'devops-04-19', 'Java, C++', '2020-01-20');
-INSERT INTO BOOTCAMP VALUES(10, true, '2019-12-12', 'bigdata-03-19', 'C+, CSS', '2020-02-17');
+INSERT INTO BOOTCAMP VALUES(NULL, '2019-02-12', 'devops-01-19', 'python,sql', '2019-05-20', false);
+INSERT INTO BOOTCAMP VALUES(NULL, '2019-02-12', 'java-01-19', 'c++,css', '2019-05-22', false);
+INSERT INTO BOOTCAMP VALUES(NULL, '2019-04-12', 'bigdata-01-19', 'c++,css', '2019-07-17', false);
+INSERT INTO BOOTCAMP VALUES(NULL, '2019-06-13', 'devops-02-19', 'java,linux', '2019-09-20', false);
+INSERT INTO BOOTCAMP VALUES(NULL, '2019-06-27', 'java-02-19', 'c++,css,istqb', '2019-08-22', false);
+INSERT INTO BOOTCAMP VALUES(NULL, '2019-08-12', 'bigdata-02-19', 'c++,css', '2019-10-17', true);
+INSERT INTO BOOTCAMP VALUES(NULL, '2019-09-28', 'devops-03-19', 'java,c++,sql,thymeleaf', '2019-11-15', true);
+INSERT INTO BOOTCAMP VALUES(NULL, '2019-09-12', 'bigdata-05-19', 'c++,css', '2019-07-17', true);
+INSERT INTO BOOTCAMP VALUES(NULL, '2019-11-18', 'devops-04-19', 'java,c++', '2020-01-20', true);
+INSERT INTO BOOTCAMP VALUES(NULL, '2019-12-12', 'bigdata-03-19', 'c++,css', '2020-02-17', true);

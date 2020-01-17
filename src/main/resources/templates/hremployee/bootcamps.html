@@ -20,7 +20,11 @@
 <div th:insert="~{/hremployee/header :: header}"></div>
 <script>$('#bootcamps').addClass('active');</script>
 
-<div class="ui segment" style="margin-left: 25px; margin-right: 25px;">
+
+<div style="margin-top: 20px;"></div>
+
+<form class="ui form" method="post" th:action="@{/hremployee/updatebootcamp}"
+      style="margin-left: 25px; margin-right: 25px;">
     <div class="center aligned two column row">
 
         <div class="column">
@@ -38,50 +42,41 @@
                         </div>
 
 
-                        <div class="four wide column">
-                            <h3><span th:text="${bootcamp.bootcampName}"></span></h3>
+                        <div class="three wide column">
+                            <h4><span th:text="${bootcamp.bootcampName}" th:name="bootcampname"></span></h4>
                         </div>
 
 
-                        <div class="five wide column">
-                            <h4><span th:text="${bootcamp.courseList}"></span></h4>
+                        <div class="four wide column">
+                            <h5><span th:text="${bootcamp.courseList}"></span></h5>
                         </div>
 
 
                         <div class="four wide column">
                             <div th:each="trainee, iterStat:*{bootcamp.getTrainees()}">
-                                <h4>
+                                <h5>
                                     <span th:text="!${iterStat.last} ? ${trainee.firstName + ' ' + trainee.lastName} + ',' : ${trainee.firstName + trainee.lastName}"></span>
-                                </h4>
+                                </h5>
                             </div>
                         </div>
 
-                        <!--                    th:action="@{'/hremployee/appuserinfo/' + ${manager.username}}"-->
-                        <div class="one wide center aligned column">
-                            <form class="ui form" method="get">
-                                <button class="ui orange inverted button"><i class="center aligned edit icon"></i>
-                                </button>
-                            </form>
+                        <div class="two wide center aligned column">
+                                <button class="ui orange inverted button" type="submit" th:name="action" th:value="'edit_bootcamp:' + ${bootcamp.bootcampName}">Edit</button>
                         </div>
 
-                        <div class="one wide center aligned column">
-                            <form class="ui form" method="get">
-                                <button class="ui orange inverted button"><i class="center aligned check icon"></i>
-                                </button>
-                            </form>
+                        <div class="two wide center aligned column">
+                                <button class="ui orange inverted button" type="submit" th:name="action" th:value="'activate_bootcamp:' + ${bootcamp.bootcampName}" >Finish</button>
                         </div>
                     </div>
                     <div class="ui divider"></div>
                 </div>
                 <div>
-                    <a class="item" href="/createbootcamp">
-                        <button class="ui fluid large teal submit button" type="submit">+ add Running Bootcamp</button>
-                    </a>
+                        <button class="ui fluid large teal submit button" type="submit" th:name="action" th:value="add_bootcamp">Create New Bootcamp</button>
                 </div>
             </div>
         </div>
 
-        <div class="ui divider"></div>
+        <div class="ui orange divider"></div>
 
         <div class="column">
             <div class="ui segment">
@@ -98,56 +93,44 @@
                         </div>
 
 
-                        <div class="four wide column">
-                            <h3><span th:text="${bootcamp.bootcampName}"></span></h3>
+                        <div class="three wide column">
+                            <h4><span th:text="${bootcamp.bootcampName}" th:name="bootcampname"></span></h4>
                         </div>
 
 
-                        <div class="five wide column">
-                            <h4><span th:text="${bootcamp.courseList}"></span></h4>
+                        <div class="three wide column">
+                            <h5><span th:text="${bootcamp.courseList}"></span></h5>
                         </div>
 
 
-                        <div class="four wide column">
+                        <div class="three wide column">
                             <div th:each="trainee, iterStat:*{bootcamp.getTrainees()}">
-                                <h4>
+                                <h5>
                                     <span th:text="!${iterStat.last} ? ${trainee.firstName + ' ' + trainee.lastName} + ',' : ${trainee.firstName + trainee.lastName}"></span>
-                                </h4>
+                                </h5>
                             </div>
                         </div>
 
-                        <!--                    th:action="@{'/hremployee/appuserinfo/' + ${manager.username}}"-->
-                        <div class="one wide center aligned column">
-                            <form class="ui form" method="get">
-                                <button class="ui orange inverted button"><i class="center aligned edit icon"></i>
-                                </button>
-                            </form>
+                        <div class="two wide center aligned column">
+                                <button th:name="action" th:value="'edit_bootcamp:' + ${bootcamp.bootcampName}" type="submit" class="ui orange inverted button">Edit</button>
                         </div>
 
-                        <div class="one wide center aligned column">
-                            <form class="ui form" method="get">
-                                <button class="ui orange inverted button"><i class="center aligned window close outline icon"></i>
-                                </button>
-                            </form>
+                        <div class="two wide center aligned column">
+                                <button th:name="action" th:value="'activate_bootcamp:' + ${bootcamp.bootcampName}" type="submit" class="ui orange inverted button">Reactivate</button>
+                        </div>
+
+                        <div class="two wide center aligned column">
+                                <button th:name="action" th:value="'delete_bootcamp:' + ${bootcamp.bootcampName}" type="submit" class="ui orange inverted button">Delete</button>
                         </div>
                     </div>
                     <div class="ui divider"></div>
 
-
                 </div>
-
             </div>
-        </div>
-
-
-        <div>
-            <a class="item" href="/createbootcamp">
-                <button class="ui fluid large teal submit button" type="submit">+ add Running Bootcamp</button>
-            </a>
         </div>
     </div>
 
-
-</div>
+</form>
+<div style="margin-top: 20px;"></div>
 </body>
 </html>
