@@ -45,25 +45,37 @@ public class AppUserService implements UserDetailsService {
 
 	public void registerUser(
 			String username,
-			String firstname,
-			String lastname,
+			String firstName,
+			String lastName,
 			String email,
 			String password,
-			String roles,
+			String role,
 			boolean enabled,
 			boolean activated) {
 		AppUser user = appUserRepository.findByUsername(username);
-		if (user == null) {
-			AppUser newUser = new AppUser(
-					username,
-					firstname,
-					lastname,
-					email,
-					password,
-					roles,
-					enabled,
-					activated);
-			appUserRepository.save(newUser);
+		if (user == null){
+			switch (role) {
+				case "TRAINEE":
+					AppUser newUser = new Trainee(username, firstName, lastName, email, password, role, enabled, activated);
+					appUserRepository.save (newUser);
+					break;
+				case "HREMPLOYEE":
+					newUser = new HrEmployee (username, firstName, lastName, email, password, role, enabled, activated);
+					appUserRepository.save (newUser);
+					break;
+				case "MANAGER":
+					newUser = new Manager (username, firstName, lastName, email, password, role, enabled, activated);
+					appUserRepository.save (newUser);
+					break;
+				case "TALENTMANAGER":
+					newUser = new TalentManager (username, firstName, lastName, email, password, role, enabled, activated);
+					appUserRepository.save (newUser);
+					break;
+				case "ADMIN":
+					newUser = new AppUser (username, firstName, lastName, email, password, role, enabled, activated);
+					appUserRepository.save (newUser);
+					break;
+			}
 		} else {
 			System.out.print("username already taken");
 		}

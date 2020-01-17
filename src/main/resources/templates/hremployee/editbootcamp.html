@@ -18,35 +18,10 @@
 
 <body style="background-color: cadetblue">
 
-<div class="ui secondary pointing menu" style="background-color:white">
-    <a class="item">
-        <img src="../ycnlogo.png" class="image">
-    </a>
-    <a class="item" href="/dashboard">
-        Dashboard
-    </a>
-    <a class="item" href="/hremployee/teams">
-        Teams
-    </a>
-    <a class="item" href="/hremployee/users">
-        Users
-    </a>
-    <a class="item active" href="/hremployee/bootcamps">
-        Bootcamps
-    </a>
-    <a class="item" href="/hremployee/skills">
-        Skills
-    </a>
-    <a class="item" href="/hremployee/hrcalendar">
-        Calendar
-    </a>
+<div th:insert="~{hremployee/header :: header}"></div>
+<script>$('#skills').addClass('active');</script>
 
-    <div class="right menu">
-        <a class="ui item" href="/logout">
-            Logout
-        </a>
-    </div>
-</div>
+
 <div style="margin-top: 20px;"></div>
 <div class="ui segment"
      style="padding: 10px; margin-left: 25px; margin-right: 25px; margin-top: 10px; margin-bottom: 10px">
@@ -98,7 +73,7 @@
                     <i class="big server icon"></i>
                 </div>
 
-                <div class="four wide center aligned middle aligned column">
+                <div class="three wide center aligned middle aligned column">
                     <div class="eight wide column" id="course">
                         <div class="ui fluid search selection dropdown">
                             <input type="hidden" name="course"
@@ -118,7 +93,7 @@
                 </div>
 
 
-                <div class="seven wide middle aligned column">
+                <div class="eight wide middle aligned column">
                     <h4><span th:field="*{courses[__${itemStat.index}__].coursedescription}" th:value="${course.getCoursedescription()}" th:text="${course.getCoursedescription()}"></span></h4>
                 </div>
 

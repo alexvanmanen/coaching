@@ -92,7 +92,7 @@ public class HrController {
 				return "redirect:/hremployee/editbootcamp/"+actions[1];
 
 			case "delete_course":
-				bootcampService.deleteCourse(courseCreationDto, camp);
+				bootcampService.deleteCourse(actions[1], actions[2], courseCreationDto);
 				return "redirect:/hremployee/editbootcamp/"+actions[1];
 
 			case "save_bootcamp":
@@ -101,6 +101,10 @@ public class HrController {
 
 			case "edit_bootcamp":
 				return "redirect:/hremployee/editbootcamp/"+actions[1];
+
+			case "delete_bootcamp":
+				bootcampService.deleteBootcamp(actions[1]);
+				return "redirect:/hremployee/bootcamps";
 
 			case "activate_bootcamp":
 				Bootcamp disBootcamp = bootcampRepository.findByBootcampName(actions[1]);
@@ -149,14 +153,16 @@ public class HrController {
 
 	@GetMapping(path = "/hremployee/appuserinfo/{username}")
 	public String getAppUserInfo(Model model, @PathVariable("username") String username) {
-
+		
 		model.addAttribute("appuser", appUserService.getUser(username));
 		model.addAttribute("bootcampList", bootcampRepository.findAll());
 
 		if (appUserService.getUser(username).getRole().equalsIgnoreCase("trainee")) {
 			AppUser user = appUserService.getUser(username);
 			Trainee trainee = (Trainee) user;
+			if (trainee.getBootcamp() != null) {
 			model.addAttribute("bootcamp", trainee.getBootcamp().getBootcampName());
+			}
 		}
 		return "/hremployee/appuserinfo";
 	}
@@ -176,7 +182,7 @@ public class HrController {
 									String streetNr,
 									String city,
 									String country,
-									String telephonenumber,
+									String telephonenr,
 									String bootcamp) {
 		appUserService.updateAppUser(username,
 				firstname,
@@ -191,7 +197,7 @@ public class HrController {
 				streetNr,
 				city,
 				country,
-				telephonenumber,
+				telephonenr,
 				bootcamp);
 		return "redirect:/hremployee/users";
 	}
@@ -281,7 +287,7 @@ public class HrController {
 				email,
 				encoder.encode(password),
 				roles,
-				enabled,
+				true,
 				activated);
 		return "redirect:/hremployee/users";
 	}

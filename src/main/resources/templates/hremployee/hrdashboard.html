@@ -32,7 +32,7 @@
                     </button>
                 </form>
 
-                <form class="ui form" method="get" th:action="@{'/hremployee/bootcamps/' + ${bootcamps.bootcampName}}"
+                <form class="ui form" method="get" th:action="@{'/hremployee/editbootcamp/' + ${bootcamps.bootcampName}}"
                       th:each="bootcamps:${activeBootcamps}">
                     <button class="ui mini icon message button">
                         <div class="content">
@@ -81,11 +81,8 @@
                     </button>
                 </form>
 
-                <p> Trainee Luuk Wempe heeft SCRUM behaald.</p>
-                <p> Java-03-19 is gestart.</p>
-                <p> Manager Vuong Ngo heeft zijn contact gegevens gewijzigd.</p>
-                <p> Devops-02-19 is vanaf vandaag afgelopen.</p>
-                <p> Java-02-19 is vanaf vandaag afgelopen.</p>
+                <i class=" huge wrench icon" style="margin:40px; color: #888888"></i>
+                <p>Under construction</p>
             </div>
 
         </div>
