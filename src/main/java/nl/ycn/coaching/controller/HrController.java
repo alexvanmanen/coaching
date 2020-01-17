@@ -5,6 +5,7 @@ import nl.ycn.coaching.database.AppUserRepository;
 import nl.ycn.coaching.database.BootcampRepository;
 import nl.ycn.coaching.database.CourseRepository;
 import nl.ycn.coaching.model.Bootcamp;
+import nl.ycn.coaching.model.Course;
 import nl.ycn.coaching.model.CourseCreationDto;
 import nl.ycn.coaching.model.users.AppUser;
 import nl.ycn.coaching.model.users.Trainee;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -108,11 +110,13 @@ public class HrController {
 				return "redirect:/hremployee/bootcamps";
 
 			case "add_bootcamp":
-				Bootcamp newBootcamp = new Bootcamp("newbootcamp");
+				Bootcamp newBootcamp = new Bootcamp("new bootcamp");
 				newBootcamp.setBeginDate("2020-01-01");
 				newBootcamp.setEndDate("2020-01-02");
 				newBootcamp.setCourseList("java");
-				bootcampService.setCourseList(newBootcamp.getBootcampName(), courseCreationDto.getCourses());
+				List<Course> course = new ArrayList<>();
+				course.add(courseRepository.findByCoursename("java"));
+				bootcampService.setCourseList(newBootcamp, course);
 				return "redirect:/hremployee/editbootcamp/"+ newBootcamp.getBootcampName();
 
 			default:
@@ -327,7 +331,7 @@ public class HrController {
 
     @PostMapping("/hremployee/createcourseform")
     public String createCourse(String coursename, String coursedescription) {
-        hrService.addCourse(coursename, coursedescription);
+        hrService.addCourse(coursename.toLowerCase(), coursedescription);
 
         return "redirect:/hremployee/skills";
     }

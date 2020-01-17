@@ -102,15 +102,15 @@
                     <div class="eight wide column" id="course">
                         <div class="ui fluid search selection dropdown">
                             <input type="hidden" name="course"
-                                   th:value="${course.coursename}"
+                                   th:value="${course.getCoursename()}"
                                    th:field="*{courses[__${itemStat.index}__].coursename}">
                             <i class="dropdown icon"></i>
-                            <div class="default text" th:value="${course.coursename}"></div>
+                            <div class="default text" th:value="${course.getCoursename()}"></div>
                             <div class="menu">
                                 <div class="item"
                                      th:each="course : ${allcourses}"
-                                     th:text="${course.coursename}"
-                                     th:value="${course.coursename}">
+                                     th:text="${course.getCoursename()}"
+                                     th:value="${course.getCoursename()}">
                                 </div>
                             </div>
                         </div>
@@ -119,7 +119,7 @@
 
 
                 <div class="seven wide middle aligned column">
-                    <h4><span th:field="*{courses[__${itemStat.index}__].coursedescription}" th:value="${course.coursedescription}"></span></h4>
+                    <h4><span th:field="*{courses[__${itemStat.index}__].coursedescription}" th:value="${course.getCoursedescription()}" th:text="${course.getCoursedescription()}"></span></h4>
                 </div>
 
                 <div class="four wide center aligned middle aligned column" style="margin-top: 10px">
