@@ -60,6 +60,19 @@ $(document)
                                 prompt: 'Please choose a role'
                             }
                         ]
+                    },
+                    dateofbirth: {
+                        identifier: 'dateofbirth',
+                        rules: [
+                            {
+                                type: 'empty',
+                                prompt: 'Please enter a date of birth.'
+                            },
+                            {
+                                type: 'regExp[([12]\\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01]))]',
+                                prompt: "Date of birth has to have entered as YYYY-MM-DD."
+                            }
+                        ]
                     }
                 }
             })
